@@ -21,6 +21,8 @@ services:
       - 4200:4200
     environment:
       - APP_NAME=${APP_NAME}
+      - ENV=production
+      - DEBUG=false
     networks:
       - common
 
