@@ -15,8 +15,12 @@ services:
     build:
       context: ./server
     container_name: ${APP_NAME}_server
-    command: php artisan serve
+    command: php artisan serve --host 0.0.0.0
     restart: unless-stopped
+    ports:
+      - 4200:4200
+    environment:
+      - APP_NAME=${APP_NAME}
     networks:
       - common
 
