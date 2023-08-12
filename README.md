@@ -4,6 +4,8 @@
 - install docker-compose
 - install make
 - install pnpm
+- install php
+- install composer
 
 ### Setup project
 
@@ -16,14 +18,6 @@
 3. Run `make install` to install packages.
 4. Run `make up-prod` to create and start a production build (`crowd.gg`).
 5. Run `make up` to start in dev mode (`crowd.dev.gg`).
-
----
-
-**NOTE**
-
-`nginx/nginx.conf` file by default can't access to environment variables. So, if you change something in `.env` file make sure to update `nginx.conf` and `nginx.dev.conf` accordingly.
-
----
 
 ## Commands:
 
@@ -55,18 +49,22 @@ Stop containers and remove containers, networks, volumes, and images created by 
 
 Run linter for client
 
+### ✔ make lint-client-fix
+
+Fix lint errors for client
+
 ### ✔ make lint-server
 
 Run linter for server
+
+### ✔ make lint-server-fix
+
+Fix lint errors for server
 
 ### ✔ make lint
 
 Run linters for client & server
 
----
+### ✔ make lint-fix
 
-**NOTE**
-
-Take a look at `.vscode/settings.json` file if you using Visual Studio Code editor. You should provide `"eslint.workingDirectories"` setting with all inner project folders that using eslint because by default eslint looking to the root folder.
-
----
+Fix lint errors for client & server

@@ -26,16 +26,22 @@ down:
 lint-client:
 	cd client && pnpm lint
 
-# Run linter for client
+# Fix lint errors for client
+lint-client-fix:
+	cd client && pnpm lint --fix
+
+# Run linter for server
 lint-server:
-	cd server && pnpm lint
+	cd server && ./vendor/bin/pint --test
+
+# Fix lint errors for server
+lint-server-fix:
+	cd server && ./vendor/bin/pint -v
 
 # Run linters for client & server
-
-# lint:
-# 	cd client && pnpm lint && cd ../server && pnpm lint
-
 lint:
-	cd client && pnpm lint
+	cd client && pnpm lint && cd ../server && ./vendor/bin/pint --test
 
-
+# Fix lint errors for client & server
+lint-fix:
+	cd client && pnpm lint --fix && cd ../server && ./vendor/bin/pint -v
