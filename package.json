@@ -1,0 +1,21 @@
+{
+  "name": "crowd",
+  "version": "1.0.0",
+  "description": "Public social network",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zavvdev/crowd.git"
+  },
+  "author": "Ihor Zaviriukha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zavvdev/crowd/issues"
+  },
+  "homepage": "https://github.com/zavvdev/crowd#readme",
+  "devDependencies": {
+    "husky": "^8.0.2"
+  }
+}

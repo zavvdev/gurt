@@ -1,0 +1,33 @@
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "prod": "pnpm build && serve -s -p 3000 dist",
+    "lint": "tsc --noEmit && eslint --ext .tsx,.ts 'src' --max-warnings=0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "serve": "^14.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.15",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "@vitejs/plugin-react": "^2.2.0",
+    "eslint": "^8.29.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "prettier": "^2.8.1",
+    "recommended": "link:plugin:prettier/recommended",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3"
+  }
+}

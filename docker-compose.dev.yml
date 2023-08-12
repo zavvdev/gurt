@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  client:
+    command: pnpm dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./client:/usr/src/app
+
+  server:
+    command: php artisan serve
+    volumes:
+      - ./server:/usr/src/app
+
+  nginx:
+    volumes:
+      - ./nginx/nginx.dev.conf:/etc/nginx/conf.d/nginx.conf

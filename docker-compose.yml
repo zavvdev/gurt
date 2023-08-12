@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  client:
+    image: ${APP_NAME}_client
+    build:
+      context: ./client
+    container_name: ${APP_NAME}_client
+    command: pnpm prod
+    restart: unless-stopped
+    networks:
+      - common
+
+  server:
+    image: ${APP_NAME}_server
+    build:
+      context: ./server
+    container_name: ${APP_NAME}_server
+    command: php artisan serve
+    restart: unless-stopped
+    networks:
+      - common
+
+  nginx:
+    image: ${APP_NAME}_nginx
+    build:
+      context: ./nginx
+    container_name: ${APP_NAME}_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - server
+      - client
+    networks:
+      - common
+
+networks:
+  common:
+    name: ${APP_NAME}_network
+    driver: bridge
