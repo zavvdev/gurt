@@ -1,5 +1,22 @@
 version: "3.9"
 services:
+  database:
+    image: ${APP_NAME}_database
+    build:
+      context: ./database
+    container_name: ${APP_NAME}_database
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - database_volume:/var/lib/postgresql/data
+    networks:
+      - common
+
   client:
     image: ${APP_NAME}_client
     build:
@@ -25,6 +42,14 @@ services:
       - APP_NAME=${APP_NAME}
       - ENV=production
       - DEBUG=false
+      - DB_CONNECTION=pgsql
+      - DB_HOST=http://database
+      - DB_PORT=5432
+      - DB_DATABASE=${POSTGRES_DB}
+      - DB_USERNAME=${POSTGRES_USER}
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - database
     networks:
       - common
 
@@ -47,3 +72,6 @@ networks:
   common:
     name: ${APP_NAME}_network
     driver: bridge
+
+volumes:
+  database_volume:

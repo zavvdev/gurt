@@ -13,8 +13,20 @@ services:
       - APP_NAME=${APP_NAME}
       - ENV=development
       - DEBUG=true
+      - DB_CONNECTION=pgsql
+      - DB_HOST=http://database
+      - DB_PORT=5432
+      - DB_DATABASE=${DEV_POSTGRES_DB}
+      - DB_USERNAME=${DEV_POSTGRES_USER}
+      - DB_PASSWORD=${DEV_POSTGRES_PASSWORD}
     volumes:
       - ./server:/usr/src/app
+
+  database:
+    environment:
+      - POSTGRES_USER=${DEV_POSTGRES_USER}
+      - POSTGRES_PASSWORD=${DEV_POSTGRES_PASSWORD}
+      - POSTGRES_DB=${DEV_POSTGRES_DB}
 
   nginx:
     volumes:
