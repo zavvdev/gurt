@@ -4,10 +4,8 @@ services:
     command: pnpm dev
     stdin_open: true
     tty: true
-    ports:
-      - 3001:3000
     volumes:
-      - ./client/src:/usr/src/app/src
+      - ./client/app:/usr/src/app/app
 
   server:
     command: php artisan serve --host 0.0.0.0

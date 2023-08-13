@@ -7,6 +7,8 @@ services:
     container_name: ${APP_NAME}_client
     command: pnpm prod
     restart: unless-stopped
+    ports:
+      - 3000:3000
     networks:
       - common
 
