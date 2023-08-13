@@ -3,6 +3,10 @@
   "rules": {
     "concat_space": {
       "spacing": "one"
+    },
+    "trailing_comma_in_multiline": {
+      "after_heredoc": true,
+      "elements": ["arguments", "arrays", "match", "parameters"]
     }
   }
 }
