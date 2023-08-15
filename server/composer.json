@@ -1,9 +1,8 @@
 {
-  "name": "crowd/server",
+  "name": "laravel/server",
   "type": "project",
-  "description": "Crowd server app",
+  "description": "Server app",
   "keywords": [
-    "crowd",
     "server",
     "laravel",
     "api"
