@@ -4,3 +4,9 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . .
 RUN composer install
+
+RUN set -ex \
+  && apk --no-cache add \
+  postgresql-dev
+
+RUN docker-php-ext-install pdo pdo_pgsql
