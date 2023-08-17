@@ -13,7 +13,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
     volumes:
-      - database_volume:/var/lib/postgresql/data
+      - ./database/data:/var/lib/postgresql/data
     networks:
       - common
 
@@ -74,6 +74,3 @@ networks:
   common:
     name: ${APP_NAME}_network
     driver: bridge
-
-volumes:
-  database_volume:
