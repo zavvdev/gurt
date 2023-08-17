@@ -1,5 +1,5 @@
 {
-  "name": "crowd",
+  "name": "gurt",
   "version": "1.0.0",
   "description": "Public social network",
   "scripts": {
@@ -7,14 +7,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zavvdev/crowd.git"
+    "url": "git+https://github.com/zavvdev/gurt.git"
   },
   "author": "Ihor Zaviriukha",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/zavvdev/crowd/issues"
+    "url": "https://github.com/zavvdev/gurt/issues"
   },
-  "homepage": "https://github.com/zavvdev/crowd#readme",
+  "homepage": "https://github.com/zavvdev/gurt#readme",
   "devDependencies": {
     "husky": "^8.0.2"
   }

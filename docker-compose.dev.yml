@@ -1,5 +1,11 @@
 version: "3.9"
 services:
+  database:
+    environment:
+      - POSTGRES_USER=${DEV_DB_USER}
+      - POSTGRES_PASSWORD=${DEV_DB_PASSWORD}
+      - POSTGRES_DB=${DEV_DB_NAME}
+
   client:
     command: pnpm dev
     stdin_open: true
@@ -15,18 +21,12 @@ services:
       - DEBUG=true
       - DB_CONNECTION=pgsql
       - DB_PORT=5432
-      - DB_HOST=http://database
+      - DB_HOST=database
       - DB_DATABASE=${DEV_DB_NAME}
       - DB_USERNAME=${DEV_DB_USER}
       - DB_PASSWORD=${DEV_DB_PASSWORD}
     volumes:
       - ./server:/usr/src/app
-
-  database:
-    environment:
-      - POSTGRES_USER=${DEV_DB_USER}
-      - POSTGRES_PASSWORD=${DEV_DB_PASSWORD}
-      - POSTGRES_DB=${DEV_DB_NAME}
 
   nginx:
     volumes:

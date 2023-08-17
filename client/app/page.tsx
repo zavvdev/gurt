@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Crowd</h1>
+      <h1>Gurt</h1>
       Message: {messageRequest?.data ? JSON.stringify(messageRequest.data) : ''}
     </main>
   );
