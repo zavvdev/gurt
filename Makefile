@@ -2,13 +2,13 @@
 install:
 	cd client && pnpm install && cd ../server && composer install
 
-# Create a production build
-up-prod:
+# Start in production mode
+up:
 	docker-compose up --build -d
 
-# Start in development mode
-up:
-	docker-compose -f ./docker-compose.yml -f ./docker-compose.dev.yml up --build
+# Start locally
+up-local:
+	docker-compose -f ./docker-compose.yml -f ./docker-compose.local.yml up --build
 
 # Stop all running containers without removing them
 stop:
@@ -45,3 +45,8 @@ lint:
 # Fix lint errors for client & server
 lint-fix:
 	cd client && pnpm lint --fix && cd ../server && ./vendor/bin/pint -v
+
+# Clear database volume data
+# (Be careful! Use only when you need to switch to prod database locally for testing purpose)
+db-volume-clear:
+	rm -rf ./database/data

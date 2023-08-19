@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  database:
+    environment:
+      - POSTGRES_USER=${LOCAL_DB_USER}
+      - POSTGRES_PASSWORD=${LOCAL_DB_PASSWORD}
+      - POSTGRES_DB=${LOCAL_DB_NAME}
+
+  client:
+    command: pnpm dev
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./client/app:/usr/src/app/app
+
+  server:
+    command: composer run-script start-local
+    volumes:
+      - ./server:/usr/src/app
+
+  nginx:
+    volumes:
+      - ./nginx/nginx.local.conf:/etc/nginx/conf.d/nginx.conf

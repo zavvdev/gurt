@@ -26,8 +26,6 @@ services:
     restart: unless-stopped
     ports:
       - 3000:3000
-    environment:
-      - API_HOST=http://server:4200
     networks:
       - common
 
@@ -36,20 +34,10 @@ services:
     build:
       context: ./server
     container_name: ${APP_NAME}_server
-    command: php artisan serve --host 0.0.0.0
+    command: composer run-script start-prod
     restart: unless-stopped
     ports:
       - 4200:4200
-    environment:
-      - APP_NAME=${APP_NAME}
-      - ENV=production
-      - DEBUG=false
-      - DB_CONNECTION=pgsql
-      - DB_PORT=5432
-      - DB_HOST=database
-      - DB_DATABASE=${DB_NAME}
-      - DB_USERNAME=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - database
     networks:

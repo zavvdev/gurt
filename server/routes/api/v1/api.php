@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,11 @@ Route::get('hello', function () {
 
     return response()->json($data, 200);
 });
+
+Route::get('users', fn () => User::all());
+
+Route::get('config', fn () => [
+    'env' => env('APP_ENV'),
+    'debug' => env('APP_DEBUG'),
+    'db' => env('DB_DATABASE'),
+]);
