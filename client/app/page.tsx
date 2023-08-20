@@ -11,12 +11,15 @@ const requestConfig: AxiosRequestConfig = {
 const apiClient = axios.create(requestConfig);
 
 export default async function Home() {
-  const messageRequest = await apiClient.get('/v1/hello');
+  const messageRequest = await apiClient.get('/v1/greet');
 
   return (
     <main>
       <h1>Gurt</h1>
-      Message: {messageRequest?.data ? JSON.stringify(messageRequest.data) : ''}
+      Message:{' '}
+      {messageRequest?.data?.data
+        ? JSON.stringify(messageRequest.data.data)
+        : ''}
     </main>
   );
 }

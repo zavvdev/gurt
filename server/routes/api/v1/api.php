@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Http\Controllers\Test\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,18 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('hello', function () {
-    $data = [
-        'message' => 'Hello, World!',
-    ];
-
-    return response()->json($data, 200);
-});
-
-Route::get('users', fn () => User::all());
-
-Route::get('config', fn () => [
-    'env' => env('APP_ENV'),
-    'debug' => env('APP_DEBUG'),
-    'db' => env('DB_DATABASE'),
-]);
+Route::get('greet', [TestController::class, 'greet']);
