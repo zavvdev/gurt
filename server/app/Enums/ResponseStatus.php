@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum ApiResponseStatus: string
+enum ResponseStatus: string
 {
     case Success = 'success';
 

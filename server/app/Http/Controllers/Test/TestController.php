@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Test;
 
-use App\Http\Controllers\ApiController;
+use App\Http\Controllers\Controller;
 
-class TestController extends ApiController
+class TestController extends Controller
 {
     public function greet()
     {

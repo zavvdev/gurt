@@ -2,20 +2,17 @@
 
 namespace App\Traits;
 
-use App\Enums\ApiResponseErrorKey;
-use App\Enums\ApiResponseStatus;
-use App\Enums\ApiResponseSuccessKey;
+use App\Enums\ResponseMessage;
+use App\Enums\ResponseStatus;
 use Illuminate\Http\Response;
 
 trait ApiResponser
 {
     private function composeResponse(
-        ApiResponseStatus $status,
+        ResponseStatus $status,
         int $code,
         mixed $data = null,
-        ApiResponseSuccessKey
-        |ApiResponseErrorKey
-        |string $message = null,
+        ResponseMessage|string $message = null,
     ) {
         return response()->json([
             'status' => $status,
@@ -26,11 +23,11 @@ trait ApiResponser
 
     protected function successResponse(
         mixed $data = null,
-        ApiResponseSuccessKey|string $message = null,
+        ResponseMessage|string $message = null,
         int $code = Response::HTTP_OK,
     ) {
         return $this->composeResponse(
-            ApiResponseStatus::Success,
+            ResponseStatus::Success,
             $code,
             $data,
             $message,
@@ -39,11 +36,11 @@ trait ApiResponser
 
     protected function errorResponse(
         int $code,
-        ApiResponseErrorKey|string $message = null,
+        ResponseMessage|string $message = null,
         mixed $data = null,
     ) {
         return $this->composeResponse(
-            ApiResponseStatus::Error,
+            ResponseStatus::Error,
             $code,
             $data,
             $message,

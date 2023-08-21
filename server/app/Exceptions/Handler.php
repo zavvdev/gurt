@@ -2,12 +2,13 @@
 
 namespace App\Exceptions;
 
-use App\Enums\ApiResponseErrorKey;
+use App\Enums\ResponseMessage;
 use App\Traits\ApiResponser;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -51,31 +52,39 @@ class Handler extends ExceptionHandler
 
             return $this->errorResponse(
                 Response::HTTP_INTERNAL_SERVER_ERROR,
-                ApiResponseErrorKey::Unexpected,
+                ResponseMessage::Unexpected,
             );
         }
     }
 
     public function handleException($request, Exception $exception)
     {
+        if ($exception instanceof ValidationException) {
+            return $this->errorResponse(
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ResponseMessage::ValidationError,
+                $exception->errors(),
+            );
+        }
+
         if ($exception instanceof AuthenticationException) {
             return $this->errorResponse(
                 Response::HTTP_UNAUTHORIZED,
-                ApiResponseErrorKey::Unauthorized,
+                ResponseMessage::Unauthorized,
             );
         }
 
         if ($exception instanceof MethodNotAllowedHttpException) {
             return $this->errorResponse(
                 Response::HTTP_METHOD_NOT_ALLOWED,
-                ApiResponseErrorKey::NotAllowed,
+                ResponseMessage::NotAllowed,
             );
         }
 
         if ($exception instanceof NotFoundHttpException) {
             return $this->errorResponse(
                 Response::HTTP_NOT_FOUND,
-                ApiResponseErrorKey::NotFound,
+                ResponseMessage::NotFound,
             );
         }
 
@@ -92,7 +101,7 @@ class Handler extends ExceptionHandler
 
         return $this->errorResponse(
             Response::HTTP_INTERNAL_SERVER_ERROR,
-            ApiResponseErrorKey::Unexpected,
+            ResponseMessage::Unexpected,
         );
     }
 }

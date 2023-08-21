@@ -2,8 +2,10 @@
 
 namespace App\Enums;
 
-enum ApiResponseErrorKey: string
+enum ResponseMessage: string
 {
+    // Error
+
     case NotAllowed = 'not_allowed';
 
     case NotFound = 'not_found';
@@ -11,4 +13,6 @@ enum ApiResponseErrorKey: string
     case Unauthorized = 'unauthorized';
 
     case Unexpected = 'unexpected_error';
+
+    case ValidationError = 'validation_error';
 }
