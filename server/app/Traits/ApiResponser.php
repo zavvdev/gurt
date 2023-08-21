@@ -2,9 +2,9 @@
 
 namespace App\Traits;
 
-use App\Enums\Api\ApiResponseErrorKey;
-use App\Enums\Api\ApiResponseStatus;
-use App\Enums\Api\ApiResponseSuccessKey;
+use App\Enums\ApiResponseErrorKey;
+use App\Enums\ApiResponseStatus;
+use App\Enums\ApiResponseSuccessKey;
 use Illuminate\Http\Response;
 
 trait ApiResponser

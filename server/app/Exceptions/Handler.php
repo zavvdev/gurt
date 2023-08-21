@@ -2,9 +2,10 @@
 
 namespace App\Exceptions;
 
-use App\Enums\Api\ApiResponseErrorKey;
+use App\Enums\ApiResponseErrorKey;
 use App\Traits\ApiResponser;
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -57,6 +58,13 @@ class Handler extends ExceptionHandler
 
     public function handleException($request, Exception $exception)
     {
+        if ($exception instanceof AuthenticationException) {
+            return $this->errorResponse(
+                Response::HTTP_UNAUTHORIZED,
+                ApiResponseErrorKey::Unauthorized,
+            );
+        }
+
         if ($exception instanceof MethodNotAllowedHttpException) {
             return $this->errorResponse(
                 Response::HTTP_METHOD_NOT_ALLOWED,

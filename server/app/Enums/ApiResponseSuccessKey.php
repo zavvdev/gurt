@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums\Api;
+namespace App\Enums;
 
 enum ApiResponseSuccessKey: string
 {
