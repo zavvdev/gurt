@@ -43,7 +43,7 @@ class AuthController extends Controller
         $dto = $request->getData();
         $request->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(
+        if (!Auth::attempt(
             [
                 'email' => $dto->email,
                 'password' => $dto->password,
