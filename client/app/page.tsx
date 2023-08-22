@@ -1,17 +1,7 @@
-import axios, { AxiosRequestConfig } from 'axios';
-
-const requestConfig: AxiosRequestConfig = {
-  baseURL: process.env.API_ENDPOINT || process.env.NEXT_PUBLIC_API_ENDPOINT,
-  headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
-};
-
-const apiClient = axios.create(requestConfig);
+import { serverApiClient } from './serverClients';
 
 export default async function Home() {
-  const messageRequest = await apiClient.get('/v1/greet');
+  const messageRequest = await serverApiClient.get('/v1/greet');
 
   return (
     <main>
