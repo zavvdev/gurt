@@ -8,7 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Spatie\LaravelData\Attributes\Validation\BooleanType;
 use Spatie\LaravelData\Attributes\Validation\Email;
 use Spatie\LaravelData\Attributes\Validation\Required;
 use Spatie\LaravelData\WithData;
@@ -22,8 +21,7 @@ class Data extends RequestData
         #[Required]
         public string $password,
 
-        #[BooleanType]
-        public bool $remember,
+        public ?bool $remember,
     ) {
     }
 }
