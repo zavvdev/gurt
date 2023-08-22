@@ -15,4 +15,10 @@ enum ResponseMessage: string
     case Unexpected = 'unexpected_error';
 
     case ValidationError = 'validation_error';
+
+    // Success
+
+    case AlreadySent = 'already_sent';
+
+    case AlreadyLoggedIn = 'already_logged_in';
 }

@@ -59,10 +59,6 @@ class Handler extends ExceptionHandler
 
     public function handleException($request, Exception $exception)
     {
-        if (config('app.debug')) {
-            return parent::render($request, $exception);
-        }
-
         if ($exception instanceof ValidationException) {
             return $this->errorResponse(
                 Response::HTTP_UNPROCESSABLE_ENTITY,

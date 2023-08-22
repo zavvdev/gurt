@@ -1,11 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\Web\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\Web\EmailVerificationNotificationController;
-use App\Http\Controllers\Auth\Web\NewPasswordController;
-use App\Http\Controllers\Auth\Web\PasswordResetLinkController;
-use App\Http\Controllers\Auth\Web\RegisteredUserController;
-use App\Http\Controllers\Auth\Web\VerifyEmailController;
+use App\Http\Controllers\Auth\Web\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,30 +14,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest')
-    ->name('register');
+// Auth
 
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+Route::post('/auth/register', [AuthController::class, 'register'])
     ->middleware('guest')
-    ->name('login');
+    ->name('web.auth.register');
 
-Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+Route::post('/auth/login', [AuthController::class, 'login'])
     ->middleware('guest')
-    ->name('password.email');
+    ->name('web.auth.login');
 
-Route::post('/reset-password', [NewPasswordController::class, 'store'])
+Route::post('/auth/forgot-password', [AuthController::class, 'forgotPassword'])
     ->middleware('guest')
-    ->name('password.store');
+    ->name('web.auth.password.email');
 
-Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
+Route::post('/auth/reset-password', [AuthController::class, 'resetPassword'])
+    ->middleware('guest')
+    ->name('web.auth.password.store');
+
+Route::get('/auth/verify-email/{id}/{hash}', [AuthController::class, 'verifyEmail'])
     ->middleware(['auth', 'signed', 'throttle:6,1'])
-    ->name('verification.verify');
+    ->name('web.auth.verification.verify');
 
-Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
+Route::post('/auth/email/verification-notification', [AuthController::class, 'sendEmailVerification'])
     ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
+    ->name('web.auth.verification.send');
 
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+Route::post('/auth/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
-    ->name('logout');
+    ->name('web.auth.logout');
