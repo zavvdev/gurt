@@ -11,7 +11,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./client/app:/usr/src/app/app
+      - ./client/src:/usr/src/app/src
 
   server:
     command: composer run-script start-local

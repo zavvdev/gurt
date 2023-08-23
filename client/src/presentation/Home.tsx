@@ -1,7 +1,8 @@
-'use client';
-
 import { useState } from 'react';
-import { serverApiClient, serverWebClient } from './serverClients';
+import {
+  serverApiClient,
+  serverWebClient,
+} from '~/infrastructure/serverClients';
 
 export default function Home() {
   const [user, setUser] = useState<any>(null);
