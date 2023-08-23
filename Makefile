@@ -50,3 +50,19 @@ lint-fix:
 # (Be careful! Use only when you need to switch to prod database locally for testing purpose)
 db-volume-clear:
 	rm -rf ./database/data
+
+# Run test mailer container
+mailer-up:
+	bash ./mailer/up.sh
+
+# Stop test mailer container
+mailer-stop:
+	bash ./mailer/stop.sh
+
+# Start stopped test mailer container
+mailer-start:
+	bash ./mailer/start.sh
+
+# Remove mailer container & image
+mailer-down:
+	bash ./mailer/down.sh
