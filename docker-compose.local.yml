@@ -12,6 +12,9 @@ services:
     tty: true
     volumes:
       - ./client/src:/usr/src/app/src
+      - ./client/public:/usr/src/app/public
+      - ./client/tailwind.config.ts:/usr/src/app/tailwind.config.ts
+      - ./client/postcss.config.js:/usr/src/app/postcss.config.js
 
   server:
     command: composer run-script start-local

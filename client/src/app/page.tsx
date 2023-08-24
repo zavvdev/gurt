@@ -1,7 +1,3 @@
-'use client';
+import { HomeView } from '~/presentation/pages/Home/Home.view';
 
-import HomePage from '~/presentation/Home';
-
-export default function Home() {
-  return <HomePage />;
-}
+export default HomeView;
