@@ -2,3 +2,4 @@ vendor/
 .gitignore
 .dockerignore
 Dockerfile
+composer.lock

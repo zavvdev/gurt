@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
 
 export const METADATA: Metadata = {
   title: 'Gurt',
@@ -8,5 +7,3 @@ export const METADATA: Metadata = {
     icon: '/images/favicon.ico',
   },
 };
-
-export const FONT = Montserrat({ subsets: ['latin', 'cyrillic-ext'] });

@@ -1,5 +1,7 @@
+import { Montserrat } from 'next/font/google';
 import '~/presentation/styles/globals.css';
-import { FONT } from '~/presentation/config/general';
+
+const FONT = Montserrat({ subsets: ['latin', 'cyrillic-ext'] });
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
   return (

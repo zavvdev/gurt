@@ -1,7 +1,59 @@
 {
   "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "plugins": ["react-refresh"],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./src"
+      }
+    }
+  },
   "rules": {
     "import/no-cycle": "error",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "react-refresh/only-export-components": "warn",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": [".*"],
+            "message": "Relative imports prohibited. Use absolute path."
+          }
+        ]
+      }
+    ],
+    "import/no-restricted-paths": [
+      "error",
+      {
+        "zones": [
+          {
+            "target": "./src/application",
+            "from": ["./src/presentation"],
+            "message": "Application layer cannot depend on Presentation layer"
+          },
+          {
+            "target": "./src/entities",
+            "from": [
+              "./src/application",
+              "./src/infrastructure",
+              "./src/presentation"
+            ],
+            "message": "Entity layer cannot depend on other layers"
+          },
+          {
+            "target": "./src/infrastructure",
+            "from": ["./src/application", "./src/presentation"],
+            "message": "Infrastructure layer should depend only on Entity layer"
+          },
+          {
+            "target": "./src/presentation",
+            "from": ["./src/infrastructure"],
+            "message": "Presentation layer should not depend on Infrastructure layer"
+          }
+        ]
+      }
+    ]
   }
 }

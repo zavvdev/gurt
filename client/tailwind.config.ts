@@ -13,7 +13,7 @@ const config: Config = {
         primaryLightDark: '#3D3D3D',
 
         bg: '#FFFFFF',
-        bgDark: '#252627',
+        bgDark: '#191919',
 
         text: '#282828',
         textDark: '#E3E3E3',
