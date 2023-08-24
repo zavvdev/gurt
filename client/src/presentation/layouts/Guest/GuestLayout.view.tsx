@@ -1,27 +1,35 @@
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { LogoSvg } from '~/presentation/assets/svg/Logo';
+import { ROUTES } from '~/presentation/config/routes';
 
 interface Props {
   children: React.ReactNode;
 }
 
 export function GuestLayout({ children }: Props) {
+  const pathname = usePathname();
+
   const menu = [
     {
-      route: '/login',
+      route: ROUTES.auth.login(),
       label: 'Вхід',
+      isActive: pathname === ROUTES.auth.login(),
     },
     {
-      route: '/register',
+      route: ROUTES.auth.register(),
       label: 'Реєстрація',
+      isActive: pathname === ROUTES.auth.register(),
     },
     {
-      route: '/about',
+      route: ROUTES.about(),
       label: 'Про нас',
+      isActive: pathname === ROUTES.about(),
     },
     {
-      route: '/help',
+      route: ROUTES.help(),
       label: 'Допомога',
+      isActive: pathname === ROUTES.help(),
     },
   ];
 
@@ -39,8 +47,10 @@ export function GuestLayout({ children }: Props) {
             <Link
               key={link.label}
               href={link.route}
-              className="py-1 px-2 rounded bg-transparent hover:bg-primaryLight
-              ease-in-out duration-200 dark:hover:bg-primaryLightDark"
+              className={`py-1 px-2 rounded bg-transparent hover:bg-primaryLight
+              ease-in-out duration-200 dark:hover:bg-primaryLightDark ${
+                link.isActive && 'text-primary'
+              }`}
             >
               {link.label}
             </Link>
