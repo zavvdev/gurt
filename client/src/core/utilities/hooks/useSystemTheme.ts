@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+export type SystemTheme = 'dark' | 'light';
+
 const getMql = () => {
   if (typeof window === 'undefined') {
     return;
@@ -8,8 +10,6 @@ const getMql = () => {
 };
 
 const getSystemTheme = (matches: boolean) => (matches ? 'dark' : 'light');
-
-export type SystemTheme = 'dark' | 'light';
 
 const getDefaultTheme = (isSSR: boolean): SystemTheme => {
   if (!isSSR) {
@@ -24,14 +24,21 @@ const getDefaultTheme = (isSSR: boolean): SystemTheme => {
 export function useSystemTheme(isSSR: boolean = false) {
   const defaultTheme = getDefaultTheme(isSSR);
   const [systemTheme, setSystemTheme] = useState<SystemTheme>(defaultTheme);
+
   useEffect(() => {
     const mql = getMql();
-    const mqlListener = (e: any) => setSystemTheme(getSystemTheme(e.matches));
+
+    const mqlListener = (e: MediaQueryListEvent) => {
+      return setSystemTheme(getSystemTheme(e.matches));
+    };
+
     if (mql) {
       setSystemTheme(getSystemTheme(mql.matches));
-      mql.addListener(mqlListener);
+      mql.addEventListener('change', mqlListener);
     }
-    return () => mql && mql.removeListener(mqlListener);
+
+    return () => mql && mql.removeEventListener('change', mqlListener);
   }, []);
+
   return systemTheme;
 }

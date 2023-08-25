@@ -12,14 +12,14 @@ export function DesktopSvg({ className }: { className?: string }) {
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g id="Desktop">
           <rect
             id="Rectangle"
-            fill-rule="nonzero"
+            fillRule="nonzero"
             x="0"
             y="0"
             width="24"
@@ -28,8 +28,8 @@ export function DesktopSvg({ className }: { className?: string }) {
           <rect
             id="Rectangle"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
+            strokeWidth="2"
+            strokeLinecap="round"
             x="3"
             y="4"
             width="18"
@@ -43,8 +43,8 @@ export function DesktopSvg({ className }: { className?: string }) {
             y2="21"
             id="Path"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
+            strokeWidth="2"
+            strokeLinecap="round"
           ></line>
           <line
             x1="12"
@@ -53,8 +53,8 @@ export function DesktopSvg({ className }: { className?: string }) {
             y2="21"
             id="Path"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
+            strokeWidth="2"
+            strokeLinecap="round"
           ></line>
         </g>
       </g>

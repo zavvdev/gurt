@@ -31,4 +31,4 @@ class PersistedStorage implements PersistedStorageEntity {
   }
 }
 
-export const persistedStorage = new PersistedStorage(window?.localStorage);
+export const persistedStorage = new PersistedStorage(window.localStorage);

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { persistedStorage } from '~/infrastructure/persistedStorage';
+import { useEffect } from 'react';
 import { useSystemTheme } from '~/core/utilities/hooks/useSystemTheme';
+import { usePersistedState } from '~/core/utilities/hooks/usePersistedState';
 
 const THEME_KEY = 'theme';
 const DARK_THEME_CLASS = 'dark';
@@ -13,9 +13,7 @@ export enum Theme {
 
 export function useThemeSwitch() {
   const systemTheme = useSystemTheme();
-  const [theme, setTheme] = useState<Theme | unknown>(
-    persistedStorage.get(THEME_KEY),
-  );
+  const [theme, setTheme] = usePersistedState(THEME_KEY, Theme.Light);
 
   const applyDark = () => {
     document.documentElement.classList.add(DARK_THEME_CLASS);
@@ -37,10 +35,7 @@ export function useThemeSwitch() {
   }, [theme, systemTheme]);
 
   return {
-    theme: theme ?? Theme.Light,
-    setTheme: (nextTheme: Theme) => {
-      setTheme(nextTheme);
-      persistedStorage.put(THEME_KEY, nextTheme);
-    },
+    theme,
+    setTheme,
   };
 }
