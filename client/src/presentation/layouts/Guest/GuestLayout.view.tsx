@@ -23,7 +23,7 @@ export function GuestLayout({ children }: Props) {
           max-md:flex-col max-md:gap-6
         "
       >
-        <Svg.Logo className="text-primary dark:text-textDark w-16" />
+        <Svg.Logo className="text-primary dark:text-textDark w-[4.5rem]" />
         <nav className="flex gap-8 items-center flex-wrap max-md:gap-2 max-md:text-sm">
           {guestMenu.map((link) => (
             <Link
