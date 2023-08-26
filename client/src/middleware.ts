@@ -12,9 +12,11 @@ export const config = {
 const cookieName = 'i18next';
 
 export function middleware(req: NextRequest) {
-  let lng;
+  let lng: string | null | undefined = Object.values(LANGUAGES).find((l) =>
+    req.nextUrl.pathname.startsWith(`/${l}`),
+  );
 
-  if (req.cookies.has(cookieName)) {
+  if (!lng && req.cookies.has(cookieName)) {
     lng = acceptLanguage.get(req.cookies.get(cookieName)?.value);
   }
 
@@ -37,18 +39,9 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  if (req.headers.has('referer')) {
-    const refererUrl = new URL(req.headers.get('referer') || '');
-    const lngInReferer = Object.values(LANGUAGES).find((l) =>
-      refererUrl.pathname.startsWith(`/${l}`),
-    );
-
+  if (req.cookies.get(cookieName)?.value !== lng) {
     const response = NextResponse.next();
-
-    if (lngInReferer) {
-      response.cookies.set(cookieName, lngInReferer);
-    }
-
+    response.cookies.set(cookieName, lng);
     return response;
   }
 
