@@ -1,6 +1,9 @@
 import cx from 'clsx';
-import { Theme, useThemeSwitch } from '~/core/hooks/useThemeSwitch';
 import { Svg } from '~/presentation/assets/Svg';
+import {
+  useThemeSwitch,
+  Theme,
+} from '~/presentation/components/widgets/ThemeSwitch/hooks/useThemeSwitch';
 
 export function ThemeSwitch() {
   const { theme, setTheme } = useThemeSwitch();

@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "appName": "Gurt",
+    "description": "Social network",
+    "keywords": "gurt,social,network"
+  },
+  "guestLayout": {
+    "menu": {
+      "login": "Login",
+      "register": "Register"
+    }
+  }
+}

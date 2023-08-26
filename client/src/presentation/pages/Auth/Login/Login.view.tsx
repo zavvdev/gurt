@@ -1,9 +1,12 @@
+import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout.view';
 
 export function LoginView() {
+  const { t } = useTranslation('auth');
+
   return (
     <GuestLayout>
-      <div>Вхід</div>
+      <div>{t('login.label')}</div>
     </GuestLayout>
   );
 }

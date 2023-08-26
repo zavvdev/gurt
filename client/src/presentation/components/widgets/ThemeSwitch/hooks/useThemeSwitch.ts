@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useSystemTheme } from '~/core/utilities/hooks/useSystemTheme';
 import { usePersistedState } from '~/core/utilities/hooks/usePersistedState';
+import { useSystemTheme } from '~/presentation/utilities/hooks/useSystemTheme';
 
 const THEME_KEY = 'theme';
 const DARK_THEME_CLASS = 'dark';
