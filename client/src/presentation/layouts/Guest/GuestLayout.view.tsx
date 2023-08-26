@@ -58,6 +58,10 @@ export function GuestLayout({ children }: Props) {
         <div className="text-gray-400 text-sm max-md:text-xs">
           © Gurt {new Date().getFullYear()}
         </div>
+        <div>
+          <a href={`/en/${pathname.replace(/\/en\/|\/uk\//, '')}`}>EN</a>
+          <a href={`/uk/${pathname.replace(/\/en\/|\/uk\//, '')}`}>UK</a>
+        </div>
       </footer>
     </section>
   );
