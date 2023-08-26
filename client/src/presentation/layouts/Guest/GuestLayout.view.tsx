@@ -1,19 +1,30 @@
 import Link from 'next/link';
 import { Svg } from '~/presentation/assets/Svg';
 import { ThemeSwitch } from '~/presentation/components/widgets/ThemeSwitch/ThemeSwitch.view';
-import { useGuestMenu } from '~/core/hooks/useGuestMenu';
+import { usePathname } from 'next/navigation';
+import { ROUTES } from '~/presentation/config/routes';
+import { useTranslation } from '~/presentation/i18n/useTranslation';
 
 interface Props {
   children: React.ReactNode;
 }
 
 export function GuestLayout({ children }: Props) {
-  const guestMenu = useGuestMenu();
+  const pathname = usePathname();
+  const { t } = useTranslation('common');
 
-  const labelByKey: Record<string, string> = {
-    login: 'Вхід',
-    register: 'Реєстрація',
-  };
+  const menu = [
+    {
+      label: t('guestLayout.menu.login'),
+      route: ROUTES.auth.login(),
+      isActive: pathname.includes(ROUTES.auth.login()),
+    },
+    {
+      label: t('guestLayout.menu.register'),
+      route: ROUTES.auth.register(),
+      isActive: pathname.includes(ROUTES.auth.register()),
+    },
+  ];
 
   return (
     <section className="h-screen flex flex-col justify-between">
@@ -25,16 +36,16 @@ export function GuestLayout({ children }: Props) {
       >
         <Svg.Logo className="text-primary dark:text-textDark w-[4.5rem]" />
         <nav className="flex gap-8 items-center flex-wrap max-md:gap-2 max-md:text-sm">
-          {guestMenu.map((link) => (
+          {menu.map((link) => (
             <Link
-              key={link.key}
+              key={link.label}
               href={link.route}
               className={`py-1 px-2 rounded bg-transparent hover:bg-primaryLight
               ease-in-out duration-200 dark:hover:bg-primaryLightDark ${
                 link.isActive && 'text-primary'
               }`}
             >
-              {labelByKey[link.key]}
+              {link.label}
             </Link>
           ))}
           <ThemeSwitch />
