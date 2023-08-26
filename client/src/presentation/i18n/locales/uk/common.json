@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "appName": "Gurt",
+    "description": "Соціальна мережа",
+    "keywords": "gurt,соціальна,мережа"
+  },
+  "guestLayout": {
+    "menu": {
+      "login": "Вхід",
+      "register": "Реєстрація"
+    }
+  }
+}
