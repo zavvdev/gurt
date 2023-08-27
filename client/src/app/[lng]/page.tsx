@@ -1,3 +1,3 @@
-import { HomeView } from '~/presentation/pages/Home/Home.view';
+import { HomeView } from '~/presentation/pages/Home/Home';
 
 export default HomeView;

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import acceptLanguage from 'accept-language';
-import { FALLBACK_LNG, LANGUAGES } from '~/presentation/i18n/config';
+import {
+  FALLBACK_LNG,
+  I18N_COOKIE_NAME,
+  LANGUAGES,
+} from '~/presentation/i18n/config';
 
 acceptLanguage.languages(Object.values(LANGUAGES));
 
@@ -9,15 +13,13 @@ export const config = {
   matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)'],
 };
 
-const cookieName = 'i18next';
-
 export function middleware(req: NextRequest) {
   let lng: string | null | undefined = Object.values(LANGUAGES).find((l) =>
     req.nextUrl.pathname.startsWith(`/${l}`),
   );
 
-  if (!lng && req.cookies.has(cookieName)) {
-    lng = acceptLanguage.get(req.cookies.get(cookieName)?.value);
+  if (!lng && req.cookies.has(I18N_COOKIE_NAME)) {
+    lng = acceptLanguage.get(req.cookies.get(I18N_COOKIE_NAME)?.value);
   }
 
   if (!lng) {
@@ -39,9 +41,9 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  if (req.cookies.get(cookieName)?.value !== lng) {
+  if (req.cookies.get(I18N_COOKIE_NAME)?.value !== lng) {
     const response = NextResponse.next();
-    response.cookies.set(cookieName, lng);
+    response.cookies.set(I18N_COOKIE_NAME, lng);
     return response;
   }
 

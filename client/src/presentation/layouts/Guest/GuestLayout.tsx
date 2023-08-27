@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { Svg } from '~/presentation/assets/Svg';
-import { ThemeSwitch } from '~/presentation/components/widgets/ThemeSwitch/ThemeSwitch.view';
+import { ThemeSwitch } from '~/presentation/widgets/ThemeSwitch/ThemeSwitch';
 import { usePathname } from 'next/navigation';
-import { ROUTES } from '~/presentation/config/routes';
+import { ROUTES } from '~/presentation/routes';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { LanguageSwitch } from '~/presentation/widgets/LanguageSwitch/LanguageSwitch';
 
 interface Props {
   children: React.ReactNode;
@@ -58,10 +59,7 @@ export function GuestLayout({ children }: Props) {
         <div className="text-gray-400 text-sm max-md:text-xs">
           © Gurt {new Date().getFullYear()}
         </div>
-        <div>
-          <a href={`/en/${pathname.replace(/\/en\/|\/uk\//, '')}`}>EN</a>
-          <a href={`/uk/${pathname.replace(/\/en\/|\/uk\//, '')}`}>UK</a>
-        </div>
+        <LanguageSwitch />
       </footer>
     </section>
   );

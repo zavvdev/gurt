@@ -3,7 +3,7 @@ import { Svg } from '~/presentation/assets/Svg';
 import {
   useThemeSwitch,
   Theme,
-} from '~/presentation/components/widgets/ThemeSwitch/hooks/useThemeSwitch';
+} from '~/presentation/widgets/ThemeSwitch/hooks/useThemeSwitch';
 
 export function ThemeSwitch() {
   const { theme, setTheme } = useThemeSwitch();

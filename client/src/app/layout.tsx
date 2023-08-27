@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import '~/presentation/styles/globals.css';
 import type { Metadata } from 'next';
-import { RootLayout } from '~/presentation/layouts/Root/RootLayout.view';
+import { RootLayout } from '~/presentation/layouts/Root/RootLayout';
 import { LANGUAGES } from '~/presentation/i18n/config';
 import { useServerTranslation } from '~/presentation/i18n/useServerTranslation';
 

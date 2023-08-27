@@ -1,5 +1,5 @@
 import { useTranslation } from '~/presentation/i18n/useTranslation';
-import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout.view';
+import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 
 export function RegisterView() {
   const { t } = useTranslation('auth');
