@@ -1,13 +1,16 @@
 {
   "meta": {
     "appName": "Gurt",
-    "description": "Соціальна мережа",
-    "keywords": "gurt,соціальна,мережа"
+    "description": "Social'na mereža",
+    "keywords": "gurt,social'na,mereža"
+  },
+  "notFoundPage": {
+    "label": "Storinku ne znajdeno"
   },
   "guestLayout": {
     "menu": {
-      "login": "Вхід",
-      "register": "Реєстрація"
+      "login": "Vhid",
+      "register": "Rejestracija"
     }
   }
 }

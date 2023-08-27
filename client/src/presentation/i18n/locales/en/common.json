@@ -4,6 +4,9 @@
     "description": "Social network",
     "keywords": "gurt,social,network"
   },
+  "notFoundPage": {
+    "label": "Page not found"
+  },
   "guestLayout": {
     "menu": {
       "login": "Login",
