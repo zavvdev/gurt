@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@types/js-cookie':
+    specifier: ^3.0.3
+    version: 3.0.3
   '@types/node':
     specifier: 18.17.9
     version: 18.17.9
@@ -15,10 +18,10 @@ dependencies:
     specifier: 18.2.7
     version: 18.2.7
   '@typescript-eslint/eslint-plugin':
-    specifier: ^6.4.1
+    specifier: 6.4.1
     version: 6.4.1(@typescript-eslint/parser@6.4.1)(eslint@8.47.0)(typescript@5.1.6)
   accept-language:
-    specifier: ^3.0.18
+    specifier: 3.0.18
     version: 3.0.18
   autoprefixer:
     specifier: 10.4.15
@@ -42,17 +45,20 @@ dependencies:
     specifier: 5.0.0
     version: 5.0.0(eslint-config-prettier@9.0.0)(eslint@8.47.0)(prettier@3.0.1)
   eslint-plugin-react-refresh:
-    specifier: ^0.4.3
+    specifier: 0.4.3
     version: 0.4.3(eslint@8.47.0)
   i18next:
-    specifier: ^23.4.6
+    specifier: 23.4.6
     version: 23.4.6
   i18next-browser-languagedetector:
-    specifier: ^7.1.0
+    specifier: 7.1.0
     version: 7.1.0
   i18next-resources-to-backend:
-    specifier: ^1.1.4
+    specifier: 1.1.4
     version: 1.1.4
+  js-cookie:
+    specifier: ^3.0.5
+    version: 3.0.5
   next:
     specifier: 13.4.19
     version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
@@ -69,7 +75,7 @@ dependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   react-i18next:
-    specifier: ^13.2.0
+    specifier: 13.2.0
     version: 13.2.0(i18next@23.4.6)(react-dom@18.2.0)(react@18.2.0)
   tailwindcss:
     specifier: 3.3.3
@@ -316,6 +322,10 @@ packages:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
       tslib: 2.6.2
+    dev: false
+
+  /@types/js-cookie@3.0.3:
+    resolution: {integrity: sha512-Xe7IImK09HP1sv2M/aI+48a20VX+TdRJucfq4vfRVy6nWN8PYPOEnlMRSgxJAgYQIXJVL8dZ4/ilAM7dWNaOww==}
     dev: false
 
   /@types/json-schema@7.0.12:
@@ -1983,6 +1993,11 @@ packages:
   /jiti@1.19.3:
     resolution: {integrity: sha512-5eEbBDQT/jF1xg6l36P+mWGGoH9Spuy0PCdSr2dtWRDGC6ph/w9ZCL4lmESW8f8F7MwT3XKescfP0wnZWAKL9w==}
     hasBin: true
+    dev: false
+
+  /js-cookie@3.0.5:
+    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
+    engines: {node: '>=14'}
     dev: false
 
   /js-tokens@4.0.0:

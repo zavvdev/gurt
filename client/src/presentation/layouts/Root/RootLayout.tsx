@@ -1,7 +1,8 @@
 import cx from 'clsx';
-import { dir } from 'i18next';
-import { FONT } from '~/presentation/config/general';
+import { Montserrat } from 'next/font/google';
 import '~/presentation/styles/globals.css';
+
+const FONT = Montserrat({ subsets: ['latin', 'cyrillic-ext'] });
 
 interface Props {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ interface Props {
 
 export function RootLayout({ children, params }: Props) {
   return (
-    <html lang={params.lng} dir={dir(params.lng)}>
+    <html lang={params.lng}>
       <body
         className={cx(
           FONT.className,
