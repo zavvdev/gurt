@@ -35,14 +35,14 @@ export function GuestLayout({ children }: Props) {
           max-md:flex-col max-md:gap-6
         "
       >
-        <Svg.Logo className="text-primary dark:text-textDark w-[4.5rem]" />
+        <Svg.Logo className="text-primary dark:text-text_Dark w-[4.5rem]" />
         <nav className="flex gap-8 items-center flex-wrap max-md:gap-2 max-md:text-sm">
           {menu.map((link) => (
             <Link
               key={link.label}
               href={link.route}
               className={`py-1 px-2 rounded bg-transparent hover:bg-primaryLight
-              ease-in-out duration-200 dark:hover:bg-primaryLightDark ${
+              ease-in-out duration-200 dark:hover:bg-primaryLight_Dark ${
                 link.isActive && 'text-primary'
               }`}
             >

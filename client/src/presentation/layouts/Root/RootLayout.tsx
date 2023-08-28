@@ -17,7 +17,7 @@ export function RootLayout({ children, params }: Props) {
       <body
         className={cx(
           FONT.className,
-          'text-text dark:text-textDark bg-bg dark:bg-bgDark',
+          'text-text dark:text-text_Dark bg-bg dark:bg-bg_Dark',
         )}
       >
         {children}

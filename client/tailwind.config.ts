@@ -9,14 +9,15 @@ const config: Config = {
     extend: {
       colors: {
         primary: '#1F81F8',
+        primaryDark: '#1e75de',
         primaryLight: '#EBF4FF',
-        primaryLightDark: '#3D3D3D',
+        primaryLight_Dark: '#3D3D3D',
 
         bg: '#FFFFFF',
-        bgDark: '#191919',
+        bg_Dark: '#191919',
 
         text: '#282828',
-        textDark: '#E3E3E3',
+        text_Dark: '#E3E3E3',
       },
     },
   },
