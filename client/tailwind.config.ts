@@ -8,16 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#1F81F8',
-        primaryDark: '#1e75de',
-        primaryLight: '#EBF4FF',
-        primaryLight_Dark: '#3D3D3D',
+        prm: '#1F81F8',
+        prmLight: '#3791ff',
+        prmFade: '#EBF4FF',
+        prmFade_DT: '#3D3D3D',
 
         bg: '#FFFFFF',
-        bg_Dark: '#191919',
+        bg_DT: '#191919',
 
-        text: '#282828',
-        text_Dark: '#E3E3E3',
+        txt: '#282828',
+        txt_DT: '#E3E3E3',
       },
     },
   },

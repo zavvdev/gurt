@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { ROUTES } from '~/presentation/routes';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { LanguageSwitch } from '~/presentation/widgets/LanguageSwitch/LanguageSwitch';
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
   children: React.ReactNode;
@@ -35,16 +36,17 @@ export function GuestLayout({ children }: Props) {
           max-md:flex-col max-md:gap-6
         "
       >
-        <Svg.Logo className="text-primary dark:text-text_Dark w-[4.5rem]" />
+        <Svg.Logo className="text-prm dark:text-txt_DT w-[4.5rem]" />
         <nav className="flex gap-8 items-center flex-wrap max-md:gap-2 max-md:text-sm">
           {menu.map((link) => (
             <Link
               key={link.label}
               href={link.route}
-              className={`py-1 px-2 rounded bg-transparent hover:bg-primaryLight
-              ease-in-out duration-200 dark:hover:bg-primaryLight_Dark ${
-                link.isActive && 'text-primary'
-              }`}
+              className={twMerge(
+                `py-1 px-2 rounded bg-transparent hover:bg-prmFade
+              ease-in-out duration-200 dark:hover:bg-prmFade_DT`,
+                link.isActive && 'text-prm',
+              )}
             >
               {link.label}
             </Link>

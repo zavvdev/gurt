@@ -1,4 +1,4 @@
-import cx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { Svg } from '~/presentation/assets/Svg';
 import {
   useThemeSwitch,
@@ -26,21 +26,21 @@ export function ThemeSwitch() {
     },
   ];
 
+  const baseClasses = `rounded-full w-6 h-6 p-0.5
+    text-gray-500 text-xs hover:text-gray-700
+    dark:hover:text-gray-100 flex
+    items-center justify-center`;
+
+  const activeClasses =
+    'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-100';
+
   return (
     <div className="flex items-center gap-2 justify-center rounded-full	border p-0.5 dark:border-gray-600">
       {options.map((option, index) => (
         <button
           key={index}
           onClick={option.onClick}
-          className={cx(
-            `rounded-full w-6 h-6 p-0.5 text-gray-500 text-xs 
-            hover:text-gray-700 dark:hover:text-gray-100 flex
-            items-center justify-center`,
-            {
-              'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-100':
-                option.isActive,
-            },
-          )}
+          className={twMerge(baseClasses, option.isActive && activeClasses)}
         >
           {option.content}
         </button>
