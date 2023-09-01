@@ -1,4 +1,4 @@
-import cx from 'clsx';
+import { twMerge } from 'tailwind-merge';
 import { Montserrat } from 'next/font/google';
 import '~/presentation/styles/globals.css';
 
@@ -15,9 +15,9 @@ export function RootLayout({ children, params }: Props) {
   return (
     <html lang={params.lng}>
       <body
-        className={cx(
+        className={twMerge(
           FONT.className,
-          'text-text dark:text-textDark bg-bg dark:bg-bgDark',
+          'text-txt dark:text-txt_DT bg-bg dark:bg-bg_DT',
         )}
       >
         {children}
