@@ -9,7 +9,12 @@ const config: Config = {
     extend: {
       colors: {
         prm: '#1F81F8',
+
         prmLight: '#3791ff',
+
+        prmBright: '#e8f2ff',
+        prmBright_DT: '#3D3D3D',
+
         prmFade: '#EBF4FF',
         prmFade_DT: '#3D3D3D',
 
@@ -18,6 +23,8 @@ const config: Config = {
 
         txt: '#282828',
         txt_DT: '#E3E3E3',
+
+        coffee: '#372828',
       },
     },
   },
