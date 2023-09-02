@@ -1,14 +1,15 @@
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface Props {
-  children: React.ReactNode;
+interface Props
+  extends React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   className?: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   color?: 'primary';
   size?: 'large' | 'default' | 'small';
   fullWidth?: boolean;
-  isDisabled?: boolean;
   leftAdornment?: React.ReactNode;
   rightAdornment?: React.ReactNode;
   centerWithAdornments?: boolean;
@@ -16,6 +17,7 @@ interface Props {
 
 export function Button({
   children,
+  disabled,
   className,
   onClick,
   leftAdornment,
@@ -23,8 +25,8 @@ export function Button({
   color = 'primary',
   size = 'default',
   fullWidth = false,
-  isDisabled = false,
   centerWithAdornments = false,
+  ...rest
 }: Props) {
   const baseClasses = `rounded font-medium ease-in-out 
     duration-100 flex items-center justify-center
@@ -37,11 +39,11 @@ export function Button({
   const cPrimaryClasses = 'bg-prm text-white hover:bg-prmLight';
 
   const disabledClasses = `
-    bg-gray-300 hover:bg-gray-300 pointer-events-none
+    bg-gray-300 hover:bg-gray-300 cursor-not-allowed
     dark:bg-prmFade_DT dark:text-gray-500
   `;
 
-  const adornmentSvgSizes = [
+  const adornmentInnerSizes = [
     size === 'large' && '[&_*]:max-h-6',
     size === 'default' && '[&_*]:max-h-5',
     size === 'small' && '[&_*]:max-h-[1.1rem]',
@@ -50,26 +52,27 @@ export function Button({
   const leftAdornmentClasses = twMerge(
     'flex justify-end',
     !centerWithAdornments && 'flex-1',
-    adornmentSvgSizes,
+    adornmentInnerSizes,
   );
 
   const rightAdornmentClasses = twMerge(
     'flex justify-start',
     !centerWithAdornments && 'flex-1',
-    adornmentSvgSizes,
+    adornmentInnerSizes,
   );
 
   return (
     <button
+      {...rest}
       onClick={onClick}
-      disabled={isDisabled}
+      disabled={disabled}
       className={twMerge(
         baseClasses,
         size === 'small' && sSmallClasses,
         size === 'default' && sDefaultClasses,
         size === 'large' && sLargeClasses,
         color === 'primary' && cPrimaryClasses,
-        isDisabled && disabledClasses,
+        disabled && disabledClasses,
         fullWidth && 'w-full',
         className,
       )}
