@@ -1,5 +1,5 @@
 'use client';
 
-import { LoginView } from '~/presentation/pages/Auth/Login/Login';
+import { Login } from '~/presentation/pages/Auth/Login/Login';
 
-export default LoginView;
+export default Login;

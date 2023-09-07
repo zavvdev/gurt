@@ -4,15 +4,17 @@ interface Props {
   children: React.ReactNode;
   className?: string;
   size?: 'default' | 'small';
+  center?: boolean;
 }
 
-export function InputError({ children, className, size }: Props) {
+export function TextError({ children, className, size, center }: Props) {
   return (
     <div
       className={twMerge(
-        'mt-1 text-red-400',
+        'text-red-400',
         size === 'default' && 'text-sm',
         size === 'small' && 'text-xs',
+        center && 'text-center',
         className,
       )}
     >
