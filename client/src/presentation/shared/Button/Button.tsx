@@ -44,9 +44,9 @@ export function Button({
   `;
 
   const adornmentInnerSizes = [
-    size === 'large' && '[&_*]:max-h-6',
-    size === 'default' && '[&_*]:max-h-5',
-    size === 'small' && '[&_*]:max-h-[1.1rem]',
+    size === 'large' && '[&_svg]:max-h-6',
+    size === 'default' && '[&_svg]:max-h-5',
+    size === 'small' && '[&_svg]:max-h-[1.1rem]',
   ];
 
   const leftAdornmentClasses = twMerge(
