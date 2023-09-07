@@ -1,5 +1,5 @@
 'use client';
 
-import { RegisterView } from '~/presentation/pages/Auth/Register/Register';
+import { Register } from '~/presentation/pages/Auth/Register/Register';
 
-export default RegisterView;
+export default Register;

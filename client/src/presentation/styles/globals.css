@@ -5,3 +5,9 @@
 body {
   font-size: 15px;
 }
+
+@layer components {
+  .link {
+    @apply text-prm hover:underline dark:text-txt_DT;
+  }
+}
