@@ -73,7 +73,7 @@ export function Input({
         onFocus={handleFocus}
         onBlur={handleBlur}
         className={twMerge(
-          'h-full bg-transparent flex-1 focus:outline-none rounded peer/input',
+          'h-full bg-transparent flex-1 focus:outline-none rounded peer/input w-full',
           disabled && 'cursor-not-allowed',
           variant === 'large' && 'px-5',
           variant === 'default' && 'px-4 text-sm',
