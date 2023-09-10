@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Svg } from '~/presentation/assets/Svg';
 import { ThemeSwitch } from '~/presentation/widgets/ThemeSwitch/ThemeSwitch';
 import { usePathname } from 'next/navigation';
-import { ROUTES } from '~/presentation/routes';
+import { PUBLIC_ROUTES } from '~/presentation/routes';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { LanguageSwitch } from '~/presentation/widgets/LanguageSwitch/LanguageSwitch';
 import { twMerge } from 'tailwind-merge';
@@ -18,13 +18,13 @@ export function GuestLayout({ children }: Props) {
   const menu = [
     {
       label: t('guestLayout.menu.login'),
-      route: ROUTES.auth.login(),
-      isActive: pathname.includes(ROUTES.auth.login()),
+      route: PUBLIC_ROUTES.auth.login(),
+      isActive: pathname.includes(PUBLIC_ROUTES.auth.login()),
     },
     {
       label: t('guestLayout.menu.register'),
-      route: ROUTES.auth.register(),
-      isActive: pathname.includes(ROUTES.auth.register()),
+      route: PUBLIC_ROUTES.auth.register(),
+      isActive: pathname.includes(PUBLIC_ROUTES.auth.register()),
     },
   ];
 

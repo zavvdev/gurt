@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
-import { ROUTES } from '~/presentation/routes';
+import { PUBLIC_ROUTES } from '~/presentation/routes';
+import { uiNotificationService } from '~/presentation/services/UINotificationService';
 import { Button } from '~/presentation/shared/Button/Button';
 import { Checkbox } from '~/presentation/shared/Checkbox/Checkbox';
 import { Input } from '~/presentation/shared/Input/Input';
@@ -16,7 +17,7 @@ export function Login() {
   return (
     <GuestLayout>
       <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
-        <h2 className="text-4xl font-bold mb-10 max-sm:text-3xl w-96 text-center">
+        <h2 className="text-4xl font-bold mb-10 max-sm:text-3xl w-96 max-sm:w-full text-center">
           {t('login.label')}
         </h2>
         <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
@@ -43,11 +44,21 @@ export function Login() {
             >
               {t('login.form.rememberMe')}
             </Checkbox>
-            <Link className="link text-sm" href={ROUTES.auth.forgotPassword()}>
+            <Link
+              className="link text-sm"
+              href={PUBLIC_ROUTES.auth.forgotPassword()}
+            >
               {t('login.form.forgotPassword')}
             </Link>
           </div>
-          <Button fullWidth size="large" onClick={console.log}>
+          <Button
+            fullWidth
+            size="large"
+            onClick={(e) => {
+              e.preventDefault();
+              uiNotificationService.error('123');
+            }}
+          >
             {t('login.form.submit')}
           </Button>
         </form>

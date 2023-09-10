@@ -44,7 +44,7 @@ export function Input({
   return (
     <div
       className={twMerge(
-        'group rounded bg-gray-100 flex justify-between items-center dark:bg-prmBright_DT ease-out duration-100',
+        'group rounded bg-[#f0f0f0] flex justify-between items-center dark:bg-prmBright_DT ease-out duration-100',
         disabled &&
           'cursor-not-allowed bg-gray-300 opacity-60 dark:bg-gray-600 dark:opacity-40',
         variant === 'large' && 'h-14',

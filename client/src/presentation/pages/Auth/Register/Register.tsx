@@ -15,7 +15,7 @@ export function Register() {
   return (
     <GuestLayout>
       <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
-        <h2 className="text-4xl font-bold mb-10 max-sm:text-3xl w-96 text-center">
+        <h2 className="text-4xl font-bold mb-10 max-sm:text-3xl w-96 max-sm:w-full text-center">
           {t('register.label')}
         </h2>
         <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
