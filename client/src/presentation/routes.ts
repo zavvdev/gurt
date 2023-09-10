@@ -1,4 +1,4 @@
-export const ROUTES = {
+export const PUBLIC_ROUTES = {
   auth: {
     login: () => '/login',
     register: () => '/register',

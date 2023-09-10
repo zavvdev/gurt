@@ -1,0 +1,8 @@
+:root {
+  --toastify-color-light: #e3e3e3;
+  --toastify-color-dark: #282828;
+  --toastify-color-info: #0ea5e9;
+  --toastify-color-success: #22c55e;
+  --toastify-color-warning: #f59e0b;
+  --toastify-color-error: #ef4444;
+}
