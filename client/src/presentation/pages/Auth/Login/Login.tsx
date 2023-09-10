@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
-import { PUBLIC_ROUTES } from '~/presentation/routes';
+import { PUBLIC_ROUTES } from '~/routes';
 import { uiNotificationService } from '~/presentation/services/UINotificationService';
 import { Button } from '~/presentation/shared/Button/Button';
 import { Checkbox } from '~/presentation/shared/Checkbox/Checkbox';
