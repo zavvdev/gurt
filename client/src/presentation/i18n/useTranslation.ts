@@ -12,8 +12,7 @@ import {
 import resourcesToBackend from 'i18next-resources-to-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { getOptions } from '~/presentation/i18n/utilities';
-import { LANGUAGES } from '~/presentation/i18n/config';
-import { Namespace } from '~/presentation/i18n/types';
+import { LANGUAGES, Namespace } from '~/presentation/i18n/config';
 
 const isServer = typeof window === 'undefined';
 
