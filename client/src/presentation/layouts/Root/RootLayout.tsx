@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { Montserrat } from 'next/font/google';
-import '~/presentation/styles/globals.css';
+import { UINotificationContainer } from '~/presentation/shared/UINotificationContainer/UINotificationContainer';
 
 const FONT = Montserrat({ subsets: ['latin', 'cyrillic-ext'] });
 
@@ -21,6 +21,7 @@ export function RootLayout({ children, params }: Props) {
         )}
       >
         {children}
+        <UINotificationContainer />
       </body>
     </html>
   );
