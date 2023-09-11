@@ -6,3 +6,7 @@ export const PUBLIC_ROUTES = {
     resetPassword: () => '/reset-password',
   },
 };
+
+export const PRIVATE_ROUTES = {
+  verifyEmail: () => '/verify-email',
+};

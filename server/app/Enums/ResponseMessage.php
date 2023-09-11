@@ -16,6 +16,8 @@ enum ResponseMessage: string
 
     case ValidationError = 'validation_error';
 
+    case EmailNotVerified = 'email_not_verified';
+
     // Success
 
     case AlreadySent = 'already_sent';
