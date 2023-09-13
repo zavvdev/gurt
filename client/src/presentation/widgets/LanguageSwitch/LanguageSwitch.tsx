@@ -1,4 +1,4 @@
-import { useLanguageChange } from '~/core/utilities/hooks/useLanguageChange';
+import { useLanguageChange } from '~/core/hooks/useLanguageChange';
 import { I18N_COOKIE_NAME, LANGUAGES } from '~/presentation/i18n/config';
 import { LangButton } from '~/presentation/widgets/LanguageSwitch/shared/LangButton/LangButton';
 
