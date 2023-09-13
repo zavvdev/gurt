@@ -12,4 +12,6 @@ export enum ApiMessage {
   AlreadySent = 'already_sent',
 
   AlreadyLoggedIn = 'already_logged_in',
+
+  EmailNotVerified = 'email_not_verified',
 }

@@ -4,6 +4,9 @@
     "description": "Social'na mereža",
     "keywords": "gurt,social'na,mereža"
   },
+  "error": {
+    "sendEmailVerification": "Ne vdalosja nadislaty lyst dlja pidtverdžennja elektronnoji adresy. Sprobujte pizniše"
+  },
   "notFoundPage": {
     "label": "Storinku ne znajdeno"
   },

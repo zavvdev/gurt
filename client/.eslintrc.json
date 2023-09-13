@@ -14,7 +14,14 @@
     }
   },
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
     "import/no-cycle": "error",
     "prettier/prettier": "error",
     "react-refresh/only-export-components": "warn",
@@ -34,14 +41,15 @@
       {
         "zones": [
           {
-            "target": "./src/application",
-            "from": ["./src/presentation"],
-            "message": "Application layer cannot depend on Presentation layer"
+            "target": "./src/core",
+            "from": ["./src/presentation", "./src/app"],
+            "message": "Core layer should only depend on Entity and Infrastructure layers"
           },
           {
             "target": "./src/entities",
             "from": [
-              "./src/application",
+              "./src/app",
+              "./src/core",
               "./src/infrastructure",
               "./src/presentation"
             ],
@@ -49,13 +57,13 @@
           },
           {
             "target": "./src/infrastructure",
-            "from": ["./src/application", "./src/presentation"],
+            "from": ["./src/core", "./src/presentation", "./src/app"],
             "message": "Infrastructure layer should depend only on Entity layer"
           },
           {
             "target": "./src/presentation",
-            "from": ["./src/infrastructure"],
-            "message": "Presentation layer should not depend on Infrastructure layer"
+            "from": ["./src/infrastructure", "./src/app"],
+            "message": "Presentation layer should depend only on Core and Entity layer"
           }
         ]
       }
