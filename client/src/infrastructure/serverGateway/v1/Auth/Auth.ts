@@ -1,5 +1,5 @@
 import { Http } from '~/entities/Http';
-import { User } from '~/entities/api/User';
+import { User, userSchema } from '~/entities/api/User';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { RegisterRequest } from '~/infrastructure/serverGateway/v1/auth/requests';
 
@@ -15,7 +15,11 @@ class AuthGateway {
   }
 
   public async register(dto: RegisterRequest) {
-    return this.http.post<User, RegisterRequest>('/v1/auth/register', dto);
+    const user = await this.http.post<User, RegisterRequest>(
+      '/v1/auth/register',
+      dto,
+    );
+    return userSchema.validateSync(user, { strict: true });
   }
 
   public async sendEmailVerification() {
