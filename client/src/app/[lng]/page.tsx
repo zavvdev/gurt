@@ -1,3 +1,6 @@
-import { Home } from '~/presentation/pages/Home/Home';
+import { redirect } from 'next/navigation';
+import { PRIVATE_ROUTES } from '~/routes';
 
-export default Home;
+export default function Root() {
+  redirect(PRIVATE_ROUTES.home());
+}

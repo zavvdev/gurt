@@ -18,28 +18,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/auth/register', [AuthController::class, 'register'])
     ->middleware('guest')
-    ->name('web.auth.register');
+    ->name('register');
 
 Route::post('/auth/login', [AuthController::class, 'login'])
     ->middleware('guest')
-    ->name('web.auth.login');
+    ->name('login');
 
 Route::post('/auth/forgot-password', [AuthController::class, 'forgotPassword'])
     ->middleware('guest')
-    ->name('web.auth.password.email');
+    ->name('password.email');
 
 Route::post('/auth/reset-password', [AuthController::class, 'resetPassword'])
     ->middleware('guest')
-    ->name('web.auth.password.store');
+    ->name('password.store');
 
 Route::get('/auth/verify-email/{id}/{hash}', [AuthController::class, 'verifyEmail'])
     ->middleware(['auth', 'signed', 'throttle:6,1'])
-    ->name('web.auth.verification.verify');
+    ->name('verification.verify');
 
 Route::post('/auth/email/verification-notification', [AuthController::class, 'sendEmailVerification'])
     ->middleware(['auth', 'throttle:6,1'])
-    ->name('web.auth.verification.send');
+    ->name('verification.send');
 
 Route::post('/auth/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
-    ->name('web.auth.logout');
+    ->name('logout');
