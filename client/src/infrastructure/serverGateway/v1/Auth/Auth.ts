@@ -1,7 +1,7 @@
 import { Http } from '~/entities/Http';
 import { User } from '~/entities/api/User';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
-import { RegisterRequest } from '~/infrastructure/serverGateway/v1/Auth/requests';
+import { RegisterRequest } from '~/infrastructure/serverGateway/v1/auth/requests';
 
 class AuthGateway {
   private http: Http;

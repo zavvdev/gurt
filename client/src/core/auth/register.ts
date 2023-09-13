@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { User } from '~/entities/api/User';
-import { authGateway } from '~/infrastructure/serverGateway/v1/Auth/Auth';
+import { authGateway } from '~/infrastructure/serverGateway/v1/auth/auth';
 import { PRIVATE_ROUTES } from '~/routes';
 
 export interface RegisterForm {
