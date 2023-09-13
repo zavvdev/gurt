@@ -1,7 +1,9 @@
 import { Http } from '~/entities/Http';
+import { User } from '~/entities/api/User';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
+import { RegisterRequest } from '~/infrastructure/serverGateway/v1/Auth/requests';
 
-class AuthApi {
+class AuthGateway {
   private http: Http;
 
   constructor(http: Http) {
@@ -12,14 +14,8 @@ class AuthApi {
     return this.http.get('/v1/sanctum/csrf-cookie');
   }
 
-  public async register(dto: {
-    first_name: string;
-    last_name: string;
-    email: string;
-    password: string;
-    password_confirmation: string;
-  }) {
-    return this.http.post('/v1/auth/register', dto);
+  public async register(dto: RegisterRequest) {
+    return this.http.post<User, RegisterRequest>('/v1/auth/register', dto);
   }
 
   public async sendEmailVerification() {
@@ -27,4 +23,4 @@ class AuthApi {
   }
 }
 
-export const authApi = new AuthApi(serverGateway.http.web);
+export const authGateway = new AuthGateway(serverGateway.http.web);

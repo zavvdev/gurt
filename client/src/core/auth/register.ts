@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { authApi } from '~/infrastructure/serverGateway/v1/AuthApi';
+import { User } from '~/entities/api/User';
+import { authGateway } from '~/infrastructure/serverGateway/v1/Auth/Auth';
 import { PRIVATE_ROUTES } from '~/routes';
 
 export interface RegisterForm {
@@ -12,16 +13,32 @@ export interface RegisterForm {
 }
 
 interface UseRegisterArgs {
-  onSuccess: () => void;
   onError: () => void;
+  onSendEmailVerificationError: () => void;
 }
 
-export function useRegister({ onSuccess, onError }: UseRegisterArgs) {
+export function useRegister({
+  onError,
+  onSendEmailVerificationError,
+}: UseRegisterArgs) {
   const router = useRouter();
+
+  const onSuccess = (user: User) => {
+    if (user.email_verified_at) {
+      router.push(PRIVATE_ROUTES.home());
+    } else {
+      authGateway
+        .sendEmailVerification()
+        .catch(onSendEmailVerificationError)
+        .then(() => {
+          router.push(PRIVATE_ROUTES.verifyEmail());
+        });
+    }
+  };
 
   const mutation = useMutation(
     (form: RegisterForm) => {
-      return authApi.register({
+      return authGateway.register({
         first_name: form.firstName,
         last_name: form.lastName,
         email: form.email,
@@ -31,14 +48,10 @@ export function useRegister({ onSuccess, onError }: UseRegisterArgs) {
     },
     {
       onMutate: async () => {
-        await authApi.csrfCookie();
+        await authGateway.csrfCookie();
       },
       onError,
-      onSuccess: async () => {
-        onSuccess();
-        await authApi.sendEmailVerification();
-        router.push(PRIVATE_ROUTES.verifyEmail());
-      },
+      onSuccess,
     },
   );
 

@@ -7,17 +7,17 @@ import { TextError } from '~/presentation/shared/TextError/TextError';
 import { useRegister } from '~/core/auth/register';
 import { uiNotificationService } from '~/presentation/services/UINotificationService';
 import { Loader } from '~/presentation/shared/Loader/Loader';
-import axios from 'axios';
 
 export function Register() {
-  const { t } = useTranslation('auth');
+  const { t } = useTranslation('common');
+  const { t: tAuth } = useTranslation('auth');
 
   const register = useRegister({
     onError: () => {
-      uiNotificationService.error('Error');
+      uiNotificationService.error(tAuth('register.error.fallback'));
     },
-    onSuccess: () => {
-      uiNotificationService.success('Success');
+    onSendEmailVerificationError: () => {
+      uiNotificationService.error(t('error.sendEmailVerification'));
     },
   });
 
@@ -29,7 +29,7 @@ export function Register() {
     <GuestLayout>
       <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
         <h2 className="text-4xl font-bold mb-10 max-sm:text-3xl w-96 max-sm:w-full text-center">
-          {t('register.label')}
+          {tAuth('register.label')}
         </h2>
         <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
@@ -41,7 +41,7 @@ export function Register() {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 isError={Boolean(form.getError('firstName'))}
-                placeholder={t('register.form.firstName')}
+                placeholder={tAuth('register.form.firstName')}
               />
               {Boolean(form.getError('firstName')) && (
                 <TextError size="small" className="mt-1">
@@ -57,7 +57,7 @@ export function Register() {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 isError={Boolean(form.getError('lastName'))}
-                placeholder={t('register.form.lastName')}
+                placeholder={tAuth('register.form.lastName')}
               />
               {Boolean(form.getError('lastName')) && (
                 <TextError size="small" className="mt-1">
@@ -74,7 +74,7 @@ export function Register() {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               isError={Boolean(form.getError('email'))}
-              placeholder={t('register.form.email')}
+              placeholder={tAuth('register.form.email')}
             />
             {Boolean(form.getError('email')) && (
               <TextError size="small" className="mt-1">
@@ -91,7 +91,7 @@ export function Register() {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               isError={Boolean(form.getError('password'))}
-              placeholder={t('register.form.password')}
+              placeholder={tAuth('register.form.password')}
               autoComplete="none"
             />
             {Boolean(form.getError('password')) && (
@@ -109,7 +109,7 @@ export function Register() {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               isError={Boolean(form.getError('passwordConfirm'))}
-              placeholder={t('register.form.confirmPassword')}
+              placeholder={tAuth('register.form.confirmPassword')}
               autoComplete="none"
             />
             {Boolean(form.getError('passwordConfirm')) && (
@@ -129,15 +129,7 @@ export function Register() {
               }
             }}
           >
-            {t('register.form.submit')}
-          </Button>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              axios.get('/api/v1/user');
-            }}
-          >
-            User
+            {tAuth('register.form.submit')}
           </Button>
         </form>
       </div>
