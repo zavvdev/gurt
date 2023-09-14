@@ -4,7 +4,7 @@ import { Button } from '~/presentation/shared/Button/Button';
 import { Input } from '~/presentation/shared/Input/Input';
 import { useForm } from '~/presentation/pages/Auth/Register/hooks/useForm';
 import { TextError } from '~/presentation/shared/TextError/TextError';
-import { useRegister } from '~/core/auth/register';
+import { useRegister } from '~/core/features/auth/register';
 import { uiNotificationService } from '~/presentation/services/UINotificationService';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 

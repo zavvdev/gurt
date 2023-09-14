@@ -4,6 +4,9 @@
     "description": "Social network",
     "keywords": "gurt,social,network"
   },
+  "errors": {
+    "logout": "Unable to terminate your session. Try to clean browser cookies manually if issue persists"
+  },
   "notFoundPage": {
     "label": "Page not found"
   },
@@ -11,6 +14,19 @@
     "menu": {
       "login": "Login",
       "register": "Register"
+    }
+  },
+  "emailVerify": {
+    "label": "Verify your email",
+    "description": "We've sent you a verification link. Please check your inbox",
+    "resend": "Resend",
+    "logout": "Logout from account",
+    "error": {
+      "fallback": "Unable to send email verification link. Try again later"
+    },
+    "success": {
+      "alreadySent": "Email verification has been already sent or email is already verified",
+      "fallback": "Email verification link has been successfully send"
     }
   }
 }

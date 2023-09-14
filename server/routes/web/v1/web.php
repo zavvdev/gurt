@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\Web\AuthController;
+use App\Http\Controllers\Email\EmailVerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,14 +33,16 @@ Route::post('/auth/reset-password', [AuthController::class, 'resetPassword'])
     ->middleware('guest')
     ->name('password.store');
 
-Route::get('/auth/verify-email/{id}/{hash}', [AuthController::class, 'verifyEmail'])
-    ->middleware(['auth', 'signed', 'throttle:6,1'])
-    ->name('verification.verify');
-
-Route::post('/auth/email/verification-notification', [AuthController::class, 'sendEmailVerification'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
-
 Route::post('/auth/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
+
+// Email
+
+Route::post('/email/verification-notification', [EmailVerificationController::class, 'sendEmailVerification'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
+
+Route::get('/verify-email/{id}/{hash}', [EmailVerificationController::class, 'verifyEmail'])
+    ->middleware(['auth', 'signed', 'throttle:6,1'])
+    ->name('verification.verify');

@@ -29,10 +29,8 @@ class AuthGateway {
     });
   }
 
-  public async sendEmailVerification() {
-    return this.http.post<ServerResponse>(
-      '/v1/auth/email/verification-notification',
-    );
+  public async logout() {
+    return this.http.post<ServerResponse>('/v1/auth/logout');
   }
 }
 

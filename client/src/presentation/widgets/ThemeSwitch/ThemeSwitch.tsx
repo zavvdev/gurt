@@ -1,9 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { Svg } from '~/presentation/assets/Svg';
-import {
-  useThemeSwitch,
-  Theme,
-} from '~/presentation/widgets/ThemeSwitch/hooks/useThemeSwitch';
+import { useThemeSwitch, Theme } from '~/presentation/hooks/useThemeSwitch';
 
 export function ThemeSwitch() {
   const { theme, setTheme } = useThemeSwitch();

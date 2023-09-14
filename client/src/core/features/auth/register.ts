@@ -6,7 +6,7 @@ import {
   ServerValidationErrorsResponse,
 } from '~/infrastructure/serverGateway/types';
 import { extractValidationErrors } from '~/infrastructure/serverGateway/utilities';
-import { authGateway } from '~/infrastructure/serverGateway/v1/auth/auth';
+import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 import { PRIVATE_ROUTES } from '~/routes';
 
 export interface RegisterForm {
@@ -23,7 +23,7 @@ interface OnSuccess {
 
 interface UseRegisterArgs {
   onError?: (validationErrors: ExtractedValidationError[]) => void;
-  onSuccess?: ({ alreadyLoggedIn }: OnSuccess) => void;
+  onSuccess?: (args: OnSuccess) => void;
   onAlreadyLoggedIn?: () => void;
 }
 
