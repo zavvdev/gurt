@@ -1,3 +1,10 @@
+import { User } from '~/presentation/pages/Home/User';
+
 export function Home() {
-  return <div>Golovna</div>;
+  return (
+    <div>
+      <div>Home</div>
+      <User />
+    </div>
+  );
 }

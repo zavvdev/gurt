@@ -70,19 +70,3 @@ Fix lint errors for client & server
 
 Clear database volume data
 (Be careful! Use only when you need to switch to prod database locally for testing purpose)
-
-### ✔ make mailer-up
-
-Run test mailer container
-
-### ✔ make mailer-stop
-
-Stop test mailer container
-
-### ✔ make mailer-start
-
-Start stopped test mailer container
-
-### ✔ make mailer-down
-
-Remove mailer container & image

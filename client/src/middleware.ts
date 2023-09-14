@@ -1,5 +1,5 @@
 import { stackMiddlewares } from '~/core/utilities/middleware';
-import { authMiddleware } from '~/core/auth/middleware';
+import { authMiddleware } from '~/core/features/auth/middleware';
 import { i18nMiddleware } from '~/presentation/i18n/middleware';
 
 export const config = {
