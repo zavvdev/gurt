@@ -25,7 +25,7 @@ const responseErrorInterceptor = (error: any) => {
   if (response.message === ServerResponseMessage.EmailNotVerified) {
     navigate(PRIVATE_ROUTES.verifyEmail());
   }
-  return Promise.reject(error);
+  return Promise.reject(error?.response?.data);
 };
 
 const web = (() => {

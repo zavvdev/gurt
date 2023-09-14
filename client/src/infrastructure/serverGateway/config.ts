@@ -26,3 +26,13 @@ export type ServerResponse<T = unknown> = {
   message: ServerResponseMessage | null;
   data: T | null;
 };
+
+export type ServerValidationErrorsResponse = ServerResponse<Record<
+  string,
+  string[]
+> | null>;
+
+export interface ExtractedValidationError {
+  field: string;
+  errorKeys: string[];
+}

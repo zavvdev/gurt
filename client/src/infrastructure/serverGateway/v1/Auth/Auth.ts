@@ -2,7 +2,10 @@ import { Http } from '~/entities/Http';
 import { User, userSchema } from '~/entities/api/User';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { RegisterRequest } from '~/infrastructure/serverGateway/v1/auth/requests';
-import { ServerResponse } from '~/infrastructure/serverGateway/config';
+import {
+  ServerResponse,
+  ServerResponseMessage,
+} from '~/infrastructure/serverGateway/config';
 import { validateResponse } from '~/infrastructure/serverGateway/utilities';
 
 class AuthGateway {
@@ -21,7 +24,9 @@ class AuthGateway {
       ServerResponse<User>,
       RegisterRequest
     >('/v1/auth/register', dto);
-    return validateResponse(response, userSchema);
+    return validateResponse(response, userSchema, (response) => {
+      return response?.message !== ServerResponseMessage.AlreadyLoggedIn;
+    });
   }
 
   public async sendEmailVerification() {

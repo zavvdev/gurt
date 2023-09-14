@@ -12,11 +12,22 @@ export function Register() {
   const { t } = useTranslation('auth');
 
   const register = useRegister({
-    onError: () => {
-      uiNotificationService.error(t('register.error.fallback'));
+    onError: (validationErrors) => {
+      const field = validationErrors?.[0]?.field || 0;
+      const key = validationErrors?.[0]?.errorKeys?.[0] || null;
+      uiNotificationService.error(
+        t([
+          `register.serverValidationError.${field}.${key}`,
+          'register.error.fallback',
+        ]),
+      );
     },
-    onSuccess: () => {
-      uiNotificationService.success(t('register.success.fallback'));
+    onSuccess: ({ alreadyLoggedIn }) => {
+      uiNotificationService.success(
+        alreadyLoggedIn
+          ? t('register.success.alreadyLoggedIn')
+          : t('register.success.fallback'),
+      );
     },
   });
 

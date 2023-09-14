@@ -1,5 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import {
+  ExtractedValidationError,
+  ServerResponseMessage,
+  ServerValidationErrorsResponse,
+} from '~/infrastructure/serverGateway/config';
+import { extractValidationErrors } from '~/infrastructure/serverGateway/utilities';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/auth';
 import { PRIVATE_ROUTES } from '~/routes';
 
@@ -11,9 +17,14 @@ export interface RegisterForm {
   passwordConfirm: string;
 }
 
+interface OnSuccess {
+  alreadyLoggedIn: boolean;
+}
+
 interface UseRegisterArgs {
-  onError?: () => void;
-  onSuccess?: () => void;
+  onError?: (validationErrors: ExtractedValidationError[]) => void;
+  onSuccess?: ({ alreadyLoggedIn }: OnSuccess) => void;
+  onAlreadyLoggedIn?: () => void;
 }
 
 export function useRegister({ onError, onSuccess }: UseRegisterArgs) {
@@ -33,12 +44,15 @@ export function useRegister({ onError, onSuccess }: UseRegisterArgs) {
       onMutate: async () => {
         await authGateway.csrfCookie();
       },
-      onSuccess: () => {
-        onSuccess?.();
+      onSuccess: (response) => {
+        onSuccess?.({
+          alreadyLoggedIn:
+            response.message === ServerResponseMessage.AlreadyLoggedIn,
+        });
         router.push(PRIVATE_ROUTES.home());
       },
-      onError: () => {
-        onError?.();
+      onError: (e: ServerValidationErrorsResponse) => {
+        onError?.(extractValidationErrors(e));
       },
     },
   );
