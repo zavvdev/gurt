@@ -4,9 +4,6 @@
     "description": "Social network",
     "keywords": "gurt,social,network"
   },
-  "error": {
-    "sendEmailVerification": "Unable to send verification email. Try again later"
-  },
   "notFoundPage": {
     "label": "Page not found"
   },

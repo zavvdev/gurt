@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Http } from '~/infrastructure/http';
-import { ApiMessage } from '~/infrastructure/serverGateway/config';
+import { ServerResponseMessage } from '~/infrastructure/serverGateway/config';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { redirect } from 'next/navigation';
+import { Http } from '~/infrastructure/http';
 
 const navigate = (to: string) => {
   if (global?.window) {
@@ -19,10 +19,10 @@ const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const responseErrorInterceptor = (error: any) => {
   const response = error?.response?.data || {};
-  if (response.message === ApiMessage.Unauthorized) {
+  if (response.message === ServerResponseMessage.Unauthorized) {
     navigate(PUBLIC_ROUTES.auth.login());
   }
-  if (response.message === ApiMessage.EmailNotVerified) {
+  if (response.message === ServerResponseMessage.EmailNotVerified) {
     navigate(PRIVATE_ROUTES.verifyEmail());
   }
   return Promise.reject(error);

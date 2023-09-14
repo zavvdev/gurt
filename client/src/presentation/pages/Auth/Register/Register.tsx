@@ -9,15 +9,14 @@ import { uiNotificationService } from '~/presentation/services/UINotificationSer
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function Register() {
-  const { t } = useTranslation('common');
-  const { t: tAuth } = useTranslation('auth');
+  const { t } = useTranslation('auth');
 
   const register = useRegister({
     onError: () => {
-      uiNotificationService.error(tAuth('register.error.fallback'));
+      uiNotificationService.error(t('register.error.fallback'));
     },
-    onSendEmailVerificationError: () => {
-      uiNotificationService.error(t('error.sendEmailVerification'));
+    onSuccess: () => {
+      uiNotificationService.success(t('register.success.fallback'));
     },
   });
 
@@ -29,7 +28,7 @@ export function Register() {
     <GuestLayout>
       <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
         <h2 className="text-4xl font-bold mb-10 max-sm:text-3xl w-96 max-sm:w-full text-center">
-          {tAuth('register.label')}
+          {t('register.label')}
         </h2>
         <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
@@ -41,7 +40,7 @@ export function Register() {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 isError={Boolean(form.getError('firstName'))}
-                placeholder={tAuth('register.form.firstName')}
+                placeholder={t('register.form.firstName')}
               />
               {Boolean(form.getError('firstName')) && (
                 <TextError size="small" className="mt-1">
@@ -57,7 +56,7 @@ export function Register() {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
                 isError={Boolean(form.getError('lastName'))}
-                placeholder={tAuth('register.form.lastName')}
+                placeholder={t('register.form.lastName')}
               />
               {Boolean(form.getError('lastName')) && (
                 <TextError size="small" className="mt-1">
@@ -74,7 +73,7 @@ export function Register() {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               isError={Boolean(form.getError('email'))}
-              placeholder={tAuth('register.form.email')}
+              placeholder={t('register.form.email')}
             />
             {Boolean(form.getError('email')) && (
               <TextError size="small" className="mt-1">
@@ -91,7 +90,7 @@ export function Register() {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               isError={Boolean(form.getError('password'))}
-              placeholder={tAuth('register.form.password')}
+              placeholder={t('register.form.password')}
               autoComplete="none"
             />
             {Boolean(form.getError('password')) && (
@@ -109,7 +108,7 @@ export function Register() {
               onChange={form.handleChange}
               onBlur={form.handleBlur}
               isError={Boolean(form.getError('passwordConfirm'))}
-              placeholder={tAuth('register.form.confirmPassword')}
+              placeholder={t('register.form.confirmPassword')}
               autoComplete="none"
             />
             {Boolean(form.getError('passwordConfirm')) && (
@@ -129,7 +128,7 @@ export function Register() {
               }
             }}
           >
-            {tAuth('register.form.submit')}
+            {t('register.form.submit')}
           </Button>
         </form>
       </div>

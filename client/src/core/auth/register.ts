@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { User } from '~/entities/api/User';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/auth';
 import { PRIVATE_ROUTES } from '~/routes';
 
@@ -13,28 +12,12 @@ export interface RegisterForm {
 }
 
 interface UseRegisterArgs {
-  onError: () => void;
-  onSendEmailVerificationError: () => void;
+  onError?: () => void;
+  onSuccess?: () => void;
 }
 
-export function useRegister({
-  onError,
-  onSendEmailVerificationError,
-}: UseRegisterArgs) {
+export function useRegister({ onError, onSuccess }: UseRegisterArgs) {
   const router = useRouter();
-
-  const onSuccess = (user: User) => {
-    if (user.email_verified_at) {
-      router.push(PRIVATE_ROUTES.home());
-    } else {
-      authGateway
-        .sendEmailVerification()
-        .catch(onSendEmailVerificationError)
-        .then(() => {
-          router.push(PRIVATE_ROUTES.verifyEmail());
-        });
-    }
-  };
 
   const mutation = useMutation(
     (form: RegisterForm) => {
@@ -50,8 +33,13 @@ export function useRegister({
       onMutate: async () => {
         await authGateway.csrfCookie();
       },
-      onError,
-      onSuccess,
+      onSuccess: () => {
+        onSuccess?.();
+        router.push(PRIVATE_ROUTES.home());
+      },
+      onError: () => {
+        onError?.();
+      },
     },
   );
 

@@ -1,4 +1,9 @@
-export enum ApiMessage {
+export enum ServerResponseStatus {
+  Success = 'success',
+  Error = 'error',
+}
+
+export enum ServerResponseMessage {
   NotAllowed = 'not_allowed',
 
   NotFound = 'not_found',
@@ -15,3 +20,9 @@ export enum ApiMessage {
 
   EmailNotVerified = 'email_not_verified',
 }
+
+export type ServerResponse<T = unknown> = {
+  status: ServerResponseStatus;
+  message: ServerResponseMessage | null;
+  data: T | null;
+};

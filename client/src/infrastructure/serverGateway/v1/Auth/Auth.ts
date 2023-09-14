@@ -2,6 +2,8 @@ import { Http } from '~/entities/Http';
 import { User, userSchema } from '~/entities/api/User';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { RegisterRequest } from '~/infrastructure/serverGateway/v1/auth/requests';
+import { ServerResponse } from '~/infrastructure/serverGateway/config';
+import { validateResponse } from '~/infrastructure/serverGateway/utilities';
 
 class AuthGateway {
   private http: Http;
@@ -15,15 +17,17 @@ class AuthGateway {
   }
 
   public async register(dto: RegisterRequest) {
-    const user = await this.http.post<User, RegisterRequest>(
-      '/v1/auth/register',
-      dto,
-    );
-    return userSchema.validateSync(user, { strict: true });
+    const response = await this.http.post<
+      ServerResponse<User>,
+      RegisterRequest
+    >('/v1/auth/register', dto);
+    return validateResponse(response, userSchema);
   }
 
   public async sendEmailVerification() {
-    return this.http.post('/v1/auth/email/verification-notification');
+    return this.http.post<ServerResponse>(
+      '/v1/auth/email/verification-notification',
+    );
   }
 }
 

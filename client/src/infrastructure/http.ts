@@ -23,7 +23,7 @@ export class Http implements HttpEntity {
 
   public async post<T, R>(
     url: string,
-    data: R,
+    data?: R,
     config?: HttpRequestConfig,
   ): Promise<T> {
     const res = await this.repo.post<T>(
@@ -36,7 +36,7 @@ export class Http implements HttpEntity {
 
   public async put<T, R>(
     url: string,
-    data: R,
+    data?: R,
     config?: HttpRequestConfig,
   ): Promise<T> {
     const res = await this.repo.put<T>(
@@ -49,7 +49,7 @@ export class Http implements HttpEntity {
 
   public async patch<T, R>(
     url: string,
-    data: R,
+    data?: R,
     config?: HttpRequestConfig,
   ): Promise<T> {
     const res = await this.repo.patch<T>(
