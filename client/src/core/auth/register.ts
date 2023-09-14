@@ -4,7 +4,7 @@ import {
   ExtractedValidationError,
   ServerResponseMessage,
   ServerValidationErrorsResponse,
-} from '~/infrastructure/serverGateway/config';
+} from '~/infrastructure/serverGateway/types';
 import { extractValidationErrors } from '~/infrastructure/serverGateway/utilities';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/auth';
 import { PRIVATE_ROUTES } from '~/routes';

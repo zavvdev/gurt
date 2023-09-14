@@ -5,7 +5,7 @@ import { RegisterRequest } from '~/infrastructure/serverGateway/v1/auth/requests
 import {
   ServerResponse,
   ServerResponseMessage,
-} from '~/infrastructure/serverGateway/config';
+} from '~/infrastructure/serverGateway/types';
 import { validateResponse } from '~/infrastructure/serverGateway/utilities';
 
 class AuthGateway {

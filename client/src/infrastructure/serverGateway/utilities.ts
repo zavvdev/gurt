@@ -1,11 +1,16 @@
 import * as yup from 'yup';
 import {
+  SESSION_COOKIE_NAME,
+  XSRF_COOKIE_TOKEN_NAME,
+} from '~/infrastructure/serverGateway/config';
+import {
   ExtractedValidationError,
   ServerResponse,
   ServerResponseMessage,
   ServerResponseStatus,
   ServerValidationErrorsResponse,
-} from '~/infrastructure/serverGateway/config';
+} from '~/infrastructure/serverGateway/types';
+import { cookieStorage } from '~/infrastructure/cookieStorage';
 
 export function validateResponse<S extends yup.InferType<yup.Schema>>(
   response: ServerResponse<S>,
@@ -39,4 +44,13 @@ export function extractValidationErrors(
     }));
   }
   return [];
+}
+
+export function isAuthenticated() {
+  return Boolean(cookieStorage.get(SESSION_COOKIE_NAME));
+}
+
+export function removeCurrentSession() {
+  cookieStorage.remove(SESSION_COOKIE_NAME);
+  cookieStorage.remove(XSRF_COOKIE_TOKEN_NAME);
 }

@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { ServerResponseMessage } from '~/infrastructure/serverGateway/config';
+import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { redirect } from 'next/navigation';
 import { Http } from '~/infrastructure/http';
+import { removeCurrentSession } from '~/infrastructure/serverGateway/utilities';
 
 const navigate = (to: string) => {
   if (global?.window) {
@@ -20,6 +21,7 @@ const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
 const responseErrorInterceptor = (error: any) => {
   const response = error?.response?.data || {};
   if (response.message === ServerResponseMessage.Unauthorized) {
+    removeCurrentSession();
     navigate(PUBLIC_ROUTES.auth.login());
   }
   if (response.message === ServerResponseMessage.EmailNotVerified) {
