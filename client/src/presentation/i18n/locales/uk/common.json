@@ -4,8 +4,8 @@
     "description": "Social'na mereža",
     "keywords": "gurt,social'na,mereža"
   },
-  "error": {
-    "sendEmailVerification": "Ne vdalosja nadislaty lyst dlja pidtverdžennja elektronnoji adresy. Sprobujte pizniše"
+  "errors": {
+    "logout": "Nemožlyvo zaveršyty vašu potočnu sesiju. Sprobujte očystyty kuki brauzera jakščo pomylka ne znykne"
   },
   "notFoundPage": {
     "label": "Storinku ne znajdeno"
@@ -14,6 +14,19 @@
     "menu": {
       "login": "Vhid",
       "register": "Rejestracija"
+    }
+  },
+  "emailVerify": {
+    "label": "Pidtvertit' vašu elektronnu adresu",
+    "description": "My nadislaly Vam poklykannja dlja pidtverdžennja. Bud' laska, perevirte vašu elektronnu skryn'ku",
+    "resend": "Nadislaty šče raz",
+    "logout": "Vyjty z oblikovogo zapysu",
+    "error": {
+      "fallback": "Ne vdalosja nadislaty poklykannja dlja pidtverdžennja elektronnoji adresy. Sprobujte pizniše"
+    },
+    "success": {
+      "alreadySent": "Povidomlennja vže bulo nadislano raniše abo elektronna adresa vže pidtverdžena",
+      "fallback": "Poklykannja dlja pidtverdžennja elektronnoji adresy vidpravleno uspišno"
     }
   }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth\Web;
 
-use App\Enums\ResponseMessage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Web\ForgotPasswordRequest;
 use App\Http\Requests\Auth\Web\LoginRequest;
@@ -11,10 +10,9 @@ use App\Http\Requests\Auth\Web\ResetPasswordRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Events\Verified;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\RateLimiter;
@@ -71,6 +69,8 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        Cookie::queue(Cookie::forget(config('session.cookie')));
+
         return $this->successResponse();
     }
 
@@ -120,29 +120,5 @@ class AuthController extends Controller
         return $this->successResponse([
             'status' => __($status),
         ]);
-    }
-
-    public function verifyEmail(EmailVerificationRequest $request)
-    {
-        if ($request->user()->hasVerifiedEmail()) {
-            return $this->successResponse();
-        }
-
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
-        }
-
-        return $this->successResponse();
-    }
-
-    public function sendEmailVerification(Request $request)
-    {
-        if ($request->user()->hasVerifiedEmail()) {
-            return $this->successResponse(null, ResponseMessage::AlreadySent);
-        }
-
-        $request->user()->sendEmailVerificationNotification();
-
-        return $this->successResponse();
     }
 }

@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 interface Props {
   size?: 'default' | 'large' | 'small';
   className?: string;
-  color?: 'primary' | 'white';
+  color?: 'primary' | 'white' | 'link' | 'text';
 }
 
 export function Loader({
@@ -17,7 +17,9 @@ export function Loader({
       className={twMerge(
         color === 'primary' && 'border-prm',
         color === 'white' && 'border-white',
-        'animate-spin rounded-full border-solid border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]',
+        color === 'link' && 'border-prm dark:border-txt_DT',
+        color === 'text' && 'border-txt dark:border-txt_DT',
+        'animate-spin rounded-full border-solid !border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]',
         size === 'default' && 'h-5 w-5 border-2',
         size === 'large' && 'h-8 w-8 border-4',
         size === 'small' && 'h-3 w-3 border-2',

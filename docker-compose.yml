@@ -58,6 +58,20 @@ services:
     networks:
       - common
 
+  mailer:
+    image: ${APP_NAME}_mailer
+    build:
+      context: ./mailer
+    container_name: ${APP_NAME}_mailer
+    restart: unless-stopped
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    depends_on:
+      - server
+    networks:
+      - common
+
 networks:
   common:
     name: ${APP_NAME}_network
