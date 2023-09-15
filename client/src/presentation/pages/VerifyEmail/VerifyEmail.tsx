@@ -1,9 +1,9 @@
 import { useLogout } from '~/core/features/auth/logout';
 import { useVerifyEmail } from '~/core/features/email/verify';
+import { notificationService } from '~/core/services/NotificationService';
 import { Svg } from '~/presentation/assets/Svg';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { EmptyLayout } from '~/presentation/layouts/Empty/EmptyLayout';
-import { uiNotificationService } from '~/presentation/services/UINotificationService';
 import { Button } from '~/presentation/shared/Button/Button';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
@@ -18,10 +18,10 @@ export function VerifyEmail() {
 
   const verifyEmail = useVerifyEmail({
     onError: () => {
-      uiNotificationService.error(t('emailVerify.error.fallback'));
+      notificationService.error(t('emailVerify.error.fallback'));
     },
     onSuccess: ({ isAlreadySent }) => {
-      uiNotificationService.success(
+      notificationService.success(
         isAlreadySent
           ? t('emailVerify.success.alreadySent')
           : t('emailVerify.success.fallback'),

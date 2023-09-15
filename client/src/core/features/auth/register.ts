@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { PRIVATE_ROUTES } from '~/routes';
 import {
   ExtractedValidationError,
   ServerResponseMessage,
@@ -7,7 +8,6 @@ import {
 } from '~/infrastructure/serverGateway/types';
 import { extractValidationErrors } from '~/infrastructure/serverGateway/utilities';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
-import { PRIVATE_ROUTES } from '~/routes';
 
 export interface RegisterForm {
   firstName: string;

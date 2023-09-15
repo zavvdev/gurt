@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { createMiddleware } from '~/core/utilities/middleware';
-import { SESSION_COOKIE_NAME } from '~/infrastructure/serverGateway/config';
 import { PRIVATE_ROUTES_LIST, PUBLIC_ROUTES } from '~/routes';
+import { SESSION_COOKIE_NAME } from '~/infrastructure/serverGateway/config';
+import { createMiddleware } from '~/core/utilities/middleware';
 
 export const authMiddleware = createMiddleware((req, next) => {
   if (

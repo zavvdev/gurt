@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/user', fn (Request $request) => $request->user());
+    Route::get('/user/session', [UserController::class, 'getSessionUser']);
 });

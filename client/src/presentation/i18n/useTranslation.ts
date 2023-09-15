@@ -5,8 +5,8 @@ import { useParams } from 'next/navigation';
 import i18next, { FlatNamespace, KeyPrefix } from 'i18next';
 import {
   FallbackNs,
-  UseTranslationOptions,
   initReactI18next,
+  UseTranslationOptions,
   useTranslation as useTranslationOrg,
 } from 'react-i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';

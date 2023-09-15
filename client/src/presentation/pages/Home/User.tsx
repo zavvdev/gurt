@@ -1,24 +1,24 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-// eslint-disable-next-line
-import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
+import { useSessionUser } from '~/core/features/user/sessionUser';
+import { notificationService } from '~/core/services/NotificationService';
 
 export function User() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [user, setUser] = useState<any>({});
-
-  useEffect(() => {
-    (async () => {
-      const user = await serverGateway.http.api.get('/v1/user');
-      setUser(user);
-    })();
-  }, []);
+  const sessionUser = useSessionUser({
+    errorNotification: notificationService.createNotification(
+      'error',
+      'Error message',
+    ),
+    successNotification: notificationService.createNotification(
+      'success',
+      'Success notification',
+    ),
+  });
 
   return (
     <div>
       <div>Home</div>
-      {JSON.stringify(user)}
+      {JSON.stringify(sessionUser.data)}
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
-import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { PUBLIC_ROUTES } from '~/routes';
-import { uiNotificationService } from '~/presentation/services/UINotificationService';
+import { notificationService } from '~/core/services/NotificationService';
+import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
+import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { Button } from '~/presentation/shared/Button/Button';
 import { Checkbox } from '~/presentation/shared/Checkbox/Checkbox';
 import { Input } from '~/presentation/shared/Input/Input';
@@ -56,7 +56,7 @@ export function Login() {
             size="large"
             onClick={(e) => {
               e.preventDefault();
-              uiNotificationService.error('123');
+              notificationService.error('123');
             }}
           >
             {t('login.form.submit')}

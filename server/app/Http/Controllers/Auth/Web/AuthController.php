@@ -33,7 +33,7 @@ class AuthController extends Controller
         event(new Registered($createdUser));
         Auth::login($createdUser);
 
-        return $this->successResponse($createdUser);
+        return $this->successResponse();
     }
 
     public function login(LoginRequest $request)
