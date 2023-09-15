@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
+import acceptLanguage from 'accept-language';
+import { createMiddleware } from '~/core/utilities/middleware';
 import {
   FALLBACK_LNG,
   I18N_COOKIE_NAME,
   LANGUAGES,
 } from '~/presentation/i18n/config';
-import acceptLanguage from 'accept-language';
-import { createMiddleware } from '~/core/utilities/middleware';
 
 acceptLanguage.languages(Object.values(LANGUAGES));
 

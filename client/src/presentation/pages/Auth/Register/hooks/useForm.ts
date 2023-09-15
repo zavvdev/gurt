@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { RegisterForm } from '~/core/features/auth/register';
+import { useTranslation } from '~/presentation/i18n/useTranslation';
 
 interface Args {
   onSubmit: (form: RegisterForm) => void;

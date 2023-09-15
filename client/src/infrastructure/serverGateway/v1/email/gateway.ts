@@ -9,7 +9,7 @@ class EmailGateway {
     this.http = http;
   }
 
-  public async sendVerification() {
+  public sendVerification() {
     return this.http.post<ServerResponse>(
       '/v1/email/verification-notification',
     );

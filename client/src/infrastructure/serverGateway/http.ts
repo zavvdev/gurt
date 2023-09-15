@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { redirect } from 'next/navigation';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
+import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
 import { Http } from '~/infrastructure/http';
 
 const navigate = (to: string) => {

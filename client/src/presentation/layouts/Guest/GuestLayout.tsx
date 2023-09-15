@@ -1,11 +1,11 @@
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { twMerge } from 'tailwind-merge';
+import { PUBLIC_ROUTES } from '~/routes';
 import { Svg } from '~/presentation/assets/Svg';
 import { ThemeSwitch } from '~/presentation/widgets/ThemeSwitch/ThemeSwitch';
-import { usePathname } from 'next/navigation';
-import { PUBLIC_ROUTES } from '~/routes';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { LanguageSwitch } from '~/presentation/widgets/LanguageSwitch/LanguageSwitch';
-import { twMerge } from 'tailwind-merge';
 
 interface Props {
   children: React.ReactNode;

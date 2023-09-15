@@ -14,6 +14,51 @@
     }
   },
   "rules": {
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "type", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "~/routes",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "~/app/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "~/entities/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "~/infrastructure/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "~/core/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "~/presentation/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ]
+      }
+    ],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -64,6 +109,135 @@
             "target": "./src/presentation",
             "from": ["./src/infrastructure", "./src/app"],
             "message": "Presentation layer should depend only on Core and Entity layer"
+          },
+          {
+            "target": "./src/presentation/layouts",
+            "from": ["./src/presentation/pages"],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/providers",
+            "from": ["./src/presentation/pages", "./src/presentation/layouts"],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/widgets",
+            "from": [
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/helpers",
+            "from": [
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/containers",
+            "from": [
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets",
+              "./src/presentation/helpers"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/shared",
+            "from": [
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets",
+              "./src/presentation/helpers",
+              "./src/presentation/containers"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/assets",
+            "from": [
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets",
+              "./src/presentation/helpers",
+              "./src/presentation/containers",
+              "./src/presentation/shared"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/i18n",
+            "from": [
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets",
+              "./src/presentation/helpers",
+              "./src/presentation/containers",
+              "./src/presentation/shared",
+              "./src/presentation/assets"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/styles",
+            "from": [
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets",
+              "./src/presentation/helpers",
+              "./src/presentation/containers",
+              "./src/presentation/shared",
+              "./src/presentation/assets",
+              "./src/presentation/i18n"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/utilities",
+            "from": [
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets",
+              "./src/presentation/helpers",
+              "./src/presentation/containers",
+              "./src/presentation/shared",
+              "./src/presentation/assets",
+              "./src/presentation/i18n",
+              "./src/presentation/styles"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/core/managers",
+            "from": ["./src/core/features"],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/core/services",
+            "from": ["./src/core/features", "./src/core/managers"],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/core/utilities",
+            "from": [
+              "./src/core/features",
+              "./src/core/managers",
+              "./src/core/services"
+            ],
+            "message": "Dependency prohibited"
           }
         ]
       }
