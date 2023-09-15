@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { useThemeSwitch } from '~/presentation/hooks/useThemeSwitch';
+import { useThemeSwitch } from '~/presentation/helpers/hooks/useThemeSwitch';
 
 interface Props {
   children: React.ReactNode;

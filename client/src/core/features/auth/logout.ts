@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 import { PUBLIC_ROUTES } from '~/routes';
+import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 
 interface UseLogoutArgs {
   onError?: () => void;

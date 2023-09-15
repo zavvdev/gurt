@@ -1,11 +1,11 @@
+import { useRegister } from '~/core/features/auth/register';
+import { notificationService } from '~/core/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { Button } from '~/presentation/shared/Button/Button';
 import { Input } from '~/presentation/shared/Input/Input';
 import { useForm } from '~/presentation/pages/Auth/Register/hooks/useForm';
 import { TextError } from '~/presentation/shared/TextError/TextError';
-import { useRegister } from '~/core/features/auth/register';
-import { uiNotificationService } from '~/presentation/services/UINotificationService';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function Register() {
@@ -15,7 +15,7 @@ export function Register() {
     onError: (validationErrors) => {
       const field = validationErrors?.[0]?.field || 0;
       const key = validationErrors?.[0]?.errorKeys?.[0] || null;
-      uiNotificationService.error(
+      notificationService.error(
         t([
           `register.serverValidationError.${field}.${key}`,
           'register.error.fallback',
@@ -23,7 +23,7 @@ export function Register() {
       );
     },
     onSuccess: ({ alreadyLoggedIn }) => {
-      uiNotificationService.success(
+      notificationService.success(
         alreadyLoggedIn
           ? t('register.success.alreadyLoggedIn')
           : t('register.success.fallback'),
