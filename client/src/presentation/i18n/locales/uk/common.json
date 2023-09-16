@@ -25,7 +25,7 @@
       "fallback": "Ne vdalosja nadislaty poklykannja dlja pidtverdžennja elektronnoji adresy. Sprobujte pizniše"
     },
     "success": {
-      "alreadySent": "Povidomlennja vže bulo nadislano raniše abo elektronna adresa vže pidtverdžena",
+      "alreadySent": "Elektronna adresa vže pidtverdžena",
       "fallback": "Poklykannja dlja pidtverdžennja elektronnoji adresy vidpravleno uspišno"
     }
   }

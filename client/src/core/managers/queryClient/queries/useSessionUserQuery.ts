@@ -3,24 +3,22 @@ import { userGateway } from '~/infrastructure/serverGateway/v1/user/gateway';
 import { QueryKey, QueryMetaKey } from '~/core/managers/queryClient/config';
 import { Notification } from '~/core/services/NotificationService';
 
-interface UseSessionUserArgs {
+interface QueryArgs {
   errorNotification?: Notification;
   successNotification?: Notification;
 }
 
-export function useSessionUser(args?: UseSessionUserArgs) {
-  const { data, isError, isLoading } = useQuery({
-    queryKey: [QueryKey.SessionUser],
+export function createSessionUserQueryKey() {
+  return [QueryKey.SessionUser];
+}
+
+export function useSessionUserQuery(args?: QueryArgs) {
+  return useQuery({
+    queryKey: createSessionUserQueryKey(),
     queryFn: () => userGateway.getSessionUser(),
     meta: {
       [QueryMetaKey.ErrorNotification]: args?.errorNotification,
       [QueryMetaKey.SuccessNotification]: args?.successNotification,
     },
   });
-
-  return {
-    data,
-    isError,
-    isLoading,
-  };
 }
