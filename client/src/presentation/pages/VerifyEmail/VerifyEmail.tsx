@@ -1,5 +1,5 @@
 import { useLogout } from '~/core/features/auth/logout';
-import { useVerifyEmail } from '~/core/features/email/verify';
+import { useSendEmailVerification } from '~/core/features/email/verify';
 import { notificationService } from '~/core/services/NotificationService';
 import { Svg } from '~/presentation/assets/Svg';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
@@ -16,7 +16,7 @@ export function VerifyEmail() {
     },
   });
 
-  const verifyEmail = useVerifyEmail({
+  const sendEmailVerification = useSendEmailVerification({
     onError: () => {
       notificationService.error(t('emailVerify.error.fallback'));
     },
@@ -30,8 +30,8 @@ export function VerifyEmail() {
   });
 
   const onResend = () => {
-    if (!verifyEmail.isLoading) {
-      verifyEmail.initiate();
+    if (!sendEmailVerification.isLoading) {
+      sendEmailVerification.initiate();
     }
   };
 
@@ -53,7 +53,9 @@ export function VerifyEmail() {
           size="large"
           onClick={onResend}
           className="max-sm:w-full"
-          leftAdornment={verifyEmail.isLoading && <Loader color="white" />}
+          leftAdornment={
+            sendEmailVerification.isLoading && <Loader color="white" />
+          }
         >
           {t('emailVerify.resend')}
         </Button>

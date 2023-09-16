@@ -25,7 +25,7 @@
       "fallback": "Unable to send email verification link. Try again later"
     },
     "success": {
-      "alreadySent": "Email verification has been already sent or email is already verified",
+      "alreadySent": "Email is already verified",
       "fallback": "Email verification link has been successfully send"
     }
   }
