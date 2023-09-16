@@ -1,17 +1,13 @@
 'use client';
 
-import { useSessionUser } from '~/core/features/user/sessionUser';
+import { useSessionUserQuery } from '~/core/managers/queryClient/queries/useSessionUserQuery';
 import { notificationService } from '~/core/services/NotificationService';
 
 export function User() {
-  const sessionUser = useSessionUser({
+  const sessionUser = useSessionUserQuery({
     errorNotification: notificationService.createNotification(
       'error',
-      'Error message',
-    ),
-    successNotification: notificationService.createNotification(
-      'success',
-      'Success notification',
+      'Error message 1',
     ),
   });
 

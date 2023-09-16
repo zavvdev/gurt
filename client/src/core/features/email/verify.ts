@@ -9,12 +9,15 @@ interface OnSuccess {
   isAlreadySent: boolean;
 }
 
-interface UseVerifyEmailArgs {
+interface UseSendEmailVerificationArgs {
   onError?: () => void;
   onSuccess?: (args: OnSuccess) => void;
 }
 
-export function useVerifyEmail({ onError, onSuccess }: UseVerifyEmailArgs) {
+export function useSendEmailVerification({
+  onError,
+  onSuccess,
+}: UseSendEmailVerificationArgs) {
   const { mutate, isLoading } = useMutation(
     () => {
       return emailGateway.sendVerification();
