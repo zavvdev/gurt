@@ -19,6 +19,8 @@ export enum ServerResponseMessage {
   AlreadyLoggedIn = 'already_logged_in',
 
   EmailNotVerified = 'email_not_verified',
+
+  RecordNotFound = 'record_not_found',
 }
 
 export type ServerResponse<T = unknown> = {

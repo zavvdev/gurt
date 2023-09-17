@@ -26,7 +26,7 @@ interface UseRegisterArgs {
   onSuccess?: (args: OnSuccess) => void;
 }
 
-export function useRegister({ onError, onSuccess }: UseRegisterArgs) {
+export function useRegister(args?: UseRegisterArgs) {
   const router = useRouter();
 
   const mutation = useMutation(
@@ -44,14 +44,14 @@ export function useRegister({ onError, onSuccess }: UseRegisterArgs) {
         await authGateway.csrfCookie();
       },
       onSuccess: (response) => {
-        onSuccess?.({
+        args?.onSuccess?.({
           alreadyLoggedIn:
             response.message === ServerResponseMessage.AlreadyLoggedIn,
         });
         router.push(PRIVATE_ROUTES.home());
       },
       onError: (e: ServerValidationErrorsResponse) => {
-        onError?.(extractValidationErrors(e));
+        args?.onError?.(extractValidationErrors(e));
       },
     },
   );
