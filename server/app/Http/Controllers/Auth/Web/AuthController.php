@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Web;
 
-use App\Enums\ValidationError;
+use App\Enums\ResponseMessage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Web\ForgotPasswordRequest;
 use App\Http\Requests\Auth\Web\LoginRequest;
@@ -54,7 +54,7 @@ class AuthController extends Controller
 
             return $this->errorResponse(
                 Response::HTTP_UNPROCESSABLE_ENTITY,
-                ValidationError::RecordNotFound,
+                ResponseMessage::RecordNotFound,
             );
         }
 
@@ -79,22 +79,27 @@ class AuthController extends Controller
 
     public function forgotPassword(ForgotPasswordRequest $request)
     {
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
-        $status = Password::sendResetLink(
-            $request->only('email'),
-        );
+        $status = Password::sendResetLink([
+            'email' => $request->email,
+        ]);
 
         if ($status != Password::RESET_LINK_SENT) {
-            throw ValidationException::withMessages([
-                'email' => [__($status)],
-            ]);
+            switch ($status) {
+                case Password::RESET_THROTTLED:
+                    return $this->errorResponse(
+                        Response::HTTP_TOO_EARLY,
+                        ResponseMessage::TooEarly,
+                    );
+
+                default:
+                    return $this->errorResponse(
+                        Response::HTTP_CONFLICT,
+                        ResponseMessage::Unexpected,
+                    );
+            }
         }
 
-        return $this->successResponse([
-            'status' => __($status),
-        ]);
+        return $this->successResponse();
     }
 
     public function resetPassword(ResetPasswordRequest $request)

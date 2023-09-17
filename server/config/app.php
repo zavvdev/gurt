@@ -187,4 +187,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'frontend_reset_password_route' => env('FRONTEND_RESET_PASSWORD_ROUTE', '/password-reset'),
 ];

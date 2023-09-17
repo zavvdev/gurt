@@ -11,3 +11,7 @@ export interface LoginRequest {
   password: string;
   remember: boolean;
 }
+
+export interface ForgotPasswordRequest {
+  email: string;
+}
