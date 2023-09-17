@@ -11,10 +11,5 @@ export function User() {
     ),
   });
 
-  return (
-    <div>
-      <div>Home</div>
-      {JSON.stringify(sessionUser.data)}
-    </div>
-  );
+  return <pre>{JSON.stringify(sessionUser.data, null, 2)}</pre>;
 }
