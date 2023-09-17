@@ -2,6 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { PRIVATE_ROUTES } from '~/routes';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
+import {
+  ServerResponse,
+  ServerResponseMessage,
+} from '~/infrastructure/serverGateway/types';
 
 export interface LoginForm {
   email: string;
@@ -10,11 +14,11 @@ export interface LoginForm {
 }
 
 interface UseLoginArgs {
-  onError?: () => void;
+  onError?: (message: ServerResponseMessage | null) => void;
   onSuccess?: () => void;
 }
 
-export function useLogin({ onError, onSuccess }: UseLoginArgs) {
+export function useLogin(args?: UseLoginArgs) {
   const router = useRouter();
 
   const mutation = useMutation(
@@ -30,11 +34,11 @@ export function useLogin({ onError, onSuccess }: UseLoginArgs) {
         await authGateway.csrfCookie();
       },
       onSuccess: () => {
-        onSuccess?.();
+        args?.onSuccess?.();
         router.push(PRIVATE_ROUTES.home());
       },
-      onError: () => {
-        onError?.();
+      onError: (response: ServerResponse) => {
+        args?.onError?.(response.message);
       },
     },
   );

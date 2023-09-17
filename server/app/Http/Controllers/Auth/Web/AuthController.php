@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Web;
 
+use App\Enums\ValidationError;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\Web\ForgotPasswordRequest;
 use App\Http\Requests\Auth\Web\LoginRequest;
@@ -11,6 +12,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
@@ -50,9 +52,10 @@ class AuthController extends Controller
         )) {
             RateLimiter::hit($request->throttleKey());
 
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
+            return $this->errorResponse(
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ValidationError::RecordNotFound,
+            );
         }
 
         RateLimiter::clear($request->throttleKey());

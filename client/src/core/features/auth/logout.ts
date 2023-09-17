@@ -7,7 +7,7 @@ interface UseLogoutArgs {
   onError?: () => void;
 }
 
-export function useLogout({ onError }: UseLogoutArgs) {
+export function useLogout(args?: UseLogoutArgs) {
   const router = useRouter();
 
   const { mutate, isLoading } = useMutation(
@@ -16,7 +16,7 @@ export function useLogout({ onError }: UseLogoutArgs) {
     },
     {
       onError: () => {
-        onError?.();
+        args?.onError?.();
       },
       onSuccess: () => {
         router.replace(PUBLIC_ROUTES.auth.login());
