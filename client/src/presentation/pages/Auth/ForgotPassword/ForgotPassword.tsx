@@ -1,12 +1,33 @@
-import { useState } from 'react';
+import { useForgotPassword } from '~/core/features/auth/password';
+import { notificationService } from '~/core/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { Button } from '~/presentation/shared/Button/Button';
 import { Input } from '~/presentation/shared/Input/Input';
+import { useForm } from '~/presentation/pages/Auth/ForgotPassword/hooks/useForm';
+import { TextError } from '~/presentation/shared/TextError/TextError';
+import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function ForgotPassword() {
   const { t } = useTranslation('auth');
-  const [email, setEmail] = useState('');
+
+  const forgotPassword = useForgotPassword({
+    onError: (message) => {
+      notificationService.error(
+        t([
+          `forgotPassword.error.serverResponseMessage.${message}`,
+          'forgotPassword.error.fallback',
+        ]),
+      );
+    },
+    onSuccess: () => {
+      notificationService.success(t('forgotPassword.success.fallback'));
+    },
+  });
+
+  const form = useForm({
+    onSubmit: forgotPassword.initiate,
+  });
 
   return (
     <GuestLayout>
@@ -18,13 +39,33 @@ export function ForgotPassword() {
           {t('forgotPassword.description')}
         </p>
         <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
-          <Input
-            variant="large"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder={t('forgotPassword.form.email')}
-          />
-          <Button fullWidth size="large" onClick={console.log}>
+          <div>
+            <Input
+              variant="large"
+              name="email"
+              value={form.values.email}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              isError={Boolean(form.getError('email'))}
+              placeholder={t('forgotPassword.form.email')}
+            />
+            {Boolean(form.getError('email')) && (
+              <TextError size="small" className="mt-1">
+                {form.getError('email')}
+              </TextError>
+            )}
+          </div>
+          <Button
+            fullWidth
+            size="large"
+            leftAdornment={forgotPassword.isLoading && <Loader color="white" />}
+            onClick={(e) => {
+              if (!forgotPassword.isLoading) {
+                e.preventDefault();
+                form.handleSubmit();
+              }
+            }}
+          >
             {t('forgotPassword.form.submit')}
           </Button>
         </form>

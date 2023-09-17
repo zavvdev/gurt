@@ -1,6 +1,7 @@
 import { Http } from '~/entities/Http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import {
+  ForgotPasswordRequest,
   LoginRequest,
   RegisterRequest,
 } from '~/infrastructure/serverGateway/v1/auth/requests';
@@ -13,23 +14,27 @@ class AuthGateway {
     this.http = http;
   }
 
-  public async csrfCookie() {
+  public csrfCookie() {
     return this.http.get('/v1/sanctum/csrf-cookie');
   }
 
-  public async register(dto: RegisterRequest) {
+  public register(dto: RegisterRequest) {
     return this.http.post<ServerResponse, RegisterRequest>(
       '/v1/auth/register',
       dto,
     );
   }
 
-  public async logout() {
+  public logout() {
     return this.http.post<ServerResponse>('/v1/auth/logout');
   }
 
-  public async login(dto: LoginRequest) {
+  public login(dto: LoginRequest) {
     return this.http.post<ServerResponse>('/v1/auth/login', dto);
+  }
+
+  public forgotPassword(dto: ForgotPasswordRequest) {
+    return this.http.post('/v1/auth/forgot-password', dto);
   }
 }
 
