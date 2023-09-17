@@ -1,21 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-  <meta
-    http-equiv="X-UA-Compatible"
-    content="ie=edge"
-  >
-  <title>Email verified successfully</title>
-</head>
+<style>
+  .content {
+    text-align: center
+  }
 
-<body>
-  Success!
-</body>
+  .link {
+    display: block;
+    color: var(--color-primary);
+  }
+</style>
 
-</html>
+@section('content')
+  <div class="content">
+    <x-application-logo></x-application-logo>
+    <h1>
+      Email has been successfully verified!
+    </h1>
+    <a
+      class="link"
+      href="{{ config('app.frontend_url') }}"
+    >Go to account</a>
+  </div>
+@endsection
