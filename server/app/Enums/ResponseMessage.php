@@ -18,6 +18,12 @@ enum ResponseMessage: string
 
     case EmailNotVerified = 'email_not_verified';
 
+    case TooEarly = 'too_early';
+
+    const RecordNotFound = 'record_not_found';
+
+    const UserNotFound = 'user_not_found';
+
     // Success
 
     case AlreadySent = 'already_sent';

@@ -15,6 +15,4 @@ class ValidationError
     const TooShort = 'too_short';
 
     const NotConfirmed = 'not_confirmed';
-
-    const RecordNotFound = 'record_not_found';
 }
