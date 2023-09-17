@@ -24,7 +24,6 @@ interface OnSuccess {
 interface UseRegisterArgs {
   onError?: (validationErrors: ExtractedValidationError[]) => void;
   onSuccess?: (args: OnSuccess) => void;
-  onAlreadyLoggedIn?: () => void;
 }
 
 export function useRegister({ onError, onSuccess }: UseRegisterArgs) {

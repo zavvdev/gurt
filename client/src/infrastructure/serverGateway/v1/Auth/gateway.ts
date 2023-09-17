@@ -1,6 +1,9 @@
 import { Http } from '~/entities/Http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
-import { RegisterRequest } from '~/infrastructure/serverGateway/v1/auth/requests';
+import {
+  LoginRequest,
+  RegisterRequest,
+} from '~/infrastructure/serverGateway/v1/auth/requests';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 
 class AuthGateway {
@@ -23,6 +26,10 @@ class AuthGateway {
 
   public async logout() {
     return this.http.post<ServerResponse>('/v1/auth/logout');
+  }
+
+  public async login(dto: LoginRequest) {
+    return this.http.post<ServerResponse>('/v1/auth/login', dto);
   }
 }
 
