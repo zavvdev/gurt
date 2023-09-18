@@ -34,7 +34,7 @@ class AuthGateway {
   }
 
   public forgotPassword(dto: ForgotPasswordRequest) {
-    return this.http.post('/v1/auth/forgot-password', dto);
+    return this.http.post<ServerResponse>('/v1/auth/forgot-password', dto);
   }
 }
 

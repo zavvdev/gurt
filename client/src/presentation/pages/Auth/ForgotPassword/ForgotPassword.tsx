@@ -20,8 +20,13 @@ export function ForgotPassword() {
         ]),
       );
     },
-    onSuccess: () => {
-      notificationService.success(t('forgotPassword.success.fallback'));
+    onSuccess: (message) => {
+      notificationService.success(
+        t([
+          `forgotPassword.success.serverResponseMessage.${message}`,
+          'forgotPassword.success.fallback',
+        ]),
+      );
     },
   });
 

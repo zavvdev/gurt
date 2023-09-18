@@ -11,7 +11,7 @@ export interface ForgotPasswordForm {
 
 interface UseForgotPassword {
   onError?: (message: ServerResponseMessage | null) => void;
-  onSuccess?: () => void;
+  onSuccess?: (message: ServerResponseMessage | null) => void;
 }
 
 export function useForgotPassword(args?: UseForgotPassword) {
@@ -22,11 +22,14 @@ export function useForgotPassword(args?: UseForgotPassword) {
       });
     },
     {
+      onMutate: async () => {
+        await authGateway.csrfCookie();
+      },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);
       },
-      onSuccess: () => {
-        args?.onSuccess?.();
+      onSuccess: (response: ServerResponse) => {
+        args?.onSuccess?.(response.message);
       },
     },
   );
