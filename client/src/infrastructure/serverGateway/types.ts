@@ -25,6 +25,8 @@ export enum ServerResponseMessage {
   UserNotFound = 'user_not_found',
 
   InvalidToken = 'invalid_token',
+
+  InvalidSignature = 'invalid_signature',
 }
 
 export type ServerResponse<T = unknown> = {

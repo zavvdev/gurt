@@ -31,6 +31,6 @@ class EmailVerificationController extends Controller
             event(new Verified($request->user()));
         }
 
-        return view('auth.verify-email');
+        return $this->successResponse();
     }
 }

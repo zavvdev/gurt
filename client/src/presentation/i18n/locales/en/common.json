@@ -4,29 +4,67 @@
     "description": "Social network",
     "keywords": "gurt,social,network"
   },
-  "errors": {
+
+  "error": {
     "logout": "Unable to terminate your session. Try to clean browser cookies manually if issue persists"
   },
+
+  "serverMessage": {
+    "not_allowed": "Action not allowed",
+    "unauthorized": "Unauthorized action",
+    "unexpected_error": "Unexpected error. Try again later",
+    "already_logged_in": "You are already logged in",
+    "email_not_verified": "Email is not verified",
+    "too_early": "Too many requests",
+    "invalid_token": "Invalid token",
+    "invalid_signature": "Invalid signature"
+  },
+
+  "formError": {
+    "firstNameRequired": "Provide your first name",
+    "lastNameRequired": "Provide your last name",
+    "emailRequired": "Provide your email",
+    "emailInvalid": "Provide valid email",
+    "passwordRequired": "Provide your password",
+    "passwordConfirmRequired": "Confirm your password",
+    "passwordsNotMatch": "Passwords are not match",
+    "passwordMinimum": "Password should be minimum {{ length }} characters length"
+  },
+
   "notFoundPage": {
     "label": "Page not found"
   },
+
   "guestLayout": {
     "menu": {
       "login": "Login",
       "register": "Register"
     }
   },
+
   "emailVerify": {
-    "label": "Verify your email",
-    "description": "We've sent you a verification link. Please check your inbox",
-    "resend": "Resend",
+    "label": "Email address verification",
     "logout": "Logout from account",
+    "tryAgain": "Try again",
     "error": {
-      "fallback": "Unable to send email verification link. Try again later"
+      "fallback": "Unable to verify email address. Try again later"
     },
     "success": {
-      "alreadySent": "Email is already verified",
-      "fallback": "Email verification link has been successfully send"
+      "fallback": "Email has been verified successfully"
+    },
+    "resend": {
+      "label": "Verify your email",
+      "description": "We've sent you a verification link. Please check your inbox",
+      "resend": "Resend",
+      "error": {
+        "fallback": "Unable to send email verification link. Try again later"
+      },
+      "success": {
+        "fallback": "Email verification link has been successfully send",
+        "serverMessage": {
+          "already_sent": "Email is already verified"
+        }
+      }
     }
   }
 }
