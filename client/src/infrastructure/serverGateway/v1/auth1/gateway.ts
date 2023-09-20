@@ -5,7 +5,7 @@ import {
   LoginRequest,
   RegisterRequest,
   ResetPasswordRequest,
-} from '~/infrastructure/serverGateway/v1/auth/requests';
+} from '~/infrastructure/serverGateway/v1/auth1/requests';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 
 class AuthGateway {

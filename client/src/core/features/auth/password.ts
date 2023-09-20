@@ -5,7 +5,7 @@ import {
   ServerResponse,
   ServerResponseMessage,
 } from '~/infrastructure/serverGateway/types';
-import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
+import { authGateway } from '~/infrastructure/serverGateway/v1/auth1/gateway';
 import { MutationEvents } from '~/core/managers/queryClient/types';
 
 // Forgot password

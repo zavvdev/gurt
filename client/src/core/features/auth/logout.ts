@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { PUBLIC_ROUTES } from '~/routes';
-import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
+import { authGateway } from '~/infrastructure/serverGateway/v1/auth1/gateway';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { MutationEvents } from '~/core/managers/queryClient/types';
 
