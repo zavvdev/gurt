@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
-import { PUBLIC_ROUTES } from '~/routes';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { Svg } from '~/presentation/assets/Svg';
 import { ThemeSwitch } from '~/presentation/widgets/ThemeSwitch/ThemeSwitch';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
@@ -36,7 +36,9 @@ export function GuestLayout({ children }: Props) {
           max-md:flex-col max-md:gap-6
         "
       >
-        <Svg.Logo className="text-prm dark:text-txt_DT w-[4.5rem]" />
+        <Link href={PRIVATE_ROUTES.home()}>
+          <Svg.Logo className="text-prm dark:text-txt_DT w-[4.5rem]" />
+        </Link>
         <nav className="flex gap-8 items-center flex-wrap max-md:gap-2 max-md:text-sm">
           {menu.map((link) => (
             <Link
