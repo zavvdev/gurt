@@ -13,20 +13,21 @@ export function Register() {
   const { t } = useTranslation('auth');
 
   const register = useRegister({
-    onError: (validationErrors) => {
+    onError: ({ validationErrors, message }) => {
       const field = validationErrors?.[0]?.field || 0;
       const key = validationErrors?.[0]?.errorKeys?.[0] || null;
       notificationService.error(
-        t([
-          `register.error.serverValidation.${field}.${key}`,
-          'register.error.fallback',
-        ]),
+        tServerMessage(
+          `${message}`,
+          t([
+            `register.error.serverValidation.${field}.${key}`,
+            'register.error.fallback',
+          ]),
+        ),
       );
     },
-    onSuccess: (message) => {
-      notificationService.success(
-        tServerMessage(`${message}`, t('register.success.fallback')),
-      );
+    onSuccess: () => {
+      notificationService.success(t('register.success.fallback'));
     },
   });
 

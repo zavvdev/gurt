@@ -2,7 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { PRIVATE_ROUTES } from '~/routes';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
-import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import {
+  ServerResponse,
+  ServerResponseMessage,
+} from '~/infrastructure/serverGateway/types';
 import { MutationEvents } from '~/core/managers/queryClient/types';
 
 export interface LoginForm {
@@ -27,8 +30,12 @@ export function useLogin(args?: MutationEvents) {
         await authGateway.csrfCookie();
       },
       onSuccess: (response: ServerResponse) => {
-        args?.onSuccess?.(response.message);
-        router.push(PRIVATE_ROUTES.home());
+        if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
+          args?.onError?.(response.message);
+        } else {
+          args?.onSuccess?.(response.message);
+          router.push(PRIVATE_ROUTES.home());
+        }
       },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);

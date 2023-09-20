@@ -16,10 +16,8 @@ export function Login() {
   const { t } = useTranslation('auth');
 
   const login = useLogin({
-    onSuccess: (message) => {
-      notificationService.success(
-        tServerMessage(`${message}`, t('login.success.fallback')),
-      );
+    onSuccess: () => {
+      notificationService.success(t('login.success.fallback'));
     },
     onError: (message) => {
       notificationService.error(

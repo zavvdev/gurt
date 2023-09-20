@@ -18,8 +18,11 @@ export interface RegisterForm {
 }
 
 interface UseRegisterArgs {
-  onError?: (validationErrors: ExtractedValidationError[]) => void;
-  onSuccess?: (message: ServerResponseMessage | null) => void;
+  onError?: (args: {
+    validationErrors?: ExtractedValidationError[];
+    message?: ServerResponseMessage;
+  }) => void;
+  onSuccess?: () => void;
 }
 
 export function useRegister(args?: UseRegisterArgs) {
@@ -40,11 +43,19 @@ export function useRegister(args?: UseRegisterArgs) {
         await authGateway.csrfCookie();
       },
       onSuccess: (response) => {
-        args?.onSuccess?.(response.message);
-        router.push(PRIVATE_ROUTES.home());
+        if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
+          args?.onError?.({
+            message: response.message,
+          });
+        } else {
+          args?.onSuccess?.();
+          router.push(PRIVATE_ROUTES.home());
+        }
       },
       onError: (e: ServerValidationErrorsResponse) => {
-        args?.onError?.(extractValidationErrors(e));
+        args?.onError?.({
+          validationErrors: extractValidationErrors(e),
+        });
       },
     },
   );
