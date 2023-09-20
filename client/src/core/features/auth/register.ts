@@ -7,7 +7,7 @@ import {
   ServerValidationErrorsResponse,
 } from '~/infrastructure/serverGateway/types';
 import { extractValidationErrors } from '~/infrastructure/serverGateway/utilities';
-import { authGateway } from '~/infrastructure/serverGateway/v1/auth1/gateway';
+import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 
 export interface RegisterForm {
   firstName: string;
