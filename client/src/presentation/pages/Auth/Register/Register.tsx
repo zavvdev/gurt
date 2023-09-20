@@ -9,6 +9,7 @@ import { TextError } from '~/presentation/shared/TextError/TextError';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function Register() {
+  const { t: tServerMessage } = useTranslation('serverMessage');
   const { t } = useTranslation('auth');
 
   const register = useRegister({
@@ -17,16 +18,14 @@ export function Register() {
       const key = validationErrors?.[0]?.errorKeys?.[0] || null;
       notificationService.error(
         t([
-          `register.serverValidationError.${field}.${key}`,
+          `register.error.serverValidation.${field}.${key}`,
           'register.error.fallback',
         ]),
       );
     },
-    onSuccess: ({ alreadyLoggedIn }) => {
+    onSuccess: (message) => {
       notificationService.success(
-        alreadyLoggedIn
-          ? t('register.success.alreadyLoggedIn')
-          : t('register.success.fallback'),
+        tServerMessage(`${message}`, t('register.success.fallback')),
       );
     },
   });

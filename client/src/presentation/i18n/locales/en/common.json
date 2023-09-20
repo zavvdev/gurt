@@ -17,16 +17,28 @@
     }
   },
   "emailVerify": {
-    "label": "Verify your email",
-    "description": "We've sent you a verification link. Please check your inbox",
-    "resend": "Resend",
+    "label": "Email address verification",
     "logout": "Logout from account",
+    "tryAgain": "Try again",
     "error": {
-      "fallback": "Unable to send email verification link. Try again later"
+      "fallback": "Unable to verify email address. Try again later"
     },
     "success": {
-      "alreadySent": "Email is already verified",
-      "fallback": "Email verification link has been successfully send"
+      "fallback": "Email has been verified successfully"
+    },
+    "resend": {
+      "label": "Verify your email",
+      "description": "We've sent you a verification link. Please check your inbox",
+      "resend": "Resend",
+      "error": {
+        "fallback": "Unable to send email verification link. Try again later"
+      },
+      "success": {
+        "fallback": "Email verification link has been successfully send",
+        "serverMessage": {
+          "already_sent": "Email is already verified"
+        }
+      }
     }
   }
 }

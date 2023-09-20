@@ -17,16 +17,28 @@
     }
   },
   "emailVerify": {
-    "label": "Pidtvertit' vašu elektronnu adresu",
-    "description": "My nadislaly Vam poklykannja dlja pidtverdžennja. Bud' laska, perevirte vašu elektronnu skryn'ku",
-    "resend": "Nadislaty šče raz",
+    "label": "Veryfikacija elektronnoji adresy",
     "logout": "Vyjty z oblikovogo zapysu",
+    "tryAgain": "Sprobuvaty šče raz",
     "error": {
-      "fallback": "Ne vdalosja nadislaty poklykannja dlja pidtverdžennja elektronnoji adresy. Sprobujte pizniše"
+      "fallback": "Nemožlyvo veryfikuvaty elektronnu adresu. Sprobujte pizniše"
     },
     "success": {
-      "alreadySent": "Elektronna adresa vže pidtverdžena",
-      "fallback": "Poklykannja dlja pidtverdžennja elektronnoji adresy vidpravleno uspišno"
+      "fallback": "Elektronnu adresu bulo uspišno veryfikovano"
+    },
+    "resend": {
+      "label": "Pidtvertit' vašu elektronnu adresu",
+      "description": "My nadislaly Vam poklykannja dlja pidtverdžennja. Bud' laska, perevirte vašu elektronnu skryn'ku",
+      "resend": "Nadislaty šče raz",
+      "error": {
+        "fallback": "Ne vdalosja nadislaty poklykannja dlja pidtverdžennja elektronnoji adresy. Sprobujte pizniše"
+      },
+      "success": {
+        "fallback": "Poklykannja dlja pidtverdžennja elektronnoji adresy vidpravleno uspišno",
+        "serverMessage": {
+          "already_sent": "Elektronna adresa vže pidtverdžena"
+        }
+      }
     }
   }
 }

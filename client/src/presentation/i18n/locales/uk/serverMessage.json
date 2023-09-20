@@ -1,0 +1,10 @@
+{
+  "not_allowed": "Dija ne dozvolena",
+  "unauthorized": "Neavtoryzovana dija",
+  "unexpected_error": "Nevidoma pomylka. Sprobujte pizniše",
+  "already_logged_in": "Vy vže uvijšly v oblikovyj zapys",
+  "email_not_verified": "Elektronna adresa ne veryfikovana",
+  "too_early": "Zabagato zapytiv",
+  "invalid_token": "Nevalidnyj token",
+  "invalid_signature": "Nevalidna sygnatura"
+}

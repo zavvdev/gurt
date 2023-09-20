@@ -12,22 +12,21 @@ import { TextError } from '~/presentation/shared/TextError/TextError';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function Login() {
+  const { t: tServerMessage } = useTranslation('serverMessage');
   const { t } = useTranslation('auth');
 
   const login = useLogin({
-    onSuccess: ({ alreadyLoggedIn }) => {
+    onSuccess: (message) => {
       notificationService.success(
-        alreadyLoggedIn
-          ? t('login.success.alreadyLoggedIn')
-          : t('login.success.fallback'),
+        tServerMessage(`${message}`, t('login.success.fallback')),
       );
     },
     onError: (message) => {
       notificationService.error(
-        t([
-          `login.error.serverResponseMessage.${message}`,
-          'login.error.fallback',
-        ]),
+        tServerMessage(
+          `${message}`,
+          t([`login.error.serverMessage.${message}`, 'login.error.fallback']),
+        ),
       );
     },
   });

@@ -2,10 +2,8 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { PRIVATE_ROUTES } from '~/routes';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
-import {
-  ServerResponse,
-  ServerResponseMessage,
-} from '~/infrastructure/serverGateway/types';
+import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { MutationEvents } from '~/core/managers/queryClient/types';
 
 export interface LoginForm {
   email: string;
@@ -13,16 +11,7 @@ export interface LoginForm {
   remember: boolean;
 }
 
-interface OnSuccess {
-  alreadyLoggedIn: boolean;
-}
-
-interface UseLoginArgs {
-  onError?: (message: ServerResponseMessage | null) => void;
-  onSuccess?: (args: OnSuccess) => void;
-}
-
-export function useLogin(args?: UseLoginArgs) {
+export function useLogin(args?: MutationEvents) {
   const router = useRouter();
 
   const mutation = useMutation(
@@ -38,10 +27,7 @@ export function useLogin(args?: UseLoginArgs) {
         await authGateway.csrfCookie();
       },
       onSuccess: (response: ServerResponse) => {
-        args?.onSuccess?.({
-          alreadyLoggedIn:
-            response.message === ServerResponseMessage.AlreadyLoggedIn,
-        });
+        args?.onSuccess?.(response.message);
         router.push(PRIVATE_ROUTES.home());
       },
       onError: (response: ServerResponse) => {

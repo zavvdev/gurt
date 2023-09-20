@@ -6,6 +6,7 @@ import {
   ServerResponseMessage,
 } from '~/infrastructure/serverGateway/types';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
+import { MutationEvents } from '~/core/managers/queryClient/types';
 
 // Forgot password
 
@@ -13,12 +14,7 @@ export interface ForgotPasswordForm {
   email: string;
 }
 
-interface UseForgotPassword {
-  onError?: (message: ServerResponseMessage | null) => void;
-  onSuccess?: () => void;
-}
-
-export function useForgotPassword(args?: UseForgotPassword) {
+export function useForgotPassword(args?: MutationEvents) {
   const { mutate, isLoading } = useMutation(
     (form: ForgotPasswordForm) => {
       return authGateway.forgotPassword({
@@ -36,7 +32,7 @@ export function useForgotPassword(args?: UseForgotPassword) {
         if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
           args?.onError?.(response.message);
         } else {
-          args?.onSuccess?.();
+          args?.onSuccess?.(response.message);
         }
       },
     },
@@ -56,12 +52,7 @@ export interface ResetPasswordForm {
   passwordConfirm: string;
 }
 
-interface UseResetPassword {
-  onError?: (message: ServerResponseMessage | null) => void;
-  onSuccess?: () => void;
-}
-
-export function useResetPassword(args?: UseResetPassword) {
+export function useResetPassword(args?: MutationEvents) {
   const router = useRouter();
 
   const { mutate, isLoading } = useMutation(
@@ -81,7 +72,7 @@ export function useResetPassword(args?: UseResetPassword) {
         if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
           args?.onError?.(response.message);
         } else {
-          args?.onSuccess?.();
+          args?.onSuccess?.(response.message);
           router.push(PUBLIC_ROUTES.auth.login());
         }
       },

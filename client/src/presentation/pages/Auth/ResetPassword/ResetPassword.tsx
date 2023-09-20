@@ -9,15 +9,13 @@ import { TextError } from '~/presentation/shared/TextError/TextError';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function ResetPassword() {
+  const { t: tServerMessage } = useTranslation('serverMessage');
   const { t } = useTranslation('auth');
 
   const resetPassword = useResetPassword({
     onError: (message) => {
       notificationService.error(
-        t([
-          `resetPassword.error.serverResponseMessage.${message}`,
-          'resetPassword.error.fallback',
-        ]),
+        tServerMessage(`${message}`, t('resetPassword.error.fallback')),
       );
     },
     onSuccess: () => {
