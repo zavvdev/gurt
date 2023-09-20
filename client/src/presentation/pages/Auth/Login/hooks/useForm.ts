@@ -8,15 +8,15 @@ interface Args {
 }
 
 export function useForm({ onSubmit }: Args) {
-  const { t } = useTranslation('auth');
+  const { t } = useTranslation('common');
 
   const schema = yup.object({
     email: yup
       .string()
-      .email(t('login.formError.emailInvalid'))
-      .required(t('login.formError.emailRequired')),
+      .email(t('formError.emailInvalid'))
+      .required(t('formError.emailRequired')),
 
-    password: yup.string().required(t('login.formError.passwordRequired')),
+    password: yup.string().required(t('formError.passwordRequired')),
 
     remember: yup.bool(),
   });

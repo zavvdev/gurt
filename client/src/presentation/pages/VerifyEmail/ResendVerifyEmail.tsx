@@ -8,7 +8,7 @@ import { Button } from '~/presentation/shared/Button/Button';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function ResendVerifyEmail() {
-  const { t: tServerMessage } = useTranslation('serverMessage');
+  const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('common');
 
   const logout = useLogout({
@@ -20,7 +20,10 @@ export function ResendVerifyEmail() {
   const sendEmailVerification = useSendEmailVerification({
     onError: (message) => {
       notificationService.error(
-        tServerMessage(`${message}`, t('emailVerify.resend.error.fallback')),
+        tCommon(
+          `serverMessage.${message}`,
+          t('emailVerify.resend.error.fallback'),
+        ),
       );
     },
     onSuccess: (message) => {

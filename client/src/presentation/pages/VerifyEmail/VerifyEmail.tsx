@@ -8,7 +8,7 @@ import { Button } from '~/presentation/shared/Button/Button';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function VerifyEmail() {
-  const { t: tServerMessage } = useTranslation('serverMessage');
+  const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('common');
   const [isErrorHappened, setIsErrorHappened] = useState(false);
 
@@ -21,7 +21,7 @@ export function VerifyEmail() {
   const verifyEmail = useVerifyEmail({
     onError: (message) => {
       notificationService.error(
-        tServerMessage(`${message}`, t('emailVerify.error.fallback')),
+        tCommon(`serverMessage.${message}`, t('emailVerify.error.fallback')),
       );
       setIsErrorHappened(true);
     },

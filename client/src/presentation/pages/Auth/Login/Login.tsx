@@ -12,7 +12,7 @@ import { TextError } from '~/presentation/shared/TextError/TextError';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function Login() {
-  const { t: tServerMessage } = useTranslation('serverMessage');
+  const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
 
   const login = useLogin({
@@ -21,8 +21,8 @@ export function Login() {
     },
     onError: (message) => {
       notificationService.error(
-        tServerMessage(
-          `${message}`,
+        tCommon(
+          `serverMessage.${message}`,
           t([`login.error.serverMessage.${message}`, 'login.error.fallback']),
         ),
       );

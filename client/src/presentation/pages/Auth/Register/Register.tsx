@@ -9,7 +9,7 @@ import { TextError } from '~/presentation/shared/TextError/TextError';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function Register() {
-  const { t: tServerMessage } = useTranslation('serverMessage');
+  const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
 
   const register = useRegister({
@@ -17,8 +17,8 @@ export function Register() {
       const field = validationErrors?.[0]?.field || 0;
       const key = validationErrors?.[0]?.errorKeys?.[0] || null;
       notificationService.error(
-        tServerMessage(
-          `${message}`,
+        tCommon(
+          `serverMessage.${message}`,
           t([
             `register.error.serverValidation.${field}.${key}`,
             'register.error.fallback',
