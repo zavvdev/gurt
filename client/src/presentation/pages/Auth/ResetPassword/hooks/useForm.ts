@@ -1,30 +1,39 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { RegisterForm } from '~/core/features/auth/register';
+import { useParams, useSearchParams } from 'next/navigation';
+import { ResetPasswordForm } from '~/core/features/auth/password';
 import { AUTH_PASSWORD_MIN_LENGTH } from '~/core/features/auth/config';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 
 interface Args {
-  onSubmit: (form: RegisterForm) => void;
+  onSubmit: ({
+    form,
+    token,
+  }: {
+    form: ResetPasswordForm;
+    token: string;
+  }) => void;
 }
 
 export function useForm({ onSubmit }: Args) {
   const { t } = useTranslation('auth');
 
+  const params = useParams();
+  const searchParams = useSearchParams();
+
+  const token = params.token as string;
+  const email = searchParams.get('email');
+
   const schema = yup.object({
-    firstName: yup.string().required(t('register.formError.firstNameRequired')),
-
-    lastName: yup.string().required(t('register.formError.lastNameRequired')),
-
     email: yup
       .string()
-      .email(t('register.formError.emailInvalid'))
-      .required(t('register.formError.emailRequired')),
+      .email(t('resetPassword.formError.emailInvalid'))
+      .required(t('resetPassword.formError.emailRequired')),
 
     password: yup
       .string()
       .test({
-        message: t('register.formError.passwordMinimum', {
+        message: t('resetPassword.formError.passwordMinimum', {
           length: AUTH_PASSWORD_MIN_LENGTH,
         }),
         test: (v) => Boolean(v && v.length >= AUTH_PASSWORD_MIN_LENGTH),
@@ -34,23 +43,21 @@ export function useForm({ onSubmit }: Args) {
     passwordConfirm: yup
       .string()
       .test({
-        message: t('register.formError.passwordsNotMatch'),
+        message: t('resetPassword.formError.passwordsNotMatch'),
         test: (v, c) => v === c.parent.password,
       })
-      .required(t('register.formError.passwordConfirmRequired')),
+      .required(t('resetPassword.formError.passwordConfirmRequired')),
   });
 
-  const form = useFormik<RegisterForm>({
+  const form = useFormik<ResetPasswordForm>({
     validationSchema: schema,
     enableReinitialize: true,
     initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
+      email: email || '',
       password: '',
       passwordConfirm: '',
     },
-    onSubmit,
+    onSubmit: (form) => onSubmit({ form, token }),
   });
 
   const getError = (field: keyof typeof form.values) => {

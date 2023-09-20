@@ -1,14 +1,32 @@
-import { useState } from 'react';
+import { useResetPassword } from '~/core/features/auth/password';
+import { notificationService } from '~/core/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { Button } from '~/presentation/shared/Button/Button';
 import { Input } from '~/presentation/shared/Input/Input';
+import { useForm } from '~/presentation/pages/Auth/ResetPassword/hooks/useForm';
+import { TextError } from '~/presentation/shared/TextError/TextError';
 
 export function ResetPassword() {
   const { t } = useTranslation('auth');
-  const [email, setEmail] = useState('');
-  const [passwd, setPasswd] = useState('');
-  const [passwdConfirm, setPasswdConfirm] = useState('');
+
+  const resetPassword = useResetPassword({
+    onError: (message) => {
+      notificationService.error(
+        t([
+          `resetPassword.error.serverResponseMessage.${message}`,
+          'resetPassword.error.fallback',
+        ]),
+      );
+    },
+    onSuccess: () => {
+      notificationService.success(t('resetPassword.success.fallback'));
+    },
+  });
+
+  const form = useForm({
+    onSubmit: resetPassword.initiate,
+  });
 
   return (
     <GuestLayout>
@@ -17,29 +35,68 @@ export function ResetPassword() {
           {t('resetPassword.label')}
         </h2>
         <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
-          <Input
-            variant="large"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder={t('resetPassword.form.email')}
-          />
-          <Input
-            type="password"
-            variant="large"
-            value={passwd}
-            onChange={(e) => setPasswd(e.target.value)}
-            placeholder={t('resetPassword.form.password')}
-            autoComplete="none"
-          />
-          <Input
-            type="password"
-            variant="large"
-            value={passwdConfirm}
-            onChange={(e) => setPasswdConfirm(e.target.value)}
-            placeholder={t('resetPassword.form.confirmPassword')}
-            autoComplete="none"
-          />
-          <Button fullWidth size="large" onClick={console.log}>
+          <div>
+            <Input
+              variant="large"
+              name="email"
+              value={form.values.email}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              isError={Boolean(form.getError('email'))}
+              placeholder={t('resetPassword.form.email')}
+            />
+            {Boolean(form.getError('email')) && (
+              <TextError size="small" className="mt-1">
+                {form.getError('email')}
+              </TextError>
+            )}
+          </div>
+          <div>
+            <Input
+              type="password"
+              variant="large"
+              name="password"
+              value={form.values.password}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              isError={Boolean(form.getError('password'))}
+              placeholder={t('resetPassword.form.password')}
+              autoComplete="none"
+            />
+            {Boolean(form.getError('password')) && (
+              <TextError size="small" className="mt-1">
+                {form.getError('password')}
+              </TextError>
+            )}
+          </div>
+          <div>
+            <Input
+              type="password"
+              variant="large"
+              name="passwordConfirm"
+              value={form.values.passwordConfirm}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              isError={Boolean(form.getError('passwordConfirm'))}
+              placeholder={t('resetPassword.form.confirmPassword')}
+              autoComplete="none"
+            />
+            {Boolean(form.getError('passwordConfirm')) && (
+              <TextError size="small" className="mt-1">
+                {form.getError('passwordConfirm')}
+              </TextError>
+            )}
+          </div>
+          <Button
+            fullWidth
+            size="large"
+            onClick={(e) => {
+              e.preventDefault();
+              if (!resetPassword.isLoading) {
+                form.handleSubmit();
+              }
+            }}
+          >
             {t('resetPassword.form.submit')}
           </Button>
         </form>

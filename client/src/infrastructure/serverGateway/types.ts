@@ -21,6 +21,10 @@ export enum ServerResponseMessage {
   EmailNotVerified = 'email_not_verified',
 
   RecordNotFound = 'record_not_found',
+
+  UserNotFound = 'user_not_found',
+
+  InvalidToken = 'invalid_token',
 }
 
 export type ServerResponse<T = unknown> = {

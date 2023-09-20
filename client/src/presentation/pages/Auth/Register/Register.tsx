@@ -133,8 +133,8 @@ export function Register() {
             size="large"
             leftAdornment={register.isLoading && <Loader color="white" />}
             onClick={(e) => {
+              e.preventDefault();
               if (!register.isLoading) {
-                e.preventDefault();
                 form.handleSubmit();
               }
             }}

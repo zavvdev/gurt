@@ -93,8 +93,8 @@ export function Login() {
             size="large"
             leftAdornment={login.isLoading && <Loader color="white" />}
             onClick={(e) => {
+              e.preventDefault();
               if (!login.isLoading) {
-                e.preventDefault();
                 form.handleSubmit();
               }
             }}
