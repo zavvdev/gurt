@@ -4,6 +4,7 @@ import { PRIVATE_ROUTES } from '~/routes';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { emailGateway } from '~/infrastructure/serverGateway/v1/email/gateway';
 import { MutationEvents } from '~/core/managers/queryClient/types';
+import { delay } from '~/core/utilities/general';
 
 // Send verification
 
@@ -44,6 +45,9 @@ export function useVerifyEmail(args?: MutationEvents) {
         signature: searchParams.get('signature') || '',
       }),
     {
+      onMutate: async () => {
+        await delay(2000);
+      },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);
       },
