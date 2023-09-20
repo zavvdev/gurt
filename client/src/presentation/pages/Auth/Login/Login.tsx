@@ -15,6 +15,13 @@ export function Login() {
   const { t } = useTranslation('auth');
 
   const login = useLogin({
+    onSuccess: ({ alreadyLoggedIn }) => {
+      notificationService.success(
+        alreadyLoggedIn
+          ? t('login.success.alreadyLoggedIn')
+          : t('login.success.fallback'),
+      );
+    },
     onError: (message) => {
       notificationService.error(
         t([

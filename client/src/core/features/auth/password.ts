@@ -74,15 +74,16 @@ export function useResetPassword(args?: UseResetPassword) {
       });
     },
     {
-      onMutate: async () => {
-        // await authGateway.csrfCookie();
-      },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);
       },
-      onSuccess: () => {
-        args?.onSuccess?.();
-        router.push(PUBLIC_ROUTES.auth.login());
+      onSuccess: (response: ServerResponse) => {
+        if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
+          args?.onError?.(response.message);
+        } else {
+          args?.onSuccess?.();
+          router.push(PUBLIC_ROUTES.auth.login());
+        }
       },
     },
   );

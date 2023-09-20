@@ -6,6 +6,7 @@ import { Button } from '~/presentation/shared/Button/Button';
 import { Input } from '~/presentation/shared/Input/Input';
 import { useForm } from '~/presentation/pages/Auth/ResetPassword/hooks/useForm';
 import { TextError } from '~/presentation/shared/TextError/TextError';
+import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function ResetPassword() {
   const { t } = useTranslation('auth');
@@ -90,6 +91,7 @@ export function ResetPassword() {
           <Button
             fullWidth
             size="large"
+            leftAdornment={resetPassword.isLoading && <Loader color="white" />}
             onClick={(e) => {
               e.preventDefault();
               if (!resetPassword.isLoading) {
