@@ -4,6 +4,7 @@ import {
   ForgotPasswordRequest,
   LoginRequest,
   RegisterRequest,
+  ResetPasswordRequest,
 } from '~/infrastructure/serverGateway/v1/auth/requests';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 
@@ -34,7 +35,11 @@ class AuthGateway {
   }
 
   public forgotPassword(dto: ForgotPasswordRequest) {
-    return this.http.post('/v1/auth/forgot-password', dto);
+    return this.http.post<ServerResponse>('/v1/auth/forgot-password', dto);
+  }
+
+  public resetPassword(dto: ResetPasswordRequest) {
+    return this.http.post<ServerResponse>('/v1/auth/reset-password', dto);
   }
 }
 

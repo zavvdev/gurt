@@ -60,8 +60,8 @@ export function ForgotPassword() {
             size="large"
             leftAdornment={forgotPassword.isLoading && <Loader color="white" />}
             onClick={(e) => {
+              e.preventDefault();
               if (!forgotPassword.isLoading) {
-                e.preventDefault();
                 form.handleSubmit();
               }
             }}

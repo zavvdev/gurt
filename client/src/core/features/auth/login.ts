@@ -13,9 +13,13 @@ export interface LoginForm {
   remember: boolean;
 }
 
+interface OnSuccess {
+  alreadyLoggedIn: boolean;
+}
+
 interface UseLoginArgs {
   onError?: (message: ServerResponseMessage | null) => void;
-  onSuccess?: () => void;
+  onSuccess?: (args: OnSuccess) => void;
 }
 
 export function useLogin(args?: UseLoginArgs) {
@@ -33,8 +37,11 @@ export function useLogin(args?: UseLoginArgs) {
       onMutate: async () => {
         await authGateway.csrfCookie();
       },
-      onSuccess: () => {
-        args?.onSuccess?.();
+      onSuccess: (response: ServerResponse) => {
+        args?.onSuccess?.({
+          alreadyLoggedIn:
+            response.message === ServerResponseMessage.AlreadyLoggedIn,
+        });
         router.push(PRIVATE_ROUTES.home());
       },
       onError: (response: ServerResponse) => {
