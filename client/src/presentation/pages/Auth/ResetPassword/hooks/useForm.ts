@@ -16,7 +16,7 @@ interface Args {
 }
 
 export function useForm({ onSubmit }: Args) {
-  const { t } = useTranslation('auth');
+  const { t } = useTranslation('common');
 
   const params = useParams();
   const searchParams = useSearchParams();
@@ -27,26 +27,26 @@ export function useForm({ onSubmit }: Args) {
   const schema = yup.object({
     email: yup
       .string()
-      .email(t('resetPassword.formError.emailInvalid'))
-      .required(t('resetPassword.formError.emailRequired')),
+      .email(t('formError.emailInvalid'))
+      .required(t('formError.emailRequired')),
 
     password: yup
       .string()
       .test({
-        message: t('resetPassword.formError.passwordMinimum', {
+        message: t('formError.passwordMinimum', {
           length: AUTH_PASSWORD_MIN_LENGTH,
         }),
         test: (v) => Boolean(v && v.length >= AUTH_PASSWORD_MIN_LENGTH),
       })
-      .required(t('register.formError.passwordRequired')),
+      .required(t('formError.passwordRequired')),
 
     passwordConfirm: yup
       .string()
       .test({
-        message: t('resetPassword.formError.passwordsNotMatch'),
+        message: t('formError.passwordsNotMatch'),
         test: (v, c) => v === c.parent.password,
       })
-      .required(t('resetPassword.formError.passwordConfirmRequired')),
+      .required(t('formError.passwordConfirmRequired')),
   });
 
   const form = useFormik<ResetPasswordForm>({

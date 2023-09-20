@@ -4,29 +4,67 @@
     "description": "Social'na mereža",
     "keywords": "gurt,social'na,mereža"
   },
-  "errors": {
+
+  "error": {
     "logout": "Nemožlyvo zaveršyty vašu potočnu sesiju. Sprobujte očystyty kuki brauzera jakščo pomylka ne znykne"
   },
+
+  "serverMessage": {
+    "not_allowed": "Dija ne dozvolena",
+    "unauthorized": "Neavtoryzovana dija",
+    "unexpected_error": "Nevidoma pomylka. Sprobujte pizniše",
+    "already_logged_in": "Vy vže uvijšly v oblikovyj zapys",
+    "email_not_verified": "Elektronna adresa ne veryfikovana",
+    "too_early": "Zabagato zapytiv",
+    "invalid_token": "Nevalidnyj token",
+    "invalid_signature": "Nevalidna sygnatura"
+  },
+
+  "formError": {
+    "firstNameRequired": "Vkažit' vaše im'ja",
+    "lastNameRequired": "Vkažit' vaše prizvyšče",
+    "emailRequired": "Vkažit' vašu elektronnu adresu",
+    "emailInvalid": "Nekorektna elektronna adresa",
+    "passwordRequired": "Vkažit' vaše gaslo",
+    "passwordConfirmRequired": "Pidtverdit' gaslo",
+    "passwordsNotMatch": "Gasla ne spivpadajut'",
+    "passwordMinimum": "Gaslo povynno buty minimum {{ length }} symvoliv v dovžynu"
+  },
+
   "notFoundPage": {
     "label": "Storinku ne znajdeno"
   },
+
   "guestLayout": {
     "menu": {
       "login": "Vhid",
       "register": "Rejestracija"
     }
   },
+
   "emailVerify": {
-    "label": "Pidtvertit' vašu elektronnu adresu",
-    "description": "My nadislaly Vam poklykannja dlja pidtverdžennja. Bud' laska, perevirte vašu elektronnu skryn'ku",
-    "resend": "Nadislaty šče raz",
+    "label": "Veryfikacija elektronnoji adresy",
     "logout": "Vyjty z oblikovogo zapysu",
+    "tryAgain": "Sprobuvaty šče raz",
     "error": {
-      "fallback": "Ne vdalosja nadislaty poklykannja dlja pidtverdžennja elektronnoji adresy. Sprobujte pizniše"
+      "fallback": "Nemožlyvo veryfikuvaty elektronnu adresu. Sprobujte pizniše"
     },
     "success": {
-      "alreadySent": "Elektronna adresa vže pidtverdžena",
-      "fallback": "Poklykannja dlja pidtverdžennja elektronnoji adresy vidpravleno uspišno"
+      "fallback": "Elektronnu adresu bulo uspišno veryfikovano"
+    },
+    "resend": {
+      "label": "Pidtvertit' vašu elektronnu adresu",
+      "description": "My nadislaly Vam poklykannja dlja pidtverdžennja. Bud' laska, perevirte vašu elektronnu skryn'ku",
+      "resend": "Nadislaty šče raz",
+      "error": {
+        "fallback": "Ne vdalosja nadislaty poklykannja dlja pidtverdžennja elektronnoji adresy. Sprobujte pizniše"
+      },
+      "success": {
+        "fallback": "Poklykannja dlja pidtverdžennja elektronnoji adresy vidpravleno uspišno",
+        "serverMessage": {
+          "already_sent": "Elektronna adresa vže pidtverdžena"
+        }
+      }
     }
   }
 }

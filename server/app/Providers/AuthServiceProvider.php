@@ -31,9 +31,8 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
-            $parsedUrl = parse_url($url);
-            $query = $parsedUrl['query'] ? '?' . $parsedUrl['query'] : '';
-            $verificationUrl = Config::get('app.frontend_url') . $parsedUrl['path'] . $query;
+            $params = explode('verify-email', $url)[1];
+            $verificationUrl = Config::get('app.frontend_url') . Config::get('app.frontend_verify_email_route') . $params;
 
             return (new MailMessage)
                 ->subject('Verify Email Address')

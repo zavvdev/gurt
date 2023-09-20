@@ -26,6 +26,8 @@ enum ResponseMessage: string
 
     const InvalidToken = 'invalid_token';
 
+    const InvalidSignature = 'invalid_signature';
+
     // Success
 
     case AlreadySent = 'already_sent';

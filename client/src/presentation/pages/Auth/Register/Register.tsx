@@ -9,25 +9,25 @@ import { TextError } from '~/presentation/shared/TextError/TextError';
 import { Loader } from '~/presentation/shared/Loader/Loader';
 
 export function Register() {
+  const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
 
   const register = useRegister({
-    onError: (validationErrors) => {
+    onError: ({ validationErrors, message }) => {
       const field = validationErrors?.[0]?.field || 0;
       const key = validationErrors?.[0]?.errorKeys?.[0] || null;
       notificationService.error(
-        t([
-          `register.serverValidationError.${field}.${key}`,
-          'register.error.fallback',
-        ]),
+        tCommon(
+          `serverMessage.${message}`,
+          t([
+            `register.error.serverValidation.${field}.${key}`,
+            'register.error.fallback',
+          ]),
+        ),
       );
     },
-    onSuccess: ({ alreadyLoggedIn }) => {
-      notificationService.success(
-        alreadyLoggedIn
-          ? t('register.success.alreadyLoggedIn')
-          : t('register.success.fallback'),
-      );
+    onSuccess: () => {
+      notificationService.success(t('register.success.fallback'));
     },
   });
 

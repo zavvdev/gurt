@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Exceptions\InvalidSignatureException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -28,6 +29,20 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+    private function getResponseMessage(string $message): ResponseMessage|string
+    {
+        switch ($message) {
+            case 'Too Many Attempts.':
+                return ResponseMessage::TooEarly;
+            default:
+                if (config('app.debug')) {
+                    return $message;
+                }
+
+                return ResponseMessage::Unexpected;
+        }
+    }
 
     /**
      * Register the exception handling callbacks for the application.
@@ -88,10 +103,17 @@ class Handler extends ExceptionHandler
             );
         }
 
+        if ($exception instanceof InvalidSignatureException) {
+            return $this->errorResponse(
+                Response::HTTP_CONFLICT,
+                ResponseMessage::InvalidSignature,
+            );
+        }
+
         if ($exception instanceof HttpException) {
             return $this->errorResponse(
                 $exception->getStatusCode(),
-                $exception->getMessage(),
+                $this->getResponseMessage($exception->getMessage()),
             );
         }
 

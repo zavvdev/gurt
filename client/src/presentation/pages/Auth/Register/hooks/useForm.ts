@@ -9,35 +9,35 @@ interface Args {
 }
 
 export function useForm({ onSubmit }: Args) {
-  const { t } = useTranslation('auth');
+  const { t } = useTranslation('common');
 
   const schema = yup.object({
-    firstName: yup.string().required(t('register.formError.firstNameRequired')),
+    firstName: yup.string().required(t('formError.firstNameRequired')),
 
-    lastName: yup.string().required(t('register.formError.lastNameRequired')),
+    lastName: yup.string().required(t('formError.lastNameRequired')),
 
     email: yup
       .string()
-      .email(t('register.formError.emailInvalid'))
-      .required(t('register.formError.emailRequired')),
+      .email(t('formError.emailInvalid'))
+      .required(t('formError.emailRequired')),
 
     password: yup
       .string()
       .test({
-        message: t('register.formError.passwordMinimum', {
+        message: t('formError.passwordMinimum', {
           length: AUTH_PASSWORD_MIN_LENGTH,
         }),
         test: (v) => Boolean(v && v.length >= AUTH_PASSWORD_MIN_LENGTH),
       })
-      .required(t('register.formError.passwordRequired')),
+      .required(t('formError.passwordRequired')),
 
     passwordConfirm: yup
       .string()
       .test({
-        message: t('register.formError.passwordsNotMatch'),
+        message: t('formError.passwordsNotMatch'),
         test: (v, c) => v === c.parent.password,
       })
-      .required(t('register.formError.passwordConfirmRequired')),
+      .required(t('formError.passwordConfirmRequired')),
   });
 
   const form = useFormik<RegisterForm>({

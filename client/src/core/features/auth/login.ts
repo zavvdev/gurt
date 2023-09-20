@@ -6,6 +6,7 @@ import {
   ServerResponse,
   ServerResponseMessage,
 } from '~/infrastructure/serverGateway/types';
+import { MutationEvents } from '~/core/managers/queryClient/types';
 
 export interface LoginForm {
   email: string;
@@ -13,16 +14,7 @@ export interface LoginForm {
   remember: boolean;
 }
 
-interface OnSuccess {
-  alreadyLoggedIn: boolean;
-}
-
-interface UseLoginArgs {
-  onError?: (message: ServerResponseMessage | null) => void;
-  onSuccess?: (args: OnSuccess) => void;
-}
-
-export function useLogin(args?: UseLoginArgs) {
+export function useLogin(args?: MutationEvents) {
   const router = useRouter();
 
   const mutation = useMutation(
@@ -38,11 +30,12 @@ export function useLogin(args?: UseLoginArgs) {
         await authGateway.csrfCookie();
       },
       onSuccess: (response: ServerResponse) => {
-        args?.onSuccess?.({
-          alreadyLoggedIn:
-            response.message === ServerResponseMessage.AlreadyLoggedIn,
-        });
-        router.push(PRIVATE_ROUTES.home());
+        if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
+          args?.onError?.(response.message);
+        } else {
+          args?.onSuccess?.(response.message);
+          router.push(PRIVATE_ROUTES.home());
+        }
       },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);

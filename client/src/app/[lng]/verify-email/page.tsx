@@ -1,5 +1,5 @@
 'use client';
 
-import { VerifyEmail } from '~/presentation/pages/VerifyEmail/VerifyEmail';
+import { ResendVerifyEmail } from '~/presentation/pages/VerifyEmail/ResendVerifyEmail';
 
-export default VerifyEmail;
+export default ResendVerifyEmail;
