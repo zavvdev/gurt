@@ -15,3 +15,10 @@ export interface LoginRequest {
 export interface ForgotPasswordRequest {
   email: string;
 }
+
+export interface ResetPasswordRequest {
+  email: string;
+  password: string;
+  password_confirmation: string;
+  token: string;
+}

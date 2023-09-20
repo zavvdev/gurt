@@ -24,6 +24,8 @@ enum ResponseMessage: string
 
     const UserNotFound = 'user_not_found';
 
+    const InvalidToken = 'invalid_token';
+
     // Success
 
     case AlreadySent = 'already_sent';

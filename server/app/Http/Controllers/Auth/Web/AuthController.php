@@ -19,10 +19,35 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    private function handlePasswordError($status)
+    {
+        switch ($status) {
+            case Password::INVALID_USER:
+                return $this->errorResponse(
+                    Response::HTTP_CONFLICT,
+                    ResponseMessage::UserNotFound,
+                );
+            case Password::INVALID_TOKEN:
+                return $this->errorResponse(
+                    Response::HTTP_CONFLICT,
+                    ResponseMessage::InvalidToken,
+                );
+            case Password::RESET_THROTTLED:
+                return $this->errorResponse(
+                    Response::HTTP_TOO_EARLY,
+                    ResponseMessage::TooEarly,
+                );
+            default:
+                return $this->errorResponse(
+                    Response::HTTP_CONFLICT,
+                    ResponseMessage::Unexpected,
+                );
+        }
+    }
+
     public function register(RegisterRequest $request)
     {
         $createdUser = User::create([
@@ -84,19 +109,7 @@ class AuthController extends Controller
         ]);
 
         if ($status != Password::RESET_LINK_SENT) {
-            switch ($status) {
-                case Password::RESET_THROTTLED:
-                    return $this->errorResponse(
-                        Response::HTTP_TOO_EARLY,
-                        ResponseMessage::TooEarly,
-                    );
-
-                default:
-                    return $this->errorResponse(
-                        Response::HTTP_CONFLICT,
-                        ResponseMessage::Unexpected,
-                    );
-            }
+            return $this->handlePasswordError($status);
         }
 
         return $this->successResponse();
@@ -104,11 +117,8 @@ class AuthController extends Controller
 
     public function resetPassword(ResetPasswordRequest $request)
     {
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
         $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
+            ResetPasswordRequest::from($request)->all(),
             function ($user) use ($request) {
                 $user->forceFill([
                     'password' => Hash::make($request->password),
@@ -120,13 +130,9 @@ class AuthController extends Controller
         );
 
         if ($status != Password::PASSWORD_RESET) {
-            throw ValidationException::withMessages([
-                'email' => [__($status)],
-            ]);
+            return $this->handlePasswordError($status);
         }
 
-        return $this->successResponse([
-            'status' => __($status),
-        ]);
+        return $this->successResponse();
     }
 }
