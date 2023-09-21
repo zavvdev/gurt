@@ -42,39 +42,21 @@ export function Register() {
           {t('register.label')}
         </h2>
         <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
-          <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
-            <div>
-              <Input
-                variant="large"
-                name="firstName"
-                value={form.values.firstName}
-                onChange={form.handleChange}
-                onBlur={form.handleBlur}
-                isError={Boolean(form.getError('firstName'))}
-                placeholder={t('register.form.firstName')}
-              />
-              {Boolean(form.getError('firstName')) && (
-                <TextError size="small" className="mt-1">
-                  {form.getError('firstName')}
-                </TextError>
-              )}
-            </div>
-            <div>
-              <Input
-                variant="large"
-                name="lastName"
-                value={form.values.lastName}
-                onChange={form.handleChange}
-                onBlur={form.handleBlur}
-                isError={Boolean(form.getError('lastName'))}
-                placeholder={t('register.form.lastName')}
-              />
-              {Boolean(form.getError('lastName')) && (
-                <TextError size="small" className="mt-1">
-                  {form.getError('lastName')}
-                </TextError>
-              )}
-            </div>
+          <div>
+            <Input
+              variant="large"
+              name="name"
+              value={form.values.name}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              isError={Boolean(form.getError('name'))}
+              placeholder={t('register.form.name')}
+            />
+            {Boolean(form.getError('name')) && (
+              <TextError size="small" className="mt-1">
+                {form.getError('name')}
+              </TextError>
+            )}
           </div>
           <div>
             <Input

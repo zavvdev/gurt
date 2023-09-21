@@ -21,8 +21,7 @@
   },
 
   "formError": {
-    "firstNameRequired": "Vkažit' vaše im'ja",
-    "lastNameRequired": "Vkažit' vaše prizvyšče",
+    "nameRequired": "Vkažit' vaše im'ja",
     "emailRequired": "Vkažit' vašu elektronnu adresu",
     "emailInvalid": "Nekorektna elektronna adresa",
     "passwordRequired": "Vkažit' vaše gaslo",

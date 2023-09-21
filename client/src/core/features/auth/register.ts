@@ -10,8 +10,7 @@ import { extractValidationErrors } from '~/infrastructure/serverGateway/utilitie
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 
 export interface RegisterForm {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   password: string;
   passwordConfirm: string;
@@ -31,8 +30,7 @@ export function useRegister(args?: UseRegisterArgs) {
   const mutation = useMutation(
     (form: RegisterForm) => {
       return authGateway.register({
-        first_name: form.firstName,
-        last_name: form.lastName,
+        name: form.name,
         email: form.email,
         password: form.password,
         password_confirmation: form.passwordConfirm,
