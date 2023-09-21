@@ -21,8 +21,7 @@
   },
 
   "formError": {
-    "firstNameRequired": "Provide your first name",
-    "lastNameRequired": "Provide your last name",
+    "nameRequired": "Provide your name",
     "emailRequired": "Provide your email",
     "emailInvalid": "Provide valid email",
     "passwordRequired": "Provide your password",

@@ -12,9 +12,7 @@ export function useForm({ onSubmit }: Args) {
   const { t } = useTranslation('common');
 
   const schema = yup.object({
-    firstName: yup.string().required(t('formError.firstNameRequired')),
-
-    lastName: yup.string().required(t('formError.lastNameRequired')),
+    name: yup.string().required(t('formError.nameRequired')),
 
     email: yup
       .string()
@@ -44,8 +42,7 @@ export function useForm({ onSubmit }: Args) {
     validationSchema: schema,
     enableReinitialize: true,
     initialValues: {
-      firstName: '',
-      lastName: '',
+      name: '',
       email: '',
       password: '',
       passwordConfirm: '',
