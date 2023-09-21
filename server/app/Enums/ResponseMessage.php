@@ -20,13 +20,13 @@ enum ResponseMessage: string
 
     case TooEarly = 'too_early';
 
-    const RecordNotFound = 'record_not_found';
+    case RecordNotFound = 'record_not_found';
 
-    const UserNotFound = 'user_not_found';
+    case UserNotFound = 'user_not_found';
 
-    const InvalidToken = 'invalid_token';
+    case InvalidToken = 'invalid_token';
 
-    const InvalidSignature = 'invalid_signature';
+    case InvalidSignature = 'invalid_signature';
 
     // Success
 
