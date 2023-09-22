@@ -5,6 +5,12 @@
     "keywords": "gurt,social'na,mereža"
   },
 
+  "theme": {
+    "light": "Svitla",
+    "dark": "Temna",
+    "system": "Systemna"
+  },
+
   "error": {
     "logout": "Nemožlyvo zaveršyty vašu potočnu sesiju. Sprobujte očystyty kuki brauzera jakščo pomylka ne znykne"
   },

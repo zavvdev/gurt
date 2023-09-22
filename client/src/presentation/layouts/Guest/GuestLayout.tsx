@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { twMerge } from 'tailwind-merge';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
-import { Svg } from '~/presentation/assets/Svg';
-import { ThemeSwitch } from '~/presentation/widgets/ThemeSwitch/ThemeSwitch';
+import { ThemeSwitch } from '~/presentation/containers/ThemeSwitch/ThemeSwitch';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
-import { LanguageSwitch } from '~/presentation/widgets/LanguageSwitch/LanguageSwitch';
+import { LanguageSwitch } from '~/presentation/containers/LanguageSwitch/LanguageSwitch';
+import { Icons } from '~/presentation/shared/Icons';
+import { cn } from '~/presentation/utilities/styles';
 
 interface Props {
   children: React.ReactNode;
@@ -37,34 +37,29 @@ export function GuestLayout({ children }: Props) {
         "
       >
         <Link href={PRIVATE_ROUTES.home()}>
-          <Svg.Logo className="text-prm dark:text-txt_DT w-[4.5rem]" />
+          <Icons.Logo className="text-primary dark:text-text_DT w-[4.5rem]" />
         </Link>
-        <nav className="flex gap-8 items-center flex-wrap max-md:gap-2 max-md:text-sm">
+        <nav className="flex gap-10 items-center flex-wrap max-md:gap-5">
           {menu.map((link) => (
             <Link
               key={link.label}
               href={link.route}
-              className={twMerge(
-                `py-1 px-2 rounded bg-transparent hover:bg-prmFade
-              ease-in-out duration-200 dark:hover:bg-prmFade_DT`,
-                link.isActive && 'text-prm',
-              )}
+              className={cn('hoverable', {
+                'text-primary': link.isActive,
+              })}
             >
               {link.label}
             </Link>
           ))}
-          <ThemeSwitch />
+          <div className="flex items-center gap-1">
+            <LanguageSwitch />
+            <ThemeSwitch />
+          </div>
         </nav>
       </header>
       <div className="flex-1 overflow-y-scroll px-[5%] max-md:overflow-visible">
         {children}
       </div>
-      <footer className="px-[5%] py-8 max-md:py-5 flex justify-between items-center">
-        <div className="text-gray-400 text-sm max-md:text-xs">
-          © Gurt {new Date().getFullYear()}
-        </div>
-        <LanguageSwitch />
-      </footer>
     </section>
   );
 }

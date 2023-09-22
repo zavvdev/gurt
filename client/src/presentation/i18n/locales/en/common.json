@@ -5,6 +5,12 @@
     "keywords": "gurt,social,network"
   },
 
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+
   "error": {
     "logout": "Unable to terminate your session. Try to clean browser cookies manually if issue persists"
   },
