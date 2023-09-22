@@ -1,6 +1,11 @@
+import { fontFamily } from 'tailwindcss/defaultTheme';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  corePlugins: {
+    preflight: false,
+  },
+  darkMode: ['class'],
   content: [
     './src/presentation/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,27 +13,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        prm: '#1F81F8',
-
-        prmLight: '#3791ff',
-
-        prmBright: '#e8f2ff',
-        prmBright_DT: '#3D3D3D',
-
-        prmFade: '#EBF4FF',
-        prmFade_DT: '#3D3D3D',
-
-        bg: '#FFFFFF',
-        bg_DT: '#191919',
-
-        txt: '#282828',
-        txt_DT: '#E3E3E3',
-
-        coffee: '#372828',
+        primary: '#1F81F8',
+        primaryBg: '#EBF4FF',
+        primaryBg_DT: '#2a343f',
+        text: '#282828',
+        text_DT: '#E3E3E3',
+      },
+      fontFamily: {
+        sans: ['var(--font-sans)', ...fontFamily.sans],
       },
     },
   },
-  darkMode: 'class',
   plugins: [],
 };
 

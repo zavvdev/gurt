@@ -8,9 +8,7 @@ export function Home() {
     <div>
       <div>Home</div>
       <User />
-      <button className="link" onClick={() => logout.initiate()}>
-        Logout
-      </button>
+      <button onClick={() => logout.initiate()}>Logout</button>
     </div>
   );
 }

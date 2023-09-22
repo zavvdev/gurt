@@ -1,16 +1,16 @@
+import { Button, Input, Typography } from 'antd';
 import { useRegister } from '~/core/features/auth/register';
 import { notificationService } from '~/core/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
-import { Button } from '~/presentation/shared/Button/Button';
-import { Input } from '~/presentation/shared/Input/Input';
 import { useForm } from '~/presentation/pages/Auth/Register/hooks/useForm';
-import { TextError } from '~/presentation/shared/TextError/TextError';
-import { Loader } from '~/presentation/shared/Loader/Loader';
+import { Icons } from '~/presentation/shared/Icons';
+import { useAppTheme } from '~/presentation/styles/theme';
 
 export function Register() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
+  const theme = useAppTheme();
 
   const register = useRegister({
     onError: ({ validationErrors, message }) => {
@@ -38,82 +38,94 @@ export function Register() {
   return (
     <GuestLayout>
       <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
-        <h2 className="text-4xl font-bold mb-10 max-sm:text-3xl w-96 max-sm:w-full text-center">
-          {t('register.label')}
-        </h2>
+        <Typography.Title>{t('register.label')}</Typography.Title>
         <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
           <div>
             <Input
-              variant="large"
+              size="large"
               name="name"
               value={form.values.name}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              isError={Boolean(form.getError('name'))}
+              status={Boolean(form.getError('name')) ? 'error' : undefined}
               placeholder={t('register.form.name')}
             />
             {Boolean(form.getError('name')) && (
-              <TextError size="small" className="mt-1">
+              <Typography.Text type="danger" className="mt-1">
                 {form.getError('name')}
-              </TextError>
+              </Typography.Text>
             )}
           </div>
           <div>
             <Input
-              variant="large"
+              size="large"
               name="email"
               value={form.values.email}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              isError={Boolean(form.getError('email'))}
+              status={Boolean(form.getError('email')) ? 'error' : undefined}
               placeholder={t('register.form.email')}
             />
             {Boolean(form.getError('email')) && (
-              <TextError size="small" className="mt-1">
+              <Typography.Text type="danger" className="mt-1">
                 {form.getError('email')}
-              </TextError>
+              </Typography.Text>
             )}
           </div>
           <div>
-            <Input
-              type="password"
-              variant="large"
+            <Input.Password
+              size="large"
               name="password"
               value={form.values.password}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              isError={Boolean(form.getError('password'))}
+              status={Boolean(form.getError('password')) ? 'error' : undefined}
+              iconRender={(visible) =>
+                visible ? (
+                  <Icons.Eye size="1rem" color={theme.color.gray6} />
+                ) : (
+                  <Icons.EyeOff size="1rem" color={theme.color.gray6} />
+                )
+              }
               placeholder={t('register.form.password')}
               autoComplete="none"
             />
             {Boolean(form.getError('password')) && (
-              <TextError size="small" className="mt-1">
+              <Typography.Text type="danger" className="mt-1">
                 {form.getError('password')}
-              </TextError>
+              </Typography.Text>
             )}
           </div>
           <div>
-            <Input
-              type="password"
-              variant="large"
+            <Input.Password
+              size="large"
               name="passwordConfirm"
               value={form.values.passwordConfirm}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              isError={Boolean(form.getError('passwordConfirm'))}
+              status={
+                Boolean(form.getError('passwordConfirm')) ? 'error' : undefined
+              }
+              iconRender={(visible) =>
+                visible ? (
+                  <Icons.Eye size="1rem" color={theme.color.gray6} />
+                ) : (
+                  <Icons.EyeOff size="1rem" color={theme.color.gray6} />
+                )
+              }
               placeholder={t('register.form.confirmPassword')}
               autoComplete="none"
             />
             {Boolean(form.getError('passwordConfirm')) && (
-              <TextError size="small" className="mt-1">
+              <Typography.Text type="danger" className="mt-1">
                 {form.getError('passwordConfirm')}
-              </TextError>
+              </Typography.Text>
             )}
           </div>
           <Button
-            fullWidth
+            type="primary"
             size="large"
-            leftAdornment={register.isLoading && <Loader color="white" />}
+            loading={register.isLoading}
             onClick={(e) => {
               e.preventDefault();
               if (!register.isLoading) {
