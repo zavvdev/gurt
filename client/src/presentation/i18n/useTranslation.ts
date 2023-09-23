@@ -30,6 +30,7 @@ i18next
     lng: undefined,
     detection: {
       order: ['path', 'htmlTag', 'cookie', 'navigator'],
+      caches: ['cookie'],
     },
     preload: isServer ? Object.values(LANGUAGES) : [],
   });
