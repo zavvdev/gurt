@@ -12,7 +12,7 @@ type Props = PropsWithChildren<{
 }>;
 
 function AntConfig({ children, locale }: Props) {
-  const { theme: currentTheme } = useTheme();
+  const { resolvedTheme: currentTheme } = useTheme();
 
   return (
     <ConfigProvider
