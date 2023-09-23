@@ -5,6 +5,8 @@ import { Icons } from '~/presentation/shared/Icons';
 import { Theme } from '~/presentation/styles/theme';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 
+const defaultTheme = 'system';
+
 export function ThemeSwitch() {
   const { t } = useTranslation('common');
   const { setTheme, theme } = useTheme();
@@ -43,17 +45,23 @@ export function ThemeSwitch() {
     },
   ];
 
+  const iconByTheme: Record<string, React.ReactElement> = {
+    system: <Icons.Laptop />,
+    [Theme.Dark]: <Icons.Moon />,
+    [Theme.Light]: <Icons.SunMedium />,
+  };
+
   return (
     <Dropdown
       menu={{
         items,
         selectable: true,
-        selectedKeys: [theme ?? 'system'],
+        selectedKeys: [theme ?? defaultTheme],
         onClick,
       }}
     >
       <Button type="text" className="p-2 flex items-center justify-center">
-        {theme === Theme.Dark ? <Icons.Moon /> : <Icons.SunMedium />}
+        {iconByTheme[theme || defaultTheme]}
       </Button>
     </Dropdown>
   );
