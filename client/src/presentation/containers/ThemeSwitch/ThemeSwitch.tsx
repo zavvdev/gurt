@@ -38,7 +38,7 @@ export function ThemeSwitch() {
       key: 'system',
       label: (
         <div className="flex items-center">
-          <Icons.Laptop className="stroke-1.5 mr-2 h-5 w-5" />
+          <Icons.Laptop2 className="stroke-1.5 mr-2 h-5 w-5" />
           <span>{t('theme.system')}</span>
         </div>
       ),
@@ -46,7 +46,7 @@ export function ThemeSwitch() {
   ];
 
   const iconByTheme: Record<string, React.ReactElement> = {
-    system: <Icons.Laptop />,
+    system: <Icons.Laptop2 />,
     [Theme.Dark]: <Icons.Moon />,
     [Theme.Light]: <Icons.SunMedium />,
   };
