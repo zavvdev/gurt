@@ -36,8 +36,8 @@ export const THEME: {
     color: {
       primary: '#1F81F8',
       primaryHover: '#3791ff',
-      primaryBg: '#2a343f',
-      primaryBgHover: '#293748',
+      primaryBg: '#313131',
+      primaryBgHover: '#343434',
       text: '#E3E3E3',
       gray6: '#bfbfbf',
     },

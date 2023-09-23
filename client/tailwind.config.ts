@@ -15,7 +15,7 @@ const config: Config = {
       colors: {
         primary: '#1F81F8',
         primaryBg: '#EBF4FF',
-        primaryBg_DT: '#2a343f',
+        primaryBg_DT: '#313131',
         text: '#282828',
         text_DT: '#E3E3E3',
       },
