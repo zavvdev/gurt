@@ -38,6 +38,10 @@ Stop all running containers without removing them
 
 Start all existing containers
 
+### ✔ make restart
+
+Restart all containers
+
 ### ✔ make down
 
 Stop containers and remove containers, networks, volumes, and images created by 'up-prod' or 'up'
