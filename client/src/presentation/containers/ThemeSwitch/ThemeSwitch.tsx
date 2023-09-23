@@ -61,7 +61,7 @@ export function ThemeSwitch() {
       }}
     >
       <Button type="text" className="p-2 flex items-center justify-center">
-        {iconByTheme[theme || defaultTheme]}
+        {iconByTheme[theme || defaultTheme] || iconByTheme[defaultTheme]}
       </Button>
     </Dropdown>
   );
