@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { PRIVATE_ROUTES } from '~/routes';
+import { PRIVATE_ROUTES, useCreateRoute } from '~/routes';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 import {
   ServerResponse,
@@ -16,6 +16,7 @@ export interface LoginForm {
 
 export function useLogin(args?: MutationEvents) {
   const router = useRouter();
+  const { r } = useCreateRoute();
 
   const mutation = useMutation(
     (form: LoginForm) => {
@@ -34,7 +35,7 @@ export function useLogin(args?: MutationEvents) {
           args?.onError?.(response.message);
         } else {
           args?.onSuccess?.(response.message);
-          router.push(PRIVATE_ROUTES.home());
+          router.push(r(PRIVATE_ROUTES.home()));
         }
       },
       onError: (response: ServerResponse) => {

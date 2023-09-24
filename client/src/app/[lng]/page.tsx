@@ -1,6 +1,9 @@
+'use client';
+
 import { redirect } from 'next/navigation';
-import { PRIVATE_ROUTES } from '~/routes';
+import { PRIVATE_ROUTES, useCreateRoute } from '~/routes';
 
 export default function Root() {
-  redirect(PRIVATE_ROUTES.home());
+  const { r } = useCreateRoute();
+  redirect(r(PRIVATE_ROUTES.home()));
 }

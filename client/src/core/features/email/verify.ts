@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { PRIVATE_ROUTES } from '~/routes';
+import { PRIVATE_ROUTES, useCreateRoute } from '~/routes';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { emailGateway } from '~/infrastructure/serverGateway/v1/email/gateway';
 import { MutationEvents } from '~/core/managers/queryClient/types';
@@ -35,6 +35,7 @@ export function useVerifyEmail(args?: MutationEvents) {
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { r } = useCreateRoute();
 
   const { mutate, isLoading } = useMutation(
     () =>
@@ -53,7 +54,7 @@ export function useVerifyEmail(args?: MutationEvents) {
       },
       onSuccess: (response: ServerResponse) => {
         args?.onSuccess?.(response.message);
-        router.push(PRIVATE_ROUTES.home());
+        router.push(r(PRIVATE_ROUTES.home()));
       },
     },
   );

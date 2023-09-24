@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { PUBLIC_ROUTES } from '~/routes';
+import { PUBLIC_ROUTES, useCreateRoute } from '~/routes';
 import {
   ServerResponse,
   ServerResponseMessage,
@@ -54,6 +54,7 @@ export interface ResetPasswordForm {
 
 export function useResetPassword(args?: MutationEvents) {
   const router = useRouter();
+  const { r } = useCreateRoute();
 
   const { mutate, isLoading } = useMutation(
     ({ form, token }: { form: ResetPasswordForm; token: string }) => {
@@ -73,7 +74,7 @@ export function useResetPassword(args?: MutationEvents) {
           args?.onError?.(response.message);
         } else {
           args?.onSuccess?.(response.message);
-          router.push(PUBLIC_ROUTES.auth.login());
+          router.push(r(PUBLIC_ROUTES.auth.login()));
         }
       },
     },

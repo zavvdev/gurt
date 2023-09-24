@@ -1,3 +1,5 @@
+import { useParams } from 'next/navigation';
+
 export const PUBLIC_ROUTES = {
   auth: {
     login: () => '/login',
@@ -32,3 +34,18 @@ function collectRoutes(
 export const PUBLIC_ROUTES_LIST = collectRoutes(PUBLIC_ROUTES);
 
 export const PRIVATE_ROUTES_LIST = collectRoutes(PRIVATE_ROUTES);
+
+/* ============================= */
+
+export function useCreateRoute() {
+  const params = useParams();
+
+  const r = (route: string) => {
+    const preparedRoute = route[0] === '/' ? route : `/${route}`;
+    return `/${params.lng}${preparedRoute}`;
+  };
+
+  return {
+    r,
+  };
+}
