@@ -2,8 +2,7 @@
 
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { ConfigProvider, theme } from 'antd';
-import { ThemeProvider as NextThemeProvider } from 'next-themes';
-import { useTheme } from 'next-themes';
+import { ThemeProvider as NextThemeProvider, useTheme } from 'next-themes';
 import { AntDesignProvider } from '~/presentation/providers/ThemeProvider/AntDesignProvider';
 import { getAntDesignTheme, Theme } from '~/presentation/styles/theme';
 

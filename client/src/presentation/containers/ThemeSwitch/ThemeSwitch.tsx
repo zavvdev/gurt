@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Dropdown, MenuProps } from 'antd';
 import { useTheme } from 'next-themes';
 import { Icons } from '~/presentation/shared/Icons';
@@ -50,6 +50,12 @@ export function ThemeSwitch() {
     [Theme.Dark]: <Icons.Moon />,
     [Theme.Light]: <Icons.SunMedium />,
   };
+
+  useEffect(() => {
+    if (theme === '"system"') {
+      setTheme('system');
+    }
+  }, [setTheme, theme]);
 
   return (
     <Dropdown
