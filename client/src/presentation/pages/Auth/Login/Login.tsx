@@ -16,9 +16,6 @@ export function Login() {
   const theme = useAppTheme();
 
   const login = useLogin({
-    onSuccess: () => {
-      notificationService.success(t('login.success.fallback'));
-    },
     onError: (message) => {
       notificationService.error(
         tCommon(

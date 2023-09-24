@@ -1,10 +1,11 @@
-import { Button, Spin, Typography } from 'antd';
+import { Button, Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import { useLogout } from '~/core/features/auth/logout';
 import { useVerifyEmail } from '~/core/features/email/verify';
 import { notificationService } from '~/core/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { EmptyLayout } from '~/presentation/layouts/Empty/EmptyLayout';
+import { Spinner } from '~/presentation/shared/Spinner/Spinner';
 
 export function VerifyEmail() {
   const { t: tCommon } = useTranslation('common');
@@ -42,19 +43,27 @@ export function VerifyEmail() {
 
   return (
     <EmptyLayout className="flex justify-center">
-      <div className="flex items-center justify-center pt-24 max-md:pt-10 max-md:pb-20 flex-col w-96 max-md:w-full">
-        <div className="flex gap-4 flex-col items-center mb-10">
-          {verifyEmail.isLoading && !isErrorHappened && <Spin size="large" />}
+      <div className="flex gap-4 items-center justify-center pt-24 max-md:pt-10 max-md:pb-20 flex-col max-md:w-full">
+        <div className="flex flex-col items-center text-center">
+          {verifyEmail.isLoading && !isErrorHappened && (
+            <Spinner size="large" className="mb-4" />
+          )}
           <Typography.Title
             level={2}
-            className="text-4xl font-bold max-sm:text-3xl w-96 max-sm:w-full text-center "
+            className="text-4xl font-bold max-sm:text-3xl max-sm:w-full text-center "
           >
             {t('emailVerify.label')}
           </Typography.Title>
+          {isErrorHappened && (
+            <Typography.Text type="danger" className="w-72">
+              {t('emailVerify.error.description')}
+            </Typography.Text>
+          )}
         </div>
         {isErrorHappened && (
           <>
             <Button
+              type="primary"
               size="large"
               onClick={() => {
                 if (!verifyEmail.isLoading) {
@@ -62,16 +71,16 @@ export function VerifyEmail() {
                 }
               }}
               className="max-sm:w-full"
-              icon={verifyEmail.isLoading && <Spin />}
+              loading={verifyEmail.isLoading}
             >
               {t('emailVerify.tryAgain')}
             </Button>
             <Button
-              type="text"
-              className="mt-5 flex items-center gap-2"
+              type="link"
+              className="flex items-center gap-2"
               onClick={onLogout}
+              loading={logout.isLoading}
             >
-              {logout.isLoading && <Spin size="small" />}{' '}
               {t('emailVerify.logout')}
             </Button>
           </>

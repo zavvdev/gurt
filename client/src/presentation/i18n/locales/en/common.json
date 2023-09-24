@@ -23,7 +23,8 @@
     "email_not_verified": "Email is not verified",
     "too_early": "Too many requests",
     "invalid_token": "Invalid token",
-    "invalid_signature": "Invalid signature"
+    "invalid_signature": "Invalid signature",
+    "user_not_found": "User not found"
   },
 
   "formError": {
@@ -52,7 +53,8 @@
     "logout": "Logout from account",
     "tryAgain": "Try again",
     "error": {
-      "fallback": "Unable to verify email address. Try again later"
+      "fallback": "Unable to verify email address. Try again later",
+      "description": "An error occurred during verification. Please press \"Try again\" button"
     },
     "success": {
       "fallback": "Email has been verified successfully"
