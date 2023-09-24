@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { PRIVATE_ROUTES } from '~/routes';
+import { PRIVATE_ROUTES, useCreateRoute } from '~/routes';
 import {
   ExtractedValidationError,
   ServerResponseMessage,
@@ -26,6 +26,7 @@ interface UseRegisterArgs {
 
 export function useRegister(args?: UseRegisterArgs) {
   const router = useRouter();
+  const { r } = useCreateRoute();
 
   const mutation = useMutation(
     (form: RegisterForm) => {
@@ -47,7 +48,7 @@ export function useRegister(args?: UseRegisterArgs) {
           });
         } else {
           args?.onSuccess?.();
-          router.push(PRIVATE_ROUTES.home());
+          router.push(r(PRIVATE_ROUTES.home()));
         }
       },
       onError: (e: ServerValidationErrorsResponse) => {

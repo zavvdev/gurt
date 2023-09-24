@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button, Checkbox, Input, Typography } from 'antd';
-import { PUBLIC_ROUTES } from '~/routes';
+import { PUBLIC_ROUTES, useCreateRoute } from '~/routes';
 import { notificationService } from '~/core/services/NotificationService';
 import { useLogin } from '~/core/features/auth/login';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
@@ -12,6 +12,7 @@ import { useAppTheme } from '~/presentation/styles/theme';
 export function Login() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
+  const { r } = useCreateRoute();
   const theme = useAppTheme();
 
   const login = useLogin({
@@ -89,7 +90,7 @@ export function Login() {
             </Checkbox>
             <Link
               className="link text-sm"
-              href={PUBLIC_ROUTES.auth.forgotPassword()}
+              href={r(PUBLIC_ROUTES.auth.forgotPassword())}
             >
               {t('login.form.forgotPassword')}
             </Link>

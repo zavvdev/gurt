@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES, useCreateRoute } from '~/routes';
 import { ThemeSwitch } from '~/presentation/containers/ThemeSwitch/ThemeSwitch';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { LanguageSwitch } from '~/presentation/containers/LanguageSwitch/LanguageSwitch';
@@ -13,17 +13,18 @@ interface Props {
 
 export function GuestLayout({ children }: Props) {
   const pathname = usePathname();
+  const { r } = useCreateRoute();
   const { t } = useTranslation('common');
 
   const menu = [
     {
       label: t('guestLayout.menu.login'),
-      route: PUBLIC_ROUTES.auth.login(),
+      route: r(PUBLIC_ROUTES.auth.login()),
       isActive: pathname.includes(PUBLIC_ROUTES.auth.login()),
     },
     {
       label: t('guestLayout.menu.register'),
-      route: PUBLIC_ROUTES.auth.register(),
+      route: r(PUBLIC_ROUTES.auth.register()),
       isActive: pathname.includes(PUBLIC_ROUTES.auth.register()),
     },
   ];
@@ -36,7 +37,7 @@ export function GuestLayout({ children }: Props) {
           max-md:flex-col max-md:gap-6
         "
       >
-        <Link href={PRIVATE_ROUTES.home()}>
+        <Link href={r(PRIVATE_ROUTES.home())}>
           <Icons.Logo className="text-primary dark:text-text_DT w-[4.5rem]" />
         </Link>
         <nav className="flex gap-10 items-center flex-wrap max-md:gap-5">

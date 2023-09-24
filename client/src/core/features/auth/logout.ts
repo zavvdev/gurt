@@ -1,12 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { PUBLIC_ROUTES } from '~/routes';
+import { PUBLIC_ROUTES, useCreateRoute } from '~/routes';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { MutationEvents } from '~/core/managers/queryClient/types';
 
 export function useLogout(args?: MutationEvents) {
   const router = useRouter();
+  const { r } = useCreateRoute();
 
   const { mutate, isLoading } = useMutation(
     () => {
@@ -18,7 +19,7 @@ export function useLogout(args?: MutationEvents) {
       },
       onSuccess: (response: ServerResponse) => {
         args?.onSuccess?.(response.message);
-        router.replace(PUBLIC_ROUTES.auth.login());
+        router.replace(r(PUBLIC_ROUTES.auth.login()));
       },
     },
   );
