@@ -26,9 +26,6 @@ export function Register() {
         ),
       );
     },
-    onSuccess: () => {
-      notificationService.success(t('register.success.fallback'));
-    },
   });
 
   const form = useForm({

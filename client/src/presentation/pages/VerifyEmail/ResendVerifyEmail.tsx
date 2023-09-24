@@ -1,4 +1,4 @@
-import { Button, Spin, Typography } from 'antd';
+import { Button, Typography } from 'antd';
 import { useLogout } from '~/core/features/auth/logout';
 import { useSendEmailVerification } from '~/core/features/email/verify';
 import { notificationService } from '~/core/services/NotificationService';
@@ -57,23 +57,25 @@ export function ResendVerifyEmail() {
         >
           {t('emailVerify.resend.label')}
         </Typography.Title>
-        <Typography.Text className="mb-10 w-80 text-center">
+        <Typography.Text type="secondary" className="mb-10 w-80 text-center">
           {t('emailVerify.resend.description')}
         </Typography.Text>
         <Button
+          type="primary"
           size="large"
           onClick={onResend}
           className="max-sm:w-full"
-          icon={sendEmailVerification.isLoading && <Spin />}
+          loading={sendEmailVerification.isLoading}
         >
           {t('emailVerify.resend.resend')}
         </Button>
         <Button
-          type="text"
+          type="link"
           className="mt-5 flex items-center gap-2"
           onClick={onLogout}
+          loading={logout.isLoading}
         >
-          {logout.isLoading && <Spin size="small" />} {t('emailVerify.logout')}
+          {t('emailVerify.logout')}
         </Button>
       </div>
     </EmptyLayout>

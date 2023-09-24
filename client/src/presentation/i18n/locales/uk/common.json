@@ -23,7 +23,8 @@
     "email_not_verified": "Elektronna adresa ne veryfikovana",
     "too_early": "Zabagato zapytiv",
     "invalid_token": "Nevalidnyj token",
-    "invalid_signature": "Nevalidna sygnatura"
+    "invalid_signature": "Nevalidna sygnatura",
+    "user_not_found": "Korystuvača ne znajdeno"
   },
 
   "formError": {
@@ -52,7 +53,8 @@
     "logout": "Vyjty z oblikovogo zapysu",
     "tryAgain": "Sprobuvaty šče raz",
     "error": {
-      "fallback": "Nemožlyvo veryfikuvaty elektronnu adresu. Sprobujte pizniše"
+      "fallback": "Nemožlyvo veryfikuvaty elektronnu adresu. Sprobujte pizniše",
+      "description": "Vynykla pomylka pid čas veryfikaciji. Bud' laska, natysnit' knopku \"Sprobuvaty šče raz\""
     },
     "success": {
       "fallback": "Elektronnu adresu bulo uspišno veryfikovano"
