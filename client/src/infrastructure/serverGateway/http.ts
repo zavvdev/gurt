@@ -21,9 +21,7 @@ const responseErrorInterceptor = (error: any) => {
 
 const web = (() => {
   const requestConfig: AxiosRequestConfig = {
-    baseURL:
-      process.env.SERVER_WEB_ENDPOINT ||
-      process.env.NEXT_PUBLIC_SERVER_WEB_ENDPOINT,
+    baseURL: import.meta.env.VITE_SERVER_WEB_ENDPOINT,
   };
   const client = axios.create(requestConfig);
   client.defaults.withCredentials = true;
@@ -38,9 +36,7 @@ const web = (() => {
 
 const api = (() => {
   const requestConfig: AxiosRequestConfig = {
-    baseURL:
-      process.env.SERVER_API_ENDPOINT ||
-      process.env.NEXT_PUBLIC_SERVER_API_ENDPOINT,
+    baseURL: import.meta.env.VITE_SERVER_API_ENDPOINT,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

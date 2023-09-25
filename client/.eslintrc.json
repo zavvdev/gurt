@@ -178,7 +178,7 @@
             "message": "Dependency prohibited"
           },
           {
-            "target": "./src/presentation/i18n",
+            "target": "./src/presentation/assets",
             "from": [
               "./src/presentation/router",
               "./src/presentation/pages",
@@ -188,6 +188,21 @@
               "./src/presentation/helpers",
               "./src/presentation/containers",
               "./src/presentation/shared"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/presentation/i18n",
+            "from": [
+              "./src/presentation/router",
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets",
+              "./src/presentation/helpers",
+              "./src/presentation/containers",
+              "./src/presentation/shared",
+              "./src/presentation/assets"
             ],
             "message": "Dependency prohibited"
           },
@@ -202,6 +217,7 @@
               "./src/presentation/helpers",
               "./src/presentation/containers",
               "./src/presentation/shared",
+              "./src/presentation/assets",
               "./src/presentation/i18n"
             ],
             "message": "Dependency prohibited"
@@ -217,6 +233,7 @@
               "./src/presentation/helpers",
               "./src/presentation/containers",
               "./src/presentation/shared",
+              "./src/presentation/assets",
               "./src/presentation/i18n",
               "./src/presentation/styles"
             ],

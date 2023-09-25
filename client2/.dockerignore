@@ -1,6 +1,0 @@
-.next
-node_modules/
-.gitignore
-.dockerignore
-Dockerfile
-pnpm-lock.yaml

@@ -1,3 +1,14 @@
+import { useLogout } from '~/application/features/auth/logout';
+import { User } from '~/presentation/pages/Home/User';
+
 export function Home() {
-  return <div>home</div>;
+  const logout = useLogout();
+
+  return (
+    <div>
+      <div>Home</div>
+      <User />
+      <button onClick={() => logout.initiate()}>Logout</button>
+    </div>
+  );
 }

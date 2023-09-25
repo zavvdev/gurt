@@ -1,10 +1,114 @@
-import { useParams } from '@tanstack/react-router';
-import { PUBLIC_ROUTES } from '~/routes';
+import { Button, Input, Typography } from 'antd';
+import { useResetPassword } from '~/application/features/auth/password';
+import { notificationService } from '~/application/services/NotificationService';
+import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
+import { useForm } from '~/presentation/pages/Auth/ResetPassword/hooks/useForm';
+import { Icons } from '~/presentation/assets/Icons';
 
 export function ResetPassword() {
-  const params = useParams({
-    from: PUBLIC_ROUTES.auth.resetPassword('$token'),
+  const { t: tCommon } = useTranslation('common');
+  const { t } = useTranslation('auth');
+
+  const resetPassword = useResetPassword({
+    onError: (message) => {
+      notificationService.error(
+        tCommon(`serverMessage.${message}`, t('resetPassword.error.fallback')),
+      );
+    },
+    onSuccess: () => {
+      notificationService.success(t('resetPassword.success.fallback'));
+    },
   });
 
-  return <div>Reset password {JSON.stringify(params)}</div>;
+  const form = useForm({
+    onSubmit: resetPassword.initiate,
+  });
+
+  return (
+    <GuestLayout>
+      <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
+        <Typography.Title>{t('resetPassword.label')}</Typography.Title>
+        <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
+          <div>
+            <Input
+              size="large"
+              name="email"
+              value={form.values.email}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              status={form.getError('email') ? 'error' : undefined}
+              placeholder={t('resetPassword.form.email')}
+            />
+            {Boolean(form.getError('email')) && (
+              <Typography.Text type="danger" className="mt-1">
+                {form.getError('email')}
+              </Typography.Text>
+            )}
+          </div>
+          <div>
+            <Input.Password
+              size="large"
+              name="password"
+              value={form.values.password}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              status={form.getError('password') ? 'error' : undefined}
+              iconRender={(visible) =>
+                visible ? (
+                  <Icons.Eye size="1rem" color={'gray'} />
+                ) : (
+                  <Icons.EyeOff size="1rem" color={'gray'} />
+                )
+              }
+              placeholder={t('resetPassword.form.password')}
+              autoComplete="none"
+            />
+            {Boolean(form.getError('password')) && (
+              <Typography.Text type="danger" className="mt-1">
+                {form.getError('password')}
+              </Typography.Text>
+            )}
+          </div>
+          <div>
+            <Input.Password
+              size="large"
+              name="passwordConfirm"
+              value={form.values.passwordConfirm}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              status={form.getError('passwordConfirm') ? 'error' : undefined}
+              iconRender={(visible) =>
+                visible ? (
+                  <Icons.Eye size="1rem" color={'gray'} />
+                ) : (
+                  <Icons.EyeOff size="1rem" color={'gray'} />
+                )
+              }
+              placeholder={t('resetPassword.form.confirmPassword')}
+              autoComplete="none"
+            />
+            {Boolean(form.getError('passwordConfirm')) && (
+              <Typography.Text type="danger" className="mt-1">
+                {form.getError('passwordConfirm')}
+              </Typography.Text>
+            )}
+          </div>
+          <Button
+            type="primary"
+            size="large"
+            loading={resetPassword.isLoading}
+            onClick={(e) => {
+              e.preventDefault();
+              if (!resetPassword.isLoading) {
+                form.handleSubmit();
+              }
+            }}
+          >
+            {t('resetPassword.form.submit')}
+          </Button>
+        </form>
+      </div>
+    </GuestLayout>
+  );
 }

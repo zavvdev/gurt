@@ -34,6 +34,7 @@
     "formik": "2.4.5",
     "i18next": "23.5.1",
     "i18next-browser-languagedetector": "7.1.0",
+    "i18next-resources-to-backend": "1.1.4",
     "js-cookie": "3.0.5",
     "lucide-react": "0.279.0",
     "prettier": "3.0.3",
