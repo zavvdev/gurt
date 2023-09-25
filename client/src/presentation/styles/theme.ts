@@ -1,26 +1,14 @@
 import type { ThemeConfig } from 'antd';
-
-export enum Theme {
-  Light = 'light',
-  Dark = 'dark',
-}
-
-interface ThemeNode {
-  color: {
-    primary: string;
-    primaryHover: string;
-    primaryBg: string;
-    primaryBgHover: string;
-    text: string;
-    gray6: string;
-  };
-  borderRadius: number;
-}
+import {
+  DEFAULT_THEME_TYPE,
+  Theme,
+  ThemeType,
+} from '~/presentation/styles/config';
 
 export const THEME: {
-  [key: string]: ThemeNode;
+  [key: string]: Theme;
 } = {
-  [Theme.Light]: {
+  [ThemeType.Light]: {
     color: {
       primary: '#1F81F8',
       primaryHover: '#3791ff',
@@ -28,10 +16,11 @@ export const THEME: {
       primaryBgHover: '#e4effe',
       text: '#282828',
       gray6: '#bfbfbf',
+      background: '#FFFFFF',
     },
     borderRadius: 4,
   },
-  [Theme.Dark]: {
+  [ThemeType.Dark]: {
     color: {
       primary: '#1F81F8',
       primaryHover: '#3791ff',
@@ -39,13 +28,18 @@ export const THEME: {
       primaryBgHover: '#343434',
       text: '#E3E3E3',
       gray6: '#bfbfbf',
+      background: '#191919',
     },
     borderRadius: 4,
   },
 };
 
-export function getAntDesignTheme(type: Theme | string): ThemeConfig {
-  const theme = THEME?.[type as Theme] || THEME.light;
+export function getThemeByType(type: ThemeType) {
+  return THEME?.[type] || THEME[DEFAULT_THEME_TYPE];
+}
+
+export function getAntDesignTheme(type: ThemeType): ThemeConfig {
+  const theme = getThemeByType(type);
   return {
     token: {
       colorPrimary: theme.color.primary,
@@ -61,8 +55,3 @@ export function getAntDesignTheme(type: Theme | string): ThemeConfig {
     },
   };
 }
-
-// export function useAppTheme(): ThemeNode {
-//   const { theme } = useTheme();
-//   return THEME?.[theme as Theme] || THEME[Theme.Light];
-// }

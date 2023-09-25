@@ -4,6 +4,7 @@ import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { useTranslation } from '~/presentation/i18n/useTranslation';
 import { LanguageSwitch } from '~/presentation/shared/LanguageSwitch/LanguageSwitch';
 import { Icons } from '~/presentation/assets/Icons';
+import { ThemeSwitch } from '~/presentation/shared/ThemeSwitch/ThemeSwitch';
 
 interface Props {
   children: React.ReactNode;
@@ -52,6 +53,7 @@ export function GuestLayout({ children }: Props) {
           ))}
           <div className="flex items-center gap-1">
             <LanguageSwitch />
+            <ThemeSwitch />
           </div>
         </nav>
       </header>

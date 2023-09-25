@@ -1,8 +1,8 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '~/presentation/shared/UINotificationContainer/UINotificationContainer.css';
+import '~/presentation/shared/NotificationOutlet/NotificationOutlet.css';
 
-export function UINotificationContainer() {
+export function NotificationOutlet() {
   return (
     <ToastContainer
       position="top-center"
