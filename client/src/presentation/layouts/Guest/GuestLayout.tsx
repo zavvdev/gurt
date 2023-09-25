@@ -1,10 +1,12 @@
 import cx from 'clsx';
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
+import { Button } from 'antd';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { LanguageSwitch } from '~/presentation/shared/LanguageSwitch/LanguageSwitch';
 import { Icons } from '~/presentation/assets/Icons';
 import { ThemeSwitch } from '~/presentation/shared/ThemeSwitch/ThemeSwitch';
+import { useGuestLayoutStyles } from '~/presentation/layouts/Guest/GuestLayout.styles';
 
 interface Props {
   children: React.ReactNode;
@@ -12,6 +14,8 @@ interface Props {
 
 export function GuestLayout({ children }: Props) {
   const { t } = useTranslation('common');
+  const classes = useGuestLayoutStyles();
+  const navigate = useNavigate();
 
   const menu = [
     {
@@ -29,37 +33,35 @@ export function GuestLayout({ children }: Props) {
   ];
 
   return (
-    <section className="h-screen flex flex-col justify-between">
-      <header
-        className="
-          px-[5%] py-8 flex justify-between items-center
-          max-md:flex-col max-md:gap-6
-        "
-      >
-        <Link href={PRIVATE_ROUTES.home()}>
-          <Icons.Logo className="text-primary dark:text-text_DT w-[4.5rem]" />
+    <section className={classes.root}>
+      <header className={classes.header}>
+        <Link to={PRIVATE_ROUTES.home()}>
+          <Icons.Logo className={classes.logo} />
         </Link>
-        <nav className="flex gap-10 items-center flex-wrap max-md:gap-5">
+        <nav className={classes.nav}>
           {menu.map((link) => (
-            <Link
+            <Button
+              type="link"
               key={link.label}
-              href={link.route}
-              className={cx('hoverable', {
-                'text-primary': link.isActive,
+              onClick={() =>
+                navigate({
+                  to: link.route,
+                })
+              }
+              className={cx(classes.navItem, {
+                [classes.navItemActive]: link.isActive,
               })}
             >
               {link.label}
-            </Link>
+            </Button>
           ))}
-          <div className="flex items-center gap-1">
+          <div className={classes.actions}>
             <LanguageSwitch />
             <ThemeSwitch />
           </div>
         </nav>
       </header>
-      <div className="flex-1 overflow-y-scroll px-[5%] max-md:overflow-visible">
-        {children}
-      </div>
+      <div className={classes.content}>{children}</div>
     </section>
   );
 }

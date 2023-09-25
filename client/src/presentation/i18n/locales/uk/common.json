@@ -38,7 +38,8 @@
   },
 
   "notFoundPage": {
-    "label": "Storinku ne znajdeno"
+    "label": "Storinku ne znajdeno",
+    "back": "Nazad"
   },
 
   "guestLayout": {

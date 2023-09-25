@@ -1,12 +1,14 @@
 import { observer } from 'mobx-react';
 import { Button, Dropdown, MenuProps } from 'antd';
 import { Icons } from '~/presentation/assets/Icons';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { themeStore } from '~/presentation/styles/store';
-import { ThemeType } from '~/presentation/styles/config';
+import { ThemeType } from '~/presentation/styles/types';
+import { useThemeSwitchStyles } from '~/presentation/shared/ThemeSwitch/ThemeSwitch.styles';
 
 export const ThemeSwitch = observer(() => {
   const { t } = useTranslation('common');
+  const classes = useThemeSwitchStyles();
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
     themeStore.setTheme(key as ThemeType);
@@ -16,8 +18,8 @@ export const ThemeSwitch = observer(() => {
     {
       key: ThemeType.Light,
       label: (
-        <div className="flex items-center">
-          <Icons.SunMedium className="mr-2 h-5 w-5" />
+        <div className={classes.icon}>
+          <Icons.SunMedium />
           <span>{t('theme.light')}</span>
         </div>
       ),
@@ -25,8 +27,8 @@ export const ThemeSwitch = observer(() => {
     {
       key: ThemeType.Dark,
       label: (
-        <div className="flex items-center">
-          <Icons.Moon className="mr-2 h-5 w-5" />
+        <div className={classes.icon}>
+          <Icons.Moon />
           <span>{t('theme.dark')}</span>
         </div>
       ),
@@ -34,8 +36,8 @@ export const ThemeSwitch = observer(() => {
     {
       key: ThemeType.System,
       label: (
-        <div className="flex items-center">
-          <Icons.Laptop2 className="stroke-1.5 mr-2 h-5 w-5" />
+        <div className={classes.icon}>
+          <Icons.Laptop2 />
           <span>{t('theme.system')}</span>
         </div>
       ),
@@ -57,7 +59,7 @@ export const ThemeSwitch = observer(() => {
         onClick,
       }}
     >
-      <Button type="text" className="p-2 flex items-center justify-center">
+      <Button type="text" className={classes.button}>
         {iconByTheme[themeStore.theme]}
       </Button>
     </Dropdown>

@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { ForgotPasswordForm } from '~/application/features/auth/password';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {
   onSubmit: (form: ForgotPasswordForm) => void;

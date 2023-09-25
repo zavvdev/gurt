@@ -6,8 +6,8 @@ import {
 import {
   DEFAULT_THEME_TYPE,
   THEME_STORAGE_KEY,
-  ThemeType,
 } from '~/presentation/styles/config';
+import { ThemeType } from '~/presentation/styles/types';
 
 class ThemeStore {
   theme: ThemeType = DEFAULT_THEME_TYPE;

@@ -1,14 +1,18 @@
 import { Button, Input, Typography } from 'antd';
 import { useRegister } from '~/application/features/auth/register';
 import { notificationService } from '~/application/services/NotificationService';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { useForm } from '~/presentation/pages/Auth/Register/hooks/useForm';
 import { Icons } from '~/presentation/assets/Icons';
+import { useRegisterStyles } from '~/presentation/pages/Auth/Register/Register.styles';
+import { useJssTheme } from '~/presentation/styles/hooks/useJssTheme';
 
 export function Register() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
+  const classes = useRegisterStyles();
+  const { theme } = useJssTheme();
 
   const register = useRegister({
     onError: ({ validationErrors, message }) => {
@@ -32,9 +36,9 @@ export function Register() {
 
   return (
     <GuestLayout>
-      <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
-        <Typography.Title>{t('register.label')}</Typography.Title>
-        <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
+      <div className={classes.root}>
+        <Typography.Title level={2}>{t('register.label')}</Typography.Title>
+        <form className={classes.form}>
           <div>
             <Input
               size="large"
@@ -46,7 +50,7 @@ export function Register() {
               placeholder={t('register.form.name')}
             />
             {Boolean(form.getError('name')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('name')}
               </Typography.Text>
             )}
@@ -62,7 +66,7 @@ export function Register() {
               placeholder={t('register.form.email')}
             />
             {Boolean(form.getError('email')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('email')}
               </Typography.Text>
             )}
@@ -77,16 +81,16 @@ export function Register() {
               status={form.getError('password') ? 'error' : undefined}
               iconRender={(visible) =>
                 visible ? (
-                  <Icons.Eye size="1rem" color={'gray'} />
+                  <Icons.Eye size="1rem" color={theme.color.gray6} />
                 ) : (
-                  <Icons.EyeOff size="1rem" color={'gray'} />
+                  <Icons.EyeOff size="1rem" color={theme.color.gray6} />
                 )
               }
               placeholder={t('register.form.password')}
               autoComplete="none"
             />
             {Boolean(form.getError('password')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('password')}
               </Typography.Text>
             )}
@@ -101,16 +105,16 @@ export function Register() {
               status={form.getError('passwordConfirm') ? 'error' : undefined}
               iconRender={(visible) =>
                 visible ? (
-                  <Icons.Eye size="1rem" color={'gray'} />
+                  <Icons.Eye size="1rem" color={theme.color.gray6} />
                 ) : (
-                  <Icons.EyeOff size="1rem" color={'gray'} />
+                  <Icons.EyeOff size="1rem" color={theme.color.gray6} />
                 )
               }
               placeholder={t('register.form.confirmPassword')}
               autoComplete="none"
             />
             {Boolean(form.getError('passwordConfirm')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('passwordConfirm')}
               </Typography.Text>
             )}

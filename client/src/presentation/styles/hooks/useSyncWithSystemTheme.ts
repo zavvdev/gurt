@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ThemeType } from '~/presentation/styles/config';
+import { ThemeType } from '~/presentation/styles/types';
 import { themeStore } from '~/presentation/styles/store';
 
 export function useSyncWithSystemTheme() {

@@ -38,7 +38,8 @@
   },
 
   "notFoundPage": {
-    "label": "Page not found"
+    "label": "Page not found",
+    "back": "Back"
   },
 
   "guestLayout": {

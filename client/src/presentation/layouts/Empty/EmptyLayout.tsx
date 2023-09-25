@@ -1,4 +1,5 @@
 import cx from 'clsx';
+import { useEmptyLayoutStyles } from '~/presentation/layouts/Empty/EmptyLayout.styles';
 
 interface Props {
   children: React.ReactNode;
@@ -6,13 +7,11 @@ interface Props {
 }
 
 export function EmptyLayout({ children, className }: Props) {
+  const classes = useEmptyLayoutStyles();
+
   return (
-    <section className="flex justify-center">
-      <div
-        className={cx('w-[900px] max-md:w-11/12 px-10 max-md:px-0', className)}
-      >
-        {children}
-      </div>
+    <section className={classes.root}>
+      <div className={cx(classes.content, className)}>{children}</div>
     </section>
   );
 }

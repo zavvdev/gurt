@@ -1,1 +1,8 @@
 @import './index.css';
+@import './fonts.css';
+
+body,
+html {
+  font-family: 'Inter';
+  font-size: 15px;
+}

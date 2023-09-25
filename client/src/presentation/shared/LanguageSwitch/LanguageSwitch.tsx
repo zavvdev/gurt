@@ -1,10 +1,12 @@
 import { Button, Dropdown, MenuProps } from 'antd';
 import { FALLBACK_LNG, LANGUAGES } from '~/presentation/i18n/config';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { Icons } from '~/presentation/assets/Icons';
+import { useLanguageSwitchStyles } from '~/presentation/shared/LanguageSwitch/LanguageSwitch.styles';
 
 export function LanguageSwitch() {
   const { i18n } = useTranslation('common');
+  const classes = useLanguageSwitchStyles();
 
   const onClick: MenuProps['onClick'] = ({ key: lang }) => {
     i18n.changeLanguage(lang);
@@ -30,7 +32,7 @@ export function LanguageSwitch() {
         onClick,
       }}
     >
-      <Button type="text" className="p-2 flex items-center justify-center">
+      <Button type="text" className={classes.button}>
         <Icons.Languages />
       </Button>
     </Dropdown>

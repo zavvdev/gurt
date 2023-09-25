@@ -1,4 +1,4 @@
-import '~/presentation/i18n/setup';
+import '~/presentation/i18n';
 import '~/presentation/styles/css/globals.css';
 import { RouterProvider } from '@tanstack/react-router';
 import { router } from '~/presentation/router';

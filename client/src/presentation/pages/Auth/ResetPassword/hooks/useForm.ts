@@ -4,7 +4,7 @@ import { useParams, useSearch } from '@tanstack/react-router';
 import { PUBLIC_ROUTES } from '~/routes';
 import { ResetPasswordForm } from '~/application/features/auth/password';
 import { AUTH_PASSWORD_MIN_LENGTH } from '~/application/features/auth/config';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {
   onSubmit: ({

@@ -1,14 +1,18 @@
 import { Button, Input, Typography } from 'antd';
 import { useResetPassword } from '~/application/features/auth/password';
 import { notificationService } from '~/application/services/NotificationService';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { useForm } from '~/presentation/pages/Auth/ResetPassword/hooks/useForm';
 import { Icons } from '~/presentation/assets/Icons';
+import { useResetPasswordStyles } from '~/presentation/pages/Auth/ResetPassword/ResetPassword.styles';
+import { useJssTheme } from '~/presentation/styles/hooks/useJssTheme';
 
 export function ResetPassword() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
+  const classes = useResetPasswordStyles();
+  const { theme } = useJssTheme();
 
   const resetPassword = useResetPassword({
     onError: (message) => {
@@ -27,9 +31,11 @@ export function ResetPassword() {
 
   return (
     <GuestLayout>
-      <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
-        <Typography.Title>{t('resetPassword.label')}</Typography.Title>
-        <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
+      <div className={classes.root}>
+        <Typography.Title level={2}>
+          {t('resetPassword.label')}
+        </Typography.Title>
+        <form className={classes.form}>
           <div>
             <Input
               size="large"
@@ -41,7 +47,7 @@ export function ResetPassword() {
               placeholder={t('resetPassword.form.email')}
             />
             {Boolean(form.getError('email')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('email')}
               </Typography.Text>
             )}
@@ -56,16 +62,16 @@ export function ResetPassword() {
               status={form.getError('password') ? 'error' : undefined}
               iconRender={(visible) =>
                 visible ? (
-                  <Icons.Eye size="1rem" color={'gray'} />
+                  <Icons.Eye size="1rem" color={theme.color.gray6} />
                 ) : (
-                  <Icons.EyeOff size="1rem" color={'gray'} />
+                  <Icons.EyeOff size="1rem" color={theme.color.gray6} />
                 )
               }
               placeholder={t('resetPassword.form.password')}
               autoComplete="none"
             />
             {Boolean(form.getError('password')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('password')}
               </Typography.Text>
             )}
@@ -80,16 +86,16 @@ export function ResetPassword() {
               status={form.getError('passwordConfirm') ? 'error' : undefined}
               iconRender={(visible) =>
                 visible ? (
-                  <Icons.Eye size="1rem" color={'gray'} />
+                  <Icons.Eye size="1rem" color={theme.color.gray6} />
                 ) : (
-                  <Icons.EyeOff size="1rem" color={'gray'} />
+                  <Icons.EyeOff size="1rem" color={theme.color.gray6} />
                 )
               }
               placeholder={t('resetPassword.form.confirmPassword')}
               autoComplete="none"
             />
             {Boolean(form.getError('passwordConfirm')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('passwordConfirm')}
               </Typography.Text>
             )}

@@ -1,9 +1,10 @@
 import type { ThemeConfig } from 'antd';
+import { DEFAULT_THEME_TYPE } from '~/presentation/styles/config';
 import {
-  DEFAULT_THEME_TYPE,
+  MediaBreakpoints,
   Theme,
   ThemeType,
-} from '~/presentation/styles/config';
+} from '~/presentation/styles/types';
 
 export const THEME: {
   [key: string]: Theme;
@@ -34,6 +35,38 @@ export const THEME: {
   },
 };
 
+export const SCREEN_BREAKPOINTS = {
+  screenXXL: 1600,
+  screenXXLMin: 1600,
+
+  screenXL: 1200,
+  screenXLMax: 1599,
+  screenXLMin: 1200,
+
+  screenLG: 992,
+  screenLGMax: 1199,
+  screenLGMin: 992,
+
+  screenMD: 768,
+  screenMDMax: 991,
+  screenMDMin: 768,
+
+  screenSM: 576,
+  screenSMMax: 767,
+  screenSMMin: 576,
+
+  screenXS: 480,
+  screenXSMax: 575,
+  screenXSMin: 480,
+};
+
+export const mediaBreakpoints: MediaBreakpoints = {
+  maxXs: `@media screen and (max-width: ${SCREEN_BREAKPOINTS.screenXS}px)`,
+  maxSm: `@media screen and (max-width: ${SCREEN_BREAKPOINTS.screenSM}px)`,
+  maxMd: `@media screen and (max-width: ${SCREEN_BREAKPOINTS.screenMD}px)`,
+  maxLg: `@media screen and (max-width: ${SCREEN_BREAKPOINTS.screenLG}px)`,
+};
+
 export function getThemeByType(type: ThemeType) {
   return THEME?.[type] || THEME[DEFAULT_THEME_TYPE];
 }
@@ -52,6 +85,8 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
       borderRadius: theme.borderRadius,
 
       fontFamily: 'inherit',
+
+      ...SCREEN_BREAKPOINTS,
     },
   };
 }
