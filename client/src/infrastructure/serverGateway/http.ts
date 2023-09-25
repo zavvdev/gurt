@@ -1,16 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { redirect } from 'next/navigation';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
 import { Http } from '~/infrastructure/http';
-
-const navigate = (to: string) => {
-  if (global?.window) {
-    window.location.href = to;
-  } else {
-    redirect(to);
-  }
-};
 
 const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
   return response;
@@ -20,10 +11,10 @@ const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
 const responseErrorInterceptor = (error: any) => {
   const response = error?.response?.data || {};
   if (response.message === ServerResponseMessage.Unauthorized) {
-    navigate(PUBLIC_ROUTES.auth.login());
+    window.location.href = PUBLIC_ROUTES.auth.login();
   }
   if (response.message === ServerResponseMessage.EmailNotVerified) {
-    navigate(PRIVATE_ROUTES.verifyEmail());
+    window.location.href = PRIVATE_ROUTES.resendVerifyEmail();
   }
   return Promise.reject(error?.response?.data);
 };

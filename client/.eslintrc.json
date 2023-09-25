@@ -1,11 +1,16 @@
 {
+  "env": { "browser": true, "es2020": true },
   "extends": [
-    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:import/recommended"
   ],
-  "plugins": ["react-refresh", "@typescript-eslint"],
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true,
@@ -13,7 +18,13 @@
       }
     }
   },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": { "ecmaVersion": "latest", "sourceType": "module" },
+  "plugins": ["react-refresh"],
   "rules": {
+    "import/no-cycle": "error",
+    "prettier/prettier": "error",
+    "react-refresh/only-export-components": "warn",
     "sort-imports": [
       "error",
       {
@@ -32,11 +43,6 @@
             "position": "before"
           },
           {
-            "pattern": "~/app/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
             "pattern": "~/entities/**",
             "group": "internal",
             "position": "after"
@@ -47,7 +53,7 @@
             "position": "after"
           },
           {
-            "pattern": "~/core/**",
+            "pattern": "~/application/**",
             "group": "internal",
             "position": "after"
           },
@@ -67,9 +73,6 @@
         "varsIgnorePattern": "^_"
       }
     ],
-    "import/no-cycle": "error",
-    "prettier/prettier": "error",
-    "react-refresh/only-export-components": "warn",
     "no-restricted-imports": [
       "error",
       {
@@ -86,15 +89,14 @@
       {
         "zones": [
           {
-            "target": "./src/core",
-            "from": ["./src/presentation", "./src/app"],
-            "message": "Core layer should only depend on Entity and Infrastructure layers"
+            "target": "./src/application",
+            "from": ["./src/presentation"],
+            "message": "Application layer cannot depend on Presentation layer"
           },
           {
             "target": "./src/entities",
             "from": [
-              "./src/app",
-              "./src/core",
+              "./src/application",
               "./src/infrastructure",
               "./src/presentation"
             ],
@@ -102,27 +104,37 @@
           },
           {
             "target": "./src/infrastructure",
-            "from": ["./src/core", "./src/presentation", "./src/app"],
+            "from": ["./src/application", "./src/presentation"],
             "message": "Infrastructure layer should depend only on Entity layer"
           },
           {
             "target": "./src/presentation",
-            "from": ["./src/infrastructure", "./src/app"],
-            "message": "Presentation layer should depend only on Core and Entity layer"
+            "from": ["./src/infrastructure"],
+            "message": "Presentation layer should not depend on Infrastructure layer"
+          },
+          {
+            "target": "./src/presentation/pages",
+            "from": ["./src/presentation/router"],
+            "message": "Dependency prohibited"
           },
           {
             "target": "./src/presentation/layouts",
-            "from": ["./src/presentation/pages"],
+            "from": ["./src/presentation/router", "./src/presentation/pages"],
             "message": "Dependency prohibited"
           },
           {
             "target": "./src/presentation/providers",
-            "from": ["./src/presentation/pages", "./src/presentation/layouts"],
+            "from": [
+              "./src/presentation/router",
+              "./src/presentation/pages",
+              "./src/presentation/layouts"
+            ],
             "message": "Dependency prohibited"
           },
           {
             "target": "./src/presentation/widgets",
             "from": [
+              "./src/presentation/router",
               "./src/presentation/pages",
               "./src/presentation/layouts",
               "./src/presentation/providers"
@@ -132,6 +144,7 @@
           {
             "target": "./src/presentation/helpers",
             "from": [
+              "./src/presentation/router",
               "./src/presentation/pages",
               "./src/presentation/layouts",
               "./src/presentation/providers",
@@ -142,6 +155,7 @@
           {
             "target": "./src/presentation/containers",
             "from": [
+              "./src/presentation/router",
               "./src/presentation/pages",
               "./src/presentation/layouts",
               "./src/presentation/providers",
@@ -153,6 +167,7 @@
           {
             "target": "./src/presentation/shared",
             "from": [
+              "./src/presentation/router",
               "./src/presentation/pages",
               "./src/presentation/layouts",
               "./src/presentation/providers",
@@ -165,6 +180,7 @@
           {
             "target": "./src/presentation/i18n",
             "from": [
+              "./src/presentation/router",
               "./src/presentation/pages",
               "./src/presentation/layouts",
               "./src/presentation/providers",
@@ -178,6 +194,7 @@
           {
             "target": "./src/presentation/styles",
             "from": [
+              "./src/presentation/router",
               "./src/presentation/pages",
               "./src/presentation/layouts",
               "./src/presentation/providers",
@@ -192,6 +209,7 @@
           {
             "target": "./src/presentation/utilities",
             "from": [
+              "./src/presentation/router",
               "./src/presentation/pages",
               "./src/presentation/layouts",
               "./src/presentation/providers",
@@ -205,26 +223,30 @@
             "message": "Dependency prohibited"
           },
           {
-            "target": "./src/core/managers",
-            "from": ["./src/core/features"],
+            "target": "./src/application/managers",
+            "from": ["./src/application/features"],
             "message": "Dependency prohibited"
           },
           {
-            "target": "./src/core/services",
-            "from": ["./src/core/features", "./src/core/managers"],
-            "message": "Dependency prohibited"
-          },
-          {
-            "target": "./src/core/utilities",
+            "target": "./src/application/services",
             "from": [
-              "./src/core/features",
-              "./src/core/managers",
-              "./src/core/services"
+              "./src/application/features",
+              "./src/application/managers"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/application/utilities",
+            "from": [
+              "./src/application/features",
+              "./src/application/managers",
+              "./src/application/services"
             ],
             "message": "Dependency prohibited"
           }
         ]
       }
     ]
-  }
+  },
+  "ignorePatterns": ["dist/"]
 }

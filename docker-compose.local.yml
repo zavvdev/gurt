@@ -10,12 +10,13 @@ services:
     command: pnpm dev
     stdin_open: true
     tty: true
+    ports:
+      - 3001:3000
     volumes:
       - ./client/src:/usr/src/app/src
       - ./client/public:/usr/src/app/public
+      - ./client/index.html:/usr/src/app/index.html
       - ./client/package.json:/usr/src/app/package.json
-      - ./client/tailwind.config.ts:/usr/src/app/tailwind.config.ts
-      - ./client/next.config.js:/usr/src/app/next.config.js
 
   server:
     command: composer run-script start-local
