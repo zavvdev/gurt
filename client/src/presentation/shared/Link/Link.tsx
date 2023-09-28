@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { Link as RouterLink } from '@tanstack/react-router';
+import { Link as RouterLink } from 'react-router-dom';
 import cx from 'clsx';
 import { Typography } from 'antd';
 import { useLinkStyles } from '~/presentation/shared/Link/Link.styles';

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate } from 'react-router-dom';
 import { PRIVATE_ROUTES } from '~/routes';
 import {
   ExtractedValidationError,
@@ -47,9 +47,7 @@ export function useRegister(args?: UseRegisterArgs) {
           });
         } else {
           args?.onSuccess?.();
-          navigate({
-            to: PRIVATE_ROUTES.home(),
-          });
+          navigate(PRIVATE_ROUTES.home());
         }
       },
       onError: (e: ServerValidationErrorsResponse) => {

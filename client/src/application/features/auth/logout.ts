@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate } from 'react-router-dom';
 import { PUBLIC_ROUTES } from '~/routes';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
@@ -18,9 +18,7 @@ export function useLogout(args?: MutationEvents) {
       },
       onSuccess: (response: ServerResponse) => {
         args?.onSuccess?.(response.message);
-        navigate({
-          to: PUBLIC_ROUTES.auth.login(),
-        });
+        navigate(PUBLIC_ROUTES.auth.login());
       },
     },
   );

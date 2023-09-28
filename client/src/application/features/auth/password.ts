@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate } from 'react-router-dom';
 import { PUBLIC_ROUTES } from '~/routes';
 import {
   ServerResponse,
@@ -73,9 +73,7 @@ export function useResetPassword(args?: MutationEvents) {
           args?.onError?.(response.message);
         } else {
           args?.onSuccess?.(response.message);
-          navigate({
-            to: PUBLIC_ROUTES.auth.login(),
-          });
+          navigate(PUBLIC_ROUTES.auth.login());
         }
       },
     },

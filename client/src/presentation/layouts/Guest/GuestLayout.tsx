@@ -1,5 +1,5 @@
 import cx from 'clsx';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
@@ -43,11 +43,7 @@ export function GuestLayout({ children }: Props) {
             <Button
               type="link"
               key={link.label}
-              onClick={() =>
-                navigate({
-                  to: link.route,
-                })
-              }
+              onClick={() => navigate(link.route)}
               className={cx(classes.navItem, {
                 [classes.navItemActive]: link.isActive,
               })}

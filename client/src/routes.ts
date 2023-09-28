@@ -6,7 +6,7 @@ export const PUBLIC_ROUTES = {
 
     forgotPassword: () => '/forgot-password',
 
-    resetPassword: (token: string = '$token') => `/reset-password/${token}`,
+    resetPassword: (token: string = ':token') => `/reset-password/${token}`,
   },
 };
 
@@ -17,8 +17,8 @@ export const PRIVATE_ROUTES = {
 
   verifyEmail: (
     args: { id: string; hash: string } = {
-      id: '$id',
-      hash: '$hash',
+      id: ':id',
+      hash: ':hash',
     },
   ) => `/verify-email/${args.id}/${args.hash}`,
 };

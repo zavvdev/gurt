@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate, useParams, useSearch } from '@tanstack/react-router';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { PRIVATE_ROUTES } from '~/routes';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { emailGateway } from '~/infrastructure/serverGateway/v1/email/gateway';
@@ -33,22 +33,16 @@ export function useSendEmailVerification(args?: MutationEvents) {
 
 export function useVerifyEmail(args?: MutationEvents) {
   const navigate = useNavigate();
-
-  const params = useParams({
-    from: PRIVATE_ROUTES.verifyEmail(),
-  });
-
-  const searchParams = useSearch({
-    from: PRIVATE_ROUTES.verifyEmail(),
-  });
+  const params = useParams();
+  const [searchParams] = useSearchParams();
 
   const { mutate, isLoading } = useMutation(
     () =>
       emailGateway.verify({
         id: params.id || '',
         hash: params.hash || '',
-        expires: searchParams.expires || '',
-        signature: searchParams.signature || '',
+        expires: searchParams.get('expires') || '',
+        signature: searchParams.get('signature') || '',
       }),
     {
       onMutate: async () => {
@@ -59,9 +53,7 @@ export function useVerifyEmail(args?: MutationEvents) {
       },
       onSuccess: (response: ServerResponse) => {
         args?.onSuccess?.(response.message);
-        navigate({
-          to: PRIVATE_ROUTES.home(),
-        });
+        navigate(PRIVATE_ROUTES.home());
       },
     },
   );

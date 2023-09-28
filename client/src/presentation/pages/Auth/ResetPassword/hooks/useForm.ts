@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { useParams, useSearch } from '@tanstack/react-router';
-import { PUBLIC_ROUTES } from '~/routes';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { ResetPasswordForm } from '~/application/features/auth/password';
 import { AUTH_PASSWORD_MIN_LENGTH } from '~/application/features/auth/config';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
@@ -18,17 +17,11 @@ interface Args {
 
 export function useForm({ onSubmit }: Args) {
   const { t } = useTranslation('common');
+  const params = useParams();
+  const [searchParams] = useSearchParams();
 
-  const params = useParams({
-    from: PUBLIC_ROUTES.auth.resetPassword(),
-  });
-
-  const searchParams = useSearch({
-    from: PUBLIC_ROUTES.auth.resetPassword(),
-  });
-
-  const token = params.token;
-  const email = searchParams.email;
+  const token = params.token || '';
+  const email = searchParams.get('email') || '';
 
   const schema = yup.object({
     email: yup

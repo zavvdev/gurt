@@ -1,6 +1,6 @@
 import '~/presentation/i18n';
 import '~/presentation/styles/css/globals.css';
-import { RouterProvider } from '@tanstack/react-router';
+import { RouterProvider } from 'react-router-dom';
 import { router } from '~/presentation/router';
 import { StylesProvider } from '~/presentation/providers/StylesProvider';
 import { QueryClientProvider } from '~/presentation/providers/QueryClientProvider';
