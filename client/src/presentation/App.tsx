@@ -5,13 +5,16 @@ import { router } from '~/presentation/router';
 import { StylesProvider } from '~/presentation/providers/StylesProvider';
 import { QueryClientProvider } from '~/presentation/providers/QueryClientProvider';
 import { NotificationOutlet } from '~/presentation/shared/NotificationOutlet/NotificationOutlet';
+import { RootLayout } from '~/presentation/layouts/Root/RootLayout';
 
 export function App() {
   return (
     <StylesProvider>
       <QueryClientProvider>
-        <RouterProvider router={router} />
-        <NotificationOutlet />
+        <RootLayout>
+          <RouterProvider router={router} />
+          <NotificationOutlet />
+        </RootLayout>
       </QueryClientProvider>
     </StylesProvider>
   );

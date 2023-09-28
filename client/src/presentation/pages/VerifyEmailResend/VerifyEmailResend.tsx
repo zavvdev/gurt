@@ -5,10 +5,11 @@ import { notificationService } from '~/application/services/NotificationService'
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { EmptyLayout } from '~/presentation/layouts/Empty/EmptyLayout';
 import { Icons } from '~/presentation/assets/Icons';
+import { useVerifyEmailResendStyles } from '~/presentation/pages/VerifyEmailResend/VerifyEmailResend.styles';
 
-export function ResendVerifyEmail() {
-  const { t: tCommon } = useTranslation('common');
+export function VerifyEmailResend() {
   const { t } = useTranslation('common');
+  const classes = useVerifyEmailResendStyles();
 
   const logout = useLogout({
     onError: () => {
@@ -19,10 +20,7 @@ export function ResendVerifyEmail() {
   const sendEmailVerification = useSendEmailVerification({
     onError: (message) => {
       notificationService.error(
-        tCommon(
-          `serverMessage.${message}`,
-          t('emailVerify.resend.error.fallback'),
-        ),
+        t(`serverMessage.${message}`, t('emailVerify.resend.error.fallback')),
       );
     },
     onSuccess: (message) => {
@@ -48,30 +46,27 @@ export function ResendVerifyEmail() {
   };
 
   return (
-    <EmptyLayout className="flex justify-center">
-      <div className="flex items-center justify-center pt-24 max-md:pt-10 max-md:pb-20 flex-col w-96 max-md:w-full">
-        <Icons.MailWarning className="w-24 h-24 mb-4 text-gray-300 dark:text-slate-700" />
-        <Typography.Title
-          level={2}
-          className="text-4xl font-bold mb-3 max-sm:text-3xl w-96 max-sm:w-full text-center"
-        >
+    <EmptyLayout className={classes.layout}>
+      <div className={classes.root}>
+        <Icons.MailWarning className={classes.icon} />
+        <Typography.Title level={2} className={classes.title}>
           {t('emailVerify.resend.label')}
         </Typography.Title>
-        <Typography.Text type="secondary" className="mb-10 w-80 text-center">
+        <Typography.Text type="secondary" className={classes.description}>
           {t('emailVerify.resend.description')}
         </Typography.Text>
         <Button
           type="primary"
           size="large"
           onClick={onResend}
-          className="max-sm:w-full"
+          className={classes.resendBtn}
           loading={sendEmailVerification.isLoading}
         >
           {t('emailVerify.resend.resend')}
         </Button>
         <Button
           type="link"
-          className="mt-5 flex items-center gap-2"
+          className={classes.logoutBtn}
           onClick={onLogout}
           loading={logout.isLoading}
         >

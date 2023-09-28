@@ -4,7 +4,7 @@ import { PUBLIC_ROUTES } from '~/routes';
 import { isAuthenticated } from '~/application/features/auth/utilities';
 
 export function AuthWrapper({ children }: PropsWithChildren) {
-  if (!isAuthenticated()) {
+  if (isAuthenticated()) {
     return <Navigate to={PUBLIC_ROUTES.auth.login()} />;
   }
   return children;

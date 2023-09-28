@@ -27,9 +27,9 @@ export const THEME: {
       primaryHover: '#3791ff',
       primaryBg: '#313131',
       primaryBgHover: '#343434',
-      text: '#E3E3E3',
+      text: '#eeeeee',
       gray6: '#bfbfbf',
-      background: '#191919',
+      background: '#0e0e0e',
     },
     borderRadius: 4,
   },
@@ -79,6 +79,8 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
       colorPrimaryHover: theme.color.primaryHover,
       colorPrimaryBg: theme.color.primaryBg,
       colorPrimaryBgHover: theme.color.primaryBgHover,
+      colorPrimaryText: theme.color.primary,
+      colorPrimaryTextHover: theme.color.primaryHover,
 
       colorText: theme.color.text,
 
@@ -87,6 +89,12 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
       fontFamily: 'inherit',
 
       ...SCREEN_BREAKPOINTS,
+    },
+    components: {
+      Input: {
+        hoverBorderColor: theme.color.primary,
+        activeBorderColor: theme.color.primary,
+      },
     },
   };
 }

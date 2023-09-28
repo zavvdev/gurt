@@ -2,7 +2,7 @@ import { createUseStyles } from 'react-jss';
 import { JssTheme } from '~/presentation/styles/types';
 
 export const useGuestLayoutStyles = createUseStyles(
-  ({ theme, media }: JssTheme) => ({
+  ({ theme, media, isDark }: JssTheme) => ({
     root: {
       height: '100vh',
       display: 'flex',
@@ -23,7 +23,7 @@ export const useGuestLayoutStyles = createUseStyles(
     },
 
     logo: {
-      color: theme.color.primary,
+      color: isDark ? theme.color.text : theme.color.primary,
       width: '4.5rem',
     },
 
@@ -41,6 +41,10 @@ export const useGuestLayoutStyles = createUseStyles(
     navItem: {
       padding: '0 0.5rem',
       color: theme.color.text,
+
+      '&:hover': {
+        color: theme.color.primary + ' !important',
+      },
     },
 
     navItemActive: {
