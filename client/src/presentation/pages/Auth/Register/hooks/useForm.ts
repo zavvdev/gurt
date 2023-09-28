@@ -1,8 +1,8 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { RegisterForm } from '~/core/features/auth/register';
-import { AUTH_PASSWORD_MIN_LENGTH } from '~/core/features/auth/config';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { RegisterForm } from '~/application/features/auth/register';
+import { AUTH_PASSWORD_MIN_LENGTH } from '~/application/features/auth/config';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {
   onSubmit: (form: RegisterForm) => void;

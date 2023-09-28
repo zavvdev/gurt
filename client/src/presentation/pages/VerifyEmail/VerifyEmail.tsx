@@ -1,16 +1,18 @@
 import { Button, Typography } from 'antd';
 import { useEffect, useState } from 'react';
-import { useLogout } from '~/core/features/auth/logout';
-import { useVerifyEmail } from '~/core/features/email/verify';
-import { notificationService } from '~/core/services/NotificationService';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useLogout } from '~/application/features/auth/logout';
+import { useVerifyEmail } from '~/application/features/email/verify';
+import { notificationService } from '~/application/services/NotificationService';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { EmptyLayout } from '~/presentation/layouts/Empty/EmptyLayout';
 import { Spinner } from '~/presentation/shared/Spinner/Spinner';
+import { useVerifyEmailStyles } from '~/presentation/pages/VerifyEmail/VerifyEmail.styles';
 
 export function VerifyEmail() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('common');
   const [isErrorHappened, setIsErrorHappened] = useState(false);
+  const classes = useVerifyEmailStyles();
 
   const logout = useLogout({
     onError: () => {
@@ -42,20 +44,17 @@ export function VerifyEmail() {
   }, []);
 
   return (
-    <EmptyLayout className="flex justify-center">
-      <div className="flex gap-4 items-center justify-center pt-24 max-md:pt-10 max-md:pb-20 flex-col max-md:w-full">
-        <div className="flex flex-col items-center text-center">
+    <EmptyLayout className={classes.layout}>
+      <div className={classes.root}>
+        <div className={classes.content}>
           {verifyEmail.isLoading && !isErrorHappened && (
-            <Spinner size="large" className="mb-4" />
+            <Spinner size="large" className={classes.spinner} />
           )}
-          <Typography.Title
-            level={2}
-            className="text-4xl font-bold max-sm:text-3xl max-sm:w-full text-center "
-          >
+          <Typography.Title level={2} className={classes.title}>
             {t('emailVerify.label')}
           </Typography.Title>
           {isErrorHappened && (
-            <Typography.Text type="danger" className="w-72">
+            <Typography.Text type="danger" className={classes.error}>
               {t('emailVerify.error.description')}
             </Typography.Text>
           )}
@@ -70,14 +69,14 @@ export function VerifyEmail() {
                   verifyEmail.initiate();
                 }
               }}
-              className="max-sm:w-full"
+              className={classes.tryAgainBtn}
               loading={verifyEmail.isLoading}
             >
               {t('emailVerify.tryAgain')}
             </Button>
             <Button
               type="link"
-              className="flex items-center gap-2"
+              className={classes.logoutBtn}
               onClick={onLogout}
               loading={logout.isLoading}
             >

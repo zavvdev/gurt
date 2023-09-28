@@ -1,66 +1,63 @@
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { PRIVATE_ROUTES, PUBLIC_ROUTES, useCreateRoute } from '~/routes';
-import { ThemeSwitch } from '~/presentation/containers/ThemeSwitch/ThemeSwitch';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
-import { LanguageSwitch } from '~/presentation/containers/LanguageSwitch/LanguageSwitch';
-import { Icons } from '~/presentation/shared/Icons';
-import { cn } from '~/presentation/utilities/styles';
+import cx from 'clsx';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from 'antd';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
+import { LanguageSwitch } from '~/presentation/shared/LanguageSwitch/LanguageSwitch';
+import { Icons } from '~/presentation/assets/Icons';
+import { ThemeSwitch } from '~/presentation/shared/ThemeSwitch/ThemeSwitch';
+import { useGuestLayoutStyles } from '~/presentation/layouts/Guest/GuestLayout.styles';
 
 interface Props {
   children: React.ReactNode;
 }
 
 export function GuestLayout({ children }: Props) {
-  const pathname = usePathname();
-  const { r } = useCreateRoute();
   const { t } = useTranslation('common');
+  const classes = useGuestLayoutStyles();
+  const navigate = useNavigate();
 
   const menu = [
     {
       label: t('guestLayout.menu.login'),
-      route: r(PUBLIC_ROUTES.auth.login()),
-      isActive: pathname.includes(PUBLIC_ROUTES.auth.login()),
+      route: PUBLIC_ROUTES.auth.login(),
+      isActive: window.location.pathname.includes(PUBLIC_ROUTES.auth.login()),
     },
     {
       label: t('guestLayout.menu.register'),
-      route: r(PUBLIC_ROUTES.auth.register()),
-      isActive: pathname.includes(PUBLIC_ROUTES.auth.register()),
+      route: PUBLIC_ROUTES.auth.register(),
+      isActive: window.location.pathname.includes(
+        PUBLIC_ROUTES.auth.register(),
+      ),
     },
   ];
 
   return (
-    <section className="h-screen flex flex-col justify-between">
-      <header
-        className="
-          px-[5%] py-8 flex justify-between items-center
-          max-md:flex-col max-md:gap-6
-        "
-      >
-        <Link href={r(PRIVATE_ROUTES.home())}>
-          <Icons.Logo className="text-primary dark:text-text_DT w-[4.5rem]" />
+    <section className={classes.root}>
+      <header className={classes.header}>
+        <Link to={PRIVATE_ROUTES.home()}>
+          <Icons.Logo className={classes.logo} />
         </Link>
-        <nav className="flex gap-10 items-center flex-wrap max-md:gap-5">
+        <nav className={classes.nav}>
           {menu.map((link) => (
-            <Link
+            <Button
+              type="link"
               key={link.label}
-              href={link.route}
-              className={cn('hoverable', {
-                'text-primary': link.isActive,
+              onClick={() => navigate(link.route)}
+              className={cx(classes.navItem, {
+                [classes.navItemActive]: link.isActive,
               })}
             >
               {link.label}
-            </Link>
+            </Button>
           ))}
-          <div className="flex items-center gap-1">
+          <div className={classes.actions}>
             <LanguageSwitch />
             <ThemeSwitch />
           </div>
         </nav>
       </header>
-      <div className="flex-1 overflow-y-scroll px-[5%] max-md:overflow-visible">
-        {children}
-      </div>
+      <div className={classes.content}>{children}</div>
     </section>
   );
 }

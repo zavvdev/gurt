@@ -1,7 +1,7 @@
 'use client';
 
-import { useSessionUserQuery } from '~/core/managers/queryClient/queries/useSessionUserQuery';
-import { notificationService } from '~/core/services/NotificationService';
+import { useSessionUserQuery } from '~/application/managers/queryClient/queries/useSessionUserQuery';
+import { notificationService } from '~/application/services/NotificationService';
 
 export function User() {
   const sessionUser = useSessionUserQuery({

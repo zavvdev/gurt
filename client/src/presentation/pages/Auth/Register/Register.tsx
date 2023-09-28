@@ -1,16 +1,18 @@
 import { Button, Input, Typography } from 'antd';
-import { useRegister } from '~/core/features/auth/register';
-import { notificationService } from '~/core/services/NotificationService';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useRegister } from '~/application/features/auth/register';
+import { notificationService } from '~/application/services/NotificationService';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { useForm } from '~/presentation/pages/Auth/Register/hooks/useForm';
-import { Icons } from '~/presentation/shared/Icons';
-import { useAppTheme } from '~/presentation/styles/theme';
+import { Icons } from '~/presentation/assets/Icons';
+import { useRegisterStyles } from '~/presentation/pages/Auth/Register/Register.styles';
+import { useJssTheme } from '~/presentation/styles/hooks/useJssTheme';
 
 export function Register() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
-  const theme = useAppTheme();
+  const classes = useRegisterStyles();
+  const { theme } = useJssTheme();
 
   const register = useRegister({
     onError: ({ validationErrors, message }) => {
@@ -34,9 +36,9 @@ export function Register() {
 
   return (
     <GuestLayout>
-      <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
-        <Typography.Title>{t('register.label')}</Typography.Title>
-        <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
+      <div className={classes.root}>
+        <Typography.Title level={2}>{t('register.label')}</Typography.Title>
+        <form className={classes.form}>
           <div>
             <Input
               size="large"
@@ -44,11 +46,11 @@ export function Register() {
               value={form.values.name}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              status={Boolean(form.getError('name')) ? 'error' : undefined}
+              status={form.getError('name') ? 'error' : undefined}
               placeholder={t('register.form.name')}
             />
             {Boolean(form.getError('name')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('name')}
               </Typography.Text>
             )}
@@ -60,11 +62,11 @@ export function Register() {
               value={form.values.email}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              status={Boolean(form.getError('email')) ? 'error' : undefined}
+              status={form.getError('email') ? 'error' : undefined}
               placeholder={t('register.form.email')}
             />
             {Boolean(form.getError('email')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('email')}
               </Typography.Text>
             )}
@@ -76,7 +78,7 @@ export function Register() {
               value={form.values.password}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              status={Boolean(form.getError('password')) ? 'error' : undefined}
+              status={form.getError('password') ? 'error' : undefined}
               iconRender={(visible) =>
                 visible ? (
                   <Icons.Eye size="1rem" color={theme.color.gray6} />
@@ -88,7 +90,7 @@ export function Register() {
               autoComplete="none"
             />
             {Boolean(form.getError('password')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('password')}
               </Typography.Text>
             )}
@@ -100,9 +102,7 @@ export function Register() {
               value={form.values.passwordConfirm}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              status={
-                Boolean(form.getError('passwordConfirm')) ? 'error' : undefined
-              }
+              status={form.getError('passwordConfirm') ? 'error' : undefined}
               iconRender={(visible) =>
                 visible ? (
                   <Icons.Eye size="1rem" color={theme.color.gray6} />
@@ -114,7 +114,7 @@ export function Register() {
               autoComplete="none"
             />
             {Boolean(form.getError('passwordConfirm')) && (
-              <Typography.Text type="danger" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('passwordConfirm')}
               </Typography.Text>
             )}

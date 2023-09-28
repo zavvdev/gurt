@@ -1,4 +1,4 @@
-import { useLogout } from '~/core/features/auth/logout';
+import { useLogout } from '~/application/features/auth/logout';
 import { User } from '~/presentation/pages/Home/User';
 
 export function Home() {
