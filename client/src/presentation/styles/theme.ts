@@ -95,6 +95,11 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
         hoverBorderColor: theme.color.primary,
         activeBorderColor: theme.color.primary,
       },
+      Button: {
+        colorLink: theme.color.primary,
+        colorLinkHover: theme.color.primaryHover,
+        colorLinkActive: theme.color.primary,
+      },
     },
   };
 }
