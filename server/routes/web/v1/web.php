@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\Web\AuthController;
-use App\Http\Controllers\Email\EmailVerificationController;
+use App\Http\Controllers\Email\Web\EmailVerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*

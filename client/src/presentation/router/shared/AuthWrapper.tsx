@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 import { PUBLIC_ROUTES } from '~/routes';
 
 export function AuthWrapper({ children }: PropsWithChildren) {
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   return (
     <>
