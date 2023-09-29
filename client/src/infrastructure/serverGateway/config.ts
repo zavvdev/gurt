@@ -1,1 +1,1 @@
-export const SESSION_COOKIE_NAME = 'session';
+export const PUBLIC_SESSION_ID_NAME = 'psid';

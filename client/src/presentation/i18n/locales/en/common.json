@@ -74,5 +74,7 @@
         }
       }
     }
-  }
+  },
+
+  "verifyingSession": "Verifying your session..."
 }
