@@ -3,31 +3,31 @@ import { PRIVATE_ROUTES } from '~/routes';
 import { Home } from '~/presentation/pages/Home/Home';
 import { VerifyEmailResend } from '~/presentation/pages/VerifyEmailResend/VerifyEmailResend';
 import { VerifyEmail } from '~/presentation/pages/VerifyEmail/VerifyEmail';
-import { AuthWrapper } from '~/presentation/router/shared/AuthWrapper';
+import { PrivateRouteGuard } from '~/presentation/router/PrivateRouteGuard';
 
 export const privateRoutes: RouteObject[] = [
   {
     path: PRIVATE_ROUTES.home(),
     element: (
-      <AuthWrapper>
+      <PrivateRouteGuard>
         <Home />
-      </AuthWrapper>
+      </PrivateRouteGuard>
     ),
   },
   {
     path: PRIVATE_ROUTES.resendVerifyEmail(),
     element: (
-      <AuthWrapper>
+      <PrivateRouteGuard>
         <VerifyEmailResend />
-      </AuthWrapper>
+      </PrivateRouteGuard>
     ),
   },
   {
     path: PRIVATE_ROUTES.verifyEmail(),
     element: (
-      <AuthWrapper>
+      <PrivateRouteGuard>
         <VerifyEmail />
-      </AuthWrapper>
+      </PrivateRouteGuard>
     ),
   },
 ];

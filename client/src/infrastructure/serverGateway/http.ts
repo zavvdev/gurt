@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
 import { Http } from '~/infrastructure/http';
+import { publicSessionId } from '~/infrastructure/serverGateway/utilities';
 
 const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
   return response;
@@ -11,6 +12,7 @@ const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
 const responseErrorInterceptor = (error: any) => {
   const response = error?.response?.data || {};
   if (response.message === ServerResponseMessage.Unauthorized) {
+    publicSessionId.remove();
     window.location.href = PUBLIC_ROUTES.auth.login();
   }
   if (response.message === ServerResponseMessage.EmailNotVerified) {

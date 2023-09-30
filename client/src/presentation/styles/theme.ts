@@ -11,11 +11,12 @@ export const THEME: {
 } = {
   [ThemeType.Light]: {
     color: {
-      primary: '#1F81F8',
-      primaryHover: '#3791ff',
-      primaryBg: '#EBF4FF',
-      primaryBgHover: '#e4effe',
+      primary: '#282828',
+      primaryHover: '#3f3f3f',
+      primaryBg: '#efefef',
+      primaryBgHover: '#e4e4e4',
       text: '#282828',
+      textInverted: '#eeeeee',
       gray6: '#bfbfbf',
       background: '#FFFFFF',
     },
@@ -23,11 +24,12 @@ export const THEME: {
   },
   [ThemeType.Dark]: {
     color: {
-      primary: '#1F81F8',
-      primaryHover: '#3791ff',
-      primaryBg: '#313131',
-      primaryBgHover: '#343434',
+      primary: '#eeeeee',
+      primaryHover: '#ffffff',
+      primaryBg: '#3c3c3c',
+      primaryBgHover: '#4d4d4d',
       text: '#eeeeee',
+      textInverted: '#282828',
       gray6: '#bfbfbf',
       background: '#0e0e0e',
     },
@@ -96,9 +98,15 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
         activeBorderColor: theme.color.primary,
       },
       Button: {
+        colorPrimary: theme.color.primary,
         colorLink: theme.color.primary,
         colorLinkHover: theme.color.primaryHover,
         colorLinkActive: theme.color.primary,
+        primaryColor: theme.color.textInverted + ' !important',
+        colorPrimaryHover: theme.color.primaryHover,
+      },
+      Checkbox: {
+        colorWhite: theme.color.textInverted,
       },
     },
   };

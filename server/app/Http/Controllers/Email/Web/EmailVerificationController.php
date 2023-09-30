@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Email;
+namespace App\Http\Controllers\Email\Web;
 
 use App\Enums\ResponseMessage;
 use App\Http\Controllers\Controller;

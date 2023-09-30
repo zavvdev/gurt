@@ -11,6 +11,7 @@ export interface Theme {
     primaryBg: string;
     primaryBgHover: string;
     text: string;
+    textInverted: string;
     gray6: string;
     background: string;
   };

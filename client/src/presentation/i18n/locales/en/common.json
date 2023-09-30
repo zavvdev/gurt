@@ -1,10 +1,4 @@
 {
-  "meta": {
-    "appName": "Gurt",
-    "description": "Social network",
-    "keywords": "gurt,social,network"
-  },
-
   "theme": {
     "light": "Light",
     "dark": "Dark",
@@ -33,7 +27,7 @@
     "emailInvalid": "Provide valid email",
     "passwordRequired": "Provide your password",
     "passwordConfirmRequired": "Confirm your password",
-    "passwordsNotMatch": "Passwords are not match",
+    "passwordsNotMatch": "Passwords do not match",
     "passwordMinimum": "Password should be minimum {{ length }} characters length"
   },
 
@@ -74,5 +68,7 @@
         }
       }
     }
-  }
+  },
+
+  "verifyingSession": "Verifying your session..."
 }

@@ -1,0 +1,74 @@
+{
+  "theme": {
+    "light": "Jasny",
+    "dark": "Ciemny",
+    "system": "Systemowe"
+  },
+
+  "error": {
+    "logout": "Nie można zakończyć sesji. Spróbuj ręcznie wyczyścić pliki cookie przeglądarki, jeśli problem będzie się powtarzał"
+  },
+
+  "serverMessage": {
+    "not_allowed": "Działanie jest niedozwolone",
+    "unauthorized": "Nieautoryzowane działanie",
+    "unexpected_error": "Nieoczekiwany błąd. Spróbuj ponownie później",
+    "already_logged_in": "Jesteś już zalogowany",
+    "email_not_verified": "E-mail nie jest weryfikowany",
+    "too_early": "Zbyt wiele próśb",
+    "invalid_token": "Nieprawidłowy token",
+    "invalid_signature": "Nieprawidłowy podpis",
+    "user_not_found": "Użytkownik nie został znaleziony"
+  },
+
+  "formError": {
+    "nameRequired": "Podać swoje imię",
+    "emailRequired": "Podać swój adres e-mail",
+    "emailInvalid": "Podaj prawidłowy adres e-mail",
+    "passwordRequired": "Podaj swoje hasło",
+    "passwordConfirmRequired": "Potwierdź hasło",
+    "passwordsNotMatch": "Hasła nie pasują",
+    "passwordMinimum": "Hasło powinno mieć długość co najmniej 12 znaków"
+  },
+
+  "notFoundPage": {
+    "label": "Strona nie została znaleziona",
+    "back": "Wracać"
+  },
+
+  "guestLayout": {
+    "menu": {
+      "login": "Logowanie",
+      "register": "Rejestracja"
+    }
+  },
+
+  "emailVerify": {
+    "label": "Weryfikacja adresu e-mail",
+    "logout": "Wyloguj się z konta",
+    "tryAgain": "Spróbuj ponownie",
+    "error": {
+      "fallback": "Nie można zweryfikować adresu e-mail. Spróbuj ponownie później",
+      "description": "Wystąpił błąd podczas weryfikacji. Naciśnij przycisk \"Spróbuj ponownie\""
+    },
+    "success": {
+      "fallback": "E-mail został pomyślnie zweryfikowany"
+    },
+    "resend": {
+      "label": "Sprawdzić swój adres e-mail",
+      "description": "Wysłaliśmy ci link weryfikacyjny. Sprawdź swoją skrzynkę odbiorczą",
+      "resend": "Ponownie wysłać",
+      "error": {
+        "fallback": "Nie można wysłać linku do weryfikacji e-mailem. Spróbuj ponownie później"
+      },
+      "success": {
+        "fallback": "Link do weryfikacji e-mail został pomyślnie wysłany",
+        "serverMessage": {
+          "already_sent": "E-mail jest już zweryfikowany"
+        }
+      }
+    }
+  },
+
+  "verifyingSession": "Weryfikacja sesji..."
+}

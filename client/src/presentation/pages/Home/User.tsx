@@ -1,6 +1,4 @@
-'use client';
-
-import { useSessionUserQuery } from '~/application/managers/queryClient/queries/useSessionUserQuery';
+import { useSessionUserQuery } from '~/application/managers/queryClient/queries/user/useSessionUserQuery';
 import { notificationService } from '~/application/services/NotificationService';
 
 export function User() {
