@@ -43,15 +43,12 @@ export const useGuestLayoutStyles = createUseStyles(
       color: theme.color.text,
 
       '&:hover': {
-        color: theme.color.primary + ' !important',
+        backgroundColor: theme.color.primaryBg + ' !important',
       },
     },
 
     navItemActive: {
-      color: theme.color.primary,
-      '&:hover': {
-        color: theme.color.primary + ' !important',
-      },
+      backgroundColor: theme.color.primaryBg + ' !important',
     },
 
     actions: {
