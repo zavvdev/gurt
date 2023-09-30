@@ -21,6 +21,10 @@ export function LanguageSwitch() {
       key: LANGUAGES.uk,
       label: LANGUAGES.uk,
     },
+    {
+      key: LANGUAGES.pl,
+      label: LANGUAGES.pl,
+    },
   ];
 
   return (

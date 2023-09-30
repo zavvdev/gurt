@@ -1,10 +1,4 @@
 {
-  "meta": {
-    "appName": "Gurt",
-    "description": "Social'na mereža",
-    "keywords": "gurt,social'na,mereža"
-  },
-
   "theme": {
     "light": "Svitla",
     "dark": "Temna",

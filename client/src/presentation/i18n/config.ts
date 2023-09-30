@@ -1,6 +1,7 @@
 export const LANGUAGES = {
   en: 'en',
   uk: 'uk',
+  pl: 'pl',
 };
 
 export const FALLBACK_LNG = LANGUAGES.uk;
