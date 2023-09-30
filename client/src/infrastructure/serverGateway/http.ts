@@ -1,16 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { redirect } from 'next/navigation';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
 import { Http } from '~/infrastructure/http';
-
-const navigate = (to: string) => {
-  if (global?.window) {
-    window.location.href = to;
-  } else {
-    redirect(to);
-  }
-};
+import { publicSessionId } from '~/infrastructure/serverGateway/utilities';
 
 const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
   return response;
@@ -20,19 +12,18 @@ const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
 const responseErrorInterceptor = (error: any) => {
   const response = error?.response?.data || {};
   if (response.message === ServerResponseMessage.Unauthorized) {
-    navigate(PUBLIC_ROUTES.auth.login());
+    publicSessionId.remove();
+    window.location.href = PUBLIC_ROUTES.auth.login();
   }
   if (response.message === ServerResponseMessage.EmailNotVerified) {
-    navigate(PRIVATE_ROUTES.verifyEmail());
+    window.location.href = PRIVATE_ROUTES.resendVerifyEmail();
   }
   return Promise.reject(error?.response?.data);
 };
 
 const web = (() => {
   const requestConfig: AxiosRequestConfig = {
-    baseURL:
-      process.env.SERVER_WEB_ENDPOINT ||
-      process.env.NEXT_PUBLIC_SERVER_WEB_ENDPOINT,
+    baseURL: import.meta.env.VITE_SERVER_WEB_ENDPOINT,
   };
   const client = axios.create(requestConfig);
   client.defaults.withCredentials = true;
@@ -47,9 +38,7 @@ const web = (() => {
 
 const api = (() => {
   const requestConfig: AxiosRequestConfig = {
-    baseURL:
-      process.env.SERVER_API_ENDPOINT ||
-      process.env.NEXT_PUBLIC_SERVER_API_ENDPOINT,
+    baseURL: import.meta.env.VITE_SERVER_API_ENDPOINT,
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

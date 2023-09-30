@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { QueryClientProvider as QCProvider } from '@tanstack/react-query';
-import { createQueryClient } from '~/core/managers/queryClient';
+import { createQueryClient } from '~/application/managers/queryClient';
 
 interface Props {
   children: React.ReactNode;

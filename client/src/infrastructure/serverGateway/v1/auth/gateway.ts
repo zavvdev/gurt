@@ -6,7 +6,11 @@ import {
   RegisterRequest,
   ResetPasswordRequest,
 } from '~/infrastructure/serverGateway/v1/auth/requests';
-import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import {
+  ServerResponse,
+  ServerResponseStatus,
+} from '~/infrastructure/serverGateway/types';
+import { publicSessionId } from '~/infrastructure/serverGateway/utilities';
 
 class AuthGateway {
   private http: Http;
@@ -19,19 +23,35 @@ class AuthGateway {
     return this.http.get('/v1/sanctum/csrf-cookie');
   }
 
-  public register(dto: RegisterRequest) {
-    return this.http.post<ServerResponse, RegisterRequest>(
+  public async register(dto: RegisterRequest) {
+    const res = await this.http.post<ServerResponse, RegisterRequest>(
       '/v1/auth/register',
       dto,
     );
+    if (res.status === ServerResponseStatus.Success) {
+      publicSessionId.set();
+    } else {
+      publicSessionId.remove();
+    }
+    return res;
   }
 
-  public logout() {
-    return this.http.post<ServerResponse>('/v1/auth/logout');
+  public async logout() {
+    const res = await this.http.post<ServerResponse>('/v1/auth/logout');
+    if (res.status === ServerResponseStatus.Success) {
+      publicSessionId.remove();
+    }
+    return res;
   }
 
-  public login(dto: LoginRequest) {
-    return this.http.post<ServerResponse>('/v1/auth/login', dto);
+  public async login(dto: LoginRequest) {
+    const res = await this.http.post<ServerResponse>('/v1/auth/login', dto);
+    if (res.status === ServerResponseStatus.Success) {
+      publicSessionId.set();
+    } else {
+      publicSessionId.remove();
+    }
+    return res;
   }
 
   public forgotPassword(dto: ForgotPasswordRequest) {

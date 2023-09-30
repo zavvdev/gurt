@@ -1,15 +1,22 @@
-import { Svg } from '~/presentation/assets/Svg';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { Button, Typography } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
+import { useNotFoundStyles } from '~/presentation/pages/NotFound/NotFound.styles';
 
 export function NotFound() {
   const { t } = useTranslation('common');
+  const classes = useNotFoundStyles();
+  const navigate = useNavigate();
 
   return (
-    <section className="flex justify-center items-center h-screen flex-col gap-8 max-md:gap-2">
-      <Svg.Logo className="text-gray-300 max-md:w-12" />
-      <div className="text-6xl font-thin text-gray-400 max-md:text-2xl">
+    <section className={classes.root}>
+      <Typography.Title className={classes.code}>404</Typography.Title>
+      <Typography.Text type="secondary" className={classes.label}>
         {t('notFoundPage.label')}
-      </div>
+      </Typography.Text>
+      <Button size="large" onClick={() => navigate(-1)}>
+        {t('notFoundPage.back')}
+      </Button>
     </section>
   );
 }

@@ -1,5 +1,5 @@
-import { twMerge } from 'tailwind-merge';
-import { useThemeSwitch } from '~/presentation/helpers/hooks/useThemeSwitch';
+import cx from 'clsx';
+import { useEmptyLayoutStyles } from '~/presentation/layouts/Empty/EmptyLayout.styles';
 
 interface Props {
   children: React.ReactNode;
@@ -7,18 +7,11 @@ interface Props {
 }
 
 export function EmptyLayout({ children, className }: Props) {
-  useThemeSwitch();
+  const classes = useEmptyLayoutStyles();
 
   return (
-    <section className="flex justify-center">
-      <div
-        className={twMerge(
-          'w-[900px] max-md:w-11/12 px-10 max-md:px-0',
-          className,
-        )}
-      >
-        {children}
-      </div>
+    <section className={classes.root}>
+      <div className={cx(classes.content, className)}>{children}</div>
     </section>
   );
 }

@@ -1,70 +1,63 @@
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { twMerge } from 'tailwind-merge';
+import cx from 'clsx';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from 'antd';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
-import { Svg } from '~/presentation/assets/Svg';
-import { ThemeSwitch } from '~/presentation/widgets/ThemeSwitch/ThemeSwitch';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
-import { LanguageSwitch } from '~/presentation/widgets/LanguageSwitch/LanguageSwitch';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
+import { LanguageSwitch } from '~/presentation/shared/LanguageSwitch/LanguageSwitch';
+import { Icons } from '~/presentation/assets/Icons';
+import { ThemeSwitch } from '~/presentation/shared/ThemeSwitch/ThemeSwitch';
+import { useGuestLayoutStyles } from '~/presentation/layouts/Guest/GuestLayout.styles';
 
 interface Props {
   children: React.ReactNode;
 }
 
 export function GuestLayout({ children }: Props) {
-  const pathname = usePathname();
   const { t } = useTranslation('common');
+  const classes = useGuestLayoutStyles();
+  const navigate = useNavigate();
 
   const menu = [
     {
       label: t('guestLayout.menu.login'),
       route: PUBLIC_ROUTES.auth.login(),
-      isActive: pathname.includes(PUBLIC_ROUTES.auth.login()),
+      isActive: window.location.pathname.includes(PUBLIC_ROUTES.auth.login()),
     },
     {
       label: t('guestLayout.menu.register'),
       route: PUBLIC_ROUTES.auth.register(),
-      isActive: pathname.includes(PUBLIC_ROUTES.auth.register()),
+      isActive: window.location.pathname.includes(
+        PUBLIC_ROUTES.auth.register(),
+      ),
     },
   ];
 
   return (
-    <section className="h-screen flex flex-col justify-between">
-      <header
-        className="
-          px-[5%] py-8 flex justify-between items-center
-          max-md:flex-col max-md:gap-6
-        "
-      >
-        <Link href={PRIVATE_ROUTES.home()}>
-          <Svg.Logo className="text-prm dark:text-txt_DT w-[4.5rem]" />
+    <section className={classes.root}>
+      <header className={classes.header}>
+        <Link to={PRIVATE_ROUTES.home()}>
+          <Icons.Logo className={classes.logo} />
         </Link>
-        <nav className="flex gap-8 items-center flex-wrap max-md:gap-2 max-md:text-sm">
+        <nav className={classes.nav}>
           {menu.map((link) => (
-            <Link
+            <Button
+              type="link"
               key={link.label}
-              href={link.route}
-              className={twMerge(
-                `py-1 px-2 rounded bg-transparent hover:bg-prmFade
-              ease-in-out duration-200 dark:hover:bg-prmFade_DT`,
-                link.isActive && 'text-prm',
-              )}
+              onClick={() => navigate(link.route)}
+              className={cx(classes.navItem, {
+                [classes.navItemActive]: link.isActive,
+              })}
             >
               {link.label}
-            </Link>
+            </Button>
           ))}
-          <ThemeSwitch />
+          <div className={classes.actions}>
+            <LanguageSwitch />
+            <ThemeSwitch />
+          </div>
         </nav>
       </header>
-      <div className="flex-1 overflow-y-scroll px-[5%] max-md:overflow-visible">
-        {children}
-      </div>
-      <footer className="px-[5%] py-8 max-md:py-5 flex justify-between items-center">
-        <div className="text-gray-400 text-sm max-md:text-xs">
-          © Gurt {new Date().getFullYear()}
-        </div>
-        <LanguageSwitch />
-      </footer>
+      <div className={classes.content}>{children}</div>
     </section>
   );
 }

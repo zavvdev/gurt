@@ -1,16 +1,18 @@
+import { Button, Typography } from 'antd';
 import { useEffect, useState } from 'react';
-import { useLogout } from '~/core/features/auth/logout';
-import { useVerifyEmail } from '~/core/features/email/verify';
-import { notificationService } from '~/core/services/NotificationService';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { useLogout } from '~/application/features/auth/logout';
+import { useVerifyEmail } from '~/application/features/email/verify';
+import { notificationService } from '~/application/services/NotificationService';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { EmptyLayout } from '~/presentation/layouts/Empty/EmptyLayout';
-import { Button } from '~/presentation/shared/Button/Button';
-import { Loader } from '~/presentation/shared/Loader/Loader';
+import { Spinner } from '~/presentation/shared/Spinner/Spinner';
+import { useVerifyEmailStyles } from '~/presentation/pages/VerifyEmail/VerifyEmail.styles';
 
 export function VerifyEmail() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('common');
   const [isErrorHappened, setIsErrorHappened] = useState(false);
+  const classes = useVerifyEmailStyles();
 
   const logout = useLogout({
     onError: () => {
@@ -42,35 +44,44 @@ export function VerifyEmail() {
   }, []);
 
   return (
-    <EmptyLayout className="flex justify-center">
-      <div className="flex items-center justify-center pt-24 max-md:pt-10 max-md:pb-20 flex-col w-96 max-md:w-full">
-        <div className="flex gap-4 flex-col items-center mb-10">
-          {verifyEmail.isLoading && !isErrorHappened && <Loader size="large" />}
-          <h2 className="text-4xl font-bold max-sm:text-3xl w-96 max-sm:w-full text-center ">
+    <EmptyLayout className={classes.layout}>
+      <div className={classes.root}>
+        <div className={classes.content}>
+          {verifyEmail.isLoading && !isErrorHappened && (
+            <Spinner size="large" className={classes.spinner} />
+          )}
+          <Typography.Title level={2} className={classes.title}>
             {t('emailVerify.label')}
-          </h2>
+          </Typography.Title>
+          {isErrorHappened && (
+            <Typography.Text type="danger" className={classes.error}>
+              {t('emailVerify.error.description')}
+            </Typography.Text>
+          )}
         </div>
         {isErrorHappened && (
           <>
             <Button
+              type="primary"
               size="large"
               onClick={() => {
                 if (!verifyEmail.isLoading) {
                   verifyEmail.initiate();
                 }
               }}
-              className="max-sm:w-full"
-              leftAdornment={verifyEmail.isLoading && <Loader color="white" />}
+              className={classes.tryAgainBtn}
+              loading={verifyEmail.isLoading}
             >
               {t('emailVerify.tryAgain')}
             </Button>
-            <button
-              className="link mt-5 flex items-center gap-2"
+            <Button
+              type="link"
+              className={classes.logoutBtn}
               onClick={onLogout}
+              loading={logout.isLoading}
             >
-              {logout.isLoading && <Loader size="small" color="link" />}{' '}
               {t('emailVerify.logout')}
-            </button>
+            </Button>
           </>
         )}
       </div>

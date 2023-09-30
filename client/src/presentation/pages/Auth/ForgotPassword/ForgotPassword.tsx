@@ -1,16 +1,15 @@
-import { useForgotPassword } from '~/core/features/auth/password';
-import { notificationService } from '~/core/services/NotificationService';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
+import { Button, Input, Typography } from 'antd';
+import { useForgotPassword } from '~/application/features/auth/password';
+import { notificationService } from '~/application/services/NotificationService';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
-import { Button } from '~/presentation/shared/Button/Button';
-import { Input } from '~/presentation/shared/Input/Input';
 import { useForm } from '~/presentation/pages/Auth/ForgotPassword/hooks/useForm';
-import { TextError } from '~/presentation/shared/TextError/TextError';
-import { Loader } from '~/presentation/shared/Loader/Loader';
+import { useForgotPasswordStyles } from '~/presentation/pages/Auth/ForgotPassword/ForgotPassword.styles';
 
 export function ForgotPassword() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
+  const classes = useForgotPasswordStyles();
 
   const forgotPassword = useForgotPassword({
     onError: (message) => {
@@ -29,34 +28,34 @@ export function ForgotPassword() {
 
   return (
     <GuestLayout>
-      <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
-        <h2 className="text-4xl font-bold mb-3 max-sm:text-3xl w-96 max-sm:w-full text-center">
+      <div className={classes.root}>
+        <Typography.Title level={2}>
           {t('forgotPassword.label')}
-        </h2>
-        <p className="mb-10 w-80 text-center">
+        </Typography.Title>
+        <Typography.Text type="secondary" className={classes.description}>
           {t('forgotPassword.description')}
-        </p>
-        <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
+        </Typography.Text>
+        <form className={classes.form}>
           <div>
             <Input
-              variant="large"
+              size="large"
               name="email"
               value={form.values.email}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              isError={Boolean(form.getError('email'))}
+              status={form.getError('email') ? 'error' : undefined}
               placeholder={t('forgotPassword.form.email')}
             />
             {Boolean(form.getError('email')) && (
-              <TextError size="small" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('email')}
-              </TextError>
+              </Typography.Text>
             )}
           </div>
           <Button
-            fullWidth
+            type="primary"
             size="large"
-            leftAdornment={forgotPassword.isLoading && <Loader color="white" />}
+            loading={forgotPassword.isLoading}
             onClick={(e) => {
               e.preventDefault();
               if (!forgotPassword.isLoading) {

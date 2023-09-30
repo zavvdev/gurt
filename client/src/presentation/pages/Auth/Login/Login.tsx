@@ -1,24 +1,22 @@
-import Link from 'next/link';
+import { Button, Checkbox, Input, Typography } from 'antd';
 import { PUBLIC_ROUTES } from '~/routes';
-import { notificationService } from '~/core/services/NotificationService';
-import { useLogin } from '~/core/features/auth/login';
+import { notificationService } from '~/application/services/NotificationService';
+import { useLogin } from '~/application/features/auth/login';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
-import { useTranslation } from '~/presentation/i18n/useTranslation';
-import { Button } from '~/presentation/shared/Button/Button';
-import { Checkbox } from '~/presentation/shared/Checkbox/Checkbox';
-import { Input } from '~/presentation/shared/Input/Input';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { useForm } from '~/presentation/pages/Auth/Login/hooks/useForm';
-import { TextError } from '~/presentation/shared/TextError/TextError';
-import { Loader } from '~/presentation/shared/Loader/Loader';
+import { Icons } from '~/presentation/assets/Icons';
+import { useLoginStyles } from '~/presentation/pages/Auth/Login/Login.styles';
+import { useJssTheme } from '~/presentation/styles/hooks/useJssTheme';
+import { Link } from '~/presentation/shared/Link/Link';
 
 export function Login() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('auth');
+  const classes = useLoginStyles();
+  const { theme } = useJssTheme();
 
   const login = useLogin({
-    onSuccess: () => {
-      notificationService.success(t('login.success.fallback'));
-    },
     onError: (message) => {
       notificationService.error(
         tCommon(
@@ -35,67 +33,67 @@ export function Login() {
 
   return (
     <GuestLayout>
-      <div className="flex items-center justify-center flex-1 pt-10 max-md:pt-5 max-md:pb-20 flex-col">
-        <h2 className="text-4xl font-bold mb-10 max-sm:text-3xl w-96 max-sm:w-full text-center">
-          {t('login.label')}
-        </h2>
-        <form className="w-[350px] max-sm:w-[280px] flex flex-col gap-4">
+      <div className={classes.root}>
+        <Typography.Title level={2}>{t('login.label')}</Typography.Title>
+        <form className={classes.form}>
           <div>
             <Input
-              variant="large"
+              size="large"
               name="email"
               value={form.values.email}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              isError={Boolean(form.getError('email'))}
+              status={form.getError('email') ? 'error' : undefined}
               placeholder={t('login.form.email')}
             />
             {Boolean(form.getError('email')) && (
-              <TextError size="small" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('email')}
-              </TextError>
+              </Typography.Text>
             )}
           </div>
           <div>
-            <Input
-              type="password"
-              variant="large"
+            <Input.Password
+              size="large"
               name="password"
               value={form.values.password}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              isError={Boolean(form.getError('password'))}
+              status={form.getError('password') ? 'error' : undefined}
+              iconRender={(visible) =>
+                visible ? (
+                  <Icons.Eye size="1rem" color={theme.color.gray6} />
+                ) : (
+                  <Icons.EyeOff size="1rem" color={theme.color.gray6} />
+                )
+              }
               placeholder={t('login.form.password')}
               autoComplete="none"
             />
             {Boolean(form.getError('password')) && (
-              <TextError size="small" className="mt-1">
+              <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('password')}
-              </TextError>
+              </Typography.Text>
             )}
           </div>
-          <div className="flex justify-between items-center flex-wrap gap-1">
+          <div className={classes.actions}>
             <Checkbox
-              size="small"
               id="rememberMe"
-              isChecked={form.values.remember}
+              checked={form.values.remember}
               onChange={() =>
                 form.setFieldValue('remember', !form.values.remember)
               }
             >
               {t('login.form.rememberMe')}
             </Checkbox>
-            <Link
-              className="link text-sm"
-              href={PUBLIC_ROUTES.auth.forgotPassword()}
-            >
+            <Link to={PUBLIC_ROUTES.auth.forgotPassword()}>
               {t('login.form.forgotPassword')}
             </Link>
           </div>
           <Button
-            fullWidth
+            type="primary"
             size="large"
-            leftAdornment={login.isLoading && <Loader color="white" />}
+            loading={login.isLoading}
             onClick={(e) => {
               e.preventDefault();
               if (!login.isLoading) {

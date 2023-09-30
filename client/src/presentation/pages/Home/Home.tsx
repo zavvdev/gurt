@@ -1,4 +1,4 @@
-import { useLogout } from '~/core/features/auth/logout';
+import { useLogout } from '~/application/features/auth/logout';
 import { User } from '~/presentation/pages/Home/User';
 
 export function Home() {
@@ -8,9 +8,7 @@ export function Home() {
     <div>
       <div>Home</div>
       <User />
-      <button className="link" onClick={() => logout.initiate()}>
-        Logout
-      </button>
+      <button onClick={() => logout.initiate()}>Logout</button>
     </div>
   );
 }

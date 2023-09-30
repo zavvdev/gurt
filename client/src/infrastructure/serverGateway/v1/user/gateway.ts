@@ -12,9 +12,8 @@ class UserGateway {
   }
 
   public async getSessionUser() {
-    const response = await this.http.get<ServerResponse<User>>(
-      '/v1/user/session',
-    );
+    const response =
+      await this.http.get<ServerResponse<User>>('/v1/user/session');
     return validateResponse(response, userSchema);
   }
 }

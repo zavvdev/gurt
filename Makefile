@@ -18,6 +18,10 @@ stop:
 start:
 	docker-compose start
 
+# Restart all containers
+restart:
+	docker-compose stop && docker-compose start
+
 # Stop containers and remove containers, networks, volumes, and images created by 'up-prod' or 'up'
 down:
 	docker-compose down --rmi all -v
