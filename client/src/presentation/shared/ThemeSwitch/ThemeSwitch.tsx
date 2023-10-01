@@ -11,7 +11,9 @@ export const ThemeSwitch = observer(() => {
   const classes = useThemeSwitchStyles();
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
-    themeStore.setTheme(key as ThemeType);
+    setTimeout(() => {
+      themeStore.setTheme(key as ThemeType);
+    }, 300);
   };
 
   const items: MenuProps['items'] = [
