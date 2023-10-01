@@ -18,7 +18,8 @@
     "too_early": "Zabagato zapytiv",
     "invalid_token": "Nevalidnyj token",
     "invalid_signature": "Nevalidna sygnatura",
-    "user_not_found": "Korystuvača ne znajdeno"
+    "user_not_found": "Korystuvača ne znajdeno",
+    "same_password": "My ne recomendujemo vam vykorystovuvaty take same haslo jake bulo raniše"
   },
 
   "formError": {
