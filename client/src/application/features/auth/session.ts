@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { publicSessionId } from '~/infrastructure/serverGateway/utilities';
 import { userGateway } from '~/infrastructure/serverGateway/v1/user/gateway';
 
-export function usePublicSessionIdGuard() {
+export function usePrivateRoutePSIDGuard() {
   const isPSIDAvailable = Boolean(publicSessionId.get());
   const [status, setStatus] = useState<'valid' | 'verifying'>('verifying');
 
@@ -19,4 +19,10 @@ export function usePublicSessionIdGuard() {
   }, [isPSIDAvailable]);
 
   return status;
+}
+
+export function usePublicAuthRoutePSIDGuard() {
+  return {
+    isAuthenticated: Boolean(publicSessionId.get()),
+  };
 }

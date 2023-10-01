@@ -47,8 +47,8 @@ export function useRegister(args?: UseRegisterArgs) {
           });
         } else {
           args?.onSuccess?.();
-          navigate(PRIVATE_ROUTES.home());
         }
+        navigate(PRIVATE_ROUTES.home());
       },
       onError: (e: ServerValidationErrorsResponse) => {
         args?.onError?.({
