@@ -3,7 +3,7 @@ import { PRIVATE_ROUTES } from '~/routes';
 import { Home } from '~/presentation/pages/Home/Home';
 import { VerifyEmailResend } from '~/presentation/pages/VerifyEmailResend/VerifyEmailResend';
 import { VerifyEmail } from '~/presentation/pages/VerifyEmail/VerifyEmail';
-import { PrivateRouteGuard } from '~/presentation/router/PrivateRouteGuard';
+import { PrivateRouteGuard } from '~/presentation/router/shared/PrivateRouteGuard';
 
 export const privateRoutes: RouteObject[] = [
   {
