@@ -34,8 +34,8 @@ export function useLogin(args?: MutationEvents) {
           args?.onError?.(response.message);
         } else {
           args?.onSuccess?.(response.message);
-          navigate(PRIVATE_ROUTES.home());
         }
+        navigate(PRIVATE_ROUTES.home());
       },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);

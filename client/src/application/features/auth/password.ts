@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { PUBLIC_ROUTES } from '~/routes';
+import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
 import {
   ServerResponse,
   ServerResponseMessage,
@@ -15,6 +15,8 @@ export interface ForgotPasswordForm {
 }
 
 export function useForgotPassword(args?: MutationEvents) {
+  const navigate = useNavigate();
+
   const { mutate, isLoading } = useMutation(
     (form: ForgotPasswordForm) => {
       return authGateway.forgotPassword({
@@ -31,6 +33,7 @@ export function useForgotPassword(args?: MutationEvents) {
       onSuccess: (response: ServerResponse) => {
         if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
           args?.onError?.(response.message);
+          navigate(PRIVATE_ROUTES.home());
         } else {
           args?.onSuccess?.(response.message);
         }
@@ -71,6 +74,7 @@ export function useResetPassword(args?: MutationEvents) {
       onSuccess: (response: ServerResponse) => {
         if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
           args?.onError?.(response.message);
+          navigate(PRIVATE_ROUTES.home());
         } else {
           args?.onSuccess?.(response.message);
           navigate(PUBLIC_ROUTES.auth.login());
