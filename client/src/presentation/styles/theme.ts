@@ -19,8 +19,10 @@ export const THEME: {
       textInverted: '#eeeeee',
       gray6: '#bfbfbf',
       background: '#FFFFFF',
+      backgroundInverted: '#0e0e0e',
     },
-    borderRadius: 4,
+    borderRadiusBase: 4,
+    borderRadiusMedium: 8,
   },
   [ThemeType.Dark]: {
     color: {
@@ -32,8 +34,10 @@ export const THEME: {
       textInverted: '#282828',
       gray6: '#bfbfbf',
       background: '#0e0e0e',
+      backgroundInverted: '#FFFFFF',
     },
-    borderRadius: 4,
+    borderRadiusBase: 4,
+    borderRadiusMedium: 8,
   },
 };
 
@@ -86,7 +90,7 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
 
       colorText: theme.color.text,
 
-      borderRadius: theme.borderRadius,
+      borderRadius: theme.borderRadiusBase,
 
       fontFamily: 'inherit',
 
