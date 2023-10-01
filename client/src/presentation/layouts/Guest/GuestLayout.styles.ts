@@ -35,6 +35,7 @@ export const useGuestLayoutStyles = createUseStyles(
 
       [media.maxMd]: {
         gap: '1.25rem',
+        justifyContent: 'center',
       },
     },
 
