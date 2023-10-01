@@ -14,8 +14,10 @@ export interface Theme {
     textInverted: string;
     gray6: string;
     background: string;
+    backgroundInverted: string;
   };
-  borderRadius: number;
+  borderRadiusBase: number;
+  borderRadiusMedium: number;
 }
 
 export interface MediaBreakpoints {
