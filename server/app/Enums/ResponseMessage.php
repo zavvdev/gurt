@@ -28,6 +28,8 @@ enum ResponseMessage: string
 
     case InvalidSignature = 'invalid_signature';
 
+    case SamePassword = 'same_password';
+
     // Success
 
     case AlreadySent = 'already_sent';

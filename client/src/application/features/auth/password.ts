@@ -68,6 +68,9 @@ export function useResetPassword(args?: MutationEvents) {
       });
     },
     {
+      onMutate: async () => {
+        await authGateway.csrfCookie();
+      },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);
       },

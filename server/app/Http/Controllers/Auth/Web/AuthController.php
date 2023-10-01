@@ -116,6 +116,22 @@ class AuthController extends Controller
 
     public function resetPassword(ResetPasswordRequest $request)
     {
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return $this->errorResponse(
+                Response::HTTP_CONFLICT,
+                ResponseMessage::UserNotFound,
+            );
+        }
+
+        if (Hash::check($request->password, $user->password)) {
+            return $this->errorResponse(
+                Response::HTTP_CONFLICT,
+                ResponseMessage::SamePassword,
+            );
+        }
+
         $status = Password::reset(
             ResetPasswordRequest::from($request)->all(),
             function ($user) use ($request) {

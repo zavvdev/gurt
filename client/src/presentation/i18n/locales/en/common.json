@@ -18,7 +18,8 @@
     "too_early": "Too many requests",
     "invalid_token": "Invalid token",
     "invalid_signature": "Invalid signature",
-    "user_not_found": "User not found"
+    "user_not_found": "User not found",
+    "same_password": "We do not recommend you to use the same password that you used before"
   },
 
   "formError": {
