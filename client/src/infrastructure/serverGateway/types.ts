@@ -29,22 +29,6 @@ export enum ServerResponseMessage {
   InvalidSignature = 'invalid_signature',
 }
 
-export enum ServerValidationError {
-  Required = 'required',
-
-  AlreadyExists = 'already_exists',
-
-  StringType = 'string_type',
-
-  TooLong = 'too_long',
-
-  TooShort = 'too_short',
-
-  NotConfirmed = 'not_confirmed',
-
-  InvalidFormat = 'invalid_format',
-}
-
 export type ServerResponse<T = unknown> = {
   status: ServerResponseStatus;
   message: ServerResponseMessage | null;
