@@ -24,7 +24,7 @@
 
   "formError": {
     "nameRequired": "Provide your name",
-    "emailRequired": "Provide your email",
+    "loginRequired": "Provide your email or username",
     "emailInvalid": "Provide valid email",
     "usernameInvalid": "Username should consists only of letters, numbers and underscore",
     "usernameRequired": "Provide your username",

@@ -11,10 +11,15 @@ export function useForm({ onSubmit }: Args) {
   const { t } = useTranslation('common');
 
   const schema = yup.object({
-    email: yup
-      .string()
-      // .email(t('formError.emailInvalid'))
-      .required(t('formError.emailRequired')),
+    login: yup.lazy((v: string) => {
+      if (v?.includes('@')) {
+        return yup
+          .string()
+          .email(t('formError.emailInvalid'))
+          .required(t('formError.loginRequired'));
+      }
+      return yup.string().required(t('formError.loginRequired'));
+    }),
 
     password: yup.string().required(t('formError.passwordRequired')),
 
@@ -25,7 +30,7 @@ export function useForm({ onSubmit }: Args) {
     validationSchema: schema,
     enableReinitialize: true,
     initialValues: {
-      email: '',
+      login: '',
       password: '',
       remember: false,
     },

@@ -23,8 +23,8 @@
   },
 
   "formError": {
-    "nameRequired": "Podać swoje imię",
-    "emailRequired": "Podać swój adres e-mail",
+    "nameRequired": "Podaj swoje imię",
+    "loginRequired": "Podaj swój adres e-mail lub nazwę użytkownika",
     "emailInvalid": "Podaj prawidłowy adres e-mail",
     "usernameInvalid": "Nazwa użytkownika powinna składać się wyłącznie z liter, cyfr i podkreślenia",
     "usernameRequired": "Podaj nazwę użytkownika",

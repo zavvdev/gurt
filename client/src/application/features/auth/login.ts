@@ -9,7 +9,7 @@ import {
 import { MutationEvents } from '~/application/managers/queryClient/types';
 
 export interface LoginForm {
-  email: string;
+  login: string;
   password: string;
   remember: boolean;
 }
@@ -20,7 +20,7 @@ export function useLogin(args?: MutationEvents) {
   const mutation = useMutation(
     (form: LoginForm) => {
       return authGateway.login({
-        email: form.email,
+        login: form.login,
         password: form.password,
         remember: form.remember,
       });

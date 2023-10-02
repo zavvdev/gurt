@@ -15,7 +15,7 @@ class Data extends RequestData
 {
     public function __construct(
         #[Required]
-        public string $email,
+        public string $login,
 
         #[Required]
         public string $password,

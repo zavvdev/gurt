@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -68,9 +69,15 @@ class AuthController extends Controller
         $dto = $request->getData();
         $request->ensureIsNotRateLimited();
 
+        $validator = Validator::make(['email' => $dto->login], [
+            'email' => 'email',
+        ]);
+
+        $login = $validator->passes() ? 'email' : 'username';
+
         if (!Auth::attempt(
             [
-                'username' => $dto->email,
+                $login => $dto->login,
                 'password' => $dto->password,
             ],
             $request->boolean('remember'),
