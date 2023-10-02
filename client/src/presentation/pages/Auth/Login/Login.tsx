@@ -39,16 +39,16 @@ export function Login() {
           <div>
             <Input
               size="large"
-              name="email"
-              value={form.values.email}
+              name="login"
+              value={form.values.login}
               onChange={form.handleChange}
               onBlur={form.handleBlur}
-              status={form.getError('email') ? 'error' : undefined}
-              placeholder={t('login.form.email')}
+              status={form.getError('login') ? 'error' : undefined}
+              placeholder={t('login.form.login')}
             />
-            {Boolean(form.getError('email')) && (
+            {Boolean(form.getError('login')) && (
               <Typography.Text type="danger" className={classes.formError}>
-                {form.getError('email')}
+                {form.getError('login')}
               </Typography.Text>
             )}
           </div>

@@ -24,8 +24,11 @@
 
   "formError": {
     "nameRequired": "Vkažit' vaše im'ja",
-    "emailRequired": "Vkažit' vašu elektronnu adresu",
+    "loginRequired": "Vkažit' vašu elektronnu adresu abo oblikovku",
     "emailInvalid": "Nekorektna elektronna adresa",
+    "usernameInvalid": "Oblikovka povynna skladatysja lyše z liter, cyfr ta nyžnjogo pidkreslennja",
+    "usernameRequired": "Vkažit' vašu oblikovku",
+    "usernameLength": "Oblikovka povynna skladatysja minimum z 3-h ta maksymum z 16-ty symvoliv",
     "passwordRequired": "Vkažit' vaše gaslo",
     "passwordConfirmRequired": "Pidtverdit' gaslo",
     "passwordsNotMatch": "Gasla ne spivpadajut'",

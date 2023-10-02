@@ -24,8 +24,11 @@
 
   "formError": {
     "nameRequired": "Provide your name",
-    "emailRequired": "Provide your email",
+    "loginRequired": "Provide your email or username",
     "emailInvalid": "Provide valid email",
+    "usernameInvalid": "Username should consists only of letters, numbers and underscore",
+    "usernameRequired": "Provide your username",
+    "usernameLength": "Username should be minimum 3 and maximum 16 symbols length",
     "passwordRequired": "Provide your password",
     "passwordConfirmRequired": "Confirm your password",
     "passwordsNotMatch": "Passwords do not match",
