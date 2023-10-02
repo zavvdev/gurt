@@ -1,4 +1,5 @@
 import { Button, Input, Typography } from 'antd';
+import { useState } from 'react';
 import { useRegister } from '~/application/features/auth/register';
 import { notificationService } from '~/application/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
@@ -13,11 +14,17 @@ export function Register() {
   const { t } = useTranslation('auth');
   const classes = useRegisterStyles();
   const { theme } = useJssTheme();
+  const [alreadyUsed, setAlreadyUsed] = useState<string | null>(null);
 
   const register = useRegister({
     onError: ({ validationErrors, message }) => {
-      const field = validationErrors?.[0]?.field || 0;
+      const field = validationErrors?.[0]?.field || '-';
       const key = validationErrors?.[0]?.errorKeys?.[0] || null;
+
+      if (key === 'already_exists') {
+        setAlreadyUsed(field);
+      }
+
       notificationService.error(
         tCommon(
           `serverMessage.${message}`,
@@ -31,7 +38,10 @@ export function Register() {
   });
 
   const form = useForm({
-    onSubmit: register.initiate,
+    onSubmit: (values) => {
+      setAlreadyUsed(null);
+      register.initiate(values);
+    },
   });
 
   return (
@@ -60,14 +70,45 @@ export function Register() {
               size="large"
               name="email"
               value={form.values.email}
-              onChange={form.handleChange}
+              onChange={(e) => {
+                setAlreadyUsed(null);
+                form.handleChange(e);
+              }}
               onBlur={form.handleBlur}
-              status={form.getError('email') ? 'error' : undefined}
+              status={
+                form.getError('email') || alreadyUsed === 'email'
+                  ? 'error'
+                  : undefined
+              }
               placeholder={t('register.form.email')}
             />
             {Boolean(form.getError('email')) && (
               <Typography.Text type="danger" className={classes.formError}>
                 {form.getError('email')}
+              </Typography.Text>
+            )}
+          </div>
+          <div>
+            <Input
+              size="large"
+              name="username"
+              value={form.values.username}
+              onChange={(e) => {
+                setAlreadyUsed(null);
+                form.handleChange(e);
+              }}
+              onBlur={form.handleBlur}
+              status={
+                form.getError('username') || alreadyUsed === 'username'
+                  ? 'error'
+                  : undefined
+              }
+              placeholder={t('register.form.username')}
+              prefix={<Icons.AtSign width={17} color={theme.color.gray6} />}
+            />
+            {Boolean(form.getError('username')) && (
+              <Typography.Text type="danger" className={classes.formError}>
+                {form.getError('username')}
               </Typography.Text>
             )}
           </div>
