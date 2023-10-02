@@ -13,7 +13,7 @@ export function useForm({ onSubmit }: Args) {
   const schema = yup.object({
     email: yup
       .string()
-      .email(t('formError.emailInvalid'))
+      // .email(t('formError.emailInvalid'))
       .required(t('formError.emailRequired')),
 
     password: yup.string().required(t('formError.passwordRequired')),

@@ -21,6 +21,8 @@ class RequestData extends Data
             'unique' => ValidationError::AlreadyExists,
 
             'confirmed' => ValidationError::NotConfirmed,
+
+            'regex' => ValidationError::InvalidFormat,
         ];
     }
 }

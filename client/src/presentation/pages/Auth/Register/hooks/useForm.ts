@@ -1,7 +1,12 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { RegisterForm } from '~/application/features/auth/register';
-import { AUTH_PASSWORD_MIN_LENGTH } from '~/application/features/auth/config';
+import {
+  AUTH_PASSWORD_MIN_LENGTH,
+  AUTH_USERNAME_MAX_LENGTH,
+  AUTH_USERNAME_MIN_LENGTH,
+  AUTH_USERNAME_REGEX,
+} from '~/application/features/auth/config';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {
@@ -18,6 +23,17 @@ export function useForm({ onSubmit }: Args) {
       .string()
       .email(t('formError.emailInvalid'))
       .required(t('formError.emailRequired')),
+
+    username: yup
+      .string()
+      .required(t('formError.usernameRequired'))
+      .matches(AUTH_USERNAME_REGEX, t('formError.usernameInvalid'))
+      .test({
+        message: t('formError.usernameLength'),
+        test: (v) =>
+          v.length >= AUTH_USERNAME_MIN_LENGTH &&
+          v.length <= AUTH_USERNAME_MAX_LENGTH,
+      }),
 
     password: yup
       .string()
@@ -44,6 +60,7 @@ export function useForm({ onSubmit }: Args) {
     initialValues: {
       name: '',
       email: '',
+      username: '',
       password: '',
       passwordConfirm: '',
     },

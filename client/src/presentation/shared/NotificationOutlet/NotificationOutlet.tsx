@@ -7,7 +7,7 @@ export function NotificationOutlet() {
     <ToastContainer
       position="top-center"
       pauseOnFocusLoss={false}
-      autoClose={3000}
+      autoClose={5000}
       hideProgressBar
       newestOnTop
       closeOnClick

@@ -15,4 +15,6 @@ class ValidationError
     const TooShort = 'too_short';
 
     const NotConfirmed = 'not_confirmed';
+
+    const InvalidFormat = 'invalid_format';
 }

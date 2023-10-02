@@ -12,6 +12,7 @@ import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 export interface RegisterForm {
   name: string;
   email: string;
+  username: string;
   password: string;
   passwordConfirm: string;
 }
@@ -32,6 +33,7 @@ export function useRegister(args?: UseRegisterArgs) {
       return authGateway.register({
         name: form.name,
         email: form.email,
+        username: form.username,
         password: form.password,
         password_confirmation: form.passwordConfirm,
       });

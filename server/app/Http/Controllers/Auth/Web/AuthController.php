@@ -53,6 +53,7 @@ class AuthController extends Controller
         $createdUser = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'username' => $request->username,
             'password' => Hash::make($request->password),
         ]);
 
@@ -69,7 +70,7 @@ class AuthController extends Controller
 
         if (!Auth::attempt(
             [
-                'email' => $dto->email,
+                'username' => $dto->email,
                 'password' => $dto->password,
             ],
             $request->boolean('remember'),

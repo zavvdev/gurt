@@ -72,6 +72,23 @@ export function Register() {
             )}
           </div>
           <div>
+            <Input
+              size="large"
+              name="username"
+              value={form.values.username}
+              onChange={form.handleChange}
+              onBlur={form.handleBlur}
+              status={form.getError('username') ? 'error' : undefined}
+              placeholder={t('register.form.username')}
+              prefix={<Icons.AtSign width={17} color={theme.color.gray6} />}
+            />
+            {Boolean(form.getError('username')) && (
+              <Typography.Text type="danger" className={classes.formError}>
+                {form.getError('username')}
+              </Typography.Text>
+            )}
+          </div>
+          <div>
             <Input.Password
               size="large"
               name="password"
