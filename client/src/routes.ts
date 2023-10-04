@@ -26,7 +26,11 @@ export const PRIVATE_ROUTES = {
 
   userProfile: (id: string | number = ':id') => `/user/${id}`,
 
-  settings: () => '/settings',
+  settings: {
+    root: () => '/settings',
+    account: () => '/settings/account',
+    interests: () => '/settings/interests',
+  },
 };
 
 export const ROUTE_AFTER_AUTH = PRIVATE_ROUTES.profile();

@@ -1,15 +1,20 @@
-import { matchPath, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import cn from 'clsx';
+import { PropsWithChildren } from 'react';
 import { PRIVATE_ROUTES } from '~/routes';
 import { Icons } from '~/presentation/assets/Icons';
 import { useUserLayoutStyles } from '~/presentation/layouts/User/UserLayout.styles';
 
-export function UserLayout({ children }: { children: React.ReactNode }) {
+interface Props extends PropsWithChildren {
+  noPaddingTop?: boolean;
+}
+
+export function UserLayout({ children, noPaddingTop }: Props) {
   const classes = useUserLayoutStyles();
   const navigate = useNavigate();
 
   const isRouteActive = (path: string) => {
-    return Boolean(matchPath(path, window.location.pathname));
+    return window.location.pathname.startsWith(path);
   };
 
   const navigation = [
@@ -46,13 +51,17 @@ export function UserLayout({ children }: { children: React.ReactNode }) {
     {
       id: 6,
       icon: <Icons.Settings />,
-      isActive: isRouteActive(PRIVATE_ROUTES.settings()),
-      onClick: () => navigate(PRIVATE_ROUTES.settings()),
+      isActive: isRouteActive(PRIVATE_ROUTES.settings.root()),
+      onClick: () => navigate(PRIVATE_ROUTES.settings.root()),
     },
   ];
 
   return (
-    <div className={classes.root}>
+    <div
+      className={cn(classes.root, {
+        [classes.rootNoPaddingTop]: noPaddingTop,
+      })}
+    >
       {children}
       <nav className={classes.nav}>
         {navigation.map((n) => (

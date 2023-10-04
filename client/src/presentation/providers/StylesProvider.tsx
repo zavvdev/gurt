@@ -5,7 +5,7 @@ import { ThemeProvider as JssProvider } from 'react-jss';
 import {
   getAntDesignTheme,
   getThemeByType,
-  mediaBreakpoints,
+  mediaQueries,
 } from '~/presentation/styles/theme';
 import { themeStore } from '~/presentation/styles/store';
 import { useSyncWithSystemTheme } from '~/presentation/styles/hooks/useSyncWithSystemTheme';
@@ -25,7 +25,7 @@ export const StylesProvider = observer(({ children }: PropsWithChildren) => {
   const jssTheme: JssTheme = {
     isDark: themeStore.resolvedTheme === ThemeType.Dark,
     theme: getThemeByType(themeStore.resolvedTheme),
-    media: mediaBreakpoints,
+    media: mediaQueries,
   };
 
   return (

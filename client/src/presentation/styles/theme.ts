@@ -1,10 +1,6 @@
 import type { ThemeConfig } from 'antd';
 import { DEFAULT_THEME_TYPE } from '~/presentation/styles/config';
-import {
-  MediaBreakpoints,
-  Theme,
-  ThemeType,
-} from '~/presentation/styles/types';
+import { MediaQueries, Theme, ThemeType } from '~/presentation/styles/types';
 
 export const THEME: {
   [key: string]: Theme;
@@ -17,6 +13,7 @@ export const THEME: {
       primaryBgHover: '#e4e4e4',
       text: '#282828',
       textInverted: '#eeeeee',
+      gray1: '#f0f0f0',
       gray6: '#bfbfbf',
       background: '#FFFFFF',
       backgroundInverted: '#0e0e0e',
@@ -32,6 +29,7 @@ export const THEME: {
       primaryBgHover: '#4d4d4d',
       text: '#eeeeee',
       textInverted: '#282828',
+      gray1: '#313131',
       gray6: '#bfbfbf',
       background: '#0e0e0e',
       backgroundInverted: '#FFFFFF',
@@ -66,11 +64,18 @@ export const SCREEN_BREAKPOINTS = {
   screenXSMin: 480,
 };
 
-export const mediaBreakpoints: MediaBreakpoints = {
-  maxXs: `@media screen and (max-width: ${SCREEN_BREAKPOINTS.screenXS}px)`,
-  maxSm: `@media screen and (max-width: ${SCREEN_BREAKPOINTS.screenSM}px)`,
-  maxMd: `@media screen and (max-width: ${SCREEN_BREAKPOINTS.screenMD}px)`,
-  maxLg: `@media screen and (max-width: ${SCREEN_BREAKPOINTS.screenLG}px)`,
+export const mediaBreakpoints = {
+  maxXs: `(max-width: ${SCREEN_BREAKPOINTS.screenXS}px)`,
+  maxSm: `(max-width: ${SCREEN_BREAKPOINTS.screenSM}px)`,
+  maxMd: `(max-width: ${SCREEN_BREAKPOINTS.screenMD}px)`,
+  maxLg: `(max-width: ${SCREEN_BREAKPOINTS.screenLG}px)`,
+};
+
+export const mediaQueries: MediaQueries = {
+  maxXs: `@media screen and ${mediaBreakpoints.maxXs}`,
+  maxSm: `@media screen and ${mediaBreakpoints.maxSm}`,
+  maxMd: `@media screen and ${mediaBreakpoints.maxMd}`,
+  maxLg: `@media screen and ${mediaBreakpoints.maxLg}`,
 };
 
 export function getThemeByType(type: ThemeType) {
