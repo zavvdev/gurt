@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { PRIVATE_ROUTES } from '~/routes';
+import { ROUTE_AFTER_AUTH } from '~/routes';
 import {
   ExtractedValidationError,
   ServerResponseMessage,
@@ -50,7 +50,7 @@ export function useRegister(args?: UseRegisterArgs) {
         } else {
           args?.onSuccess?.();
         }
-        navigate(PRIVATE_ROUTES.home());
+        navigate(ROUTE_AFTER_AUTH);
       },
       onError: (e: ServerValidationErrorsResponse) => {
         args?.onError?.({

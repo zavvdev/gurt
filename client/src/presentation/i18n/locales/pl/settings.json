@@ -1,0 +1,12 @@
+{
+  "account": {
+    "delete": {
+      "button": "Usuń konto na stałe",
+      "confirm": {
+        "text": "Za chwilę usuniesz swoje konto na stałe. Usuniętych danych nie można odzyskać Czy na pewno chcesz to zrobić?",
+        "submit": "Tak",
+        "cancel": "Nie"
+      }
+    }
+  }
+}

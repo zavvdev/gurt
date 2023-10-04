@@ -1,0 +1,12 @@
+{
+  "account": {
+    "delete": {
+      "button": "Delete account permanently",
+      "confirm": {
+        "text": "You are about to delete your account permanently. Deleted data cannot be recovered. Are you sure you want to do this? ",
+        "submit": "Yes",
+        "cancel": "No"
+      }
+    }
+  }
+}

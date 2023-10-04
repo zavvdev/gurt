@@ -21,4 +21,12 @@ export const PRIVATE_ROUTES = {
       hash: ':hash',
     },
   ) => `/verify-email/${args.id}/${args.hash}`,
+
+  profile: () => '/profile',
+
+  userProfile: (id: string | number = ':id') => `/user/${id}`,
+
+  settings: () => '/settings',
 };
+
+export const ROUTE_AFTER_AUTH = PRIVATE_ROUTES.profile();

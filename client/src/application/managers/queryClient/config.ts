@@ -1,5 +1,6 @@
 export enum QueryKey {
-  SessionUser = 'query/session-user',
+  UserFromSession = 'query/user-from-session',
+  ProfileByUserId = 'query/profile-by-user-id',
 }
 
 export enum QueryMetaKey {

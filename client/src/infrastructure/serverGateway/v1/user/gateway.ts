@@ -11,10 +11,19 @@ class UserGateway {
     this.http = http;
   }
 
-  public async getSessionUser() {
-    const response =
-      await this.http.get<ServerResponse<User>>('/v1/user/session');
+  private r(path: string) {
+    return `/v1/user${path}`;
+  }
+
+  public async getFromSession() {
+    const response = await this.http.get<ServerResponse<User>>(
+      this.r('/session'),
+    );
     return validateResponse(response, userSchema);
+  }
+
+  public delete() {
+    return this.http.delete<ServerResponse>(this.r('/delete'));
   }
 }
 

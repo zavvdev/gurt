@@ -34,8 +34,8 @@ export function UserLayout({ children }: { children: React.ReactNode }) {
     {
       id: 4,
       icon: <Icons.UserCircle />,
-      isActive: false,
-      onClick: () => {},
+      isActive: isRouteActive(PRIVATE_ROUTES.profile()),
+      onClick: () => navigate(PRIVATE_ROUTES.profile()),
     },
     {
       id: 5,
@@ -46,8 +46,8 @@ export function UserLayout({ children }: { children: React.ReactNode }) {
     {
       id: 6,
       icon: <Icons.Settings />,
-      isActive: false,
-      onClick: () => {},
+      isActive: isRouteActive(PRIVATE_ROUTES.settings()),
+      onClick: () => navigate(PRIVATE_ROUTES.settings()),
     },
   ];
 

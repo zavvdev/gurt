@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { PRIVATE_ROUTES } from '~/routes';
+import { ROUTE_AFTER_AUTH } from '~/routes';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { emailGateway } from '~/infrastructure/serverGateway/v1/email/gateway';
 import { MutationEvents } from '~/application/managers/queryClient/types';
@@ -53,7 +53,7 @@ export function useVerifyEmail(args?: MutationEvents) {
       },
       onSuccess: (response: ServerResponse) => {
         args?.onSuccess?.(response.message);
-        navigate(PRIVATE_ROUTES.home());
+        navigate(ROUTE_AFTER_AUTH);
       },
     },
   );

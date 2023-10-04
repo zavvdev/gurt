@@ -4,6 +4,8 @@ import { Home } from '~/presentation/pages/Home/Home';
 import { VerifyEmailResend } from '~/presentation/pages/VerifyEmailResend/VerifyEmailResend';
 import { VerifyEmail } from '~/presentation/pages/VerifyEmail/VerifyEmail';
 import { PrivateRouteGuard } from '~/presentation/router/shared/PrivateRouteGuard';
+import { Profile } from '~/presentation/pages/Profile/Profile';
+import { Settings } from '~/presentation/pages/Settings/Settings';
 
 export const privateRoutes: RouteObject[] = [
   {
@@ -27,6 +29,30 @@ export const privateRoutes: RouteObject[] = [
     element: (
       <PrivateRouteGuard>
         <VerifyEmail />
+      </PrivateRouteGuard>
+    ),
+  },
+  {
+    path: PRIVATE_ROUTES.profile(),
+    element: (
+      <PrivateRouteGuard>
+        <Profile />
+      </PrivateRouteGuard>
+    ),
+  },
+  {
+    path: PRIVATE_ROUTES.userProfile(),
+    element: (
+      <PrivateRouteGuard>
+        <Profile />
+      </PrivateRouteGuard>
+    ),
+  },
+  {
+    path: PRIVATE_ROUTES.settings(),
+    element: (
+      <PrivateRouteGuard>
+        <Settings />
       </PrivateRouteGuard>
     ),
   },

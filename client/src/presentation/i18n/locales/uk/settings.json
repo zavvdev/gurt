@@ -1,0 +1,12 @@
+{
+  "account": {
+    "delete": {
+      "button": "Vydalyty oblikovku nazavždy",
+      "confirm": {
+        "text": "Vy zbyrajetes' vydalyty vašu oblikovku. Vydaleni dani bude nemožlyvo vidnovyty. Vy točno hočete ce zrobyty? ",
+        "submit": "Tak",
+        "cancel": "Ni"
+      }
+    }
+  }
+}

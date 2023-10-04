@@ -11,14 +11,14 @@ interface QueryArgs {
   successNotification?: Notification;
 }
 
-export function createSessionUserQueryKey() {
-  return [QueryKey.SessionUser];
+export function createUserFromSessionQueryKey() {
+  return [QueryKey.UserFromSession];
 }
 
-export function useSessionUserQuery(args?: QueryArgs) {
+export function useUserFromSessionQuery(args?: QueryArgs) {
   return useQuery({
-    queryKey: createSessionUserQueryKey(),
-    queryFn: () => userGateway.getSessionUser(),
+    queryKey: createUserFromSessionQueryKey(),
+    queryFn: () => userGateway.getFromSession(),
     meta: {
       [QueryMetaKey.ErrorNotification]: args?.errorNotification,
       [QueryMetaKey.SuccessNotification]: args?.successNotification,

@@ -19,13 +19,17 @@ class AuthGateway {
     this.http = http;
   }
 
+  private r(path: string) {
+    return `/v1/auth${path}`;
+  }
+
   public csrfCookie() {
     return this.http.get('/v1/sanctum/csrf-cookie');
   }
 
   public async register(dto: RegisterRequest) {
     const res = await this.http.post<ServerResponse, RegisterRequest>(
-      '/v1/auth/register',
+      this.r('/register'),
       dto,
     );
     if (res.status === ServerResponseStatus.Success) {
@@ -37,7 +41,7 @@ class AuthGateway {
   }
 
   public async logout() {
-    const res = await this.http.post<ServerResponse>('/v1/auth/logout');
+    const res = await this.http.post<ServerResponse>(this.r('/logout'));
     if (res.status === ServerResponseStatus.Success) {
       publicSessionId.remove();
     }
@@ -45,7 +49,7 @@ class AuthGateway {
   }
 
   public async login(dto: LoginRequest) {
-    const res = await this.http.post<ServerResponse>('/v1/auth/login', dto);
+    const res = await this.http.post<ServerResponse>(this.r('/login'), dto);
     if (res.status === ServerResponseStatus.Success) {
       publicSessionId.set();
     } else {
@@ -55,11 +59,11 @@ class AuthGateway {
   }
 
   public forgotPassword(dto: ForgotPasswordRequest) {
-    return this.http.post<ServerResponse>('/v1/auth/forgot-password', dto);
+    return this.http.post<ServerResponse>(this.r('/forgot-password'), dto);
   }
 
   public resetPassword(dto: ResetPasswordRequest) {
-    return this.http.post<ServerResponse>('/v1/auth/reset-password', dto);
+    return this.http.post<ServerResponse>(this.r('/reset-password'), dto);
   }
 }
 
