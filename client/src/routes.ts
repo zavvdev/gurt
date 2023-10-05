@@ -28,8 +28,8 @@ export const PRIVATE_ROUTES = {
 
   settings: {
     root: () => '/settings',
-    account: () => '/settings/account',
-    interests: () => '/settings/interests',
+    app: () => '/settings/application',
+    profile: () => '/settings/profile',
   },
 };
 

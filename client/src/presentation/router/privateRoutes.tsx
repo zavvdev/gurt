@@ -52,23 +52,23 @@ export const privateRoutes: RouteObject[] = [
     path: PRIVATE_ROUTES.settings.root(),
     element: (
       <PrivateRouteGuard>
-        <Settings />
+        <Settings.Root />
       </PrivateRouteGuard>
     ),
   },
   {
-    path: PRIVATE_ROUTES.settings.account(),
+    path: PRIVATE_ROUTES.settings.app(),
     element: (
       <PrivateRouteGuard>
-        <Settings />
+        <Settings.App />
       </PrivateRouteGuard>
     ),
   },
   {
-    path: PRIVATE_ROUTES.settings.interests(),
+    path: PRIVATE_ROUTES.settings.profile(),
     element: (
       <PrivateRouteGuard>
-        <Settings />
+        <Settings.Profile />
       </PrivateRouteGuard>
     ),
   },

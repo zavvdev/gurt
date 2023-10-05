@@ -1,12 +1,20 @@
 {
   "label": "Settings",
-  "account": {
+  "menu": {
+    "app": "Application",
+    "profile": "Profile"
+  },
+  "app": {
+    "label": "Application settings"
+  },
+  "profile": {
+    "label": "Profile settings",
     "delete": {
-      "button": "Delete account permanently",
+      "button": "Delete profile permanently",
       "confirm": {
-        "text": "You are about to delete your account permanently. Deleted data cannot be recovered. Are you sure you want to do this? ",
-        "submit": "Yes",
-        "cancel": "No"
+        "text": "You are about to delete your profile permanently. After deletion you wont be able to login to this profile or recover data. Are you sure you want to do this?",
+        "submit": "Yes. Delete my profile",
+        "cancel": "No. Keep it"
       }
     }
   }

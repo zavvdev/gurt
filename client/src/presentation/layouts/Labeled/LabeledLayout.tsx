@@ -9,6 +9,7 @@ interface Props extends PropsWithChildren {
   rightAdornment?: React.ReactNode;
   leftAdornment?: React.ReactNode;
   onBack?: () => void;
+  noBackBtn?: boolean;
 }
 
 export function LabeledLayout({
@@ -17,6 +18,7 @@ export function LabeledLayout({
   rightAdornment,
   leftAdornment,
   onBack,
+  noBackBtn = false,
 }: Props) {
   const navigate = useNavigate();
   const classes = useLabeledLayoutStyles();
@@ -33,12 +35,14 @@ export function LabeledLayout({
     <div>
       <div className={classes.head}>
         <div className={classes.left}>
-          <Button
-            type="text"
-            onClick={handleBack}
-            icon={<Icons.ChevronLeft />}
-            className={classes.backBtn}
-          />
+          {!noBackBtn && (
+            <Button
+              type="text"
+              onClick={handleBack}
+              icon={<Icons.ChevronLeft />}
+              className={classes.backBtn}
+            />
+          )}
           <h1 className={classes.label}>{label}</h1>
           {leftAdornment}
         </div>

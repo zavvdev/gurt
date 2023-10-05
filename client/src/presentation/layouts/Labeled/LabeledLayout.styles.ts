@@ -25,7 +25,7 @@ export const useLabeledLayoutStyles = createUseStyles(
       fontWeight: 'bold',
 
       [media.maxSm]: {
-        fontSize: '1.3rem',
+        fontSize: '1.2rem',
       },
     },
 
@@ -33,11 +33,11 @@ export const useLabeledLayoutStyles = createUseStyles(
       paddingTop: '9rem',
 
       [media.maxMd]: {
-        paddingTop: '8.5rem',
+        paddingTop: '8rem',
       },
 
       [media.maxSm]: {
-        paddingTop: '7.5rem',
+        paddingTop: '7rem',
       },
     },
 
@@ -48,7 +48,7 @@ export const useLabeledLayoutStyles = createUseStyles(
       flexWrap: 'wrap',
 
       [media.maxSm]: {
-        gap: '0.5rem',
+        gap: '0.4rem',
       },
     },
 

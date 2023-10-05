@@ -1,12 +1,20 @@
 {
   "label": "Ustawienia",
-  "account": {
+  "menu": {
+    "app": "Aplikacja",
+    "profile": "Profil"
+  },
+  "app": {
+    "label": "Ustawienia aplikacji"
+  },
+  "profile": {
+    "label": "Ustawienia profilu",
     "delete": {
-      "button": "Usuń konto na stałe",
+      "button": "Usuń profil na stałe",
       "confirm": {
-        "text": "Za chwilę usuniesz swoje konto na stałe. Usuniętych danych nie można odzyskać Czy na pewno chcesz to zrobić?",
-        "submit": "Tak",
-        "cancel": "Nie"
+        "text": "Za chwilę usuniesz swój profil na stałe. Po usunięciu nie będziesz mógł zalogować się do tego profilu ani odzyskać danych. Czy na pewno chcesz to zrobić?",
+        "submit": "Tak. Usuń mój profil",
+        "cancel": "Nie. Zatrzymaj to"
       }
     }
   }
