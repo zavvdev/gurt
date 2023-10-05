@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { ConfigProvider as AntDesignProvider, theme } from 'antd';
 import { ThemeProvider as JssProvider } from 'react-jss';
@@ -6,6 +6,7 @@ import {
   getAntDesignTheme,
   getThemeByType,
   mediaQueries,
+  THEME,
 } from '~/presentation/styles/theme';
 import { themeStore } from '~/presentation/styles/store';
 import { useSyncWithSystemTheme } from '~/presentation/styles/hooks/useSyncWithSystemTheme';
@@ -27,6 +28,16 @@ export const StylesProvider = observer(({ children }: PropsWithChildren) => {
     theme: getThemeByType(themeStore.resolvedTheme),
     media: mediaQueries,
   };
+
+  useEffect(() => {
+    const htmlRoot = document.querySelector('html');
+    console.log(htmlRoot);
+    if (htmlRoot) {
+      htmlRoot.style.backgroundColor =
+        THEME[themeStore.resolvedTheme].color.background;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [themeStore.resolvedTheme]);
 
   return (
     <AntDesignProvider theme={antDesignTheme}>
