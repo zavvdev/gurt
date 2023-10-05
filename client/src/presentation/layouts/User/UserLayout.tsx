@@ -25,28 +25,10 @@ export function UserLayout({ children, noPaddingTop }: Props) {
       onClick: () => navigate(PRIVATE_ROUTES.home()),
     },
     {
-      id: 2,
-      icon: <Icons.Users />,
-      isActive: false,
-      onClick: () => {},
-    },
-    {
-      id: 3,
-      icon: <Icons.Hash />,
-      isActive: false,
-      onClick: () => {},
-    },
-    {
       id: 4,
       icon: <Icons.UserCircle />,
       isActive: isRouteActive(PRIVATE_ROUTES.profile()),
       onClick: () => navigate(PRIVATE_ROUTES.profile()),
-    },
-    {
-      id: 5,
-      icon: <Icons.Search />,
-      isActive: false,
-      onClick: () => {},
     },
     {
       id: 6,
