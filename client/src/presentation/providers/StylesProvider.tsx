@@ -31,7 +31,6 @@ export const StylesProvider = observer(({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const htmlRoot = document.querySelector('html');
-    console.log(htmlRoot);
     if (htmlRoot) {
       htmlRoot.style.backgroundColor =
         THEME[themeStore.resolvedTheme].color.background;

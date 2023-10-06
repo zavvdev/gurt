@@ -18,7 +18,9 @@ export function SettingsPageLayout({ children, label }: Props) {
   const handleBack = () => {
     if (isMaxMd) {
       navigate(PRIVATE_ROUTES.settings.root());
-    } else [navigate(-1)];
+    } else {
+      navigate(-1);
+    }
   };
 
   return (

@@ -1,5 +1,10 @@
 import { Http } from '~/entities/Http';
-import { User, userSchema } from '~/entities/api/User';
+import {
+  PublicUser,
+  publicUserSchema,
+  User,
+  userSchema,
+} from '~/entities/api/User';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { validateResponse } from '~/infrastructure/serverGateway/utilities';
@@ -24,6 +29,13 @@ class UserGateway {
 
   public delete() {
     return this.http.delete<ServerResponse>(this.r('/delete'));
+  }
+
+  public async getById(id: number) {
+    const response = await this.http.get<ServerResponse<PublicUser>>(
+      this.r(`/${id}`),
+    );
+    return validateResponse(response, publicUserSchema);
   }
 }
 

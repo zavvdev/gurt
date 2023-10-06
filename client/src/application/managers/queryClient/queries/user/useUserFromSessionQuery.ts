@@ -7,6 +7,7 @@ import {
 import { Notification } from '~/application/services/NotificationService';
 
 interface QueryArgs {
+  enabled?: boolean;
   errorNotification?: Notification;
   successNotification?: Notification;
 }
@@ -23,5 +24,6 @@ export function useUserFromSessionQuery(args?: QueryArgs) {
       [QueryMetaKey.ErrorNotification]: args?.errorNotification,
       [QueryMetaKey.SuccessNotification]: args?.successNotification,
     },
+    enabled: args?.enabled,
   });
 }

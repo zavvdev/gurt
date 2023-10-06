@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::prefix('user')->group(function () {
         Route::get('/session', [UserController::class, 'getFromSession']);
         Route::delete('/delete', [UserController::class, 'delete']);
+        Route::get('/{id}', [UserController::class, 'getById']);
     });
 
     Route::prefix('profile')->group(function () {
