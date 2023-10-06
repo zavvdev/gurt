@@ -5,7 +5,9 @@
     "profile": "Profile"
   },
   "app": {
-    "label": "Application settings"
+    "label": "Application settings",
+    "language": "Language",
+    "theme": "Theme"
   },
   "profile": {
     "label": "Profile settings",

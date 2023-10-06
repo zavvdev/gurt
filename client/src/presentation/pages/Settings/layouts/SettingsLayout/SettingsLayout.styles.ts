@@ -27,9 +27,13 @@ export const useSettingsLayoutStyles = createUseStyles(
 
     content: {
       paddingLeft: '15rem',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1.5rem',
 
       [media.maxMd]: {
         paddingLeft: 0,
+        gap: '1rem',
       },
     },
   }),

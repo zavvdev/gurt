@@ -1,18 +1,18 @@
-import { Button, Dropdown, MenuProps } from 'antd';
+import { Button, Dropdown, Select } from 'antd';
 import { FALLBACK_LNG, LANGUAGES } from '~/presentation/i18n/config';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { Icons } from '~/presentation/assets/Icons';
 import { useLanguageSwitchStyles } from '~/presentation/shared/LanguageSwitch/LanguageSwitch.styles';
 
-export function LanguageSwitch() {
+interface Props {
+  variant?: 'dropdown' | 'select';
+}
+
+export function LanguageSwitch({ variant }: Props) {
   const { i18n } = useTranslation('common');
   const classes = useLanguageSwitchStyles();
 
-  const onClick: MenuProps['onClick'] = ({ key: lang }) => {
-    i18n.changeLanguage(lang);
-  };
-
-  const items: MenuProps['items'] = [
+  const items = [
     {
       key: LANGUAGES.en,
       label: LANGUAGES.en,
@@ -27,13 +27,19 @@ export function LanguageSwitch() {
     },
   ];
 
-  return (
+  return variant === 'select' ? (
+    <Select
+      defaultValue={i18n.language ?? FALLBACK_LNG}
+      onChange={(value) => i18n.changeLanguage(value)}
+      options={items.map((i) => ({ value: i.key, label: i.label }))}
+    />
+  ) : (
     <Dropdown
       menu={{
         items,
         selectable: true,
         selectedKeys: [i18n.language ?? FALLBACK_LNG],
-        onClick,
+        onClick: ({ key }) => i18n.changeLanguage(key),
       }}
     >
       <Button type="text" className={classes.button}>

@@ -1,45 +1,20 @@
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { SettingsPageLayout } from '~/presentation/pages/Settings/layouts/SettingsPageLayout/SettingsPageLayout';
+import { SettingItem } from '~/presentation/pages/Settings/shared/SettingItem/SettingItem';
+import { LanguageSwitch } from '~/presentation/shared/LanguageSwitch/LanguageSwitch';
+import { ThemeSwitch } from '~/presentation/shared/ThemeSwitch/ThemeSwitch';
 
 export function App() {
   const { t } = useTranslation('settings');
 
   return (
     <SettingsPageLayout label={t('app.label')}>
-      Application settings
-      <p>
-        It is a long established fact that a reader will be distracted by the
-        readable content of a page when looking at its layout. The point of
-        using Lorem Ipsum is that it has a more-or-less normal distribution of
-        letters, as opposed to using 'Content here, content here', making it
-        look like readable English. Many desktop publishing packages and web
-        page editors now use Lorem Ipsum as their default model text, and a
-        search for 'lorem ipsum' will uncover many web sites still in their
-        infancy. Various versions have evolved over the years, sometimes by
-        accident, sometimes on purpose (injected humour and the like).
-      </p>
-      <p>
-        It is a long established fact that a reader will be distracted by the
-        readable content of a page when looking at its layout. The point of
-        using Lorem Ipsum is that it has a more-or-less normal distribution of
-        letters, as opposed to using 'Content here, content here', making it
-        look like readable English. Many desktop publishing packages and web
-        page editors now use Lorem Ipsum as their default model text, and a
-        search for 'lorem ipsum' will uncover many web sites still in their
-        infancy. Various versions have evolved over the years, sometimes by
-        accident, sometimes on purpose (injected humour and the like).
-      </p>
-      <p>
-        It is a long established fact that a reader will be distracted by the
-        readable content of a page when looking at its layout. The point of
-        using Lorem Ipsum is that it has a more-or-less normal distribution of
-        letters, as opposed to using 'Content here, content here', making it
-        look like readable English. Many desktop publishing packages and web
-        page editors now use Lorem Ipsum as their default model text, and a
-        search for 'lorem ipsum' will uncover many web sites still in their
-        infancy. Various versions have evolved over the years, sometimes by
-        accident, sometimes on purpose (injected humour and the like).
-      </p>
+      <SettingItem label={t('app.language')}>
+        <LanguageSwitch variant="select" />
+      </SettingItem>
+      <SettingItem label={t('app.theme')}>
+        <ThemeSwitch variant="select" />
+      </SettingItem>
     </SettingsPageLayout>
   );
 }

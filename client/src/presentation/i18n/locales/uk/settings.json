@@ -5,7 +5,9 @@
     "profile": "Profajl"
   },
   "app": {
-    "label": "Nalaštuvannja zastosunku"
+    "label": "Nalaštuvannja zastosunku",
+    "language": "Mova",
+    "theme": "Tema"
   },
   "profile": {
     "label": "Nalaštuvannja profajlu",

@@ -1,22 +1,26 @@
 import { observer } from 'mobx-react';
-import { Button, Dropdown, MenuProps } from 'antd';
+import { Button, Dropdown, Select } from 'antd';
 import { Icons } from '~/presentation/assets/Icons';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { themeStore } from '~/presentation/styles/store';
 import { ThemeType } from '~/presentation/styles/types';
 import { useThemeSwitchStyles } from '~/presentation/shared/ThemeSwitch/ThemeSwitch.styles';
 
-export const ThemeSwitch = observer(() => {
+interface Props {
+  variant?: 'dropdown' | 'select';
+}
+
+export const ThemeSwitch = observer(({ variant }: Props) => {
   const { t } = useTranslation('common');
   const classes = useThemeSwitchStyles();
 
-  const onClick: MenuProps['onClick'] = ({ key }) => {
+  const onChangeTheme = (nextTheme: ThemeType) => {
     setTimeout(() => {
-      themeStore.setTheme(key as ThemeType);
+      themeStore.setTheme(nextTheme);
     }, 300);
   };
 
-  const items: MenuProps['items'] = [
+  const items = [
     {
       key: ThemeType.Light,
       label: (
@@ -25,6 +29,7 @@ export const ThemeSwitch = observer(() => {
           <span>{t('theme.light')}</span>
         </div>
       ),
+      text: t('theme.light'),
     },
     {
       key: ThemeType.Dark,
@@ -34,6 +39,7 @@ export const ThemeSwitch = observer(() => {
           <span>{t('theme.dark')}</span>
         </div>
       ),
+      text: t('theme.dark'),
     },
     {
       key: ThemeType.System,
@@ -43,6 +49,7 @@ export const ThemeSwitch = observer(() => {
           <span>{t('theme.system')}</span>
         </div>
       ),
+      text: t('theme.system'),
     },
   ];
 
@@ -52,13 +59,19 @@ export const ThemeSwitch = observer(() => {
     [ThemeType.Light]: <Icons.SunMedium />,
   };
 
-  return (
+  return variant === 'select' ? (
+    <Select
+      defaultValue={themeStore.theme}
+      onChange={(value) => onChangeTheme(value)}
+      options={items.map((i) => ({ value: i.key, label: i.text }))}
+    />
+  ) : (
     <Dropdown
       menu={{
         items,
         selectable: true,
         selectedKeys: [themeStore.theme],
-        onClick,
+        onClick: ({ key }) => onChangeTheme(key as ThemeType),
       }}
     >
       <Button type="text" className={classes.button}>
