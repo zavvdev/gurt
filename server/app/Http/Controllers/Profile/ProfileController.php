@@ -14,7 +14,7 @@ class ProfileController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            $this->errorResponse(
+            return $this->errorResponse(
                 Response::HTTP_NOT_FOUND,
                 ResponseMessage::UserNotFound,
             );

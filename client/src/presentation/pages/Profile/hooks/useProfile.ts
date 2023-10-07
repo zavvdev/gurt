@@ -6,24 +6,33 @@ import { notificationService } from '~/application/services/NotificationService'
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 export function useProfile() {
+  const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('profile');
   const params = useParams();
 
   const sessionUser = useUserFromSessionQuery({
     enabled: !params?.id,
+    errorNotification: notificationService.createNotification(
+      'error',
+      tCommon('error.fetchUser'),
+    ),
   });
 
   const userById = useUserQuery({
     id: Number(params?.id),
     options: {
       enabled: Boolean(params?.id),
+      errorNotification: notificationService.createNotification(
+        'error',
+        tCommon('error.fetchUser'),
+      ),
     },
   });
 
   const profile = useProfileByUserIdQuery({
-    userId: params?.id ? Number(params.id) : sessionUser.data?.data?.id || 0,
+    userId: userById.data?.data?.id || sessionUser.data?.data?.id || 0,
     options: {
-      enabled: Boolean(params?.id || sessionUser.data?.data?.id),
+      enabled: Boolean(userById.data?.data?.id || sessionUser.data?.data?.id),
       errorNotification: notificationService.createNotification(
         'error',
         t('error.fetch'),

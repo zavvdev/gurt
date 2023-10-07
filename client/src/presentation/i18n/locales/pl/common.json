@@ -6,6 +6,7 @@
   },
 
   "error": {
+    "fetchUser": "Nie można pobrać danych użytkownika. Spróbuj ponownie później",
     "logout": "Nie można zakończyć sesji. Spróbuj ręcznie wyczyścić pliki cookie przeglądarki, jeśli problem będzie się powtarzał"
   },
 
