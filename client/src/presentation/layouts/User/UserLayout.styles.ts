@@ -8,6 +8,10 @@ export const useUserLayoutStyles = createUseStyles(
       padding: '2rem 5% 10rem 5%',
     },
 
+    rootNoPaddingTop: {
+      paddingTop: '0',
+    },
+
     nav: {
       position: 'fixed',
       bottom: '5%',

@@ -26,7 +26,9 @@ class ThemeStore {
     this.theme = storedTheme || DEFAULT_THEME_TYPE;
 
     this.resolvedTheme =
-      storedTheme === ThemeType.System ? this.getSystemTheme() : storedTheme;
+      storedTheme === ThemeType.System
+        ? this.getSystemTheme()
+        : storedTheme || DEFAULT_THEME_TYPE;
   }
 
   getSystemTheme() {

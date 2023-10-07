@@ -1,11 +1,21 @@
 {
+  "contact": {
+    "authorUrl": "https://github.com/zavvdev"
+  },
+
   "theme": {
     "light": "Light",
     "dark": "Dark",
     "system": "System"
   },
 
+  "appError": {
+    "label": "Critical error",
+    "description": "Application faced a critical error and cannot be usable. Please contact <a>{{ contact }}</a>"
+  },
+
   "error": {
+    "fetchUser": "Unable to retrieve user data. Try again later",
     "logout": "Unable to terminate your session. Try to clean browser cookies manually if issue persists"
   },
 

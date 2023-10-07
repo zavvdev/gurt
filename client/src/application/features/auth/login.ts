@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { PRIVATE_ROUTES } from '~/routes';
+import { ROUTE_AFTER_AUTH } from '~/routes';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 import {
   ServerResponse,
@@ -35,7 +35,7 @@ export function useLogin(args?: MutationEvents) {
         } else {
           args?.onSuccess?.(response.message);
         }
-        navigate(PRIVATE_ROUTES.home());
+        navigate(ROUTE_AFTER_AUTH);
       },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);

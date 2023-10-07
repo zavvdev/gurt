@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
+import { PUBLIC_ROUTES, ROUTE_AFTER_AUTH } from '~/routes';
 import {
   ServerResponse,
   ServerResponseMessage,
@@ -33,7 +33,7 @@ export function useForgotPassword(args?: MutationEvents) {
       onSuccess: (response: ServerResponse) => {
         if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
           args?.onError?.(response.message);
-          navigate(PRIVATE_ROUTES.home());
+          navigate(ROUTE_AFTER_AUTH);
         } else {
           args?.onSuccess?.(response.message);
         }
@@ -77,7 +77,7 @@ export function useResetPassword(args?: MutationEvents) {
       onSuccess: (response: ServerResponse) => {
         if (response.message === ServerResponseMessage.AlreadyLoggedIn) {
           args?.onError?.(response.message);
-          navigate(PRIVATE_ROUTES.home());
+          navigate(ROUTE_AFTER_AUTH);
         } else {
           args?.onSuccess?.(response.message);
           navigate(PUBLIC_ROUTES.auth.login());
