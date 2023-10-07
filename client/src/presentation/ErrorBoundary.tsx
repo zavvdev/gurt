@@ -17,9 +17,6 @@ export class ErrorBoundary extends Component<PropsWithChildren, State> {
   }
 
   componentDidCatch(error: unknown, errorInfo: unknown) {
-    if (import.meta.env.DEV) {
-      console.error(error, errorInfo);
-    }
     reportAppError({
       error,
       errorInfo,

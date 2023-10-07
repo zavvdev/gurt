@@ -8,6 +8,9 @@ class ErrorReporter {
   }
 
   public report<T>(error: T): void {
+    if (import.meta.env.DEV) {
+      console.error(error);
+    }
     this.repo.error(error);
   }
 }
