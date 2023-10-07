@@ -1,13 +1,12 @@
-import { Http } from '~/entities/Http';
 import {
   PublicUser,
   publicUserSchema,
   User,
   userSchema,
-} from '~/entities/api/User';
+} from '~/entities/User';
+import { Http } from '~/infrastructure/http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
-import { ServerResponse } from '~/infrastructure/serverGateway/types';
-import { validateServerResponseWithData } from '~/infrastructure/serverGateway/utilities';
+import { validateServerResponseData } from '~/infrastructure/serverGateway/utilities';
 
 class UserGateway {
   private http: Http;
@@ -21,21 +20,17 @@ class UserGateway {
   }
 
   public async getFromSession() {
-    const response = await this.http.get<ServerResponse<User>>(
-      this.r('/session'),
-    );
-    return validateServerResponseWithData(response, userSchema);
+    const response = await this.http.get<User>(this.r('/session'));
+    return validateServerResponseData(response, userSchema);
   }
 
   public delete() {
-    return this.http.delete<ServerResponse>(this.r('/delete'));
+    return this.http.delete(this.r('/delete'));
   }
 
   public async getById(id: number) {
-    const response = await this.http.get<ServerResponse<PublicUser>>(
-      this.r(`/${id}`),
-    );
-    return validateServerResponseWithData(response, publicUserSchema);
+    const response = await this.http.get<PublicUser>(this.r(`/${id}`));
+    return validateServerResponseData(response, publicUserSchema);
   }
 }
 

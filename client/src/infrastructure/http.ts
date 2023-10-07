@@ -1,7 +1,15 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { Http as HttpEntity, HttpRequestConfig } from '~/entities/Http';
+import { ServerResponse } from '~/infrastructure/serverGateway/types';
 
-export class Http implements HttpEntity {
+type HttpRequestConfig = {
+  baseURL?: string;
+  params?: Record<string, unknown>;
+  headers?: {
+    [key: string]: string | string[] | number | boolean | null;
+  };
+};
+
+export class Http {
   private repo: AxiosInstance;
 
   constructor(repo: AxiosInstance) {
@@ -16,17 +24,23 @@ export class Http implements HttpEntity {
     };
   }
 
-  public async get<T>(url: string, config?: HttpRequestConfig): Promise<T> {
-    const res = await this.repo.get<T>(url, this.reqConfigAdapter(config));
+  public async get<T = unknown>(
+    url: string,
+    config?: HttpRequestConfig,
+  ): Promise<ServerResponse<T>> {
+    const res = await this.repo.get<ServerResponse<T>>(
+      url,
+      this.reqConfigAdapter(config),
+    );
     return res.data;
   }
 
-  public async post<T, R>(
+  public async post<T = unknown, R = unknown>(
     url: string,
     data?: R,
     config?: HttpRequestConfig,
-  ): Promise<T> {
-    const res = await this.repo.post<T>(
+  ): Promise<ServerResponse<T>> {
+    const res = await this.repo.post<ServerResponse<T>>(
       url,
       data,
       this.reqConfigAdapter(config),
@@ -34,12 +48,12 @@ export class Http implements HttpEntity {
     return res.data;
   }
 
-  public async put<T, R>(
+  public async put<T = unknown, R = unknown>(
     url: string,
     data?: R,
     config?: HttpRequestConfig,
-  ): Promise<T> {
-    const res = await this.repo.put<T>(
+  ): Promise<ServerResponse<T>> {
+    const res = await this.repo.put<ServerResponse<T>>(
       url,
       data,
       this.reqConfigAdapter(config),
@@ -47,12 +61,12 @@ export class Http implements HttpEntity {
     return res.data;
   }
 
-  public async patch<T, R>(
+  public async patch<T = unknown, R = unknown>(
     url: string,
     data?: R,
     config?: HttpRequestConfig,
-  ): Promise<T> {
-    const res = await this.repo.patch<T>(
+  ): Promise<ServerResponse<T>> {
+    const res = await this.repo.patch<ServerResponse<T>>(
       url,
       data,
       this.reqConfigAdapter(config),
@@ -60,8 +74,14 @@ export class Http implements HttpEntity {
     return res.data;
   }
 
-  public async delete<T>(url: string, config?: HttpRequestConfig): Promise<T> {
-    const res = await this.repo.delete<T>(url, this.reqConfigAdapter(config));
+  public async delete<T = unknown>(
+    url: string,
+    config?: HttpRequestConfig,
+  ): Promise<ServerResponse<T>> {
+    const res = await this.repo.delete<ServerResponse<T>>(
+      url,
+      this.reqConfigAdapter(config),
+    );
     return res.data;
   }
 }

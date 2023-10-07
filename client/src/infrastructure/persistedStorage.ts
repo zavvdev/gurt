@@ -1,6 +1,4 @@
-import { PersistedStorage as PersistedStorageEntity } from '~/entities/PersistedStorage';
-
-class PersistedStorage implements PersistedStorageEntity {
+class PersistedStorage {
   private repo: Storage;
 
   constructor(repo: Storage) {

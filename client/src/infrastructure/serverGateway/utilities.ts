@@ -10,23 +10,17 @@ import {
 import { persistedStorage } from '~/infrastructure/persistedStorage';
 import { PUBLIC_SESSION_ID_NAME } from '~/infrastructure/serverGateway/config';
 
-export function validateServerResponseWithData<
-  S extends yup.InferType<yup.Schema>,
->(
+export function validateServerResponseData<S extends yup.InferType<yup.Schema>>(
   response: ServerResponse<S>,
   schema: yup.Schema,
-  condition: (response: ServerResponse<S>) => boolean = () => true,
 ): ServerResponse<S> {
   if (
     response?.status === ServerResponseStatus.Success &&
-    condition(response)
+    schema.isValidSync(response.data, { strict: true })
   ) {
-    return {
-      ...response,
-      data: schema.validateSync(response.data, { strict: true }),
-    };
+    return response;
   }
-  return response;
+  throw new Error('Invalid Server Response Data.');
 }
 
 export function extractValidationErrors(

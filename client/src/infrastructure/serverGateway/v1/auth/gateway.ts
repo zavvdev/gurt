@@ -1,4 +1,3 @@
-import { Http } from '~/entities/Http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import {
   ForgotPasswordRequest,
@@ -6,11 +5,9 @@ import {
   RegisterRequest,
   ResetPasswordRequest,
 } from '~/infrastructure/serverGateway/v1/auth/requests';
-import {
-  ServerResponse,
-  ServerResponseStatus,
-} from '~/infrastructure/serverGateway/types';
+import { ServerResponseStatus } from '~/infrastructure/serverGateway/types';
 import { publicSessionId } from '~/infrastructure/serverGateway/utilities';
+import { Http } from '~/infrastructure/http';
 
 class AuthGateway {
   private http: Http;
@@ -24,14 +21,11 @@ class AuthGateway {
   }
 
   public csrfCookie() {
-    return this.http.get<ServerResponse>('/v1/csrf-cookie');
+    return this.http.get('/v1/csrf-cookie');
   }
 
   public async register(dto: RegisterRequest) {
-    const res = await this.http.post<ServerResponse, RegisterRequest>(
-      this.r('/register'),
-      dto,
-    );
+    const res = await this.http.post(this.r('/register'), dto);
     if (res.status === ServerResponseStatus.Success) {
       publicSessionId.set();
     } else {
@@ -41,7 +35,7 @@ class AuthGateway {
   }
 
   public async logout() {
-    const res = await this.http.post<ServerResponse>(this.r('/logout'));
+    const res = await this.http.post(this.r('/logout'));
     if (res.status === ServerResponseStatus.Success) {
       publicSessionId.remove();
     }
@@ -49,7 +43,7 @@ class AuthGateway {
   }
 
   public async login(dto: LoginRequest) {
-    const res = await this.http.post<ServerResponse>(this.r('/login'), dto);
+    const res = await this.http.post(this.r('/login'), dto);
     if (res.status === ServerResponseStatus.Success) {
       publicSessionId.set();
     } else {
@@ -59,11 +53,11 @@ class AuthGateway {
   }
 
   public forgotPassword(dto: ForgotPasswordRequest) {
-    return this.http.post<ServerResponse>(this.r('/forgot-password'), dto);
+    return this.http.post(this.r('/forgot-password'), dto);
   }
 
   public resetPassword(dto: ResetPasswordRequest) {
-    return this.http.post<ServerResponse>(this.r('/reset-password'), dto);
+    return this.http.post(this.r('/reset-password'), dto);
   }
 }
 

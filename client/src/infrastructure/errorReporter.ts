@@ -1,8 +1,6 @@
-import { ErrorReporter as ErrorReporterEntity } from '~/entities/ErrorReporter';
-
 // TODO: Replace console with some service like Sentry
 
-class ErrorReporter implements ErrorReporterEntity {
+class ErrorReporter {
   private repo;
 
   constructor(repo: Console) {
