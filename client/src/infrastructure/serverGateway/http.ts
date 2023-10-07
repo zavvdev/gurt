@@ -1,24 +1,33 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '~/routes';
-import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
+import {
+  ServerResponseMessage,
+  serverResponseSchema,
+} from '~/infrastructure/serverGateway/types';
 import { Http } from '~/infrastructure/http';
 import { publicSessionId } from '~/infrastructure/serverGateway/utilities';
 
 const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
-  return response;
+  if (serverResponseSchema.isValidSync(response.data, { strict: true })) {
+    return response;
+  }
+  throw new Error('Invalid Server Response.');
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const responseErrorInterceptor = (error: any) => {
-  const response = error?.response?.data || {};
-  if (response.message === ServerResponseMessage.Unauthorized) {
-    publicSessionId.remove();
-    window.location.href = PUBLIC_ROUTES.auth.login();
+  const serverResponse = error?.response?.data;
+  if (serverResponseSchema.isValidSync(serverResponse, { strict: true })) {
+    if (serverResponse.message === ServerResponseMessage.Unauthorized) {
+      publicSessionId.remove();
+      window.location.href = PUBLIC_ROUTES.auth.login();
+    }
+    if (serverResponse.message === ServerResponseMessage.EmailNotVerified) {
+      window.location.href = PRIVATE_ROUTES.resendVerifyEmail();
+    }
+    return Promise.reject(error?.response?.data);
   }
-  if (response.message === ServerResponseMessage.EmailNotVerified) {
-    window.location.href = PRIVATE_ROUTES.resendVerifyEmail();
-  }
-  return Promise.reject(error?.response?.data);
+  throw new Error('Invalid Server Response.');
 };
 
 const web = (() => {

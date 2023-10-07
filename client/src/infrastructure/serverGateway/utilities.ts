@@ -10,7 +10,9 @@ import {
 import { persistedStorage } from '~/infrastructure/persistedStorage';
 import { PUBLIC_SESSION_ID_NAME } from '~/infrastructure/serverGateway/config';
 
-export function validateResponse<S extends yup.InferType<yup.Schema>>(
+export function validateServerResponseWithData<
+  S extends yup.InferType<yup.Schema>,
+>(
   response: ServerResponse<S>,
   schema: yup.Schema,
   condition: (response: ServerResponse<S>) => boolean = () => true,

@@ -24,7 +24,7 @@ class AuthGateway {
   }
 
   public csrfCookie() {
-    return this.http.get('/v1/sanctum/csrf-cookie');
+    return this.http.get<ServerResponse>('/v1/csrf-cookie');
   }
 
   public async register(dto: RegisterRequest) {

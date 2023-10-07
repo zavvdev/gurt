@@ -11,7 +11,7 @@ export function usePrivateRoutePSIDGuard() {
       setStatus('valid');
     } else {
       setStatus('verifying');
-      userGateway.getSessionUser().then(() => {
+      userGateway.getFromSession().then(() => {
         publicSessionId.set();
         setStatus('valid');
       });

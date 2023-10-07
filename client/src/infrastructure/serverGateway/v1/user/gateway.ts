@@ -7,7 +7,7 @@ import {
 } from '~/entities/api/User';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
-import { validateResponse } from '~/infrastructure/serverGateway/utilities';
+import { validateServerResponseWithData } from '~/infrastructure/serverGateway/utilities';
 
 class UserGateway {
   private http: Http;
@@ -24,7 +24,7 @@ class UserGateway {
     const response = await this.http.get<ServerResponse<User>>(
       this.r('/session'),
     );
-    return validateResponse(response, userSchema);
+    return validateServerResponseWithData(response, userSchema);
   }
 
   public delete() {
@@ -35,7 +35,7 @@ class UserGateway {
     const response = await this.http.get<ServerResponse<PublicUser>>(
       this.r(`/${id}`),
     );
-    return validateResponse(response, publicUserSchema);
+    return validateServerResponseWithData(response, publicUserSchema);
   }
 }
 

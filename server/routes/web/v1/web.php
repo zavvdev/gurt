@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 // Auth
 
+Route::get('/csrf-cookie', [AuthController::class, 'csrfCookie']);
+
 Route::post('/auth/register', [AuthController::class, 'register'])
     ->middleware('guest')
     ->name('register');
