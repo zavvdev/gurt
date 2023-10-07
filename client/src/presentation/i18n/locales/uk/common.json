@@ -1,8 +1,17 @@
 {
+  "contact": {
+    "authorUrl": "https://github.com/zavvdev"
+  },
+
   "theme": {
     "light": "Svitla",
     "dark": "Temna",
     "system": "Systemna"
+  },
+
+  "appError": {
+    "label": "Krytyčna pomylka",
+    "description": "Zastosunok zaznav krytyčnoji pomylky i ne može dali funkcionuvaty. Bud' laska, zvernit'sja do <a>{{ contact }}</a>"
   },
 
   "error": {

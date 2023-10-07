@@ -29,7 +29,7 @@ export function LanguageSwitch({ variant }: Props) {
 
   return variant === 'select' ? (
     <Select
-      defaultValue={i18n.language ?? FALLBACK_LNG}
+      value={i18n.language ?? FALLBACK_LNG}
       onChange={(value) => i18n.changeLanguage(value)}
       options={items.map((i) => ({ value: i.key, label: i.label }))}
     />

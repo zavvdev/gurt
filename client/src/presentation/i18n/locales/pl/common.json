@@ -1,8 +1,17 @@
 {
+  "contact": {
+    "authorUrl": "https://github.com/zavvdev"
+  },
+
   "theme": {
     "light": "Jasny",
     "dark": "Ciemny",
     "system": "Systemowe"
+  },
+
+  "appError": {
+    "label": "Błąd krytyczny",
+    "description": "Aplikacja napotkała krytyczny błąd i nie może być użyteczna. Prosimy o kontakt <a>{{ contact }}</a>"
   },
 
   "error": {
