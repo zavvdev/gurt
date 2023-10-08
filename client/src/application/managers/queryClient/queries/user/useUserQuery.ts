@@ -1,18 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { userGateway } from '~/infrastructure/serverGateway/v1/user/gateway';
-import {
-  QueryKey,
-  QueryMetaKey,
-} from '~/application/managers/queryClient/config';
-import { Notification } from '~/application/services/NotificationService';
+import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { QueryKey } from '~/application/managers/queryClient/config';
+import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
 interface QueryArgs {
   id: number;
   options?: {
     enabled?: boolean;
-    errorNotification?: Notification;
-    successNotification?: Notification;
-  };
+  } & ResponseMessageEventHandlers;
 }
 
 export function createUserQueryKey(id: number) {
@@ -24,8 +20,12 @@ export function useUserQuery(args: QueryArgs) {
     queryKey: createUserQueryKey(args.id),
     queryFn: () => userGateway.getById(args.id),
     meta: {
-      [QueryMetaKey.ErrorNotification]: args?.options?.errorNotification,
-      [QueryMetaKey.SuccessNotification]: args?.options?.successNotification,
+      onError: (response: ServerResponse) => {
+        args?.options?.onError?.(response.message);
+      },
+      onSuccess: (response: ServerResponse) => {
+        args?.options?.onSuccess?.(response.message);
+      },
     },
     enabled: args?.options?.enabled,
   });

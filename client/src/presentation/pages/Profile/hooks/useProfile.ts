@@ -12,20 +12,20 @@ export function useProfile() {
 
   const sessionUser = useUserFromSessionQuery({
     enabled: !params?.id,
-    errorNotification: notificationService.createNotification(
-      'error',
-      tCommon('error.fetchUser'),
-    ),
+    onError: () => {
+      notificationService.error(tCommon('error.fetchUser'));
+    },
   });
 
   const userById = useUserQuery({
     id: Number(params?.id),
     options: {
       enabled: Boolean(params?.id),
-      errorNotification: notificationService.createNotification(
-        'error',
-        tCommon('error.fetchUser'),
-      ),
+      onError: (message) => {
+        notificationService.error(
+          tCommon([`serverMessage.${message}`, 'error.fetchUser']),
+        );
+      },
     },
   });
 
@@ -33,10 +33,9 @@ export function useProfile() {
     userId: userById.data?.data?.id || sessionUser.data?.data?.id || 0,
     options: {
       enabled: Boolean(userById.data?.data?.id || sessionUser.data?.data?.id),
-      errorNotification: notificationService.createNotification(
-        'error',
-        t('error.fetch'),
-      ),
+      onError: () => {
+        notificationService.error(t('error.fetch'));
+      },
     },
   });
 

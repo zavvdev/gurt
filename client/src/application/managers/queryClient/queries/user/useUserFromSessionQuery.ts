@@ -1,15 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { userGateway } from '~/infrastructure/serverGateway/v1/user/gateway';
-import {
-  QueryKey,
-  QueryMetaKey,
-} from '~/application/managers/queryClient/config';
-import { Notification } from '~/application/services/NotificationService';
+import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { QueryKey } from '~/application/managers/queryClient/config';
+import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
-interface QueryArgs {
+interface QueryArgs extends ResponseMessageEventHandlers {
   enabled?: boolean;
-  errorNotification?: Notification;
-  successNotification?: Notification;
 }
 
 export function createUserFromSessionQueryKey() {
@@ -21,8 +17,12 @@ export function useUserFromSessionQuery(args?: QueryArgs) {
     queryKey: createUserFromSessionQueryKey(),
     queryFn: () => userGateway.getFromSession(),
     meta: {
-      [QueryMetaKey.ErrorNotification]: args?.errorNotification,
-      [QueryMetaKey.SuccessNotification]: args?.successNotification,
+      onError: (response: ServerResponse) => {
+        args?.onError?.(response.message);
+      },
+      onSuccess: (response: ServerResponse) => {
+        args?.onSuccess?.(response.message);
+      },
     },
     enabled: args?.enabled,
   });

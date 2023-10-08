@@ -6,7 +6,7 @@ import {
   ServerResponseMessage,
 } from '~/infrastructure/serverGateway/types';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
-import { MutationEvents } from '~/application/managers/queryClient/types';
+import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
 // Forgot password
 
@@ -14,7 +14,7 @@ export interface ForgotPasswordForm {
   email: string;
 }
 
-export function useForgotPassword(args?: MutationEvents) {
+export function useForgotPassword(args?: ResponseMessageEventHandlers) {
   const navigate = useNavigate();
 
   const { mutate, isLoading } = useMutation(
@@ -55,7 +55,7 @@ export interface ResetPasswordForm {
   passwordConfirm: string;
 }
 
-export function useResetPassword(args?: MutationEvents) {
+export function useResetPassword(args?: ResponseMessageEventHandlers) {
   const navigate = useNavigate();
 
   const { mutate, isLoading } = useMutation(
