@@ -1,5 +1,11 @@
 // TODO: Replace console with some service like Sentry
 
+export interface ReportError<T = unknown> {
+  message?: string;
+  location?: string;
+  error: T;
+}
+
 class ErrorReporter {
   private repo;
 
@@ -7,11 +13,16 @@ class ErrorReporter {
     this.repo = repo;
   }
 
-  public report<T>(error: T): void {
+  public report<T = unknown>(error: ReportError<T>): void {
+    const errorToReport = {
+      message: error.message || null,
+      location: error.location || null,
+      error: error.error,
+    };
     if (import.meta.env.DEV) {
-      console.error(error);
+      console.error(errorToReport);
     }
-    this.repo.error(error);
+    this.repo.error(errorToReport);
   }
 }
 

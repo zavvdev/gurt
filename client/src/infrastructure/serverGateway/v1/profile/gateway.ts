@@ -1,7 +1,7 @@
 import { Profile, profileSchema } from '~/entities/Profile';
 import { Http } from '~/infrastructure/http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
-import { validateServerResponseData } from '~/infrastructure/serverGateway/utilities';
+import { validateServerSuccessResponseData } from '~/infrastructure/serverGateway/utilities';
 import { GetByUserIdRequest } from '~/infrastructure/serverGateway/v1/profile/requests';
 
 class ProfileGateway {
@@ -19,7 +19,7 @@ class ProfileGateway {
     const response = await this.http.get<Profile>(
       this.r(`/user/${request.userId}`),
     );
-    return validateServerResponseData(response, profileSchema);
+    return validateServerSuccessResponseData(response, profileSchema);
   }
 }
 

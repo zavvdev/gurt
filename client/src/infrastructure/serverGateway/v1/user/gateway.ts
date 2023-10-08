@@ -6,7 +6,7 @@ import {
 } from '~/entities/User';
 import { Http } from '~/infrastructure/http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
-import { validateServerResponseData } from '~/infrastructure/serverGateway/utilities';
+import { validateServerSuccessResponseData } from '~/infrastructure/serverGateway/utilities';
 
 class UserGateway {
   private http: Http;
@@ -21,7 +21,7 @@ class UserGateway {
 
   public async getFromSession() {
     const response = await this.http.get<User>(this.r('/session'));
-    return validateServerResponseData(response, userSchema);
+    return validateServerSuccessResponseData(response, userSchema);
   }
 
   public delete() {
@@ -30,7 +30,7 @@ class UserGateway {
 
   public async getById(id: number) {
     const response = await this.http.get<PublicUser>(this.r(`/${id}`));
-    return validateServerResponseData(response, publicUserSchema);
+    return validateServerSuccessResponseData(response, publicUserSchema);
   }
 }
 
