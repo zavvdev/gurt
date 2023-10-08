@@ -9,21 +9,30 @@ import { publicSessionId } from '~/infrastructure/serverGateway/utilities';
 import { errorReporter } from '~/infrastructure/errorReporter';
 
 const responseSuccessInterceptor = <T, K>(response: AxiosResponse<T, K>) => {
-  if (serverResponseSchema.isValidSync(response.data, { strict: true })) {
-    return response;
+  try {
+    return {
+      ...response,
+      data: serverResponseSchema.validateSync(response.data, { strict: true }),
+    };
+  } catch (e) {
+    errorReporter.report({
+      location: 'serverGateway/http@responseSuccessInterceptor',
+      error: e,
+    });
+    throw new Error('Invalid Server Success Response.');
   }
-  const errorToReport = {
-    message: 'Invalid Server Success Response.',
-    response,
-  };
-  errorReporter.report(errorToReport);
-  throw new Error(errorToReport.message);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const responseErrorInterceptor = (error: any) => {
-  const serverResponse = error?.response?.data;
-  if (serverResponseSchema.isValidSync(serverResponse, { strict: true })) {
+  try {
+    const serverResponse = serverResponseSchema.validateSync(
+      error?.response?.data,
+      {
+        strict: true,
+      },
+    );
+
     if (serverResponse.message === ServerResponseMessage.Unauthorized) {
       publicSessionId.remove();
       return (window.location.href = PUBLIC_ROUTES.auth.login());
@@ -31,15 +40,19 @@ const responseErrorInterceptor = (error: any) => {
     if (serverResponse.message === ServerResponseMessage.EmailNotVerified) {
       return (window.location.href = PRIVATE_ROUTES.resendVerifyEmail());
     }
-    errorReporter.report(error?.response || error);
+
+    errorReporter.report({
+      location: 'serverGateway/http@responseErrorInterceptor',
+      error: error?.response || error,
+    });
     return Promise.reject(error?.response?.data);
+  } catch (e) {
+    errorReporter.report({
+      location: 'serverGateway/http@responseErrorInterceptor',
+      error: e,
+    });
+    throw new Error('Invalid Server Error Response.');
   }
-  const errorToReport = {
-    message: 'Invalid Server Error Response.',
-    error: error?.response || error,
-  };
-  errorReporter.report(errorToReport);
-  throw new Error(errorToReport.message);
 };
 
 const web = (() => {

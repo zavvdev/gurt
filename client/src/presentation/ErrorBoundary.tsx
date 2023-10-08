@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react';
-import { reportAppError } from '~/application/utilities/general';
+import { reportCriticalAppError } from '~/application/utilities/general';
 import { AppError } from '~/presentation/pages/AppError';
 
 interface State {
@@ -17,9 +17,12 @@ export class ErrorBoundary extends Component<PropsWithChildren, State> {
   }
 
   componentDidCatch(error: unknown, errorInfo: unknown) {
-    reportAppError({
-      error,
-      errorInfo,
+    reportCriticalAppError({
+      location: '',
+      error: {
+        error,
+        errorInfo,
+      },
     });
   }
 

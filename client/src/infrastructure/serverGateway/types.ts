@@ -37,10 +37,10 @@ export type ServerResponse<T = unknown> = {
   data: T | null;
 };
 
-export const serverResponseSchema = yup.object({
-  status: yup.string().required(),
-  message: yup.string().nullable(),
-  data: yup.mixed().nullable(),
+export const serverResponseSchema: yup.Schema<ServerResponse> = yup.object({
+  status: yup.string<ServerResponseStatus>().required(),
+  message: yup.string<ServerResponseMessage>().required().nullable(),
+  data: yup.mixed().required().nullable(),
 });
 
 export type ServerValidationErrorsResponse = ServerResponse<Record<
