@@ -1,0 +1,23 @@
+{
+  "label": "Ustawienia",
+  "menu": {
+    "app": "Aplikacja",
+    "profile": "Profil"
+  },
+  "app": {
+    "label": "Ustawienia aplikacji",
+    "language": "Język",
+    "theme": "Temat"
+  },
+  "profile": {
+    "label": "Ustawienia profilu",
+    "delete": {
+      "button": "Usuń profil na stałe",
+      "confirm": {
+        "text": "Za chwilę usuniesz swój profil na stałe. Po usunięciu nie będziesz mógł zalogować się do tego profilu ani odzyskać danych. Czy na pewno chcesz to zrobić?",
+        "submit": "Tak. Usuń mój profil",
+        "cancel": "Nie. Zatrzymaj to"
+      }
+    }
+  }
+}

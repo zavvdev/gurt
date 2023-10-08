@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "prod": "pnpm build && serve -s -p 3000 dist",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "tsc --noEmit && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {

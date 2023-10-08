@@ -12,6 +12,7 @@ export interface Theme {
     primaryBgHover: string;
     text: string;
     textInverted: string;
+    gray1: string;
     gray6: string;
     background: string;
     backgroundInverted: string;
@@ -20,7 +21,7 @@ export interface Theme {
   borderRadiusMedium: number;
 }
 
-export interface MediaBreakpoints {
+export interface MediaQueries {
   maxXs: string;
   maxSm: string;
   maxMd: string;
@@ -30,5 +31,5 @@ export interface MediaBreakpoints {
 export interface JssTheme {
   isDark: boolean;
   theme: Theme;
-  media: MediaBreakpoints;
+  media: MediaQueries;
 }

@@ -1,0 +1,23 @@
+{
+  "label": "Settings",
+  "menu": {
+    "app": "Application",
+    "profile": "Profile"
+  },
+  "app": {
+    "label": "Application settings",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "profile": {
+    "label": "Profile settings",
+    "delete": {
+      "button": "Delete profile permanently",
+      "confirm": {
+        "text": "You are about to delete your profile permanently. After deletion you wont be able to login to this profile or recover data. Are you sure you want to do this?",
+        "submit": "Yes. Delete my profile",
+        "cancel": "No. Keep it"
+      }
+    }
+  }
+}

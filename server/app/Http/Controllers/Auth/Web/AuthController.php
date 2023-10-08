@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 class AuthController extends Controller
 {
@@ -47,6 +48,13 @@ class AuthController extends Controller
                     ResponseMessage::Unexpected,
                 );
         }
+    }
+
+    public function csrfCookie(Request $request)
+    {
+        $response = (new CsrfCookieController())->show($request);
+
+        return $this->successResponse($response);
     }
 
     public function register(RegisterRequest $request)

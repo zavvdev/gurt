@@ -6,7 +6,7 @@ import {
 import { QueryMetaKey } from '~/application/managers/queryClient/config';
 
 function onError(_: unknown, query: Query) {
-  if (query?.meta && QueryMetaKey.ErrorNotification in query.meta) {
+  if (query.meta?.[QueryMetaKey.ErrorNotification]) {
     notificationService.show(
       query.meta[QueryMetaKey.ErrorNotification] as Notification,
     );
@@ -14,7 +14,7 @@ function onError(_: unknown, query: Query) {
 }
 
 function onSuccess(_: unknown, query: Query) {
-  if (query?.meta && QueryMetaKey.SuccessNotification in query.meta) {
+  if (query.meta?.[QueryMetaKey.SuccessNotification]) {
     notificationService.show(
       query.meta[QueryMetaKey.SuccessNotification] as Notification,
     );

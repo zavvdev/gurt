@@ -9,20 +9,24 @@ import {
 } from '~/infrastructure/serverGateway/types';
 import { persistedStorage } from '~/infrastructure/persistedStorage';
 import { PUBLIC_SESSION_ID_NAME } from '~/infrastructure/serverGateway/config';
+import { errorReporter } from '~/infrastructure/errorReporter';
 
-export function validateResponse<S extends yup.InferType<yup.Schema>>(
-  response: ServerResponse<S>,
-  schema: yup.Schema,
-  condition: (response: ServerResponse<S>) => boolean = () => true,
-): ServerResponse<S> {
-  if (
-    response?.status === ServerResponseStatus.Success &&
-    condition(response)
-  ) {
-    return {
-      ...response,
-      data: schema.validateSync(response.data, { strict: true }),
-    };
+export function validateServerSuccessResponseData<
+  S extends yup.InferType<yup.Schema>,
+>(response: ServerResponse<S>, schema: yup.Schema): ServerResponse<S> {
+  if (response?.status === ServerResponseStatus.Success) {
+    try {
+      return {
+        ...response,
+        data: schema.validateSync(response.data, { strict: true }),
+      };
+    } catch (e) {
+      errorReporter.report({
+        location: 'serverGateway/utilities@validateServerSuccessResponseData',
+        error: e,
+      });
+      throw e;
+    }
   }
   return response;
 }

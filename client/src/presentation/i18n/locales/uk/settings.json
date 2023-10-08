@@ -1,0 +1,23 @@
+{
+  "label": "Nalaštuvannja",
+  "menu": {
+    "app": "Zastosunok",
+    "profile": "Profajl"
+  },
+  "app": {
+    "label": "Nalaštuvannja zastosunku",
+    "language": "Mova",
+    "theme": "Tema"
+  },
+  "profile": {
+    "label": "Nalaštuvannja profajlu",
+    "delete": {
+      "button": "Vydalyty profajl nazavždy",
+      "confirm": {
+        "text": "Vy zbyrajetes' vydalyty vaš profajl. Pislja vydalennja vy ne zmožete zdijsnyty vhid v n'ogo abo vidnovyty dani. Vy točno hočete ce zrobyty? ",
+        "submit": "Tak. Vydalyty mij profajl",
+        "cancel": "Ni. Zalyšyty"
+      }
+    }
+  }
+}

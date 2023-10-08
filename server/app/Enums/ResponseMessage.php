@@ -4,8 +4,6 @@ namespace App\Enums;
 
 enum ResponseMessage: string
 {
-    // Error
-
     case NotAllowed = 'not_allowed';
 
     case NotFound = 'not_found';
@@ -29,8 +27,6 @@ enum ResponseMessage: string
     case InvalidSignature = 'invalid_signature';
 
     case SamePassword = 'same_password';
-
-    // Success
 
     case AlreadySent = 'already_sent';
 

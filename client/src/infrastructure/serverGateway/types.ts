@@ -1,3 +1,5 @@
+import * as yup from 'yup';
+
 export enum ServerResponseStatus {
   Success = 'success',
   Error = 'error',
@@ -34,6 +36,12 @@ export type ServerResponse<T = unknown> = {
   message: ServerResponseMessage | null;
   data: T | null;
 };
+
+export const serverResponseSchema: yup.Schema<ServerResponse> = yup.object({
+  status: yup.string<ServerResponseStatus>().required(),
+  message: yup.string<ServerResponseMessage>().required().nullable(),
+  data: yup.mixed().required().nullable(),
+});
 
 export type ServerValidationErrorsResponse = ServerResponse<Record<
   string,
