@@ -1,18 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { profileGateway } from '~/infrastructure/serverGateway/v1/profile/gateway';
-import {
-  QueryKey,
-  QueryMetaKey,
-} from '~/application/managers/queryClient/config';
-import { Notification } from '~/application/services/NotificationService';
+import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { QueryKey } from '~/application/managers/queryClient/config';
+import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
 interface QueryArgs {
   userId: number;
   options?: {
     enabled?: boolean;
-    errorNotification?: Notification;
-    successNotification?: Notification;
-  };
+  } & ResponseMessageEventHandlers;
 }
 
 export function createProfileByUserIdQueryKey(userId: number) {
@@ -24,8 +20,12 @@ export function useProfileByUserIdQuery(args: QueryArgs) {
     queryKey: createProfileByUserIdQueryKey(args.userId),
     queryFn: () => profileGateway.getByUserId({ userId: args.userId }),
     meta: {
-      [QueryMetaKey.ErrorNotification]: args?.options?.errorNotification,
-      [QueryMetaKey.SuccessNotification]: args?.options?.successNotification,
+      onError: (response: ServerResponse) => {
+        args.options?.onError?.(response.message);
+      },
+      onSuccess: (response: ServerResponse) => {
+        args.options?.onSuccess?.(response.message);
+      },
     },
     enabled: args?.options?.enabled,
   });

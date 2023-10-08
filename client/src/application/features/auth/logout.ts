@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { PUBLIC_ROUTES } from '~/routes';
 import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
-import { MutationEvents } from '~/application/managers/queryClient/types';
+import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
-export function useLogout(args?: MutationEvents) {
+export function useLogout(args?: ResponseMessageEventHandlers) {
   const navigate = useNavigate();
 
   const { mutate, isLoading } = useMutation(

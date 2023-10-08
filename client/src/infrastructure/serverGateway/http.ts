@@ -35,10 +35,10 @@ const responseErrorInterceptor = (error: any) => {
 
     if (serverResponse.message === ServerResponseMessage.Unauthorized) {
       publicSessionId.remove();
-      return (window.location.href = PUBLIC_ROUTES.auth.login());
+      window.location.href = PUBLIC_ROUTES.auth.login();
     }
     if (serverResponse.message === ServerResponseMessage.EmailNotVerified) {
-      return (window.location.href = PRIVATE_ROUTES.resendVerifyEmail());
+      window.location.href = PRIVATE_ROUTES.resendVerifyEmail();
     }
 
     errorReporter.report({

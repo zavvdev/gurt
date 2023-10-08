@@ -6,7 +6,7 @@ import {
   ServerResponse,
   ServerResponseMessage,
 } from '~/infrastructure/serverGateway/types';
-import { MutationEvents } from '~/application/managers/queryClient/types';
+import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
 export interface LoginForm {
   login: string;
@@ -14,7 +14,7 @@ export interface LoginForm {
   remember: boolean;
 }
 
-export function useLogin(args?: MutationEvents) {
+export function useLogin(args?: ResponseMessageEventHandlers) {
   const navigate = useNavigate();
 
   const mutation = useMutation(

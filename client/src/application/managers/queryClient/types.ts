@@ -1,6 +1,6 @@
 import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
 
-export interface MutationEvents {
+export interface ResponseMessageEventHandlers {
   onError?: (message: ServerResponseMessage | null) => void;
   onSuccess?: (message: ServerResponseMessage | null) => void;
 }
