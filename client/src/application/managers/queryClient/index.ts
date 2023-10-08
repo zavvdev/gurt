@@ -1,23 +1,15 @@
 import { Query, QueryCache, QueryClient } from '@tanstack/react-query';
-import {
-  Notification,
-  notificationService,
-} from '~/application/services/NotificationService';
-import { QueryMetaKey } from '~/application/managers/queryClient/config';
+import { ServerResponse } from '~/infrastructure/serverGateway/types';
 
-function onError(_: unknown, query: Query) {
-  if (query.meta?.[QueryMetaKey.ErrorNotification]) {
-    notificationService.show(
-      query.meta[QueryMetaKey.ErrorNotification] as Notification,
-    );
+function onError(error: unknown, query: Query) {
+  if (typeof query.meta?.onError === 'function') {
+    query.meta.onError(error as ServerResponse);
   }
 }
 
-function onSuccess(_: unknown, query: Query) {
-  if (query.meta?.[QueryMetaKey.SuccessNotification]) {
-    notificationService.show(
-      query.meta[QueryMetaKey.SuccessNotification] as Notification,
-    );
+function onSuccess(response: unknown, query: Query) {
+  if (typeof query.meta?.onSuccess === 'function') {
+    query.meta.onSuccess(response as ServerResponse);
   }
 }
 

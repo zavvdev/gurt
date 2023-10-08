@@ -3,12 +3,12 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ROUTE_AFTER_AUTH } from '~/routes';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { emailGateway } from '~/infrastructure/serverGateway/v1/email/gateway';
-import { MutationEvents } from '~/application/managers/queryClient/types';
+import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 import { delay } from '~/application/utilities/general';
 
 // Send verification
 
-export function useSendEmailVerification(args?: MutationEvents) {
+export function useSendEmailVerification(args?: ResponseMessageEventHandlers) {
   const { mutate, isLoading } = useMutation(
     () => {
       return emailGateway.sendVerification();
@@ -31,7 +31,7 @@ export function useSendEmailVerification(args?: MutationEvents) {
 
 // Verify
 
-export function useVerifyEmail(args?: MutationEvents) {
+export function useVerifyEmail(args?: ResponseMessageEventHandlers) {
   const navigate = useNavigate();
   const params = useParams();
   const [searchParams] = useSearchParams();
