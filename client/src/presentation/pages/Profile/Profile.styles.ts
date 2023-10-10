@@ -32,5 +32,56 @@ export const useProfileStyles = createUseStyles(
         top: '-5rem',
       },
     },
+
+    mainInfo: {
+      position: 'relative',
+      top: '-5.5rem',
+      textAlign: 'center',
+
+      [media.maxXs]: {
+        top: '-4rem',
+      },
+
+      '& h2': {
+        fontSize: '1.8rem',
+        fontWeight: 'bold',
+
+        [media.maxXs]: {
+          fontSize: '1.5rem',
+        },
+      },
+
+      '& div': {
+        fontSize: '1.2rem',
+        color: theme.color.gray7,
+
+        [media.maxXs]: {
+          fontSize: '1rem',
+        },
+      },
+    },
+
+    additionInfo: {
+      position: 'relative',
+      top: '-4.3rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '1rem',
+
+      [media.maxXs]: {
+        top: '-3rem',
+        flexDirection: 'column',
+        gap: '0.5rem',
+      },
+    },
+
+    additionInfoRow: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.2rem',
+      fontSize: '0.9rem',
+      color: theme.color.gray7,
+    },
   }),
 );

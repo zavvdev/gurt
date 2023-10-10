@@ -4,6 +4,7 @@ import { Skeleton } from '~/presentation/pages/Profile/shared/Skeleton/Skeleton'
 import { useProfileStyles } from '~/presentation/pages/Profile/Profile.styles';
 import { Image } from '~/presentation/pages/Profile/shared/Image/Image';
 import { Background } from '~/presentation/pages/Profile/shared/Background/Background';
+import { Icons } from '~/presentation/assets/Icons';
 
 export function Profile() {
   const profile = useProfile();
@@ -18,6 +19,24 @@ export function Profile() {
           <div className={classes.profile}>
             <Background url={profile.data.backgroundImageUrl} />
             <Image url={profile.data.imageUrl} className={classes.avatar} />
+            <div className={classes.mainInfo}>
+              <h2>{profile.data.name}</h2>
+              <div>@{profile.data.username}</div>
+            </div>
+            <div className={classes.additionInfo}>
+              {(profile.data.country || profile.data.city) && (
+                <div className={classes.additionInfoRow}>
+                  <Icons.MapPin height={18} />
+                  {[profile.data.country, profile.data.city].join(', ')}
+                </div>
+              )}
+              {profile.data.dateOfBirth && (
+                <div className={classes.additionInfoRow}>
+                  <Icons.Cake height={18} />
+                  {profile.data.dateOfBirth}
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
