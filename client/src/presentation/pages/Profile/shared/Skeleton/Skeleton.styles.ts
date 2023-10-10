@@ -15,6 +15,7 @@ export const useSkeletonStyles = createUseStyles(
       '& span': {
         width: '100%',
         height: '10rem !important',
+        borderRadius: theme.borderRadiusMedium + 'px !important',
 
         [media.maxXs]: {
           height: '7rem !important',
