@@ -45,7 +45,7 @@ export const useSkeletonStyles = createUseStyles(
       },
     },
 
-    info: {
+    mainInfo: {
       position: 'relative',
       top: '-6rem',
       display: 'flex',
@@ -74,6 +74,55 @@ export const useSkeletonStyles = createUseStyles(
 
         [media.maxXs]: {
           width: '100% !important',
+        },
+      },
+    },
+
+    bio: {
+      position: 'relative',
+      top: '-4rem',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.5rem',
+      alignItems: 'center',
+
+      [media.maxXs]: {
+        top: '-2rem',
+      },
+
+      '& > div': {
+        width: '100%',
+      },
+
+      '& span': {
+        width: '25rem !important',
+
+        [media.maxXs]: {
+          width: '15rem !important',
+        },
+      },
+
+      '& > div:last-child span': {
+        width: '15rem !important',
+
+        [media.maxXs]: {
+          width: '5rem !important',
+        },
+      },
+
+      '& > div:first-child span': {
+        width: '19rem !important',
+
+        [media.maxXs]: {
+          width: '8rem !important',
+        },
+      },
+
+      '& > div:nth-child(3) span': {
+        width: '20rem !important',
+
+        [media.maxXs]: {
+          width: '13rem !important',
         },
       },
     },

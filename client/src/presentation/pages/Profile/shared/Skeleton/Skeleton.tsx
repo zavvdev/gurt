@@ -13,9 +13,15 @@ export function Skeleton() {
         shape="square"
         className={classes.avatar}
       />
-      <div className={classes.info}>
+      <div className={classes.mainInfo}>
         <AntSkeleton.Input active className={classes.name} />
         <AntSkeleton.Input active className={classes.username} />
+      </div>
+      <div className={classes.bio}>
+        <AntSkeleton.Input active size="small" />
+        <AntSkeleton.Input active size="small" />
+        <AntSkeleton.Input active size="small" />
+        <AntSkeleton.Input active size="small" />
       </div>
     </div>
   );
