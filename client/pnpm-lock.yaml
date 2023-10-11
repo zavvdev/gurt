@@ -8,6 +8,9 @@ dependencies:
   '@ant-design/icons':
     specifier: 5.2.6
     version: 5.2.6(react-dom@18.2.0)(react@18.2.0)
+  '@juliakramr/latynka':
+    specifier: ^1.1.9
+    version: 1.1.9
   '@tanstack/react-query':
     specifier: 4.35.3
     version: 4.35.3(react-dom@18.2.0)(react@18.2.0)
@@ -472,6 +475,10 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: false
+
+  /@juliakramr/latynka@1.1.9:
+    resolution: {integrity: sha512-tQcE1EUhGOkOk/fdjXvRQP8g7lN1pY2PvL+km2k5/l0V7z7SRACdJuADCLAgixTMpAYpIZlqE2XtooAO6GOp5A==}
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:

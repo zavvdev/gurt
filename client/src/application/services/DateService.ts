@@ -1,6 +1,7 @@
 /* eslint-disable import/no-duplicates */
 import { format } from 'date-fns';
 import { enGB, pl, uk } from 'date-fns/locale';
+import { klatinoid } from '@juliakramr/latynka';
 
 const LANG = {
   en: 'en',
@@ -45,9 +46,13 @@ class DateService {
 
   public previewServerDate(date: string, config?: Config): string {
     const currentConfig = this.mergeConfig(config);
-    return format(new Date(date), 'dd MMMM, yyyy', {
+    const result = format(new Date(date), 'dd MMMM, yyyy', {
       locale: langMap[currentConfig.lang],
     });
+    if (currentConfig.lang === LANG.uk) {
+      return klatinoid.cyrToLat(result);
+    }
+    return result;
   }
 }
 
