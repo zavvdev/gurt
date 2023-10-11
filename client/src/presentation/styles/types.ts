@@ -14,6 +14,7 @@ export interface Theme {
     textInverted: string;
     gray1: string;
     gray6: string;
+    gray7: string;
     background: string;
     backgroundInverted: string;
   };

@@ -8,7 +8,6 @@ export const profileSchema = yup.object({
   bio: yup.string().required().nullable(),
   date_of_birth: yup.string().required().nullable(),
   country: yup.string().required().nullable(),
-  city: yup.string().required().nullable(),
   created_at: yup.string().required(),
   updated_at: yup.string().required(),
 });

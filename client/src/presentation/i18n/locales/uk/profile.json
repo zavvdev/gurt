@@ -1,5 +1,8 @@
 {
   "error": {
     "fetch": "Nemožlyvo otrymaty dani profajlu. Sprobujte pizniše"
+  },
+  "bio": {
+    "more": "bil'še "
   }
 }

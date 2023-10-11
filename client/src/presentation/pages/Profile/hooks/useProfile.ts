@@ -51,7 +51,6 @@ export function useProfile() {
       bio: profileData?.bio || null,
       dateOfBirth: profileData?.date_of_birth || null,
       country: profileData?.country || null,
-      city: profileData?.city || null,
     },
     isLoading: profile.isLoading,
   };
