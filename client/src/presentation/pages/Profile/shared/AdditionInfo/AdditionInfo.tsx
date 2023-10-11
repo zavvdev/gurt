@@ -1,4 +1,6 @@
 import cn from 'clsx';
+import i18next from 'i18next';
+import { dateService } from '~/application/services/DateService';
 import { Icons } from '~/presentation/assets/Icons';
 import { useAdditionInfoStyles } from '~/presentation/pages/Profile/shared/AdditionInfo/AdditionInfo.styles';
 
@@ -23,7 +25,9 @@ export function AdditionInfo({ country, city, dateOfBirth, className }: Props) {
       {dateOfBirth && (
         <div className={classes.row}>
           <Icons.Cake height={18} />
-          {dateOfBirth}
+          {dateService.previewServerDate(dateOfBirth, {
+            lang: i18next.language,
+          })}
         </div>
       )}
     </div>
