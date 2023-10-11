@@ -6,20 +6,19 @@ import { useAdditionInfoStyles } from '~/presentation/pages/Profile/shared/Addit
 
 interface Props {
   country: string | null;
-  city: string | null;
   dateOfBirth: string | null;
   className?: string;
 }
 
-export function AdditionInfo({ country, city, dateOfBirth, className }: Props) {
+export function AdditionInfo({ country, dateOfBirth, className }: Props) {
   const classes = useAdditionInfoStyles();
 
   return (
     <div className={cn(classes.root, className)}>
-      {(country || city) && (
+      {country && (
         <div className={classes.row}>
           <Icons.MapPin height={18} />
-          {[country, city].join(', ')}
+          {country}
         </div>
       )}
       {dateOfBirth && (

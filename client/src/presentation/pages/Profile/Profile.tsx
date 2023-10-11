@@ -28,7 +28,6 @@ export function Profile() {
             />
             <AdditionInfo
               country={profile.country}
-              city={profile.city}
               dateOfBirth={profile.dateOfBirth}
               className={classes.additionInfo}
             />

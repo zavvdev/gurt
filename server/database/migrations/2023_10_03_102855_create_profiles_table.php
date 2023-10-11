@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('country')->nullable();
-            $table->string('city')->nullable();
             $table->timestamps();
         });
     }
