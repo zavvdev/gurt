@@ -4,39 +4,35 @@ import { Skeleton } from '~/presentation/pages/Profile/shared/Skeleton/Skeleton'
 import { useProfileStyles } from '~/presentation/pages/Profile/Profile.styles';
 import { Image } from '~/presentation/pages/Profile/shared/Image/Image';
 import { Background } from '~/presentation/pages/Profile/shared/Background/Background';
-import { Icons } from '~/presentation/assets/Icons';
+import { AdditionInfo } from '~/presentation/pages/Profile/shared/AdditionInfo/AdditionInfo';
+import { MainInfo } from '~/presentation/pages/Profile/shared/MainInfo/MainInfo';
+import { Bio } from '~/presentation/pages/Profile/shared/Bio/Bio';
 
 export function Profile() {
-  const profile = useProfile();
+  const { data: profile, isLoading } = useProfile();
   const classes = useProfileStyles();
 
   return (
     <UserLayout>
       <div className={classes.root}>
-        {profile.isLoading ? (
+        {isLoading ? (
           <Skeleton />
         ) : (
           <div className={classes.profile}>
-            <Background url={profile.data.backgroundImageUrl} />
-            <Image url={profile.data.imageUrl} className={classes.avatar} />
-            <div className={classes.mainInfo}>
-              <h2>{profile.data.name}</h2>
-              <div>@{profile.data.username}</div>
-            </div>
-            <div className={classes.additionInfo}>
-              {(profile.data.country || profile.data.city) && (
-                <div className={classes.additionInfoRow}>
-                  <Icons.MapPin height={18} />
-                  {[profile.data.country, profile.data.city].join(', ')}
-                </div>
-              )}
-              {profile.data.dateOfBirth && (
-                <div className={classes.additionInfoRow}>
-                  <Icons.Cake height={18} />
-                  {profile.data.dateOfBirth}
-                </div>
-              )}
-            </div>
+            <Background url={profile.backgroundImageUrl} />
+            <Image url={profile.imageUrl} className={classes.avatar} />
+            <MainInfo
+              name={profile.name || ''}
+              username={profile.username || ''}
+              className={classes.mainInfo}
+            />
+            <AdditionInfo
+              country={profile.country}
+              city={profile.city}
+              dateOfBirth={profile.dateOfBirth}
+              className={classes.additionInfo}
+            />
+            <Bio className={classes.bio}>{profile.bio}</Bio>
           </div>
         )}
       </div>
