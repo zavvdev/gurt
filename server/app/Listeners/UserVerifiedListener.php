@@ -3,9 +3,10 @@
 namespace App\Listeners;
 
 use App\Models\User;
+use App\Services\UserStorageService;
 use Illuminate\Auth\Events\Verified;
 
-class CreateUserProfile
+class UserVerifiedListener
 {
     /**
      * Create the event listener.
@@ -20,8 +21,11 @@ class CreateUserProfile
      */
     public function handle(Verified $event): void
     {
-        if ($event->user instanceof User && !$event->user->profile) {
-            $event->user->profile()->create();
+        if ($event->user instanceof User) {
+            if (!$event->user->profile) {
+                $event->user->profile()->create();
+            }
+            UserStorageService::createRootFolder($event->user->id);
         }
     }
 }
