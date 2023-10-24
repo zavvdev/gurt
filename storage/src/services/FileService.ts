@@ -21,7 +21,6 @@ class FileService {
 
     return {
       name,
-      fullPath,
     };
   }
 }

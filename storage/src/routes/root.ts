@@ -18,12 +18,11 @@ rootRouter.post(
         .send(responseService.error(ApiResponseMessage.InvalidRequest));
     }
 
-    const { name, fullPath } = fileService.upload(file);
+    const { name } = fileService.upload(file);
 
     return res.send(
       responseService.success({
         name,
-        fullPath,
       }),
     );
   }),

@@ -190,4 +190,6 @@ return [
     'frontend_reset_password_route' => env('FRONTEND_RESET_PASSWORD_ROUTE', '/password-reset'),
 
     'frontend_verify_email_route' => env('FRONTEND_VERIFY_EMAIL_ROUTE', '/verify-email'),
+
+    'storage_url' => env('STORAGE_URL', 'http://storage:8000'),
 ];

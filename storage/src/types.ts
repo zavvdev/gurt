@@ -11,7 +11,6 @@ export enum ApiResponseStatus {
 
 export interface ApiResponseData {
   name: string;
-  fullPath: string;
 }
 
 export interface ApiResponse {
