@@ -1,18 +1,18 @@
-import express, { Express } from "express";
-import dotenv from "dotenv";
-import fileUpload, { UploadedFile } from "express-fileupload";
-import { CONFIG } from "./config";
-import { errorMiddleware } from "./middlewares/errorMiddleware";
-import { rootRouter } from "./routes/root";
+import express, { Express, static as static_ } from 'express';
+import { config as configureDotenv } from 'dotenv';
+import fileUpload from 'express-fileupload';
+import { CONFIG } from './config';
+import { errorMiddleware } from './middlewares/errorMiddleware';
+import { rootRouter } from './routes/root';
 
-dotenv.config();
+configureDotenv();
 
 const app: Express = express();
 const port = CONFIG.port;
 
-app.use(express.static("public"));
+app.use(static_('public'));
 app.use(fileUpload());
-app.use("/", rootRouter);
+app.use('/', rootRouter);
 app.use(errorMiddleware);
 
 app.listen(port, () => {

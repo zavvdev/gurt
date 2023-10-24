@@ -3,7 +3,7 @@ import {
   ApiResponseData,
   ApiResponseMessage,
   ApiResponseStatus,
-} from "../types";
+} from '../types';
 
 class ResponseService {
   private composeResponse(

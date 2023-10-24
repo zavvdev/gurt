@@ -1,14 +1,14 @@
-import express, { Request, Response } from "express";
-import { _ } from "./_";
-import { UploadedFile } from "express-fileupload";
-import { ApiResponseMessage } from "../types";
-import { responseService } from "../services/ResponseService";
-import { fileService } from "../services/FileService";
+import { Request, Response, Router } from 'express';
+import { UploadedFile } from 'express-fileupload';
+import { ApiResponseMessage } from '../types';
+import { responseService } from '../services/ResponseService';
+import { fileService } from '../services/FileService';
+import { _ } from '../routes/_';
 
-const rootRouter = express.Router();
+const rootRouter = Router();
 
 rootRouter.post(
-  "/upload",
+  '/upload',
   _((req: Request, res: Response) => {
     const file = req.files?.file as UploadedFile;
 

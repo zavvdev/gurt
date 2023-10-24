@@ -7,7 +7,8 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "prod": "npx tsc && node dist/index.js"
+    "prod": "npx tsc && node dist/index.js",
+    "lint": "tsc --noEmit && eslint . --ext ts --report-unused-disable-directives --max-warnings 0"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,14 @@
     "@types/express-fileupload": "^1.4.3",
     "@types/node": "^20.8.8",
     "@types/uuid": "^9.0.6",
+    "@typescript-eslint/eslint-plugin": "6.9.0",
+    "@typescript-eslint/parser": "6.9.0",
+    "eslint": "8.52.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-import-resolver-typescript": "3.6.1",
+    "eslint-plugin-import": "2.29.0",
+    "eslint-plugin-prettier": "5.0.1",
+    "prettier": "3.0.3",
     "typescript": "^5.2.2"
   }
 }
