@@ -18,7 +18,7 @@ class ResponseService {
     };
   }
 
-  public success(data: ApiResponseData, message?: ApiResponseMessage) {
+  public success(data?: ApiResponseData, message?: ApiResponseMessage) {
     return this.composeResponse(ApiResponseStatus.Success, data, message);
   }
 

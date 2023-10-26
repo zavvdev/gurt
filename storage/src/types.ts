@@ -1,3 +1,5 @@
+import { Request } from 'express';
+
 export enum ApiResponseMessage {
   InvalidRequest = 'invalid_request',
   UnexpectedError = 'unexpected_error',
@@ -21,4 +23,8 @@ export interface ApiResponse {
 
 export interface NodeError {
   message: string;
+}
+
+export interface ReqBody<P = unknown> extends Request {
+  body: P;
 }

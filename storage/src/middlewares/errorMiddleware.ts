@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { responseService } from '../services/ResponseService';
 import { ApiResponseMessage, NodeError } from '../types';
+import { CONFIG } from '../config';
 
 export function errorMiddleware(err: NodeError, _: Request, res: Response) {
   if (
@@ -11,5 +12,8 @@ export function errorMiddleware(err: NodeError, _: Request, res: Response) {
   ) {
     return res.send(responseService.error(err.message as ApiResponseMessage));
   }
-  return res.send(responseService.error(ApiResponseMessage.UnexpectedError));
+  if (CONFIG.env === 'production') {
+    return res.send(responseService.error(ApiResponseMessage.UnexpectedError));
+  }
+  return res.send(err);
 }

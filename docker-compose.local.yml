@@ -36,6 +36,6 @@ services:
       - ./nginx/nginx.local.conf:/etc/nginx/conf.d/nginx.conf
 
   storage:
-    command: pnpm dev
+    command: pnpm local
     volumes:
       - ./storage/src:/usr/src/app/src

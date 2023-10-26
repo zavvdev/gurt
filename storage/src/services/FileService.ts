@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import { UploadedFile } from 'express-fileupload';
 import { ApiResponseMessage } from '../types';
@@ -22,6 +23,14 @@ class FileService {
     return {
       name,
     };
+  }
+
+  public createUserDirectory(userId: number | string) {
+    // TODO: make it work
+    const dir = `/${path.join('public', String(userId))}`;
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir);
+    }
   }
 }
 
