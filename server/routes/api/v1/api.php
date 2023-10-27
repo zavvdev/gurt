@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\User\UserController;
+use App\Services\StorageService\StorageService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +27,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::prefix('profile')->group(function () {
         Route::get('/user/{id}', [ProfileController::class, 'getByUserId']);
     });
+});
+
+Route::post('/upload-file', function (Request $request) {
+    return StorageService::uploadFile($request->file('file'), $request->userId);
 });

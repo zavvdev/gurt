@@ -6,6 +6,7 @@ export enum ApiResponseMessage {
   InvalidRequest = 'invalid_request',
   UnexpectedError = 'unexpected_error',
   FileTooBig = 'file_too_big',
+  Forbidden = 'forbidden',
 }
 
 export enum ApiResponseStatus {

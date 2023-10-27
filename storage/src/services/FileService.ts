@@ -28,12 +28,16 @@ class FileService {
 
   public delete(fileName: string, userId: UserId) {
     const dir = `${path.join('public', String(userId), fileName)}`;
-    fs.unlinkSync(dir);
+    if (fs.existsSync(dir)) {
+      fs.unlinkSync(dir);
+    }
   }
 
   public deleteDir(userId: UserId) {
     const dir = `${path.join('public', String(userId))}`;
-    fs.rmdirSync(dir, { recursive: true });
+    if (fs.existsSync(dir)) {
+      fs.rmdirSync(dir, { recursive: true });
+    }
   }
 }
 

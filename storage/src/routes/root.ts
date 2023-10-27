@@ -31,7 +31,7 @@ rootRouter.post(
 
 rootRouter.delete(
   '/file/:userId/:fileName',
-  _((req: ReqBody<{ userId: string | number }>, res: Response) => {
+  _((req: Request, res: Response) => {
     const id = req.params.userId;
     const fileName = req.params.fileName;
 

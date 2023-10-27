@@ -194,4 +194,6 @@ return [
     'frontend_storage_path' => env('FRONTEND_STORAGE_PATH', ''),
 
     'storage_service_url' => env('STORAGE_SERVICE_URL', 'http://storage:8000'),
+
+    'storage_service_secret' => env('STORAGE_SERVICE_SECRET', ''),
 ];

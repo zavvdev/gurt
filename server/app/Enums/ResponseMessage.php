@@ -31,4 +31,6 @@ enum ResponseMessage: string
     case AlreadySent = 'already_sent';
 
     case AlreadyLoggedIn = 'already_logged_in';
+
+    case UnableToPersist = 'unable_to_persist';
 }

@@ -117,6 +117,13 @@ class Handler extends ExceptionHandler
             );
         }
 
+        if ($exception instanceof StorageException) {
+            return $this->errorResponse(
+                Response::HTTP_CONFLICT,
+                ResponseMessage::UnableToPersist,
+            );
+        }
+
         if (config('app.debug')) {
             return parent::render($request, $exception);
         }
