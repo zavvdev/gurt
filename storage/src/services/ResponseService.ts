@@ -1,16 +1,11 @@
-import {
-  ApiResponse,
-  ApiResponseData,
-  ApiResponseMessage,
-  ApiResponseStatus,
-} from '../types';
+import { ApiResponse, ApiResponseMessage, ApiResponseStatus } from '../types';
 
 class ResponseService {
-  private composeResponse(
+  private composeResponse<T>(
     status: ApiResponseStatus,
-    data?: ApiResponseData,
+    data?: T,
     message?: ApiResponseMessage,
-  ): ApiResponse {
+  ): ApiResponse<T> {
     return {
       status,
       message: message || null,
@@ -18,11 +13,11 @@ class ResponseService {
     };
   }
 
-  public success(data?: ApiResponseData, message?: ApiResponseMessage) {
+  public success<T>(data?: T, message?: ApiResponseMessage) {
     return this.composeResponse(ApiResponseStatus.Success, data, message);
   }
 
-  public error(message?: ApiResponseMessage, data?: ApiResponseData) {
+  public error<T>(message?: ApiResponseMessage, data?: T) {
     return this.composeResponse(ApiResponseStatus.Error, data, message);
   }
 }

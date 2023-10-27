@@ -1,5 +1,7 @@
 import { Request } from 'express';
 
+export type UserId = number | string;
+
 export enum ApiResponseMessage {
   InvalidRequest = 'invalid_request',
   UnexpectedError = 'unexpected_error',
@@ -11,14 +13,10 @@ export enum ApiResponseStatus {
   Error = 'error',
 }
 
-export interface ApiResponseData {
-  name: string;
-}
-
-export interface ApiResponse {
+export interface ApiResponse<T> {
   status: ApiResponseStatus;
   message: ApiResponseMessage | null;
-  data: ApiResponseData | null;
+  data: T | null;
 }
 
 export interface NodeError {

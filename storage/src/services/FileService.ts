@@ -1,36 +1,34 @@
 import fs from 'fs';
 import path from 'path';
 import { UploadedFile } from 'express-fileupload';
-import { ApiResponseMessage } from '../types';
+import { ApiResponseMessage, UserId } from '../types';
 import { CONFIG } from '../config';
 import { generateFileName, getFileExtension, mbToBytes } from '../utilities';
 
 class FileService {
-  public upload(file: UploadedFile) {
+  public async upload(file: UploadedFile, userId: UserId) {
     const name = generateFileName(getFileExtension(file.name));
-    const fullPath = path.join('public', name);
+    const fullPath = path.join('public', String(userId), name);
 
     if (file.size > mbToBytes(CONFIG.fileSizeLimitMb)) {
       throw new Error(ApiResponseMessage.FileTooBig);
     }
 
-    file.mv(fullPath, (err) => {
-      if (err) {
-        throw err;
-      }
-    });
+    await file.mv(fullPath);
 
     return {
       name,
     };
   }
 
-  public createUserDirectory(userId: number | string) {
-    // TODO: make it work
+  public delete(fileName: string, userId: UserId) {
+    const dir = `/${path.join('public', String(userId), fileName)}`;
+    fs.unlinkSync(dir);
+  }
+
+  public deleteDir(userId: UserId) {
     const dir = `/${path.join('public', String(userId))}`;
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir);
-    }
+    fs.rmdirSync(dir, { recursive: true });
   }
 }
 
