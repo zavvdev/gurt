@@ -10,10 +10,14 @@ export function errorMiddleware(err: NodeError, _: Request, res: Response) {
       err.message as ApiResponseMessage,
     )
   ) {
-    return res.send(responseService.error(err.message as ApiResponseMessage));
+    return res
+      .status(409)
+      .send(responseService.error(err.message as ApiResponseMessage));
   }
   if (CONFIG.env === 'production') {
-    return res.send(responseService.error(ApiResponseMessage.UnexpectedError));
+    return res
+      .status(500)
+      .send(responseService.error(ApiResponseMessage.UnexpectedError));
   }
-  return res.send(err);
+  return res.status(500).send(err);
 }

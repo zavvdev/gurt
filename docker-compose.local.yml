@@ -39,3 +39,4 @@ services:
     command: pnpm local
     volumes:
       - ./storage/src:/usr/src/app/src
+      - ./storage/public:/usr/src/app/public
