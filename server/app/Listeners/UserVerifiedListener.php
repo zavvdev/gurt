@@ -3,7 +3,6 @@
 namespace App\Listeners;
 
 use App\Models\User;
-use App\Services\UserStorageService;
 use Illuminate\Auth\Events\Verified;
 
 class UserVerifiedListener
@@ -25,7 +24,6 @@ class UserVerifiedListener
             if (!$event->user->profile) {
                 $event->user->profile()->create();
             }
-            UserStorageService::createRootFolder($event->user->id);
         }
     }
 }

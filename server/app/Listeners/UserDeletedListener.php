@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\UserDeletedEvent;
 use App\Models\User;
-use App\Services\UserStorageService;
+use App\Services\StorageService;
 
 class UserDeletedListener
 {
@@ -22,7 +22,7 @@ class UserDeletedListener
     public function handle(UserDeletedEvent $event): void
     {
         if ($event->user instanceof User) {
-            UserStorageService::drop($event->user->id);
+            StorageService::deleteUserFolder($event->user->id);
         }
     }
 }

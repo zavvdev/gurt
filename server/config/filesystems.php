@@ -72,6 +72,4 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
-    'user_root_folder_name' => 'user',
 ];
