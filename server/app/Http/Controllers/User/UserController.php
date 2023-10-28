@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Enums\ResponseMessage;
+use App\Events\UserDeletedEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User\UserResource;
 use App\Models\User;
@@ -16,12 +17,13 @@ class UserController extends Controller
         return $this->successResponse($request->user());
     }
 
-    public function delete(Request $request)
+    public function deleteFromSession(Request $request)
     {
         $user = $request->user();
 
         if ($user) {
             $user->delete();
+            UserDeletedEvent::dispatch($user);
 
             return $this->successResponse();
         } else {

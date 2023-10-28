@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::prefix('user')->group(function () {
         Route::get('/session', [UserController::class, 'getFromSession']);
-        Route::delete('/delete', [UserController::class, 'delete']);
+        Route::delete('/delete', [UserController::class, 'deleteFromSession']);
         Route::get('/{id}', [UserController::class, 'getById']);
     });
 

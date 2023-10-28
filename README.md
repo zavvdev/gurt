@@ -6,7 +6,7 @@
 
 ### Setup project
 
-1. Configure .env.\* files
+1. Configure .env.\* files for all services
 2. Open the terminal and go to `/etc` folder. Type `sudo nano hosts`. In opened file provide two host names for 127.0.0.1 ip address:<br/>
    `127.0.0.1 gurt.local.gg` - local<br/>
    `127.0.0.1 gurt.gg`- prod (you can replace with your production url)<br/>
@@ -62,13 +62,21 @@ Run linter for server
 
 Fix lint errors for server
 
+### ✔ make lint-storage
+
+Run linter for storage server
+
+### ✔ make lint-storage-fix
+
+Fix lint errors for storage server
+
 ### ✔ make lint
 
-Run linters for client & server
+Run all linters
 
 ### ✔ make lint-fix
 
-Fix lint errors for client & server
+Fix all linter errors
 
 ### ✔ make db-volume-clear
 

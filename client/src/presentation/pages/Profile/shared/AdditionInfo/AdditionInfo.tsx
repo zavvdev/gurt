@@ -2,6 +2,7 @@ import cn from 'clsx';
 import i18next from 'i18next';
 import { dateService } from '~/application/services/DateService';
 import { Icons } from '~/presentation/assets/Icons';
+import { getCountryNameByCode } from '~/presentation/i18n/countries';
 import { useAdditionInfoStyles } from '~/presentation/pages/Profile/shared/AdditionInfo/AdditionInfo.styles';
 
 interface Props {
@@ -18,7 +19,7 @@ export function AdditionInfo({ country, dateOfBirth, className }: Props) {
       {country && (
         <div className={classes.row}>
           <Icons.MapPin height={18} />
-          {country}
+          {getCountryNameByCode(country)}
         </div>
       )}
       {dateOfBirth && (

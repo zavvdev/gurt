@@ -1,6 +1,6 @@
 # Install all required modules
 install:
-	cd client && pnpm install && cd ../server && composer install
+	cd client && pnpm install && cd ../server && composer install && cd ../storage && pnpm install
 
 # Start in production mode
 up:
@@ -42,13 +42,21 @@ lint-server:
 lint-server-fix:
 	cd server && ./vendor/bin/pint -v
 
+# Run linter for storage
+lint-storage:
+	cd storage && pnpm lint
+
+# Fix lint errors for storage
+lint-storage-fix:
+	cd storage && pnpm lint --fix
+
 # Run linters for client & server
 lint:
-	cd client && pnpm lint && cd ../server && ./vendor/bin/pint --test
+	cd client && pnpm lint && cd ../server && ./vendor/bin/pint --test && cd ../storage && pnpm lint
 
 # Fix lint errors for client & server
 lint-fix:
-	cd client && pnpm lint --fix && cd ../server && ./vendor/bin/pint -v
+	cd client && pnpm lint --fix && cd ../server && ./vendor/bin/pint -v && cd ../storage && pnpm lint --fix
 
 # Clear database volume data
 # (Be careful! Use only when you need to switch to prod database locally for testing purpose)

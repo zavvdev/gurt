@@ -1,0 +1,104 @@
+{
+  "env": { "browser": false, "es2020": true, "node": true },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts"]
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "import/no-cycle": "error",
+    "prettier/prettier": "error",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "type", "internal"]
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "import/no-restricted-paths": [
+      "error",
+      {
+        "zones": [
+          {
+            "target": "./src/routes",
+            "from": ["./src/index.ts"],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/middlewares",
+            "from": ["./src/index.ts", "./src/routes"],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/services",
+            "from": ["./src/index.ts", "./src/routes", "./src/middlewares"],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/utilities.ts",
+            "from": [
+              "./src/index.ts",
+              "./src/routes",
+              "./src/middlewares",
+              "./src/services"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/config.ts",
+            "from": [
+              "./src/index.ts",
+              "./src/routes",
+              "./src/middlewares",
+              "./src/services",
+              "./src/utilities.ts"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
+            "target": "./src/types.ts",
+            "from": [
+              "./src/index.ts",
+              "./src/routes",
+              "./src/middlewares",
+              "./src/services",
+              "./src/utilities.ts",
+              "./src/config.ts"
+            ],
+            "message": "Dependency prohibited"
+          }
+        ]
+      }
+    ]
+  },
+  "ignorePatterns": ["dist/"]
+}
