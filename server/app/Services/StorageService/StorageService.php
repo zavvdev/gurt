@@ -37,13 +37,12 @@ class StorageService
             'userId' => $userId,
         ]);
 
-        // TODO: Make it work
-
         $response = self::request('POST', '/file', [
             'multipart' => [
                 [
                     'name' => 'file',
-                    'contents' => $req->file,
+                    'contents' => fopen($req->file->getPathname(), 'r'),
+                    'filename' => $req->file->getClientOriginalName(),
                 ],
                 [
                     'name' => 'userId',
@@ -52,7 +51,17 @@ class StorageService
             ],
         ]);
 
-        return $response->getBody();
+        $data = json_decode($response->getBody());
+
+        if ($data->data?->name) {
+            $frontendUrl = Config::get('app.frontend_url');
+            $frontendPath = Config::get('app.frontend_storage_path');
+            $name = $data->data->name;
+
+            return $frontendUrl . $frontendPath . '/' . $userId . '/' . $name;
+        }
+
+        throw new StorageException('File upload failed');
     }
 
     public static function deleteFile(string $fileName, int $userId)
