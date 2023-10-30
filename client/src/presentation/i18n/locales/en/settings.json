@@ -11,6 +11,13 @@
   },
   "profile": {
     "label": "Profile settings",
+    "picture": {
+      "label": "Avatar",
+      "edit": "Edit avatar",
+      "save": "Save",
+      "cancel": "Cancel",
+      "reset": "Reset"
+    },
     "delete": {
       "button": "Delete profile permanently",
       "confirm": {

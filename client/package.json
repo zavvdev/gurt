@@ -23,6 +23,7 @@
     "@typescript-eslint/parser": "6.0.0",
     "@vitejs/plugin-react-swc": "3.3.2",
     "antd": "5.9.3",
+    "antd-img-crop": "^4.13.0",
     "axios": "1.5.0",
     "clsx": "2.0.0",
     "date-fns": "^2.30.0",

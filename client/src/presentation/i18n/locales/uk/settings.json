@@ -11,6 +11,13 @@
   },
   "profile": {
     "label": "Nalaštuvannja profajlu",
+    "picture": {
+      "label": "Avatar",
+      "edit": "Zminyty avatar",
+      "save": "Zberegty",
+      "cancel": "Vidmina",
+      "reset": "Vidnovyty"
+    },
     "delete": {
       "button": "Vydalyty profajl nazavždy",
       "confirm": {

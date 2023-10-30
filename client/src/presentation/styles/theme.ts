@@ -119,6 +119,9 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
       Checkbox: {
         colorWhite: theme.color.textInverted,
       },
+      Upload: {
+        motionDurationSlow: '0',
+      },
     },
   };
 }
