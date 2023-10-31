@@ -9,6 +9,12 @@
     "system": "System"
   },
 
+  "label": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "reset": "Reset"
+  },
+
   "appError": {
     "label": "Critical error",
     "description": "Application faced a critical error and cannot be usable. Please contact <a>{{ contact }}</a>"

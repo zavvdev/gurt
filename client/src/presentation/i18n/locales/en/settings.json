@@ -13,10 +13,11 @@
     "label": "Profile settings",
     "picture": {
       "label": "Avatar",
-      "edit": "Edit avatar",
-      "save": "Save",
-      "cancel": "Cancel",
-      "reset": "Reset"
+      "edit": "Edit avatar"
+    },
+    "background": {
+      "label": "Background",
+      "edit": "Edit background"
     },
     "delete": {
       "button": "Delete profile permanently",

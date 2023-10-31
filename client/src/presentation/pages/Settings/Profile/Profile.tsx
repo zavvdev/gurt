@@ -2,11 +2,16 @@ import { UploadFile } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { SettingsPageLayout } from '~/presentation/pages/Settings/layouts/SettingsPageLayout/SettingsPageLayout';
-import { Avatar } from '~/presentation/pages/Settings/Profile/shared/Avatar/Avatar';
+import { Image } from '~/presentation/pages/Settings/Profile/shared/Image/Image';
+import { Background } from '~/presentation/pages/Settings/Profile/shared/Background/Background';
+import { useProfileStyles } from '~/presentation/pages/Settings/Profile/Profile.styles';
 
 export function Profile() {
   const { t } = useTranslation('settings');
+  const classes = useProfileStyles();
+
   const [file, setFile] = useState<UploadFile | null>(null);
+  const [bg, setBg] = useState<UploadFile | null>(null);
 
   // const a = {
   //   uid: '-1',
@@ -17,7 +22,11 @@ export function Profile() {
 
   return (
     <SettingsPageLayout label={t('profile.label')}>
-      <Avatar file={file} onSelect={setFile} />
+      <div className={classes.images}>
+        <Image file={file} onSelect={setFile} />
+        <Background file={bg} onSelect={setBg} />
+      </div>
+      123
     </SettingsPageLayout>
   );
 }

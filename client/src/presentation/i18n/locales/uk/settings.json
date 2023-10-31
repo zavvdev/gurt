@@ -13,10 +13,11 @@
     "label": "Nalaštuvannja profajlu",
     "picture": {
       "label": "Avatar",
-      "edit": "Zminyty avatar",
-      "save": "Zberegty",
-      "cancel": "Vidmina",
-      "reset": "Vidnovyty"
+      "edit": "Zminyty avatar"
+    },
+    "background": {
+      "label": "Tlo",
+      "edit": "Zminyty tlo"
     },
     "delete": {
       "button": "Vydalyty profajl nazavždy",

@@ -9,6 +9,12 @@
     "system": "Systemna"
   },
 
+  "label": {
+    "save": "Zberegty",
+    "cancel": "Vidmina",
+    "reset": "Vidnovyty"
+  },
+
   "appError": {
     "label": "Krytyčna pomylka",
     "description": "Zastosunok zaznav krytyčnoji pomylky i ne može dali funkcionuvaty. Bud' laska, zvernit'sja do <a>{{ contact }}</a>"

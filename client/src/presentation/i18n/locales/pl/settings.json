@@ -13,10 +13,11 @@
     "label": "Ustawienia profilu",
     "picture": {
       "label": "Awatar",
-      "edit": "Edytuj awatar",
-      "save": "Zapisz",
-      "cancel": "Anulować",
-      "reset": "Zresetować"
+      "edit": "Edytuj awatar"
+    },
+    "background": {
+      "label": "Tło",
+      "edit": "Edytuj tło"
     },
     "delete": {
       "button": "Usuń profil na stałe",
