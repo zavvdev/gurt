@@ -15,7 +15,7 @@ use Spatie\LaravelData\Attributes\Validation\Unique;
 class RegisterRequest extends RequestData
 {
     public function __construct(
-        #[Required, Max(50)]
+        #[Required, Min(1), Max(36)]
         public string $name,
 
         #[Required, Email, Unique('users', 'email')]

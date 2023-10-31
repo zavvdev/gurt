@@ -2,6 +2,8 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { RegisterForm } from '~/application/features/auth/register';
 import {
+  AUTH_NAME_MAX_LENGTH,
+  AUTH_NAME_MIN_LENGTH,
   AUTH_PASSWORD_MIN_LENGTH,
   AUTH_USERNAME_MAX_LENGTH,
   AUTH_USERNAME_MIN_LENGTH,
@@ -17,7 +19,14 @@ export function useForm({ onSubmit }: Args) {
   const { t } = useTranslation('common');
 
   const schema = yup.object({
-    name: yup.string().required(t('formError.nameRequired')),
+    name: yup
+      .string()
+      .required(t('formError.nameRequired'))
+      .test({
+        message: t('formError.nameLength'),
+        test: (v) =>
+          v.length >= AUTH_NAME_MIN_LENGTH && v.length <= AUTH_NAME_MAX_LENGTH,
+      }),
 
     email: yup
       .string()

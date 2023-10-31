@@ -12,7 +12,10 @@
   "label": {
     "save": "Zberegty",
     "cancel": "Vidmina",
-    "reset": "Vidnovyty"
+    "reset": "Skynuty",
+    "name": "Im'ja",
+    "username": "Oblikovka",
+    "bio": "Opys"
   },
 
   "appError": {
@@ -40,6 +43,7 @@
 
   "formError": {
     "nameRequired": "Vkažit' vaše im'ja",
+    "nameLength": "Im'ja povynno skladatysja minimum z 1-go ta maksymum z 36-ty symvoliv",
     "loginRequired": "Vkažit' vašu elektronnu adresu abo oblikovku",
     "emailInvalid": "Nekorektna elektronna adresa",
     "usernameInvalid": "Oblikovka povynna skladatysja lyše z liter, cyfr ta nyžnjogo pidkreslennja",

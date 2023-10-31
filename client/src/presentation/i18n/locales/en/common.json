@@ -12,7 +12,10 @@
   "label": {
     "save": "Save",
     "cancel": "Cancel",
-    "reset": "Reset"
+    "reset": "Reset",
+    "name": "Name",
+    "username": "Username",
+    "bio": "Bio"
   },
 
   "appError": {
@@ -40,6 +43,7 @@
 
   "formError": {
     "nameRequired": "Provide your name",
+    "nameLength": "Name should be minimum 1 and maximum 36 symbols length",
     "loginRequired": "Provide your email or username",
     "emailInvalid": "Provide valid email",
     "usernameInvalid": "Username should consists only of letters, numbers and underscore",

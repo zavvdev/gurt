@@ -12,7 +12,10 @@
   "label": {
     "save": "Zapisz",
     "cancel": "Anulować",
-    "reset": "Zresetować"
+    "reset": "Zresetować",
+    "name": "Imię",
+    "username": "Nazwa użytkownika",
+    "bio": "Opis"
   },
 
   "appError": {
@@ -40,6 +43,7 @@
 
   "formError": {
     "nameRequired": "Podaj swoje imię",
+    "nameLength": "Imię powinnę mieć długość co najmniej 1, a maksymalnie 36 symboli",
     "loginRequired": "Podaj swój adres e-mail lub nazwę użytkownika",
     "emailInvalid": "Podaj prawidłowy adres e-mail",
     "usernameInvalid": "Nazwa użytkownika powinna składać się wyłącznie z liter, cyfr i podkreślenia",
