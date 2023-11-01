@@ -42,6 +42,9 @@ export function Image({ file, onSelect }: Props) {
         className={classes.upload}
         onChange={onChange}
         onRemove={onRemove}
+        showUploadList={{
+          showPreviewIcon: false,
+        }}
         customRequest={({ onSuccess }) =>
           setTimeout(() => {
             onSuccess?.('ok');

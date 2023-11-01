@@ -19,6 +19,9 @@
       "label": "Tło",
       "edit": "Edytuj tło"
     },
+    "country": {
+      "placeholder": "Wyszukaj, aby wybrać"
+    },
     "delete": {
       "button": "Usuń profil na stałe",
       "confirm": {

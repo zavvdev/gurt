@@ -19,4 +19,8 @@ export const useProfileStyles = createUseStyles(({ media }: JssTheme) => ({
   images: {
     marginBottom: '2rem',
   },
+
+  footer: {
+    marginTop: '2rem',
+  },
 }));

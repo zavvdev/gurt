@@ -19,6 +19,9 @@
       "label": "Tlo",
       "edit": "Zminyty tlo"
     },
+    "country": {
+      "placeholder": "Šukaj, ščob obraty"
+    },
     "delete": {
       "button": "Vydalyty profajl nazavždy",
       "confirm": {

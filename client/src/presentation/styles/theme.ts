@@ -122,6 +122,9 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
       Upload: {
         motionDurationSlow: '0',
       },
+      DatePicker: {
+        colorTextLightSolid: theme.color.textInverted,
+      },
     },
   };
 }

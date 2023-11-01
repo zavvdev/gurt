@@ -19,6 +19,9 @@
       "label": "Background",
       "edit": "Edit background"
     },
+    "country": {
+      "placeholder": "Search to select"
+    },
     "delete": {
       "button": "Delete profile permanently",
       "confirm": {

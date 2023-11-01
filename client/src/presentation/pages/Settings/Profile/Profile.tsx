@@ -1,4 +1,4 @@
-import { Button, Input, UploadFile } from 'antd';
+import { Button, Input, Select, UploadFile } from 'antd';
 import { useState } from 'react';
 import cn from 'clsx';
 import TextArea from 'antd/es/input/TextArea';
@@ -10,9 +10,11 @@ import { useProfileStyles } from '~/presentation/pages/Settings/Profile/Profile.
 import { SettingItem } from '~/presentation/pages/Settings/shared/SettingItem/SettingItem';
 import { Icons } from '~/presentation/assets/Icons';
 import { useJssTheme } from '~/presentation/styles/hooks/useJssTheme';
+import { COUNTRIES } from '~/presentation/i18n/countries';
+import { DatePicker } from '~/presentation/shared/DatePicker/DatePicker';
 
 export function Profile() {
-  const { t: tCommon } = useTranslation('common');
+  const { i18n, t: tCommon } = useTranslation('common');
   const { t } = useTranslation('settings');
   const classes = useProfileStyles();
   const { theme } = useJssTheme();
@@ -42,6 +44,26 @@ export function Profile() {
         <TextArea size="large" autoSize={{ minRows: 3, maxRows: 5 }} />
       </SettingItem>
       <div className={classes.row}>
+        <SettingItem dir="col" label={tCommon('label.country')}>
+          <Select
+            showSearch
+            placeholder={t('profile.country.placeholder')}
+            optionFilterProp="children"
+            size="large"
+            options={COUNTRIES.map((c) => ({
+              value: c.code,
+              label: c.name?.[i18n.language] || '',
+            }))}
+            filterOption={(input, option) =>
+              (option?.label?.toLowerCase() ?? '').includes(input.toLowerCase())
+            }
+          />
+        </SettingItem>
+        <SettingItem dir="col" label={tCommon('label.dateOfBirth')}>
+          <DatePicker size="large" onChange={console.log} format="YYYY/MM/DD" />
+        </SettingItem>
+      </div>
+      <div className={cn(classes.row, classes.footer)}>
         <Button type="primary" size="large" icon={<Icons.Save width={17} />}>
           {tCommon('label.save')}
         </Button>
