@@ -25,9 +25,9 @@ export function useForm({ initialValues, onSubmit }: Args) {
   const { t } = useTranslation('common');
 
   const schema = yup.object({
-    image: yup.object<UploadFile>(),
+    image: yup.object<UploadFile>().nullable(),
 
-    backgroundImage: yup.object<UploadFile>(),
+    backgroundImage: yup.object<UploadFile>().nullable(),
 
     name: yup
       .string()

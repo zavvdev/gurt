@@ -17,4 +17,12 @@ export const useImageStyles = createUseStyles(({ theme }: JssTheme) => ({
         marginInlineEnd: '0 !important',
       },
   },
+
+  skeleton: {
+    '& span': {
+      height: '6rem !important',
+      width: '6rem !important',
+      borderRadius: theme.borderRadiusBase + 'px',
+    },
+  },
 }));

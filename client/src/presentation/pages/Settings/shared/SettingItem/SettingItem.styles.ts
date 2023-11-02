@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useSettingItemStyles = createUseStyles(() => ({
+export const useSettingItemStyles = createUseStyles({
   root: {
     display: 'flex',
     gap: '0.75rem',
@@ -17,4 +17,4 @@ export const useSettingItemStyles = createUseStyles(() => ({
     fontWeight: 'bolder',
     marginTop: '0.015rem',
   },
-}));
+});

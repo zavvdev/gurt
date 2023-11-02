@@ -30,5 +30,17 @@ export const useBackgroundStyles = createUseStyles(
         objectFit: 'cover !important',
       },
     },
+
+    skeleton: {
+      '& span': {
+        height: '6rem !important',
+        width: '30rem !important',
+        borderRadius: theme.borderRadiusBase + 'px',
+
+        [media.maxXs]: {
+          width: '100% !important',
+        },
+      },
+    },
   }),
 );

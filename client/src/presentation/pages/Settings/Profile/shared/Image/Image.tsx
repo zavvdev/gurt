@@ -1,4 +1,4 @@
-import { Upload, UploadFile, UploadProps } from 'antd';
+import { Skeleton, Upload, UploadFile, UploadProps } from 'antd';
 import ImgCrop from 'antd-img-crop';
 import { useState } from 'react';
 import { Icons } from '~/presentation/assets/Icons';
@@ -8,9 +8,10 @@ import { useImageStyles } from '~/presentation/pages/Settings/Profile/shared/Ima
 interface Props {
   file: UploadFile | null;
   onSelect: (file: UploadFile | null) => void;
+  isLoading: boolean;
 }
 
-export function Image({ file, onSelect }: Props) {
+export function Image({ file, onSelect, isLoading }: Props) {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('settings');
   const classes = useImageStyles();
@@ -25,7 +26,14 @@ export function Image({ file, onSelect }: Props) {
     setKey((prev) => prev + +new Date());
   };
 
-  return (
+  return isLoading ? (
+    <Skeleton.Avatar
+      active
+      size="large"
+      shape="square"
+      className={classes.skeleton}
+    />
+  ) : (
     <ImgCrop
       key={key}
       rotationSlider

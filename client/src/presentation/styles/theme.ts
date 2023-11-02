@@ -115,6 +115,7 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
         colorLinkActive: theme.color.primary,
         primaryColor: theme.color.textInverted + ' !important',
         colorPrimaryHover: theme.color.primaryHover,
+        colorTextDisabled: theme.color.gray6 + ' !important',
       },
       Checkbox: {
         colorWhite: theme.color.textInverted,
