@@ -67,16 +67,18 @@
 
   "formError": {
     "nameRequired": "Vkažit' vaše im'ja",
-    "nameLength": "Im'ja povynno skladatysja minimum z 1-go ta maksymum z 36-ty symvoliv",
+    "nameLength": "Im'ja povynno skladatysja minimum z {{ min }} ta maksymum z {{ max }} symvoliv",
     "loginRequired": "Vkažit' vašu elektronnu adresu abo oblikovku",
     "emailInvalid": "Nekorektna elektronna adresa",
     "usernameInvalid": "Oblikovka povynna skladatysja lyše z liter, cyfr ta nyžnjogo pidkreslennja",
     "usernameRequired": "Vkažit' vašu oblikovku",
-    "usernameLength": "Oblikovka povynna skladatysja minimum z 3-h ta maksymum z 16-ty symvoliv",
+    "usernameLength": "Oblikovka povynna skladatysja minimum z {{ min }} ta maksymum z {{ max }} symvoliv",
     "passwordRequired": "Vkažit' vaše gaslo",
     "passwordConfirmRequired": "Pidtverdit' gaslo",
     "passwordsNotMatch": "Gasla ne spivpadajut'",
-    "passwordMinimum": "Gaslo povynno buty minimum {{ length }} symvoliv v dovžynu"
+    "passwordMinimum": "Gaslo povynno buty minimum {{ length }} symvoliv v dovžynu",
+    "textMax": "Maximum length allowed: {{ max }}",
+    "dateOfBirthInvalid": "Please provide your real date of birth"
   },
 
   "notFoundPage": {

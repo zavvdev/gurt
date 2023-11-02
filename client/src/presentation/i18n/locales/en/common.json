@@ -67,16 +67,18 @@
 
   "formError": {
     "nameRequired": "Provide your name",
-    "nameLength": "Name should be minimum 1 and maximum 36 symbols length",
+    "nameLength": "Name should be minimum {{ min }} and maximum {{ max }} symbols length",
     "loginRequired": "Provide your email or username",
     "emailInvalid": "Provide valid email",
     "usernameInvalid": "Username should consists only of letters, numbers and underscore",
     "usernameRequired": "Provide your username",
-    "usernameLength": "Username should be minimum 3 and maximum 16 symbols length",
+    "usernameLength": "Username should be minimum {{ min }} and maximum {{ max }} symbols length",
     "passwordRequired": "Provide your password",
     "passwordConfirmRequired": "Confirm your password",
     "passwordsNotMatch": "Passwords do not match",
-    "passwordMinimum": "Password should be minimum {{ length }} characters length"
+    "passwordMinimum": "Password should be minimum {{ length }} characters length",
+    "textMax": "Maximum length allowed: {{ max }}",
+    "dateOfBirthInvalid": "Please provide your real date of birth"
   },
 
   "notFoundPage": {

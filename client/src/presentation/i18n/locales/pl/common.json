@@ -67,16 +67,18 @@
 
   "formError": {
     "nameRequired": "Podaj swoje imię",
-    "nameLength": "Imię powinnę mieć długość co najmniej 1, a maksymalnie 36 symboli",
+    "nameLength": "Imię powinnę mieć długość co najmniej {{ min }}, a maksymalnie {{ max }} symboli",
     "loginRequired": "Podaj swój adres e-mail lub nazwę użytkownika",
     "emailInvalid": "Podaj prawidłowy adres e-mail",
     "usernameInvalid": "Nazwa użytkownika powinna składać się wyłącznie z liter, cyfr i podkreślenia",
     "usernameRequired": "Podaj nazwę użytkownika",
-    "usernameLength": "Nazwa użytkownika powinna mieć długość co najmniej 3, a maksymalnie 16 symboli",
+    "usernameLength": "Nazwa użytkownika powinna mieć długość co najmniej {{ min }}, a maksymalnie {{ max }} symboli",
     "passwordRequired": "Podaj swoje hasło",
     "passwordConfirmRequired": "Potwierdź hasło",
     "passwordsNotMatch": "Hasła nie pasują",
-    "passwordMinimum": "Hasło powinno mieć długość co najmniej 12 znaków"
+    "passwordMinimum": "Hasło powinno mieć długość co najmniej {{ length }} znaków",
+    "textMax": "Maximum length allowed: {{ max }}",
+    "dateOfBirthInvalid": "Please provide your real date of birth"
   },
 
   "notFoundPage": {

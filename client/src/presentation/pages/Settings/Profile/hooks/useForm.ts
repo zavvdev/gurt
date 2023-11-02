@@ -1,10 +1,9 @@
-import * as yup from 'yup';
+import { UploadFile } from 'antd';
 import { useFormik } from 'formik';
-import { RegisterForm } from '~/application/features/auth/register';
+import * as yup from 'yup';
 import {
   AUTH_NAME_MAX_LENGTH,
   AUTH_NAME_MIN_LENGTH,
-  AUTH_PASSWORD_MIN_LENGTH,
   AUTH_USERNAME_MAX_LENGTH,
   AUTH_USERNAME_MIN_LENGTH,
   AUTH_USERNAME_REGEX,
@@ -13,16 +12,23 @@ import {
   isAuthNameLengthValid,
   isAuthUsernameLengthValid,
 } from '~/application/features/auth/utilities';
+import { PatchProfileForm } from '~/application/features/user/patchProfile';
+import { dateService } from '~/application/services/DateService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {
-  onSubmit: (form: RegisterForm) => void;
+  initialValues: PatchProfileForm;
+  onSubmit: (values: PatchProfileForm) => void;
 }
 
-export function useForm({ onSubmit }: Args) {
+export function useForm({ initialValues, onSubmit }: Args) {
   const { t } = useTranslation('common');
 
   const schema = yup.object({
+    image: yup.object<UploadFile>(),
+
+    backgroundImage: yup.object<UploadFile>(),
+
     name: yup
       .string()
       .required(t('formError.nameRequired'))
@@ -33,11 +39,6 @@ export function useForm({ onSubmit }: Args) {
         }),
         test: isAuthNameLengthValid,
       }),
-
-    email: yup
-      .string()
-      .email(t('formError.emailInvalid'))
-      .required(t('formError.emailRequired')),
 
     username: yup
       .string()
@@ -51,36 +52,24 @@ export function useForm({ onSubmit }: Args) {
         test: isAuthUsernameLengthValid,
       }),
 
-    password: yup
-      .string()
-      .test({
-        message: t('formError.passwordMinimum', {
-          length: AUTH_PASSWORD_MIN_LENGTH,
-        }),
-        test: (v) => Boolean(v && v.length >= AUTH_PASSWORD_MIN_LENGTH),
-      })
-      .required(t('formError.passwordRequired')),
+    bio: yup.string().max(500, t('formError.textMax')).nullable(),
 
-    passwordConfirm: yup
-      .string()
+    country: yup.string().nullable(),
+
+    dateOfBirth: yup
+      .date()
       .test({
-        message: t('formError.passwordsNotMatch'),
-        test: (v, c) => v === c.parent.password,
+        message: t('formError.dateOfBirthInvalid'),
+        test: (v) => (v ? dateService.isValidDateOfBirth(v) : true),
       })
-      .required(t('formError.passwordConfirmRequired')),
+      .nullable(),
   });
 
-  const form = useFormik<RegisterForm>({
-    validationSchema: schema,
-    enableReinitialize: true,
-    initialValues: {
-      name: '',
-      email: '',
-      username: '',
-      password: '',
-      passwordConfirm: '',
-    },
+  const form = useFormik({
+    initialValues,
     onSubmit,
+    enableReinitialize: true,
+    validationSchema: schema,
   });
 
   const getError = (field: keyof typeof form.values) => {

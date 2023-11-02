@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\User\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::prefix('profile')->group(function () {
         Route::get('/user/{id}', [ProfileController::class, 'getByUserId']);
     });
+});
+
+Route::get('/user/{id}/profile', function ($id) {
+    return User::findOrFail($id)->profile;
 });
