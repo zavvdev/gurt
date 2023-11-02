@@ -35,6 +35,7 @@ export function DateOfBirth({
             onChange={(d) => onChange(d ? d?.toDate() : null)}
             onBlur={onBlur}
             format="DD/MM/YYYY"
+            status={error ? 'error' : undefined}
           />
           {Boolean(error) && (
             <Typography.Text type="danger">{error}</Typography.Text>

@@ -77,8 +77,8 @@
     "passwordConfirmRequired": "Pidtverdit' gaslo",
     "passwordsNotMatch": "Gasla ne spivpadajut'",
     "passwordMinimum": "Gaslo povynno buty minimum {{ length }} symvoliv v dovžynu",
-    "textMax": "Maximum length allowed: {{ max }}",
-    "dateOfBirthInvalid": "Please provide your real date of birth"
+    "textMax": "Maksymalna dozvolena dovžyna: {{ max }}",
+    "dateOfBirthInvalid": "Bud' laska, vkažit svoju spravžnju datu narodžennja"
   },
 
   "notFoundPage": {

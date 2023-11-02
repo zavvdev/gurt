@@ -52,7 +52,15 @@ export function useForm({ initialValues, onSubmit }: Args) {
         test: isAuthUsernameLengthValid,
       }),
 
-    bio: yup.string().max(500, t('formError.textMax')).nullable(),
+    bio: yup
+      .string()
+      .max(
+        500,
+        t('formError.textMax', {
+          max: 500,
+        }),
+      )
+      .nullable(),
 
     country: yup.string().nullable(),
 

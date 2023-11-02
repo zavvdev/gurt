@@ -73,8 +73,8 @@ export function Profile() {
         />
         <DateOfBirth
           value={form.values.dateOfBirth}
-          onChange={form.handleChange}
-          onBlur={form.handleBlur}
+          onChange={(nextDate) => form.setFieldValue('dateOfBirth', nextDate)}
+          onBlur={() => form.setFieldTouched('dateOfBirth')}
           error={form.getError('dateOfBirth')}
           isLoading={isLoading}
         />

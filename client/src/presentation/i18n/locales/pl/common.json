@@ -77,8 +77,8 @@
     "passwordConfirmRequired": "Potwierdź hasło",
     "passwordsNotMatch": "Hasła nie pasują",
     "passwordMinimum": "Hasło powinno mieć długość co najmniej {{ length }} znaków",
-    "textMax": "Maximum length allowed: {{ max }}",
-    "dateOfBirthInvalid": "Please provide your real date of birth"
+    "textMax": "Maksymalna dozwolona długość: {{ max }}",
+    "dateOfBirthInvalid": "Podaj swoją prawdziwą datę urodzenia"
   },
 
   "notFoundPage": {
