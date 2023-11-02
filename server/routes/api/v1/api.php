@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\User\UserController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +20,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/session', [UserController::class, 'getFromSession']);
         Route::delete('/delete', [UserController::class, 'deleteFromSession']);
         Route::get('/{id}', [UserController::class, 'getById']);
+        Route::patch('/{id}', [UserController::class, 'updatePublicData']);
     });
 
     Route::prefix('profile')->group(function () {
         Route::get('/user/{id}', [ProfileController::class, 'getByUserId']);
     });
-});
-
-Route::get('/user/{id}/profile', function ($id) {
-    return User::findOrFail($id)->profile;
 });

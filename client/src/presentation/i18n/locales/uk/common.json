@@ -70,6 +70,7 @@
     "nameLength": "Im'ja povynno skladatysja minimum z {{ min }} ta maksymum z {{ max }} symvoliv",
     "loginRequired": "Vkažit' vašu elektronnu adresu abo oblikovku",
     "emailInvalid": "Nekorektna elektronna adresa",
+    "emailRequired": "Vkažit' vašu elektronnu adresu",
     "usernameInvalid": "Oblikovka povynna skladatysja lyše z liter, cyfr ta nyžnjogo pidkreslennja",
     "usernameRequired": "Vkažit' vašu oblikovku",
     "usernameLength": "Oblikovka povynna skladatysja minimum z {{ min }} ta maksymum z {{ max }} symvoliv",

@@ -70,6 +70,7 @@
     "nameLength": "Name should be minimum {{ min }} and maximum {{ max }} symbols length",
     "loginRequired": "Provide your email or username",
     "emailInvalid": "Provide valid email",
+    "emailRequired": "Provide email",
     "usernameInvalid": "Username should consists only of letters, numbers and underscore",
     "usernameRequired": "Provide your username",
     "usernameLength": "Username should be minimum {{ min }} and maximum {{ max }} symbols length",

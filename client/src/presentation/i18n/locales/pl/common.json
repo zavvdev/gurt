@@ -70,6 +70,7 @@
     "nameLength": "Imię powinnę mieć długość co najmniej {{ min }}, a maksymalnie {{ max }} symboli",
     "loginRequired": "Podaj swój adres e-mail lub nazwę użytkownika",
     "emailInvalid": "Podaj prawidłowy adres e-mail",
+    "emailRequired": "Podaj adres e-mail",
     "usernameInvalid": "Nazwa użytkownika powinna składać się wyłącznie z liter, cyfr i podkreślenia",
     "usernameRequired": "Podaj nazwę użytkownika",
     "usernameLength": "Nazwa użytkownika powinna mieć długość co najmniej {{ min }}, a maksymalnie {{ max }} symboli",
