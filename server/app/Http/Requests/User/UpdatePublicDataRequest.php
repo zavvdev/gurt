@@ -3,23 +3,16 @@
 namespace App\Http\Requests\User;
 
 use App\Http\Requests\RequestData;
-use Spatie\LaravelData\Attributes\Validation\Max;
-use Spatie\LaravelData\Attributes\Validation\Min;
-use Spatie\LaravelData\Attributes\Validation\Regex;
-use Spatie\LaravelData\Attributes\Validation\Unique;
+use App\Http\ValidationRules\User\UserNameRule;
+use App\Http\ValidationRules\User\UserUsernameRule;
 
 class UpdatePublicDataRequest extends RequestData
 {
     public function __construct(
-        #[Min(1), Max(36)]
+        #[UserNameRule]
         public ?string $name,
 
-        #[
-            Min(3),
-            Max(16),
-            Unique('users', 'username'),
-            Regex("/^\w*$/")
-        ]
+        #[UserUsernameRule]
         public ?string $username,
     ) {
     }

@@ -1,6 +1,6 @@
 import { PatchProfileForm } from '~/application/features/user/patchProfile';
-import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/profile/useProfileByUserIdQuery';
-import { useUserFromSessionQuery } from '~/application/managers/queryClient/queries/user/useUserFromSessionQuery';
+import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/profiles/useProfileByUserIdQuery';
+import { useUserFromSessionQuery } from '~/application/managers/queryClient/queries/users/useUserFromSessionQuery';
 import { notificationService } from '~/application/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
