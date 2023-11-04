@@ -22,6 +22,24 @@
     "country": {
       "placeholder": "Šukaj, ščob obraty"
     },
+    "patch": {
+      "success": {
+        "fallback": "Profajl uspišno onovleno"
+      },
+      "error": {
+        "serverValidation": {
+          "name": {
+            "too_long": "Im'ja zanadto dovge"
+          },
+          "username": {
+            "too_long": "Oblikovka zanadto dovga",
+            "too_short": "Oblikovka zakorotka",
+            "already_exists": "Cja oblikovka ne je dostupnoju. Sprobujte inšu"
+          }
+        },
+        "fallback": "Nemožlyvo onovyty profajl. Sprobujte pizniše"
+      }
+    },
     "delete": {
       "button": "Vydalyty profajl nazavždy",
       "confirm": {

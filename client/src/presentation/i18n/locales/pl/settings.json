@@ -22,6 +22,24 @@
     "country": {
       "placeholder": "Wyszukaj, aby wybrać"
     },
+    "patch": {
+      "success": {
+        "fallback": "Profil został pomyślnie zaktualizowany"
+      },
+      "error": {
+        "serverValidation": {
+          "name": {
+            "too_long": "Imię jest za długie"
+          },
+          "username": {
+            "too_long": "Nazwa użytkownika jest za długa",
+            "too_short": "Nazwa użytkownika jest za krótka",
+            "already_exists": "Ta nazwa użytkownika jest niedostępna. Spróbuj innego"
+          }
+        },
+        "fallback": "Nie można zaktualizować profilu. Spróbuj ponownie później"
+      }
+    },
     "delete": {
       "button": "Usuń profil na stałe",
       "confirm": {

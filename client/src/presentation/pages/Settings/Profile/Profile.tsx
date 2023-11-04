@@ -1,5 +1,8 @@
 import { Button } from 'antd';
 import cn from 'clsx';
+import { usePatchProfile } from '~/application/features/user/patchProfile';
+import { notificationService } from '~/application/services/NotificationService';
+import { getFirstExtractedValidationErrorEntry } from '~/application/utilities/general';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { SettingsPageLayout } from '~/presentation/pages/Settings/layouts/SettingsPageLayout/SettingsPageLayout';
 import { Image } from '~/presentation/pages/Settings/Profile/shared/Image/Image';
@@ -18,23 +21,41 @@ export function Profile() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('settings');
   const classes = useProfileStyles();
-  const { initialValues, isLoading } = useInitialValues();
+  const initialValues = useInitialValues();
+
+  const patchProfile = usePatchProfile({
+    onSuccess: () => {
+      initialValues.refetch();
+      notificationService.success(t('profile.patch.success.fallback'));
+    },
+    onError: (validationErrors) => {
+      const { field, key } =
+        getFirstExtractedValidationErrorEntry(validationErrors);
+
+      notificationService.error(
+        t([
+          `profile.patch.error.serverValidation.${field}.${key}`,
+          'profile.patch.error.fallback',
+        ]),
+      );
+    },
+  });
 
   const form = useForm({
-    initialValues,
-    onSubmit: console.log,
+    initialValues: initialValues.data,
+    onSubmit: patchProfile.initiate,
   });
 
   return (
     <SettingsPageLayout label={t('profile.label')} className={classes.content}>
       <div className={cn(classes.row, classes.images)}>
         <Image
-          isLoading={isLoading}
+          isLoading={initialValues.isLoading}
           file={form.values.image}
           onSelect={(nextImage) => form.setFieldValue('image', nextImage)}
         />
         <Background
-          isLoading={isLoading}
+          isLoading={initialValues.isLoading}
           file={form.values.backgroundImage}
           onSelect={(nextBackground) =>
             form.setFieldValue('backgroundImage', nextBackground)
@@ -47,14 +68,14 @@ export function Profile() {
           onChange={form.handleChange}
           onBlur={form.handleBlur}
           error={form.getError('name')}
-          isLoading={isLoading}
+          isLoading={initialValues.isLoading}
         />
         <Username
           value={form.values.username}
           onChange={form.handleChange}
           onBlur={form.handleBlur}
           error={form.getError('username')}
-          isLoading={isLoading}
+          isLoading={initialValues.isLoading}
         />
       </div>
       <Bio
@@ -62,21 +83,21 @@ export function Profile() {
         onChange={form.handleChange}
         onBlur={form.handleBlur}
         error={form.getError('bio')}
-        isLoading={isLoading}
+        isLoading={initialValues.isLoading}
       />
       <div className={classes.row}>
         <Country
           value={form.values.country}
           onChange={(nextCountry) => form.setFieldValue('country', nextCountry)}
           onBlur={() => form.setFieldTouched('country')}
-          isLoading={isLoading}
+          isLoading={initialValues.isLoading}
         />
         <DateOfBirth
           value={form.values.dateOfBirth}
           onChange={(nextDate) => form.setFieldValue('dateOfBirth', nextDate)}
           onBlur={() => form.setFieldTouched('dateOfBirth')}
           error={form.getError('dateOfBirth')}
-          isLoading={isLoading}
+          isLoading={initialValues.isLoading}
         />
       </div>
       <div className={cn(classes.row, classes.footer)}>
@@ -85,14 +106,19 @@ export function Profile() {
           size="large"
           icon={<Icons.Save width={17} />}
           onClick={() => form.handleSubmit()}
-          disabled={isLoading}
+          loading={patchProfile.isLoading}
+          disabled={
+            initialValues.isLoading || !form.dirty || patchProfile.isLoading
+          }
         >
           {tCommon('label.save')}
         </Button>
         <Button
           size="large"
           onClick={() => form.resetForm()}
-          disabled={isLoading}
+          disabled={
+            initialValues.isLoading || !form.dirty || patchProfile.isLoading
+          }
         >
           {tCommon('label.reset')}
         </Button>

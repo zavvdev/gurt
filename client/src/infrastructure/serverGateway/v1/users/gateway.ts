@@ -7,6 +7,7 @@ import {
 import { Http } from '~/infrastructure/http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { validateServerSuccessResponseData } from '~/infrastructure/serverGateway/utilities';
+import { PatchPublicDataFromSessionRequest } from '~/infrastructure/serverGateway/v1/users/requests';
 
 class UsersGateway {
   private http: Http;
@@ -22,6 +23,12 @@ class UsersGateway {
   public async getFromSession() {
     const response = await this.http.get<User>(this.r('/session'));
     return validateServerSuccessResponseData(response, userSchema);
+  }
+
+  public patchPublicDataFromSession(
+    request: PatchPublicDataFromSessionRequest,
+  ) {
+    return this.http.patch(this.r('/session'), request);
   }
 
   public deleteSessionUser() {
