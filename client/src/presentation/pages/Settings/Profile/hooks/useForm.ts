@@ -12,7 +12,10 @@ import {
   isAuthNameLengthValid,
   isAuthUsernameLengthValid,
 } from '~/application/features/auth/utilities';
-import { PatchProfileForm } from '~/application/features/user/patchProfile';
+import {
+  BIO_MAX_LENGTH,
+  PatchProfileForm,
+} from '~/application/features/user/patchProfile';
 import { dateService } from '~/application/services/DateService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
@@ -55,9 +58,9 @@ export function useForm({ initialValues, onSubmit }: Args) {
     bio: yup
       .string()
       .max(
-        500,
+        BIO_MAX_LENGTH,
         t('formError.textMax', {
-          max: 500,
+          max: BIO_MAX_LENGTH,
         }),
       )
       .nullable(),

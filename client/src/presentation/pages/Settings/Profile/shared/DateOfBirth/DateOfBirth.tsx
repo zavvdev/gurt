@@ -6,7 +6,7 @@ import { SettingItem } from '~/presentation/pages/Settings/shared/SettingItem/Se
 import { DatePicker } from '~/presentation/shared/DatePicker/DatePicker';
 
 interface Props {
-  value?: string | null;
+  value?: Date | null;
   onChange: (n: Date | null) => void;
   onBlur: (e: ChangeEvent) => void;
   error?: string;
