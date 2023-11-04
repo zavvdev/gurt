@@ -2,7 +2,10 @@ import { Profile, profileSchema } from '~/entities/Profile';
 import { Http } from '~/infrastructure/http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { validateServerSuccessResponseData } from '~/infrastructure/serverGateway/utilities';
-import { GetByUserIdRequest } from '~/infrastructure/serverGateway/v1/profiles/requests';
+import {
+  GetByUserIdRequest,
+  PatchFromSessionRequest,
+} from '~/infrastructure/serverGateway/v1/profiles/requests';
 
 class ProfilesGateway {
   private http: Http;
@@ -20,6 +23,10 @@ class ProfilesGateway {
       this.r(`/user/${request.userId}`),
     );
     return validateServerSuccessResponseData(response, profileSchema);
+  }
+
+  public patchFromSession(request: PatchFromSessionRequest) {
+    return this.http.patch(this.r('/session'), request);
   }
 }
 

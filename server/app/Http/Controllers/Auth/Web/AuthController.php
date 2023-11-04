@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\RateLimiter;
@@ -59,12 +60,18 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $createdUser = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-        ]);
+        $createdUser = DB::transaction(function () use ($request) {
+            $createdUser = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $createdUser->profile()->create();
+
+            return $createdUser;
+        });
 
         event(new Registered($createdUser));
         Auth::login($createdUser);

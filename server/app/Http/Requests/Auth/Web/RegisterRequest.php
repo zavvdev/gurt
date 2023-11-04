@@ -20,7 +20,7 @@ class RegisterRequest extends RequestData
         #[Required, Email, Unique('users', 'email')]
         public string $email,
 
-        #[Required, UserUsernameRule]
+        #[Required, UserUsernameRule, Unique('users', 'username')]
         public string $username,
 
         #[Required, Confirmed, Password]

@@ -54,7 +54,9 @@ export function useInitialValues() {
 
     country: profile?.country || null,
 
-    dateOfBirth: profile?.date_of_birth || null,
+    dateOfBirth: profile?.date_of_birth
+      ? new Date(profile.date_of_birth)
+      : null,
   };
 
   return {
