@@ -11,12 +11,41 @@
   },
   "profile": {
     "label": "Profile settings",
+    "picture": {
+      "label": "Avatar",
+      "edit": "Edit avatar"
+    },
+    "background": {
+      "label": "Background",
+      "edit": "Edit background"
+    },
+    "country": {
+      "placeholder": "Search to select"
+    },
     "delete": {
       "button": "Delete profile permanently",
       "confirm": {
         "text": "You are about to delete your profile permanently. After deletion you wont be able to login to this profile or recover data. Are you sure you want to do this?",
         "submit": "Yes. Delete my profile",
         "cancel": "No. Keep it"
+      }
+    },
+    "patch": {
+      "success": {
+        "fallback": "Profile has been successfully updated"
+      },
+      "error": {
+        "serverValidation": {
+          "name": {
+            "too_long": "Name is too long"
+          },
+          "username": {
+            "too_long": "Username is too long",
+            "too_short": "Username is too short",
+            "already_exists": "This username is unavailable. Try another one"
+          }
+        },
+        "fallback": "Unable to update profile. Try again later"
       }
     }
   }

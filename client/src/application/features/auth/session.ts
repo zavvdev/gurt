@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { publicSessionId } from '~/infrastructure/serverGateway/utilities';
-import { userGateway } from '~/infrastructure/serverGateway/v1/user/gateway';
+import { usersGateway } from '~/infrastructure/serverGateway/v1/users/gateway';
 
 export function usePrivateRoutePSIDGuard() {
   const isPSIDAvailable = Boolean(publicSessionId.get());
@@ -11,7 +11,7 @@ export function usePrivateRoutePSIDGuard() {
       setStatus('valid');
     } else {
       setStatus('verifying');
-      userGateway.getFromSession().then(() => {
+      usersGateway.getFromSession().then(() => {
         publicSessionId.set();
         setStatus('valid');
       });

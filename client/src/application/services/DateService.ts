@@ -1,7 +1,12 @@
-/* eslint-disable import/no-duplicates */
-import { format } from 'date-fns';
-import { enGB, pl, uk } from 'date-fns/locale';
+import dayjs, { extend } from 'dayjs';
+import pl from 'dayjs/locale/pl';
+import uk from 'dayjs/locale/uk';
+import en from 'dayjs/locale/en';
 import { klatinoid } from '@juliakramr/latynka';
+import dayJsDuration from 'dayjs/plugin/duration';
+import { SERVER_DATE_FORMAT } from '~/infrastructure/serverGateway/config';
+
+extend(dayJsDuration);
 
 const LANG = {
   en: 'en',
@@ -22,7 +27,7 @@ const defaultConfig: Config = {
 };
 
 const langMap = {
-  [LANG.en]: enGB,
+  [LANG.en]: en,
   [LANG.pl]: pl,
   [LANG.uk]: uk,
 };
@@ -44,15 +49,33 @@ class DateService {
     };
   }
 
-  public previewServerDate(date: string, config?: Config): string {
+  public previewServerDate(
+    date: string,
+    config?: Config,
+    format: string = 'D MMMM, YYYY',
+  ): string {
     const currentConfig = this.mergeConfig(config);
-    const result = format(new Date(date), 'dd MMMM, yyyy', {
-      locale: langMap[currentConfig.lang],
-    });
+
+    const result = dayjs(date)
+      .locale(langMap[currentConfig.lang])
+      .format(format);
+
     if (currentConfig.lang === LANG.uk) {
       return klatinoid.cyrToLat(result);
     }
+
     return result;
+  }
+
+  public toServerDate(date: string | Date) {
+    return dayjs(new Date(date)).format(SERVER_DATE_FORMAT);
+  }
+
+  public isValidDateOfBirth(date: string | Date) {
+    const start = dayjs(new Date(date));
+    const end = dayjs();
+    const duration = dayjs.duration(end.diff(start));
+    return duration.years() >= 14;
   }
 }
 

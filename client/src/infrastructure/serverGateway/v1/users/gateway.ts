@@ -7,8 +7,9 @@ import {
 import { Http } from '~/infrastructure/http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { validateServerSuccessResponseData } from '~/infrastructure/serverGateway/utilities';
+import { PatchPublicDataFromSessionRequest } from '~/infrastructure/serverGateway/v1/users/requests';
 
-class UserGateway {
+class UsersGateway {
   private http: Http;
 
   constructor(http: Http) {
@@ -16,7 +17,7 @@ class UserGateway {
   }
 
   private r(path: string) {
-    return `/v1/user${path}`;
+    return `/v1/users${path}`;
   }
 
   public async getFromSession() {
@@ -24,8 +25,14 @@ class UserGateway {
     return validateServerSuccessResponseData(response, userSchema);
   }
 
-  public delete() {
-    return this.http.delete(this.r('/delete'));
+  public patchPublicDataFromSession(
+    request: PatchPublicDataFromSessionRequest,
+  ) {
+    return this.http.patch(this.r('/session'), request);
+  }
+
+  public deleteSessionUser() {
+    return this.http.delete(this.r('/session/delete'));
   }
 
   public async getById(id: number) {
@@ -34,4 +41,4 @@ class UserGateway {
   }
 }
 
-export const userGateway = new UserGateway(serverGateway.http.api);
+export const usersGateway = new UsersGateway(serverGateway.http.api);

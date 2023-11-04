@@ -30,6 +30,7 @@ export const useSettingsLayoutStyles = createUseStyles(
       display: 'flex',
       flexDirection: 'column',
       gap: '1.5rem',
+      width: '100%',
 
       [media.maxMd]: {
         paddingLeft: 0,

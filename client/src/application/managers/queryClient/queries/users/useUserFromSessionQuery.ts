@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { userGateway } from '~/infrastructure/serverGateway/v1/user/gateway';
+import { usersGateway } from '~/infrastructure/serverGateway/v1/users/gateway';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { QueryKey } from '~/application/managers/queryClient/config';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
@@ -15,7 +15,7 @@ export function createUserFromSessionQueryKey() {
 export function useUserFromSessionQuery(args?: QueryArgs) {
   return useQuery({
     queryKey: createUserFromSessionQueryKey(),
-    queryFn: () => userGateway.getFromSession(),
+    queryFn: () => usersGateway.getFromSession(),
     meta: {
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);

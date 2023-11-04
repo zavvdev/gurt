@@ -8,9 +8,10 @@ import { SettingsLayout } from '~/presentation/pages/Settings/layouts/SettingsLa
 
 interface Props extends PropsWithChildren {
   label: string;
+  className?: string;
 }
 
-export function SettingsPageLayout({ children, label }: Props) {
+export function SettingsPageLayout({ children, label, className }: Props) {
   const { t } = useTranslation('settings');
   const isMaxMd = useMediaQuery(mediaBreakpoints.maxMd);
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ export function SettingsPageLayout({ children, label }: Props) {
       label={isMaxMd ? label : t('label')}
       onBack={isMaxMd ? handleBack : undefined}
       noMenu={isMaxMd}
+      contentClassName={className}
     >
       {children}
     </SettingsLayout>

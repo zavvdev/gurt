@@ -1,30 +1,30 @@
 import { useQuery } from '@tanstack/react-query';
-import { profileGateway } from '~/infrastructure/serverGateway/v1/profile/gateway';
+import { usersGateway } from '~/infrastructure/serverGateway/v1/users/gateway';
 import { ServerResponse } from '~/infrastructure/serverGateway/types';
 import { QueryKey } from '~/application/managers/queryClient/config';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
 interface QueryArgs {
-  userId: number;
+  id: number;
   options?: {
     enabled?: boolean;
   } & ResponseMessageEventHandlers;
 }
 
-export function createProfileByUserIdQueryKey(userId: number) {
-  return [QueryKey.ProfileByUserId, userId];
+export function createUserQueryKey(id: number) {
+  return [QueryKey.User, id];
 }
 
-export function useProfileByUserIdQuery(args: QueryArgs) {
+export function useUserQuery(args: QueryArgs) {
   return useQuery({
-    queryKey: createProfileByUserIdQueryKey(args.userId),
-    queryFn: () => profileGateway.getByUserId({ userId: args.userId }),
+    queryKey: createUserQueryKey(args.id),
+    queryFn: () => usersGateway.getById(args.id),
     meta: {
       onError: (response: ServerResponse) => {
-        args.options?.onError?.(response.message);
+        args?.options?.onError?.(response.message);
       },
       onSuccess: (response: ServerResponse) => {
-        args.options?.onSuccess?.(response.message);
+        args?.options?.onSuccess?.(response.message);
       },
     },
     enabled: args?.options?.enabled,

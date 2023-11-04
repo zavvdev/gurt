@@ -2,9 +2,9 @@ import { Profile, profileSchema } from '~/entities/Profile';
 import { Http } from '~/infrastructure/http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { validateServerSuccessResponseData } from '~/infrastructure/serverGateway/utilities';
-import { GetByUserIdRequest } from '~/infrastructure/serverGateway/v1/profile/requests';
+import { GetByUserIdRequest } from '~/infrastructure/serverGateway/v1/profiles/requests';
 
-class ProfileGateway {
+class ProfilesGateway {
   private http: Http;
 
   constructor(http: Http) {
@@ -12,7 +12,7 @@ class ProfileGateway {
   }
 
   private r(path: string) {
-    return `/v1/profile${path}`;
+    return `/v1/profiles${path}`;
   }
 
   public async getByUserId(request: GetByUserIdRequest) {
@@ -23,4 +23,4 @@ class ProfileGateway {
   }
 }
 
-export const profileGateway = new ProfileGateway(serverGateway.http.api);
+export const profilesGateway = new ProfilesGateway(serverGateway.http.api);
