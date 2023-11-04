@@ -32,7 +32,7 @@ enum ResponseMessage: string
 
     case AlreadyLoggedIn = 'already_logged_in';
 
-    case UnableToPersist = 'unable_to_persist';
+    case StorageError = 'storage_error';
 
     case InvalidRequest = 'invalid_request';
 }

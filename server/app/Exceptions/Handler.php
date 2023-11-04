@@ -120,7 +120,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof StorageException) {
             return $this->errorResponse(
                 Response::HTTP_CONFLICT,
-                ResponseMessage::UnableToPersist,
+                ResponseMessage::StorageError,
             );
         }
 
