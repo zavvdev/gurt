@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use App\Listeners\CreateUserProfile;
+use App\Events\UserDeletedEvent;
+use App\Listeners\UserDeletedListener;
+use App\Listeners\UserVerifiedListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -20,7 +22,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         Verified::class => [
-            CreateUserProfile::class,
+            UserVerifiedListener::class,
+        ],
+        UserDeletedEvent::class => [
+            UserDeletedListener::class,
         ],
     ];
 

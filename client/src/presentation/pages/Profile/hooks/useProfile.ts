@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
-import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/profile/useProfileByUserIdQuery';
-import { useUserFromSessionQuery } from '~/application/managers/queryClient/queries/user/useUserFromSessionQuery';
-import { useUserQuery } from '~/application/managers/queryClient/queries/user/useUserQuery';
+import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/profiles/useProfileByUserIdQuery';
+import { useUserFromSessionQuery } from '~/application/managers/queryClient/queries/users/useUserFromSessionQuery';
+import { useUserQuery } from '~/application/managers/queryClient/queries/users/useUserQuery';
 import { notificationService } from '~/application/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
@@ -51,7 +51,6 @@ export function useProfile() {
       bio: profileData?.bio || null,
       dateOfBirth: profileData?.date_of_birth || null,
       country: profileData?.country || null,
-      city: profileData?.city || null,
     },
     isLoading: profile.isLoading,
   };

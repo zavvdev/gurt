@@ -9,6 +9,39 @@
     "system": "Systemna"
   },
 
+  "label": {
+    "save": "Zberegty",
+    "cancel": "Vidmina",
+    "reset": "Skynuty",
+    "name": "Im'ja",
+    "username": "Oblikovka",
+    "bio": "Opys",
+    "country": "Krajina",
+    "dateOfBirth": "Data narodžennja",
+    "selectDate": "Oberit' datu",
+    "selectTime": "Oberit' čas",
+    "nextCentury": "Nastupne stolittja",
+    "prevCentury": "Poperednje stolittja",
+    "nextDecade": "Nastupne desjatylittja",
+    "lastDecade": "Poperednje desjatylittja",
+    "nextYear": "Nastupnyj rik",
+    "prevYear": "Poperednij rik",
+    "nextMonth": "Nastupnyj misjac'",
+    "prevMonth": "Poperednij misjac'",
+    "chooseDecade": "Oberit' desjatylittja",
+    "chooseYear": "Oberit' rik",
+    "chooseMonth": "Oberit' misjac'",
+    "year": "Rik",
+    "month": "Misjac'",
+    "clear": "Očystyty",
+    "ok": "Ok",
+    "backToToday": "Nazad do s'ogodni",
+    "now": "Zaraz",
+    "today": "S'ogodni",
+    "startDate": "Počatkova data",
+    "endDate": "Kinceva data"
+  },
+
   "appError": {
     "label": "Krytyčna pomylka",
     "description": "Zastosunok zaznav krytyčnoji pomylky i ne može dali funkcionuvaty. Bud' laska, zvernit'sja do <a>{{ contact }}</a>"
@@ -34,15 +67,19 @@
 
   "formError": {
     "nameRequired": "Vkažit' vaše im'ja",
+    "nameLength": "Im'ja povynno skladatysja minimum z {{ min }} ta maksymum z {{ max }} symvoliv",
     "loginRequired": "Vkažit' vašu elektronnu adresu abo oblikovku",
     "emailInvalid": "Nekorektna elektronna adresa",
+    "emailRequired": "Vkažit' vašu elektronnu adresu",
     "usernameInvalid": "Oblikovka povynna skladatysja lyše z liter, cyfr ta nyžnjogo pidkreslennja",
     "usernameRequired": "Vkažit' vašu oblikovku",
-    "usernameLength": "Oblikovka povynna skladatysja minimum z 3-h ta maksymum z 16-ty symvoliv",
+    "usernameLength": "Oblikovka povynna skladatysja minimum z {{ min }} ta maksymum z {{ max }} symvoliv",
     "passwordRequired": "Vkažit' vaše gaslo",
     "passwordConfirmRequired": "Pidtverdit' gaslo",
     "passwordsNotMatch": "Gasla ne spivpadajut'",
-    "passwordMinimum": "Gaslo povynno buty minimum {{ length }} symvoliv v dovžynu"
+    "passwordMinimum": "Gaslo povynno buty minimum {{ length }} symvoliv v dovžynu",
+    "textMax": "Maksymalna dozvolena dovžyna: {{ max }}",
+    "dateOfBirthInvalid": "Bud' laska, vkažit svoju spravžnju datu narodžennja"
   },
 
   "notFoundPage": {

@@ -9,6 +9,39 @@
     "system": "System"
   },
 
+  "label": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "reset": "Reset",
+    "name": "Name",
+    "username": "Username",
+    "bio": "Bio",
+    "country": "Country",
+    "dateOfBirth": "Date of birth",
+    "selectDate": "Select date",
+    "selectTime": "Select time",
+    "nextCentury": "Next century",
+    "prevCentury": "Previous century",
+    "nextDecade": "Next decade",
+    "lastDecade": "Last decade",
+    "nextYear": "Next year",
+    "prevYear": "Previous year",
+    "nextMonth": "Next month",
+    "prevMonth": "Previous month",
+    "chooseDecade": "Choose a decade",
+    "chooseYear": "Choose a year",
+    "chooseMonth": "Choose a month",
+    "year": "Year",
+    "month": "Month",
+    "clear": "Clear",
+    "ok": "Ok",
+    "backToToday": "Back to today",
+    "now": "Now",
+    "today": "Today",
+    "startDate": "Start date",
+    "endDate": "End date"
+  },
+
   "appError": {
     "label": "Critical error",
     "description": "Application faced a critical error and cannot be usable. Please contact <a>{{ contact }}</a>"
@@ -34,15 +67,19 @@
 
   "formError": {
     "nameRequired": "Provide your name",
+    "nameLength": "Name should be minimum {{ min }} and maximum {{ max }} symbols length",
     "loginRequired": "Provide your email or username",
     "emailInvalid": "Provide valid email",
+    "emailRequired": "Provide email",
     "usernameInvalid": "Username should consists only of letters, numbers and underscore",
     "usernameRequired": "Provide your username",
-    "usernameLength": "Username should be minimum 3 and maximum 16 symbols length",
+    "usernameLength": "Username should be minimum {{ min }} and maximum {{ max }} symbols length",
     "passwordRequired": "Provide your password",
     "passwordConfirmRequired": "Confirm your password",
     "passwordsNotMatch": "Passwords do not match",
-    "passwordMinimum": "Password should be minimum {{ length }} characters length"
+    "passwordMinimum": "Password should be minimum {{ length }} characters length",
+    "textMax": "Maximum length allowed: {{ max }}",
+    "dateOfBirthInvalid": "Please provide your real date of birth"
   },
 
   "notFoundPage": {

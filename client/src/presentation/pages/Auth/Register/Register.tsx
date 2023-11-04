@@ -2,6 +2,7 @@ import { Button, Input, Typography } from 'antd';
 import { useState } from 'react';
 import { useRegister } from '~/application/features/auth/register';
 import { notificationService } from '~/application/services/NotificationService';
+import { getFirstExtractedValidationErrorEntry } from '~/application/utilities/general';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { useForm } from '~/presentation/pages/Auth/Register/hooks/useForm';
@@ -18,8 +19,8 @@ export function Register() {
 
   const register = useRegister({
     onError: ({ validationErrors, message }) => {
-      const field = validationErrors?.[0]?.field || '-';
-      const key = validationErrors?.[0]?.errorKeys?.[0] || null;
+      const { field, key } =
+        getFirstExtractedValidationErrorEntry(validationErrors);
 
       if (key === 'already_exists') {
         setAlreadyUsed(field);

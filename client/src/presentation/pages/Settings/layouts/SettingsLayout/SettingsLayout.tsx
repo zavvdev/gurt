@@ -1,6 +1,7 @@
 import { Menu } from 'antd';
 import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
+import cn from 'clsx';
 import { PRIVATE_ROUTES } from '~/routes';
 import { Icons } from '~/presentation/assets/Icons';
 import { LabeledLayout } from '~/presentation/layouts/Labeled/LabeledLayout';
@@ -12,6 +13,7 @@ interface Props extends PropsWithChildren {
   label: string;
   onBack?: () => void;
   noMenu?: boolean;
+  contentClassName?: string;
 }
 
 export function SettingsLayout({
@@ -19,6 +21,7 @@ export function SettingsLayout({
   label,
   onBack,
   noMenu = false,
+  contentClassName,
 }: Props) {
   const { t } = useTranslation('settings');
   const classes = useSettingsLayoutStyles();
@@ -57,7 +60,11 @@ export function SettingsLayout({
               selectedKeys={[window.location.pathname]}
             />
           )}
-          {children && <div className={classes.content}>{children}</div>}
+          {children && (
+            <div className={cn(classes.content, contentClassName)}>
+              {children}
+            </div>
+          )}
         </div>
       </LabeledLayout>
     </UserLayout>

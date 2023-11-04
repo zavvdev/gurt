@@ -72,6 +72,18 @@ services:
     networks:
       - common
 
+  storage:
+    image: ${APP_NAME}_storage
+    build:
+      context: ./storage
+    container_name: ${APP_NAME}_storage
+    restart: unless-stopped
+    command: pnpm prod
+    ports:
+      - "8000:8000"
+    networks:
+      - common
+
 networks:
   common:
     name: ${APP_NAME}_network

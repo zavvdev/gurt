@@ -2,11 +2,17 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { RegisterForm } from '~/application/features/auth/register';
 import {
+  AUTH_NAME_MAX_LENGTH,
+  AUTH_NAME_MIN_LENGTH,
   AUTH_PASSWORD_MIN_LENGTH,
   AUTH_USERNAME_MAX_LENGTH,
   AUTH_USERNAME_MIN_LENGTH,
   AUTH_USERNAME_REGEX,
 } from '~/application/features/auth/config';
+import {
+  isAuthNameLengthValid,
+  isAuthUsernameLengthValid,
+} from '~/application/features/auth/utilities';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {
@@ -17,7 +23,16 @@ export function useForm({ onSubmit }: Args) {
   const { t } = useTranslation('common');
 
   const schema = yup.object({
-    name: yup.string().required(t('formError.nameRequired')),
+    name: yup
+      .string()
+      .required(t('formError.nameRequired'))
+      .test({
+        message: t('formError.nameLength', {
+          min: AUTH_NAME_MIN_LENGTH,
+          max: AUTH_NAME_MAX_LENGTH,
+        }),
+        test: isAuthNameLengthValid,
+      }),
 
     email: yup
       .string()
@@ -29,10 +44,11 @@ export function useForm({ onSubmit }: Args) {
       .required(t('formError.usernameRequired'))
       .matches(AUTH_USERNAME_REGEX, t('formError.usernameInvalid'))
       .test({
-        message: t('formError.usernameLength'),
-        test: (v) =>
-          v.length >= AUTH_USERNAME_MIN_LENGTH &&
-          v.length <= AUTH_USERNAME_MAX_LENGTH,
+        message: t('formError.usernameLength', {
+          min: AUTH_USERNAME_MIN_LENGTH,
+          max: AUTH_USERNAME_MAX_LENGTH,
+        }),
+        test: isAuthUsernameLengthValid,
       }),
 
     password: yup

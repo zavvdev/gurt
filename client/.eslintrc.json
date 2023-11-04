@@ -240,6 +240,24 @@
             "message": "Dependency prohibited"
           },
           {
+            "target": "./src/presentation/config",
+            "from": [
+              "./src/presentation/router",
+              "./src/presentation/pages",
+              "./src/presentation/layouts",
+              "./src/presentation/providers",
+              "./src/presentation/widgets",
+              "./src/presentation/helpers",
+              "./src/presentation/containers",
+              "./src/presentation/shared",
+              "./src/presentation/i18n",
+              "./src/presentation/styles",
+              "./src/presentation/assets",
+              "./src/presentation/utilities"
+            ],
+            "message": "Dependency prohibited"
+          },
+          {
             "target": "./src/application/managers",
             "from": ["./src/application/features"],
             "message": "Dependency prohibited"

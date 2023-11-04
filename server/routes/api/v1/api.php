@@ -16,13 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::prefix('user')->group(function () {
+    Route::prefix('users')->group(function () {
         Route::get('/session', [UserController::class, 'getFromSession']);
-        Route::delete('/delete', [UserController::class, 'delete']);
+        Route::patch('/session', [UserController::class, 'updatePublicDataFromSession']);
+        Route::delete('/session/delete', [UserController::class, 'deleteFromSession']);
         Route::get('/{id}', [UserController::class, 'getById']);
     });
 
-    Route::prefix('profile')->group(function () {
+    Route::prefix('profiles')->group(function () {
         Route::get('/user/{id}', [ProfileController::class, 'getByUserId']);
     });
 });

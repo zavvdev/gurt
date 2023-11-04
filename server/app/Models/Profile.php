@@ -16,7 +16,6 @@ class Profile extends Model
         'bio',
         'date_of_birth',
         'country',
-        'city',
     ];
 
     public function user(): BelongsTo

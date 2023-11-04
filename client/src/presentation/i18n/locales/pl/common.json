@@ -9,6 +9,39 @@
     "system": "Systemowe"
   },
 
+  "label": {
+    "save": "Zapisz",
+    "cancel": "Anulować",
+    "reset": "Zresetować",
+    "name": "Imię",
+    "username": "Nazwa użytkownika",
+    "bio": "Opis",
+    "country": "Kraj",
+    "dateOfBirth": "Data urodzenia",
+    "selectDate": "Wybierz datę",
+    "selectTime": "Wybierz czas",
+    "nextCentury": "Następnę stulecia",
+    "prevCentury": "Ubiegłę stulecia",
+    "nextDecade": "Następnej dekadę",
+    "lastDecade": "Ostatniej dekadę",
+    "nextYear": "Przyszły rok",
+    "prevYear": "Poprzedni rok",
+    "nextMonth": "Przyszły miesiąc",
+    "prevMonth": "Poprzedni miesiąc",
+    "chooseDecade": "Wybierz dekadę",
+    "chooseYear": "Wybierz rok",
+    "chooseMonth": "Wybierz miesiąc",
+    "year": "Rok",
+    "month": "Miesiąc",
+    "clear": "Oczyścić",
+    "ok": "Ok",
+    "backToToday": "Powrót do dzisiaj",
+    "now": "Teraz",
+    "today": "Dzisiaj",
+    "startDate": "Data rozpoczęcia",
+    "endDate": "Data zakończenia"
+  },
+
   "appError": {
     "label": "Błąd krytyczny",
     "description": "Aplikacja napotkała krytyczny błąd i nie może być użyteczna. Prosimy o kontakt <a>{{ contact }}</a>"
@@ -34,15 +67,19 @@
 
   "formError": {
     "nameRequired": "Podaj swoje imię",
+    "nameLength": "Imię powinnę mieć długość co najmniej {{ min }}, a maksymalnie {{ max }} symboli",
     "loginRequired": "Podaj swój adres e-mail lub nazwę użytkownika",
     "emailInvalid": "Podaj prawidłowy adres e-mail",
+    "emailRequired": "Podaj adres e-mail",
     "usernameInvalid": "Nazwa użytkownika powinna składać się wyłącznie z liter, cyfr i podkreślenia",
     "usernameRequired": "Podaj nazwę użytkownika",
-    "usernameLength": "Nazwa użytkownika powinna mieć długość co najmniej 3, a maksymalnie 16 symboli",
+    "usernameLength": "Nazwa użytkownika powinna mieć długość co najmniej {{ min }}, a maksymalnie {{ max }} symboli",
     "passwordRequired": "Podaj swoje hasło",
     "passwordConfirmRequired": "Potwierdź hasło",
     "passwordsNotMatch": "Hasła nie pasują",
-    "passwordMinimum": "Hasło powinno mieć długość co najmniej 12 znaków"
+    "passwordMinimum": "Hasło powinno mieć długość co najmniej {{ length }} znaków",
+    "textMax": "Maksymalna dozwolona długość: {{ max }}",
+    "dateOfBirthInvalid": "Podaj swoją prawdziwą datę urodzenia"
   },
 
   "notFoundPage": {

@@ -34,3 +34,10 @@ services:
   nginx:
     volumes:
       - ./nginx/nginx.local.conf:/etc/nginx/conf.d/nginx.conf
+
+  storage:
+    command: pnpm local
+    volumes:
+      - ./storage/src:/usr/src/app/src
+      - ./storage/public:/usr/src/app/public
+      - ./storage/dist:/usr/src/app/dist

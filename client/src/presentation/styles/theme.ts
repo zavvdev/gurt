@@ -15,6 +15,7 @@ export const THEME: {
       textInverted: '#eeeeee',
       gray1: '#f0f0f0',
       gray6: '#bfbfbf',
+      gray7: '#949494',
       background: '#FFFFFF',
       backgroundInverted: '#0e0e0e',
     },
@@ -31,6 +32,7 @@ export const THEME: {
       textInverted: '#282828',
       gray1: '#313131',
       gray6: '#bfbfbf',
+      gray7: '#949494',
       background: '#0e0e0e',
       backgroundInverted: '#FFFFFF',
     },
@@ -113,9 +115,16 @@ export function getAntDesignTheme(type: ThemeType): ThemeConfig {
         colorLinkActive: theme.color.primary,
         primaryColor: theme.color.textInverted + ' !important',
         colorPrimaryHover: theme.color.primaryHover,
+        colorTextDisabled: theme.color.gray6 + ' !important',
       },
       Checkbox: {
         colorWhite: theme.color.textInverted,
+      },
+      Upload: {
+        motionDurationSlow: '0',
+      },
+      DatePicker: {
+        colorTextLightSolid: theme.color.textInverted,
       },
     },
   };
