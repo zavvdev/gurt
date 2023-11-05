@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import cn from 'clsx';
-import { usePatchProfile } from '~/application/features/user/patchProfile';
+import { useUpdateProfile } from '~/application/features/user/updateProfile';
 import { notificationService } from '~/application/services/NotificationService';
 import { getFirstExtractedValidationErrorEntry } from '~/application/utilities/general';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
@@ -23,10 +23,10 @@ export function Profile() {
   const classes = useProfileStyles();
   const initialValues = useInitialValues();
 
-  const patchProfile = usePatchProfile({
+  const updateProfile = useUpdateProfile({
     onSuccess: () => {
       initialValues.refetch();
-      notificationService.success(t('profile.patch.success.fallback'));
+      notificationService.success(t('profile.update.success.fallback'));
     },
     onError: (validationErrors) => {
       const { field, key } =
@@ -34,8 +34,8 @@ export function Profile() {
 
       notificationService.error(
         t([
-          `profile.patch.error.serverValidation.${field}.${key}`,
-          'profile.patch.error.fallback',
+          `profile.update.error.serverValidation.${field}.${key}`,
+          'profile.update.error.fallback',
         ]),
       );
     },
@@ -43,8 +43,10 @@ export function Profile() {
 
   const form = useForm({
     initialValues: initialValues.data,
-    onSubmit: patchProfile.initiate,
+    onSubmit: updateProfile.initiate,
   });
+
+  // TODO: Remove media from profile settings
 
   return (
     <SettingsPageLayout label={t('profile.label')} className={classes.content}>
@@ -106,9 +108,9 @@ export function Profile() {
           size="large"
           icon={<Icons.Save width={17} />}
           onClick={() => form.handleSubmit()}
-          loading={patchProfile.isLoading}
+          loading={updateProfile.isLoading}
           disabled={
-            initialValues.isLoading || !form.dirty || patchProfile.isLoading
+            initialValues.isLoading || !form.dirty || updateProfile.isLoading
           }
         >
           {tCommon('label.save')}
@@ -117,7 +119,7 @@ export function Profile() {
           size="large"
           onClick={() => form.resetForm()}
           disabled={
-            initialValues.isLoading || !form.dirty || patchProfile.isLoading
+            initialValues.isLoading || !form.dirty || updateProfile.isLoading
           }
         >
           {tCommon('label.reset')}

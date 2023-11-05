@@ -20,3 +20,10 @@ export function getFirstExtractedValidationErrorEntry(
     key: errors?.[0]?.errorKeys?.[0] || null,
   };
 }
+
+export function squashSpaces(str: string) {
+  if (typeof str === 'string') {
+    return str.trim().replace(/\s+/g, ' ');
+  }
+  return str;
+}

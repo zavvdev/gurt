@@ -22,7 +22,7 @@
     "country": {
       "placeholder": "Šukaj, ščob obraty"
     },
-    "patch": {
+    "update": {
       "success": {
         "fallback": "Profajl uspišno onovleno"
       },

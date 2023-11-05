@@ -1,4 +1,5 @@
-import { PatchProfileForm } from '~/application/features/user/patchProfile';
+import { useMemo } from 'react';
+import { UpdateProfileForm } from '~/application/features/user/updateProfile';
 import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/profiles/useProfileByUserIdQuery';
 import { useUserFromSessionQuery } from '~/application/managers/queryClient/queries/users/useUserFromSessionQuery';
 import { notificationService } from '~/application/services/NotificationService';
@@ -27,37 +28,48 @@ export function useInitialValues() {
 
   const profile = profileQuery.data?.data || null;
 
-  const data: PatchProfileForm = {
-    image: profile?.image_url
-      ? {
-          uid: '-1',
-          name: profile.image_url,
-          status: 'done',
-          url: profile.image_url,
-        }
-      : null,
+  const data: UpdateProfileForm = useMemo(
+    () => ({
+      image: profile?.image_url
+        ? {
+            uid: '-1',
+            name: profile.image_url,
+            status: 'done',
+            url: profile.image_url,
+          }
+        : null,
 
-    backgroundImage: profile?.background_image_url
-      ? {
-          uid: '-2',
-          name: profile.background_image_url,
-          status: 'done',
-          url: profile.background_image_url,
-        }
-      : null,
+      backgroundImage: profile?.background_image_url
+        ? {
+            uid: '-2',
+            name: profile.background_image_url,
+            status: 'done',
+            url: profile.background_image_url,
+          }
+        : null,
 
-    name: sessionUser?.name || '',
+      name: sessionUser?.name || '',
 
-    username: sessionUser?.username || '',
+      username: sessionUser?.username || '',
 
-    bio: profile?.bio || null,
+      bio: profile?.bio || null,
 
-    country: profile?.country || null,
+      country: profile?.country || null,
 
-    dateOfBirth: profile?.date_of_birth
-      ? new Date(profile.date_of_birth)
-      : null,
-  };
+      dateOfBirth: profile?.date_of_birth
+        ? new Date(profile.date_of_birth)
+        : null,
+    }),
+    [
+      profile?.background_image_url,
+      profile?.bio,
+      profile?.country,
+      profile?.date_of_birth,
+      profile?.image_url,
+      sessionUser?.name,
+      sessionUser?.username,
+    ],
+  );
 
   return {
     data,

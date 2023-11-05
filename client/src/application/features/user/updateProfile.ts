@@ -8,8 +8,9 @@ import { extractValidationErrors } from '~/infrastructure/serverGateway/utilitie
 import { profilesGateway } from '~/infrastructure/serverGateway/v1/profiles/gateway';
 import { usersGateway } from '~/infrastructure/serverGateway/v1/users/gateway';
 import { dateService } from '~/application/services/DateService';
+import { squashSpaces } from '~/application/utilities/general';
 
-export interface PatchProfileForm {
+export interface UpdateProfileForm {
   image: UploadFile | null;
   backgroundImage: UploadFile | null;
   name: string;
@@ -19,32 +20,35 @@ export interface PatchProfileForm {
   dateOfBirth: Date | null;
 }
 
-type PatchUserData = Pick<PatchProfileForm, 'name' | 'username'>;
-type PatchProfileData = Pick<
-  PatchProfileForm,
+type UpdateUserData = Pick<UpdateProfileForm, 'name' | 'username'>;
+type UpdateProfileData = Pick<
+  UpdateProfileForm,
   'image' | 'backgroundImage' | 'bio' | 'country' | 'dateOfBirth'
 >;
 
-interface UsePatchProfileArgs {
+interface UseUpdateProfileArgs {
   onError?: (validationErrors?: ExtractedValidationError[]) => void;
   onSuccess?: () => void;
 }
 
 export const BIO_MAX_LENGTH = 500;
 
-export function usePatchProfile(args?: UsePatchProfileArgs) {
-  const patchUser = useMutation((form: PatchUserData) => {
-    return usersGateway.patchPublicDataFromSession({
-      name: form.name,
-      username: form.username,
+export function useUpdateProfile(args?: UseUpdateProfileArgs) {
+  const updateUser = useMutation((form: UpdateUserData) => {
+    return usersGateway.updatePublicDataFromSession({
+      name: squashSpaces(form.name),
+      username: squashSpaces(form.username),
     });
   });
 
-  const patchProfile = useMutation((form: PatchProfileData) => {
-    return profilesGateway.patchFromSession({
-      image: form.image?.originFileObj || null,
-      background_image: form.backgroundImage?.originFileObj || null,
-      bio: form.bio,
+  const updateProfile = useMutation((form: UpdateProfileData) => {
+    return profilesGateway.updateFromSession({
+      image: form.image?.originFileObj || form.image?.url || null,
+      background_image:
+        form.backgroundImage?.originFileObj ||
+        form.backgroundImage?.url ||
+        null,
+      bio: form.bio ? squashSpaces(form.bio) : null,
       country: form.country,
       date_of_birth: form.dateOfBirth
         ? dateService.toServerDate(form.dateOfBirth)
@@ -52,10 +56,10 @@ export function usePatchProfile(args?: UsePatchProfileArgs) {
     });
   });
 
-  const initiate = async (form: PatchProfileForm) => {
+  const initiate = async (form: UpdateProfileForm) => {
     try {
-      await patchUser.mutateAsync(form);
-      await patchProfile.mutateAsync(form);
+      await updateUser.mutateAsync(form);
+      await updateProfile.mutateAsync(form);
       args?.onSuccess?.();
     } catch (e) {
       args?.onError?.(
@@ -66,6 +70,6 @@ export function usePatchProfile(args?: UsePatchProfileArgs) {
 
   return {
     initiate,
-    isLoading: patchUser.isLoading,
+    isLoading: updateUser.isLoading || updateProfile.isLoading,
   };
 }

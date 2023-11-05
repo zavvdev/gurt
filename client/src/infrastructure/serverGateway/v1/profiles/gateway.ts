@@ -25,7 +25,7 @@ class ProfilesGateway {
     return validateServerSuccessResponseData(response, profileSchema);
   }
 
-  public patchFromSession(request: PatchFromSessionRequest) {
+  public updateFromSession(request: PatchFromSessionRequest) {
     const formData = new FormData();
     if (request.image) {
       formData.append('image', request.image as Blob);

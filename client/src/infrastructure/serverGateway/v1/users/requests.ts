@@ -1,4 +1,4 @@
-export interface PatchPublicDataFromSessionRequest {
-  name: string | null;
-  username: string | null;
+export interface UpdatePublicDataFromSessionRequest {
+  name: string;
+  username: string;
 }

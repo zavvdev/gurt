@@ -42,43 +42,37 @@ class ProfileController extends Controller
             );
         }
 
-        $patchData = array_filter([
+        $patchData = [
             'bio' => $request->bio,
             'date_of_birth' => $request->date_of_birth,
             'country' => $request->country,
-        ], function ($v) {
-            return !is_null($v);
-        });
+        ];
 
-        $imagesData = array_filter([
+        $imagesData = [
             'image' => $request->image,
             'background_image' => $request->background_image,
-        ], function ($v) {
-            return !is_null($v);
-        });
+        ];
 
-        if (count($patchData) == 0 && count($imagesData) == 0) {
-            return $this->errorResponse(
-                Response::HTTP_BAD_REQUEST,
-                ResponseMessage::InvalidRequest,
-            );
-        }
+        // TODO: Rewrite logic to separate calls for delete/upload media files
 
         DB::transaction(function () use ($imagesData, $patchData, $user) {
             $user->profile()->update($patchData);
 
-            if (isset($imagesData['image'])) {
-                $imageUrl = StorageService::uploadFile($imagesData['image'], $user->id);
+            $imageUrl = is_file($imagesData['image'])
+                ? StorageService::uploadFile($imagesData['image'], $user->id)
+                : $imagesData['image'];
+
+            $backgroundImageUrl = is_file($imagesData['background_image'])
+                ? StorageService::uploadFile($imagesData['background_image'], $user->id)
+                : $imagesData['background_image'];
+
+            if (isset($imageUrl)) {
                 $user->profile()->update([
                     'image_url' => $imageUrl,
                 ]);
             }
 
-            if (isset($imagesData['background_image'])) {
-                $backgroundImageUrl = StorageService::uploadFile(
-                    $imagesData['background_image'],
-                    $user->id,
-                );
+            if (isset($backgroundImageUrl)) {
                 $user->profile()->update([
                     'background_image_url' => $backgroundImageUrl,
                 ]);

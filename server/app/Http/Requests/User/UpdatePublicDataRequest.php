@@ -10,10 +10,10 @@ class UpdatePublicDataRequest extends RequestData
 {
     public function __construct(
         #[UserNameRule]
-        public ?string $name,
+        public string $name,
 
         #[UserUsernameRule]
-        public ?string $username,
+        public string $username,
     ) {
     }
 }

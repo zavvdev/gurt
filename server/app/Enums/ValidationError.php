@@ -19,4 +19,6 @@ class ValidationError
     const InvalidFormat = 'invalid_format';
 
     const FileType = 'file_type';
+
+    const FileOrStorageUrl = 'file_or_storage_url';
 }

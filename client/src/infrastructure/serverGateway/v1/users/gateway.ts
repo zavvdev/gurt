@@ -7,7 +7,7 @@ import {
 import { Http } from '~/infrastructure/http';
 import { serverGateway } from '~/infrastructure/serverGateway/serverGateway';
 import { validateServerSuccessResponseData } from '~/infrastructure/serverGateway/utilities';
-import { PatchPublicDataFromSessionRequest } from '~/infrastructure/serverGateway/v1/users/requests';
+import { UpdatePublicDataFromSessionRequest } from '~/infrastructure/serverGateway/v1/users/requests';
 
 class UsersGateway {
   private http: Http;
@@ -25,10 +25,10 @@ class UsersGateway {
     return validateServerSuccessResponseData(response, userSchema);
   }
 
-  public patchPublicDataFromSession(
-    request: PatchPublicDataFromSessionRequest,
+  public updatePublicDataFromSession(
+    request: UpdatePublicDataFromSessionRequest,
   ) {
-    return this.http.patch(this.r('/session'), request);
+    return this.http.put(this.r('/session'), request);
   }
 
   public deleteSessionUser() {

@@ -14,14 +14,14 @@ import {
 } from '~/application/features/auth/utilities';
 import {
   BIO_MAX_LENGTH,
-  PatchProfileForm,
-} from '~/application/features/user/patchProfile';
+  UpdateProfileForm,
+} from '~/application/features/user/updateProfile';
 import { dateService } from '~/application/services/DateService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {
-  initialValues: PatchProfileForm;
-  onSubmit: (values: PatchProfileForm) => void;
+  initialValues: UpdateProfileForm;
+  onSubmit: (values: UpdateProfileForm) => void;
 }
 
 export function useForm({ initialValues, onSubmit }: Args) {
