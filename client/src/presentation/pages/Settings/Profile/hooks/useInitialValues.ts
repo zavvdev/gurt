@@ -62,6 +62,9 @@ export function useInitialValues() {
   return {
     data,
     isLoading: sessionUserQuery.isLoading || sessionUserQuery.isLoading,
-    refetch: sessionUserQuery.refetch,
+    refetch: () => {
+      sessionUserQuery.refetch();
+      profileQuery.refetch();
+    },
   };
 }

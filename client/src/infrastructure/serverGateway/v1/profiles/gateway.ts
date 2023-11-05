@@ -26,7 +26,25 @@ class ProfilesGateway {
   }
 
   public patchFromSession(request: PatchFromSessionRequest) {
-    return this.http.patch(this.r('/session'), request);
+    const formData = new FormData();
+    if (request.image) {
+      formData.append('image', request.image as Blob);
+    }
+    if (request.background_image) {
+      formData.append('background_image', request.background_image as Blob);
+    }
+    if (request.bio) {
+      formData.append('bio', request.bio);
+    }
+    if (request.country) {
+      formData.append('country', request.country);
+    }
+    if (request.date_of_birth) {
+      formData.append('date_of_birth', request.date_of_birth);
+    }
+    return this.http.post(this.r('/session'), request, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   }
 }
 

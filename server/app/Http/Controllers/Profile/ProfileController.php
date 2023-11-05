@@ -65,12 +65,11 @@ class ProfileController extends Controller
         }
 
         DB::transaction(function () use ($imagesData, $patchData, $user) {
-            // TODO: make it work
-            $user->update($patchData);
+            $user->profile()->update($patchData);
 
             if (isset($imagesData['image'])) {
                 $imageUrl = StorageService::uploadFile($imagesData['image'], $user->id);
-                $user->update([
+                $user->profile()->update([
                     'image_url' => $imageUrl,
                 ]);
             }
@@ -80,7 +79,7 @@ class ProfileController extends Controller
                     $imagesData['background_image'],
                     $user->id,
                 );
-                $user->update([
+                $user->profile()->update([
                     'background_image_url' => $backgroundImageUrl,
                 ]);
             }

@@ -25,6 +25,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::prefix('profiles')->group(function () {
         Route::get('/user/{id}', [ProfileController::class, 'getByUserId']);
-        Route::patch('/session', [ProfileController::class, 'updateFromSession']);
+        Route::post('/session', [ProfileController::class, 'updateFromSession']);
     });
 });

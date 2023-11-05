@@ -42,8 +42,8 @@ export function usePatchProfile(args?: UsePatchProfileArgs) {
 
   const patchProfile = useMutation((form: PatchProfileData) => {
     return profilesGateway.patchFromSession({
-      image: form.image,
-      background_image: form.backgroundImage,
+      image: form.image?.originFileObj || null,
+      background_image: form.backgroundImage?.originFileObj || null,
       bio: form.bio,
       country: form.country,
       date_of_birth: form.dateOfBirth
