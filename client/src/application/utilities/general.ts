@@ -1,5 +1,5 @@
 import { errorReporter } from '~/infrastructure/errorReporter';
-import { ExtractedValidationError } from '~/infrastructure/serverGateway/types';
+import { ExtractedValidationError } from '~/infrastructure/serverApi/types';
 
 export function delay(ms: number) {
   return new Promise((res) => setTimeout(() => res(ms), ms));

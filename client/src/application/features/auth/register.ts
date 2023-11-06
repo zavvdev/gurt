@@ -5,9 +5,9 @@ import {
   ExtractedValidationError,
   ServerResponseMessage,
   ServerValidationErrorsResponse,
-} from '~/infrastructure/serverGateway/types';
-import { extractValidationErrors } from '~/infrastructure/serverGateway/utilities';
-import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
+} from '~/infrastructure/serverApi/types';
+import { extractValidationErrors } from '~/infrastructure/serverApi/utilities';
+import { authApi } from '~/infrastructure/serverApi/v1/auth/api';
 
 export interface RegisterForm {
   name: string;
@@ -30,7 +30,7 @@ export function useRegister(args?: UseRegisterArgs) {
 
   const mutation = useMutation(
     (form: RegisterForm) => {
-      return authGateway.register({
+      return authApi.register({
         name: form.name,
         email: form.email,
         username: form.username,
@@ -40,7 +40,7 @@ export function useRegister(args?: UseRegisterArgs) {
     },
     {
       onMutate: async () => {
-        await authGateway.csrfCookie();
+        await authApi.csrfCookie();
       },
       onSuccess: (response) => {
         if (response.message === ServerResponseMessage.AlreadyLoggedIn) {

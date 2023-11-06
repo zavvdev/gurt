@@ -4,8 +4,8 @@ import { PUBLIC_ROUTES, ROUTE_AFTER_AUTH } from '~/routes';
 import {
   ServerResponse,
   ServerResponseMessage,
-} from '~/infrastructure/serverGateway/types';
-import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
+} from '~/infrastructure/serverApi/types';
+import { authApi } from '~/infrastructure/serverApi/v1/auth/api';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
 // Forgot password
@@ -19,13 +19,13 @@ export function useForgotPassword(args?: ResponseMessageEventHandlers) {
 
   const { mutate, isLoading } = useMutation(
     (form: ForgotPasswordForm) => {
-      return authGateway.forgotPassword({
+      return authApi.forgotPassword({
         email: form.email,
       });
     },
     {
       onMutate: async () => {
-        await authGateway.csrfCookie();
+        await authApi.csrfCookie();
       },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);
@@ -60,7 +60,7 @@ export function useResetPassword(args?: ResponseMessageEventHandlers) {
 
   const { mutate, isLoading } = useMutation(
     ({ form, token }: { form: ResetPasswordForm; token: string }) => {
-      return authGateway.resetPassword({
+      return authApi.resetPassword({
         email: form.email,
         password: form.password,
         password_confirmation: form.passwordConfirm,
@@ -69,7 +69,7 @@ export function useResetPassword(args?: ResponseMessageEventHandlers) {
     },
     {
       onMutate: async () => {
-        await authGateway.csrfCookie();
+        await authApi.csrfCookie();
       },
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/profiles/useProfileByUserIdQuery';
-import { useUserFromSessionQuery } from '~/application/managers/queryClient/queries/users/useUserFromSessionQuery';
+import { useMyUserQuery } from '~/application/managers/queryClient/queries/users/useMyUserQuery';
 import { useUserQuery } from '~/application/managers/queryClient/queries/users/useUserQuery';
 import { notificationService } from '~/application/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
@@ -10,7 +10,7 @@ export function useProfile() {
   const { t } = useTranslation('profile');
   const params = useParams();
 
-  const sessionUser = useUserFromSessionQuery({
+  const sessionUser = useMyUserQuery({
     enabled: !params?.id,
     onError: () => {
       notificationService.error(tCommon('error.fetchUser'));

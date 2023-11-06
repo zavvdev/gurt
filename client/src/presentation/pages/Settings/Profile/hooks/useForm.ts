@@ -1,17 +1,5 @@
-import { UploadFile } from 'antd';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import {
-  AUTH_NAME_MAX_LENGTH,
-  AUTH_NAME_MIN_LENGTH,
-  AUTH_USERNAME_MAX_LENGTH,
-  AUTH_USERNAME_MIN_LENGTH,
-  AUTH_USERNAME_REGEX,
-} from '~/application/features/auth/config';
-import {
-  isAuthNameLengthValid,
-  isAuthUsernameLengthValid,
-} from '~/application/features/auth/utilities';
 import {
   BIO_MAX_LENGTH,
   UpdateProfileForm,
@@ -28,33 +16,6 @@ export function useForm({ initialValues, onSubmit }: Args) {
   const { t } = useTranslation('common');
 
   const schema = yup.object({
-    image: yup.object<UploadFile>().nullable(),
-
-    backgroundImage: yup.object<UploadFile>().nullable(),
-
-    name: yup
-      .string()
-      .required(t('formError.nameRequired'))
-      .test({
-        message: t('formError.nameLength', {
-          min: AUTH_NAME_MIN_LENGTH,
-          max: AUTH_NAME_MAX_LENGTH,
-        }),
-        test: isAuthNameLengthValid,
-      }),
-
-    username: yup
-      .string()
-      .required(t('formError.usernameRequired'))
-      .matches(AUTH_USERNAME_REGEX, t('formError.usernameInvalid'))
-      .test({
-        message: t('formError.usernameLength', {
-          min: AUTH_USERNAME_MIN_LENGTH,
-          max: AUTH_USERNAME_MAX_LENGTH,
-        }),
-        test: isAuthUsernameLengthValid,
-      }),
-
     bio: yup
       .string()
       .max(

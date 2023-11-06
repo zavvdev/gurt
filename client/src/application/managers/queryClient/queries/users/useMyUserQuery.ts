@@ -4,29 +4,26 @@ import { ServerResponse } from '~/infrastructure/serverApi/types';
 import { QueryKey } from '~/application/managers/queryClient/config';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
-interface QueryArgs {
-  id: number;
-  options?: {
-    enabled?: boolean;
-  } & ResponseMessageEventHandlers;
+interface QueryArgs extends ResponseMessageEventHandlers {
+  enabled?: boolean;
 }
 
-export function createUserQueryKey(id: number) {
-  return [QueryKey.User, id];
+export function createMyUserQueryKey() {
+  return [QueryKey.MyUser];
 }
 
-export function useUserQuery(args: QueryArgs) {
+export function useMyUserQuery(args?: QueryArgs) {
   return useQuery({
-    queryKey: createUserQueryKey(args.id),
-    queryFn: () => usersApi.getById(args.id),
+    queryKey: createMyUserQueryKey(),
+    queryFn: () => usersApi.getMe(),
     meta: {
       onError: (response: ServerResponse) => {
-        args?.options?.onError?.(response.message);
+        args?.onError?.(response.message);
       },
       onSuccess: (response: ServerResponse) => {
-        args?.options?.onSuccess?.(response.message);
+        args?.onSuccess?.(response.message);
       },
     },
-    enabled: args?.options?.enabled,
+    enabled: args?.enabled,
   });
 }

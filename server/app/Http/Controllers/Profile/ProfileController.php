@@ -3,26 +3,22 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Enums\ResponseMessage;
+use App\Enums\UserMediaType;
+use App\Events\DeleteStorageFileEvent;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Profile\UpdateRequest;
-use App\Models\User;
+use App\Http\Requests\Profile\CreateMyMediaRequest;
+use App\Http\Requests\Profile\DeleteMyMediaRequest;
+use App\Http\Requests\Profile\PatchMeRequest;
 use App\Services\StorageService\StorageService;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
     public function getByUserId(int $id)
     {
-        $user = User::find($id);
-
-        if (!$user) {
-            return $this->errorResponse(
-                Response::HTTP_NOT_FOUND,
-                ResponseMessage::UserNotFound,
-            );
-        }
+        $user = $this->user($id);
 
         if (!$user->profile) {
             $user->profile()->create();
@@ -31,52 +27,72 @@ class ProfileController extends Controller
         return $this->successResponse($user->profile);
     }
 
-    public function updateFromSession(UpdateRequest $request)
+    public function patchMe(PatchMeRequest $request)
     {
-        $user = User::find(Auth::user()->id);
+        $user = $this->user();
 
-        if (!$user) {
-            return $this->errorResponse(
-                Response::HTTP_NOT_FOUND,
-                ResponseMessage::UserNotFound,
-            );
-        }
-
-        $patchData = [
+        $updateData = array_filter([
             'bio' => $request->bio,
             'date_of_birth' => $request->date_of_birth,
             'country' => $request->country,
+        ], function ($v) {
+            return !is_null($v);
+        });
+
+        if (count($updateData) == 0) {
+            return $this->errorResponse(
+                Response::HTTP_BAD_REQUEST,
+                ResponseMessage::InvalidRequest,
+            );
+        }
+
+        $user->profile()->update($updateData);
+
+        return $this->successResponse();
+    }
+
+    public function createMyMedia(CreateMyMediaRequest $request)
+    {
+        $user = $this->user();
+
+        $mediaTypeMap = [
+            UserMediaType::Image => 'image_url',
+            UserMediaType::Background => 'background_image_url',
         ];
 
-        $imagesData = [
-            'image' => $request->image,
-            'background_image' => $request->background_image,
+        $url = StorageService::uploadFile($request->file, $user->id);
+
+        try {
+            $user->profile()->update([
+                $mediaTypeMap[$request->type] => $url,
+            ]);
+        } catch (\Exception $e) {
+            DeleteStorageFileEvent::dispatch(basename($url), $user->id);
+            throw $e;
+        }
+
+        return $this->successResponse();
+    }
+
+    public function deleteMyMedia(Request $request)
+    {
+        $request = DeleteMyMediaRequest::from([
+            'url' => $request->query('url'),
+            'type' => $request->query('type'),
+        ]);
+
+        $user = $this->user();
+
+        $mediaTypeMap = [
+            UserMediaType::Image => 'image_url',
+            UserMediaType::Background => 'background_image_url',
         ];
 
-        // TODO: Rewrite logic to separate calls for delete/upload media files
-
-        DB::transaction(function () use ($imagesData, $patchData, $user) {
-            $user->profile()->update($patchData);
-
-            $imageUrl = is_file($imagesData['image'])
-                ? StorageService::uploadFile($imagesData['image'], $user->id)
-                : $imagesData['image'];
-
-            $backgroundImageUrl = is_file($imagesData['background_image'])
-                ? StorageService::uploadFile($imagesData['background_image'], $user->id)
-                : $imagesData['background_image'];
-
-            if (isset($imageUrl)) {
-                $user->profile()->update([
-                    'image_url' => $imageUrl,
-                ]);
-            }
-
-            if (isset($backgroundImageUrl)) {
-                $user->profile()->update([
-                    'background_image_url' => $backgroundImageUrl,
-                ]);
-            }
+        DB::transaction(function () use ($request, $user, $mediaTypeMap): void {
+            $user->profile()->update([
+                $mediaTypeMap[$request->type] => null,
+            ]);
+            StorageService::deleteFile(basename($request->url), $user->id);
         });
 
         return $this->successResponse();

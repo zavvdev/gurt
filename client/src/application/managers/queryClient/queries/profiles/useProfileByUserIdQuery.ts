@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { profilesGateway } from '~/infrastructure/serverGateway/v1/profiles/gateway';
-import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { profilesApi } from '~/infrastructure/serverApi/v1/profiles/api';
+import { ServerResponse } from '~/infrastructure/serverApi/types';
 import { QueryKey } from '~/application/managers/queryClient/config';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
@@ -18,7 +18,7 @@ export function createProfileByUserIdQueryKey(userId: number) {
 export function useProfileByUserIdQuery(args: QueryArgs) {
   return useQuery({
     queryKey: createProfileByUserIdQueryKey(args.userId),
-    queryFn: () => profilesGateway.getByUserId({ userId: args.userId }),
+    queryFn: () => profilesApi.getByUserId({ userId: args.userId }),
     meta: {
       onError: (response: ServerResponse) => {
         args.options?.onError?.(response.message);

@@ -25,6 +25,8 @@ class RequestData extends Data
             'regex' => ValidationError::InvalidFormat,
 
             'file' => ValidationError::FileType,
+
+            'enum' => ValidationError::InvalidEnum,
         ];
     }
 }

@@ -1,5 +1,5 @@
 import { Query, QueryCache, QueryClient } from '@tanstack/react-query';
-import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { ServerResponse } from '~/infrastructure/serverApi/types';
 
 function onError(error: unknown, query: Query) {
   if (typeof query.meta?.onError === 'function') {

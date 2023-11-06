@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { PUBLIC_ROUTES } from '~/routes';
-import { authGateway } from '~/infrastructure/serverGateway/v1/auth/gateway';
-import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { authApi } from '~/infrastructure/serverApi/v1/auth/api';
+import { ServerResponse } from '~/infrastructure/serverApi/types';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
 export function useLogout(args?: ResponseMessageEventHandlers) {
@@ -10,7 +10,7 @@ export function useLogout(args?: ResponseMessageEventHandlers) {
 
   const { mutate, isLoading } = useMutation(
     () => {
-      return authGateway.logout();
+      return authApi.logout();
     },
     {
       onError: (response: ServerResponse) => {

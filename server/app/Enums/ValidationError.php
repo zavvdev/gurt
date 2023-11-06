@@ -20,5 +20,7 @@ class ValidationError
 
     const FileType = 'file_type';
 
-    const FileOrStorageUrl = 'file_or_storage_url';
+    const StorageUrl = 'storage_url';
+
+    const InvalidEnum = 'invalid_enumerable';
 }
