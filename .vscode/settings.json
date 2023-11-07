@@ -1,3 +1,4 @@
 {
-  "eslint.workingDirectories": ["./client", "./storage"]
+  "eslint.workingDirectories": ["./client", "./storage"],
+  "cSpell.words": ["Dispatchable"]
 }

@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { ServerResponse } from '~/infrastructure/serverApi/types';
 
 type HttpRequestConfig = {
   baseURL?: string;

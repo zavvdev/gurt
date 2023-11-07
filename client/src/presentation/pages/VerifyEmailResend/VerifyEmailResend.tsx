@@ -1,7 +1,7 @@
 import { Button, Typography } from 'antd';
-import { useLogout } from '~/application/features/auth/logout';
-import { useSendEmailVerification } from '~/application/features/email/verify';
+import { useLogout } from '~/application/features/auth/logout/useLogout';
 import { notificationService } from '~/application/services/NotificationService';
+import { useSendEmailVerification } from '~/application/features/email/verify/useSendEmailVerification';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { EmptyLayout } from '~/presentation/layouts/Empty/EmptyLayout';
 import { Icons } from '~/presentation/assets/Icons';

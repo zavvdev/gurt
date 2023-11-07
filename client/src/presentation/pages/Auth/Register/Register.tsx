@@ -1,6 +1,6 @@
 import { Button, Input, Typography } from 'antd';
 import { useState } from 'react';
-import { useRegister } from '~/application/features/auth/register';
+import { useRegister } from '~/application/features/auth/register/useRegister';
 import { notificationService } from '~/application/services/NotificationService';
 import { getFirstExtractedValidationErrorEntry } from '~/application/utilities/general';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';

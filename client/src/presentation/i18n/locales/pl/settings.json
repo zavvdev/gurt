@@ -22,7 +22,7 @@
     "country": {
       "placeholder": "Wyszukaj, aby wybrać"
     },
-    "patch": {
+    "update": {
       "success": {
         "fallback": "Profil został pomyślnie zaktualizowany"
       },

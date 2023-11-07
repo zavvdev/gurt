@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { usersGateway } from '~/infrastructure/serverGateway/v1/users/gateway';
-import { ServerResponse } from '~/infrastructure/serverGateway/types';
+import { usersApi } from '~/infrastructure/serverApi/v1/users/api';
+import { ServerResponse } from '~/infrastructure/serverApi/types';
 import { QueryKey } from '~/application/managers/queryClient/config';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
@@ -18,7 +18,7 @@ export function createUserQueryKey(id: number) {
 export function useUserQuery(args: QueryArgs) {
   return useQuery({
     queryKey: createUserQueryKey(args.id),
-    queryFn: () => usersGateway.getById(args.id),
+    queryFn: () => usersApi.getById(args.id),
     meta: {
       onError: (response: ServerResponse) => {
         args?.options?.onError?.(response.message);

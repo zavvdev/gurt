@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { usePrivateRoutePSIDGuard } from '~/application/features/auth/session';
+import { usePrivateRoutePSIDGuard } from '~/application/features/auth/session/usePrivateRoutePSIDGuard';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 export function PrivateRouteGuard({ children }: PropsWithChildren) {

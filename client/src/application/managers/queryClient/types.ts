@@ -1,4 +1,4 @@
-import { ServerResponseMessage } from '~/infrastructure/serverGateway/types';
+import { ServerResponseMessage } from '~/infrastructure/serverApi/types';
 
 export interface ResponseMessageEventHandlers {
   onError?: (message: ServerResponseMessage | null) => void;

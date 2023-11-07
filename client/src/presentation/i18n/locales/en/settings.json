@@ -30,7 +30,7 @@
         "cancel": "No. Keep it"
       }
     },
-    "patch": {
+    "update": {
       "success": {
         "fallback": "Profile has been successfully updated"
       },

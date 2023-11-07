@@ -17,4 +17,10 @@ class ValidationError
     const NotConfirmed = 'not_confirmed';
 
     const InvalidFormat = 'invalid_format';
+
+    const FileType = 'file_type';
+
+    const StorageUrl = 'storage_url';
+
+    const InvalidEnum = 'invalid_enumerable';
 }
