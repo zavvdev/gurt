@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import {
   BIO_MAX_LENGTH,
   UpdateProfileForm,
-} from '~/application/features/user/updateProfile';
+} from '~/application/features/sessionUser/updateData';
 import { dateService } from '~/application/services/DateService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 

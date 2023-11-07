@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import cn from 'clsx';
-import { useUpdateProfile } from '~/application/features/user/updateProfile';
+import { useUpdateProfile } from '~/application/features/sessionUser/updateData';
 import { notificationService } from '~/application/services/NotificationService';
 import { getFirstExtractedValidationErrorEntry } from '~/application/utilities/general';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';

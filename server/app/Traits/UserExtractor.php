@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Enums\ResponseMessage;
+use App\Exceptions\ApiException;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +14,8 @@ trait UserExtractor
     {
         $user = User::find($id || Auth::user()->id);
 
-        // TODO: Throw exception instead return
         if (!$user) {
-            return $this->errorResponse(
+            throw new ApiException(
                 Response::HTTP_NOT_FOUND,
                 ResponseMessage::UserNotFound,
             );

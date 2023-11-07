@@ -1,21 +1,19 @@
 import { UserMediaType } from '~/infrastructure/serverApi/types';
 
-export interface GetByUserIdRequest {
-  userId: number;
-}
-
-export interface PatchMeRequest {
+export interface PatchRequest {
+  name?: string | null;
+  username?: string | null;
   bio?: string | null;
   date_of_birth?: string | null;
   country?: string | null;
 }
 
-export interface DeleteMyMediaRequest {
-  url: string;
+export interface CreateMediaRequest {
+  file: object;
   type: UserMediaType;
 }
 
-export interface CreateMyMediaRequest {
-  file: object;
+export interface DeleteMediaRequest {
+  url: string;
   type: UserMediaType;
 }

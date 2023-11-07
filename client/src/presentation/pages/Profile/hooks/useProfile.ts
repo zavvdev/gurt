@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/profiles/useProfileByUserIdQuery';
-import { useMyUserQuery } from '~/application/managers/queryClient/queries/users/useMyUserQuery';
+import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/users/useUserProfileQuery';
+import { useMyUserQuery } from '~/application/managers/queryClient/queries/sessionUser/useSessionUserQuery';
 import { useUserQuery } from '~/application/managers/queryClient/queries/users/useUserQuery';
 import { notificationService } from '~/application/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';

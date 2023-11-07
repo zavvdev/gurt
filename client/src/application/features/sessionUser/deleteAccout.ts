@@ -1,12 +1,14 @@
 import { useMutation } from '@tanstack/react-query';
 import { ServerResponse } from '~/infrastructure/serverApi/types';
-import { usersApi } from '~/infrastructure/serverApi/v1/users/api';
+import { sessionUserApi } from '~/infrastructure/serverApi/v1/sessionUser/api';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
-export function useDeleteUserAccount(args?: ResponseMessageEventHandlers) {
+export function useDeleteSessionUserAccount(
+  args?: ResponseMessageEventHandlers,
+) {
   const { mutate, isLoading } = useMutation(
     () => {
-      return usersApi.deleteMe();
+      return sessionUserApi.del();
     },
     {
       onError: (response: ServerResponse) => {

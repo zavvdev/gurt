@@ -1,16 +1,8 @@
-import {
-  PublicUser,
-  publicUserSchema,
-  User,
-  userSchema,
-} from '~/entities/User';
+import { Profile, profileSchema } from '~/entities/Profile';
+import { PublicUser, publicUserSchema } from '~/entities/User';
 import { Http } from '~/infrastructure/http';
 import { serverApi } from '~/infrastructure/serverApi/serverApi';
-import {
-  removeNullishFromRequestPayload,
-  validateServerSuccessResponseData,
-} from '~/infrastructure/serverApi/utilities';
-import { PatchMyPublicDataRequest } from '~/infrastructure/serverApi/v1/users/requests';
+import { validateServerSuccessResponseData } from '~/infrastructure/serverApi/utilities';
 
 class UsersApi {
   private http: Http;
@@ -28,20 +20,9 @@ class UsersApi {
     return validateServerSuccessResponseData(response, publicUserSchema);
   }
 
-  public async getMe() {
-    const response = await this.http.get<User>(this.r('/me'));
-    return validateServerSuccessResponseData(response, userSchema);
-  }
-
-  public deleteMe() {
-    return this.http.delete(this.r('/me'));
-  }
-
-  public patchMyPublicData(request: PatchMyPublicDataRequest) {
-    return this.http.patch(
-      this.r('/me/public-data'),
-      removeNullishFromRequestPayload(request),
-    );
+  public async getProfileByUserId(userId: number) {
+    const response = await this.http.get<Profile>(this.r(`/${userId}/profile`));
+    return validateServerSuccessResponseData(response, profileSchema);
   }
 }
 

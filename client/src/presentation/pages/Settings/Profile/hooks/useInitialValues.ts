@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { UpdateProfileForm } from '~/application/features/user/updateProfile';
-import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/profiles/useProfileByUserIdQuery';
-import { useMyUserQuery } from '~/application/managers/queryClient/queries/users/useMyUserQuery';
+import { UpdateProfileForm } from '~/application/features/sessionUser/updateData';
+import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/users/useUserProfileQuery';
+import { useMyUserQuery } from '~/application/managers/queryClient/queries/sessionUser/useSessionUserQuery';
 import { notificationService } from '~/application/services/NotificationService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\SessionUser\SessionUserController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,17 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::prefix('users')->group(function () {
-        Route::get('/{id}', [UserController::class, 'getById']);
-        Route::get('/me', [UserController::class, 'getMe']);
-        Route::delete('/me', [UserController::class, 'deleteMe']);
-        Route::patch('/me/public-data', [UserController::class, 'patchMyPublicData']);
+    Route::prefix('me')->group(function () {
+        Route::get('/', [SessionUserController::class, 'get']);
+        Route::delete('/', [SessionUserController::class, 'delete']);
+        Route::patch('/', [SessionUserController::class, 'patch']);
+        Route::post('/media', [SessionUserController::class, 'createMedia']);
+        Route::delete('/media', [SessionUserController::class, 'deleteMedia']);
     });
 
-    Route::prefix('profiles')->group(function () {
-        Route::get('/users/{id}', [ProfileController::class, 'getByUserId']);
-        Route::patch('/me', [ProfileController::class, 'patchMe']);
-        Route::post('/me/media', [ProfileController::class, 'createMyMedia']);
-        Route::delete('/me/media', [ProfileController::class, 'deleteMyMedia']);
+    Route::prefix('users')->group(function () {
+        Route::get('/{id}', [UserController::class, 'getById']);
+        Route::get('/{userId}/profile', [UserController::class, 'getProfile']);
     });
 });

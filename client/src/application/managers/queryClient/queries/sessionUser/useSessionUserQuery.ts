@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { usersApi } from '~/infrastructure/serverApi/v1/users/api';
 import { ServerResponse } from '~/infrastructure/serverApi/types';
+import { sessionUserApi } from '~/infrastructure/serverApi/v1/sessionUser/api';
 import { QueryKey } from '~/application/managers/queryClient/config';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
@@ -8,14 +8,14 @@ interface QueryArgs extends ResponseMessageEventHandlers {
   enabled?: boolean;
 }
 
-export function createMyUserQueryKey() {
-  return [QueryKey.MyUser];
+export function createSessionUserQueryKey() {
+  return [QueryKey.SessionUser];
 }
 
-export function useMyUserQuery(args?: QueryArgs) {
+export function useSessionUserQuery(args?: QueryArgs) {
   return useQuery({
-    queryKey: createMyUserQueryKey(),
-    queryFn: () => usersApi.getMe(),
+    queryKey: createSessionUserQueryKey(),
+    queryFn: () => sessionUserApi.get(),
     meta: {
       onError: (response: ServerResponse) => {
         args?.onError?.(response.message);
