@@ -3,9 +3,11 @@ import { UserMediaType } from '~/infrastructure/serverApi/types';
 export interface PatchRequest {
   name?: string | null;
   username?: string | null;
-  bio?: string | null;
-  date_of_birth?: string | null;
-  country?: string | null;
+  profile?: {
+    bio?: string | null;
+    date_of_birth?: string | null;
+    country?: string | null;
+  };
 }
 
 export interface CreateMediaRequest {

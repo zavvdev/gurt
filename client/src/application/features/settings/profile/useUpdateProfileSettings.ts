@@ -20,11 +20,13 @@ export function useUpdateProfileSettings(args?: UseUpdateProfileSessionArgs) {
       return sessionUserApi.patch({
         name: form.name,
         username: form.username,
-        bio: form.bio ? squashSpaces(form.bio) : null,
-        country: form.country,
-        date_of_birth: form.dateOfBirth
-          ? dateService.toServerDate(form.dateOfBirth)
-          : null,
+        profile: {
+          bio: form.bio ? squashSpaces(form.bio) : null,
+          country: form.country,
+          date_of_birth: form.dateOfBirth
+            ? dateService.toServerDate(form.dateOfBirth)
+            : null,
+        },
       });
     },
     {

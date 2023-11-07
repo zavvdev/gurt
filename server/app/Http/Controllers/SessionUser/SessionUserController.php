@@ -10,10 +10,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SessionUser\CreateMediaRequest;
 use App\Http\Requests\SessionUser\DeleteMediaRequest;
 use App\Http\Requests\SessionUser\PatchRequest;
+use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use App\Services\StorageService\StorageService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class SessionUserController extends Controller
@@ -22,7 +24,15 @@ class SessionUserController extends Controller
     {
         $user = $this->user();
 
-        return $this->successResponse($user);
+        if (!$user->profile) {
+            $user->profile()->create();
+        }
+
+        return $this->successResponse(
+            new UserResource(
+                $user->with('profile')->first(),
+            ),
+        );
     }
 
     public function delete()
@@ -41,22 +51,7 @@ class SessionUserController extends Controller
     {
         $user = $this->user();
 
-        $userPatchData = array_filter([
-            'name' => $request->name,
-            'username' => $request->username,
-        ], function ($v) {
-            return !is_null($v);
-        });
-
-        $profilePatchData = array_filter([
-            'bio' => $request->bio,
-            'date_of_birth' => $request->date_of_birth,
-            'country' => $request->country,
-        ], function ($v) {
-            return !is_null($v);
-        });
-
-        if (count($userPatchData) == 0 && count($profilePatchData) == 0) {
+        if (count($request->toArray()) == 0) {
             return $this->errorResponse(
                 Response::HTTP_BAD_REQUEST,
                 ResponseMessage::InvalidRequest,
@@ -80,9 +75,11 @@ class SessionUserController extends Controller
             }
         }
 
-        DB::transaction(function () use ($user, $userPatchData, $profilePatchData): void {
-            $user->update($userPatchData);
-            $user->profile()->update($profilePatchData);
+        DB::transaction(function () use ($user, $request): void {
+            $user->profile()->update($request->profile->toArray());
+            $user->update(
+                Arr::except($request->toArray(), ['profile']),
+            );
         });
 
         return $this->successResponse();

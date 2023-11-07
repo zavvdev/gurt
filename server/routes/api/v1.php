@@ -26,6 +26,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::prefix('users')->group(function () {
         Route::get('/{id}', [UserController::class, 'getById']);
-        Route::get('/{userId}/profile', [UserController::class, 'getProfile']);
     });
 });

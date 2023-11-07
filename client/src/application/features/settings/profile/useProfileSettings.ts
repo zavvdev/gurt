@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-import { useUserProfileQuery } from '~/application/managers/queryClient/queries/users/useUserProfileQuery';
 import { useSessionUserQuery } from '~/application/managers/queryClient/queries/sessionUser/useSessionUserQuery';
 import { ProfileSettingsForm } from '~/application/features/settings/profile/types';
 
@@ -16,40 +15,28 @@ export function useProfileSettings(args: UseProfileSettingsArgs) {
 
   const sessionUser = sessionUserQuery.data?.data || null;
 
-  const profileQuery = useUserProfileQuery({
-    userId: sessionUser?.id || 0,
-    options: {
-      enabled: Boolean(sessionUser?.id),
-      onError: () => {
-        args.onError();
-      },
-    },
-  });
-
-  const profile = profileQuery.data?.data || null;
-
   const data: ProfileSettingsForm = useMemo(
     () => ({
       name: sessionUser?.name || '',
       username: sessionUser?.username || '',
-      bio: profile?.bio || null,
-      country: profile?.country || null,
-      dateOfBirth: profile?.date_of_birth
-        ? new Date(profile.date_of_birth)
+      bio: sessionUser?.profile?.bio || null,
+      country: sessionUser?.profile?.country || null,
+      dateOfBirth: sessionUser?.profile?.date_of_birth
+        ? new Date(sessionUser.profile?.date_of_birth)
         : null,
     }),
     [
-      profile?.bio,
-      profile?.country,
-      profile?.date_of_birth,
       sessionUser?.name,
+      sessionUser?.profile?.bio,
+      sessionUser?.profile?.country,
+      sessionUser?.profile?.date_of_birth,
       sessionUser?.username,
     ],
   );
 
   return {
     data,
-    isLoading: sessionUserQuery.isLoading || sessionUserQuery.isLoading,
-    refetch: profileQuery.refetch,
+    isLoading: sessionUserQuery.isLoading,
+    refetch: sessionUserQuery.refetch,
   };
 }

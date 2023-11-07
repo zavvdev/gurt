@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { ServerResponseMessage } from '~/infrastructure/serverApi/types';
-import { useUserProfileQuery } from '~/application/managers/queryClient/queries/users/useUserProfileQuery';
 import { useSessionUserQuery } from '~/application/managers/queryClient/queries/sessionUser/useSessionUserQuery';
 import { useUserQuery } from '~/application/managers/queryClient/queries/users/useUserQuery';
 
@@ -28,29 +27,19 @@ export function useProfile(args: UseProfileArgs) {
     },
   });
 
-  const profile = useUserProfileQuery({
-    userId: userById.data?.data?.id || sessionUser.data?.data?.id || 0,
-    options: {
-      enabled: Boolean(userById.data?.data?.id || sessionUser.data?.data?.id),
-      onError: () => {
-        args.onError();
-      },
-    },
-  });
-
   const userData = params?.id ? userById.data?.data : sessionUser.data?.data;
-  const profileData = profile.data?.data;
+  const isLoading = params?.id ? userById.isLoading : sessionUser.isLoading;
 
   return {
     data: {
       name: userData?.name || null,
       username: userData?.username || null,
-      imageUrl: profileData?.image_url || null,
-      backgroundImageUrl: profileData?.background_image_url || null,
-      bio: profileData?.bio || null,
-      dateOfBirth: profileData?.date_of_birth || null,
-      country: profileData?.country || null,
+      imageUrl: userData?.profile?.image_url || null,
+      backgroundImageUrl: userData?.profile?.background_image_url || null,
+      bio: userData?.profile?.bio || null,
+      dateOfBirth: userData?.profile?.date_of_birth || null,
+      country: userData?.profile?.country || null,
     },
-    isLoading: profile.isLoading,
+    isLoading,
   };
 }
