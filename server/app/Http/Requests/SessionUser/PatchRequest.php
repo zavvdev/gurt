@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests\SessionUser;
 
-use DateTime;
 use App\Http\Requests\RequestData;
 use App\Http\ValidationRules\User\UserNameRule;
 use App\Http\ValidationRules\User\UserUsernameRule;
+use DateTime;
 use Spatie\LaravelData\Attributes\Validation\Max;
 use Spatie\LaravelData\Attributes\WithCast;
+use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 
 class PatchRequest extends RequestData
 {

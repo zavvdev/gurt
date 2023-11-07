@@ -8,14 +8,7 @@ import {
 } from '~/infrastructure/serverApi/types';
 import { extractValidationErrors } from '~/infrastructure/serverApi/utilities';
 import { authApi } from '~/infrastructure/serverApi/v1/auth/api';
-
-export interface RegisterForm {
-  name: string;
-  email: string;
-  username: string;
-  password: string;
-  passwordConfirm: string;
-}
+import { RegisterForm } from '~/application/features/auth/register/types';
 
 interface UseRegisterArgs {
   onError?: (args: {

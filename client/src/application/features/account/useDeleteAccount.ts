@@ -3,9 +3,7 @@ import { ServerResponse } from '~/infrastructure/serverApi/types';
 import { sessionUserApi } from '~/infrastructure/serverApi/v1/sessionUser/api';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
-export function useDeleteSessionUserAccount(
-  args?: ResponseMessageEventHandlers,
-) {
+export function useDeleteAccount(args?: ResponseMessageEventHandlers) {
   const { mutate, isLoading } = useMutation(
     () => {
       return sessionUserApi.del();

@@ -12,7 +12,11 @@ trait UserExtractor
 {
     protected function user(int|string $id = null): User
     {
-        $user = User::find($id || Auth::user()->id);
+        if (isset($id)) {
+            $user = User::find($id);
+        } else {
+            $user = User::find(Auth::user()->id);
+        }
 
         if (!$user) {
             throw new ApiException(

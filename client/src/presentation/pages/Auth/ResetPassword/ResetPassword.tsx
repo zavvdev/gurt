@@ -1,6 +1,6 @@
 import { Button, Input, Typography } from 'antd';
-import { useResetPassword } from '~/application/features/auth/password';
 import { notificationService } from '~/application/services/NotificationService';
+import { useResetPassword } from '~/application/features/auth/password/useResetPassword';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { useForm } from '~/presentation/pages/Auth/ResetPassword/hooks/useForm';

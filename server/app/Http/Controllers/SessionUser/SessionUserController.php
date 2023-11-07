@@ -21,6 +21,7 @@ class SessionUserController extends Controller
     public function get()
     {
         $user = $this->user();
+
         return $this->successResponse($user);
     }
 

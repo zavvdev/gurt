@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { publicSessionId } from '~/infrastructure/serverApi/utilities';
-import { usersApi } from '~/infrastructure/serverApi/v1/users/api';
+import { sessionUserApi } from '~/infrastructure/serverApi/v1/sessionUser/api';
 
 export function usePrivateRoutePSIDGuard() {
   const isPSIDAvailable = Boolean(publicSessionId.get());
@@ -11,7 +11,7 @@ export function usePrivateRoutePSIDGuard() {
       setStatus('valid');
     } else {
       setStatus('verifying');
-      usersApi.getMe().then(() => {
+      sessionUserApi.get().then(() => {
         publicSessionId.set();
         setStatus('valid');
       });
@@ -19,10 +19,4 @@ export function usePrivateRoutePSIDGuard() {
   }, [isPSIDAvailable]);
 
   return status;
-}
-
-export function usePublicAuthRoutePSIDGuard() {
-  return {
-    isAuthenticated: Boolean(publicSessionId.get()),
-  };
 }

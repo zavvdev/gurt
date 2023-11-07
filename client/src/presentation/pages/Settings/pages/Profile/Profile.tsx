@@ -1,25 +1,32 @@
 import { Button } from 'antd';
 import cn from 'clsx';
-import { useUpdateProfile } from '~/application/features/sessionUser/updateData';
 import { notificationService } from '~/application/services/NotificationService';
 import { getFirstExtractedValidationErrorEntry } from '~/application/utilities/general';
+import { useProfileSettings } from '~/application/features/settings/profile/useProfileSettings';
+import { useUpdateProfileSettings } from '~/application/features/settings/profile/useUpdateProfileSettings';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { SettingsPageLayout } from '~/presentation/pages/Settings/layouts/SettingsPageLayout/SettingsPageLayout';
-import { useProfileStyles } from '~/presentation/pages/Settings/Profile/Profile.styles';
+import { useProfileStyles } from '~/presentation/pages/Settings/pages/Profile/Profile.styles';
 import { Icons } from '~/presentation/assets/Icons';
-import { useForm } from '~/presentation/pages/Settings/Profile/hooks/useForm';
-import { useInitialValues } from '~/presentation/pages/Settings/Profile/hooks/useInitialValues';
-import { Bio } from '~/presentation/pages/Settings/Profile/shared/Bio/Bio';
-import { Country } from '~/presentation/pages/Settings/Profile/shared/Country/Country';
-import { DateOfBirth } from '~/presentation/pages/Settings/Profile/shared/DateOfBirth/DateOfBirth';
+import { useForm } from '~/presentation/pages/Settings/pages/Profile/hooks/useForm';
+import { Bio } from '~/presentation/pages/Settings/pages/Profile/shared/Bio/Bio';
+import { Country } from '~/presentation/pages/Settings/pages/Profile/shared/Country/Country';
+import { DateOfBirth } from '~/presentation/pages/Settings/pages/Profile/shared/DateOfBirth/DateOfBirth';
+import { Name } from '~/presentation/pages/Settings/pages/Profile/shared/Name/Name';
+import { Username } from '~/presentation/pages/Settings/pages/Profile/shared/Username/Username';
 
 export function Profile() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('settings');
   const classes = useProfileStyles();
-  const initialValues = useInitialValues();
 
-  const updateProfile = useUpdateProfile({
+  const initialValues = useProfileSettings({
+    onError: () => {
+      notificationService.error(t('error.fetchUser'));
+    },
+  });
+
+  const updateData = useUpdateProfileSettings({
     onSuccess: () => {
       initialValues.refetch();
       notificationService.success(t('profile.update.success.fallback'));
@@ -39,11 +46,27 @@ export function Profile() {
 
   const form = useForm({
     initialValues: initialValues.data,
-    onSubmit: updateProfile.initiate,
+    onSubmit: updateData.initiate,
   });
 
   return (
     <SettingsPageLayout label={t('profile.label')} className={classes.content}>
+      <div className={classes.row}>
+        <Name
+          value={form.values.name}
+          onChange={form.handleChange}
+          onBlur={form.handleBlur}
+          error={form.getError('name')}
+          isLoading={initialValues.isLoading}
+        />
+        <Username
+          value={form.values.username}
+          onChange={form.handleChange}
+          onBlur={form.handleBlur}
+          error={form.getError('username')}
+          isLoading={initialValues.isLoading}
+        />
+      </div>
       <Bio
         value={form.values.bio}
         onChange={form.handleChange}
@@ -72,9 +95,9 @@ export function Profile() {
           size="large"
           icon={<Icons.Save width={17} />}
           onClick={() => form.handleSubmit()}
-          loading={updateProfile.isLoading}
+          loading={updateData.isLoading}
           disabled={
-            initialValues.isLoading || !form.dirty || updateProfile.isLoading
+            initialValues.isLoading || !form.dirty || updateData.isLoading
           }
         >
           {tCommon('label.save')}
@@ -83,7 +106,7 @@ export function Profile() {
           size="large"
           onClick={() => form.resetForm()}
           disabled={
-            initialValues.isLoading || !form.dirty || updateProfile.isLoading
+            initialValues.isLoading || !form.dirty || updateData.isLoading
           }
         >
           {tCommon('label.reset')}

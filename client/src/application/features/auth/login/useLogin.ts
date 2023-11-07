@@ -7,12 +7,7 @@ import {
   ServerResponseMessage,
 } from '~/infrastructure/serverApi/types';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
-
-export interface LoginForm {
-  login: string;
-  password: string;
-  remember: boolean;
-}
+import { LoginForm } from '~/application/features/auth/login/types';
 
 export function useLogin(args?: ResponseMessageEventHandlers) {
   const navigate = useNavigate();

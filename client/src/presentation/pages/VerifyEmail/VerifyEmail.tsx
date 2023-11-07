@@ -1,8 +1,8 @@
 import { Button, Typography } from 'antd';
 import { useEffect, useState } from 'react';
-import { useLogout } from '~/application/features/auth/logout';
-import { useVerifyEmail } from '~/application/features/email/verify';
+import { useLogout } from '~/application/features/auth/logout/useLogout';
 import { notificationService } from '~/application/services/NotificationService';
+import { useVerifyEmail } from '~/application/features/email/verify/useVerifyEmail';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { EmptyLayout } from '~/presentation/layouts/Empty/EmptyLayout';
 import { Spinner } from '~/presentation/shared/Spinner/Spinner';

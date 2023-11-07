@@ -1,19 +1,20 @@
 import { useParams } from 'react-router-dom';
-import { useProfileByUserIdQuery } from '~/application/managers/queryClient/queries/users/useUserProfileQuery';
-import { useMyUserQuery } from '~/application/managers/queryClient/queries/sessionUser/useSessionUserQuery';
+import { ServerResponseMessage } from '~/infrastructure/serverApi/types';
+import { useUserProfileQuery } from '~/application/managers/queryClient/queries/users/useUserProfileQuery';
+import { useSessionUserQuery } from '~/application/managers/queryClient/queries/sessionUser/useSessionUserQuery';
 import { useUserQuery } from '~/application/managers/queryClient/queries/users/useUserQuery';
-import { notificationService } from '~/application/services/NotificationService';
-import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
-export function useProfile() {
-  const { t: tCommon } = useTranslation('common');
-  const { t } = useTranslation('profile');
+interface UseProfileArgs {
+  onError: (message?: ServerResponseMessage | null) => void;
+}
+
+export function useProfile(args: UseProfileArgs) {
   const params = useParams();
 
-  const sessionUser = useMyUserQuery({
+  const sessionUser = useSessionUserQuery({
     enabled: !params?.id,
     onError: () => {
-      notificationService.error(tCommon('error.fetchUser'));
+      args.onError();
     },
   });
 
@@ -22,19 +23,17 @@ export function useProfile() {
     options: {
       enabled: Boolean(params?.id),
       onError: (message) => {
-        notificationService.error(
-          tCommon([`serverMessage.${message}`, 'error.fetchUser']),
-        );
+        args.onError(message);
       },
     },
   });
 
-  const profile = useProfileByUserIdQuery({
+  const profile = useUserProfileQuery({
     userId: userById.data?.data?.id || sessionUser.data?.data?.id || 0,
     options: {
       enabled: Boolean(userById.data?.data?.id || sessionUser.data?.data?.id),
       onError: () => {
-        notificationService.error(t('error.fetch'));
+        args.onError();
       },
     },
   });

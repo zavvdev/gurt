@@ -6,31 +6,6 @@ import { emailApi } from '~/infrastructure/serverApi/v1/email/api';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 import { delay } from '~/application/utilities/general';
 
-// Send verification
-
-export function useSendEmailVerification(args?: ResponseMessageEventHandlers) {
-  const { mutate, isLoading } = useMutation(
-    () => {
-      return emailApi.sendVerification();
-    },
-    {
-      onError: (response: ServerResponse) => {
-        args?.onError?.(response.message);
-      },
-      onSuccess: (response: ServerResponse) => {
-        args?.onSuccess?.(response.message);
-      },
-    },
-  );
-
-  return {
-    initiate: mutate,
-    isLoading,
-  };
-}
-
-// Verify
-
 export function useVerifyEmail(args?: ResponseMessageEventHandlers) {
   const navigate = useNavigate();
   const params = useParams();

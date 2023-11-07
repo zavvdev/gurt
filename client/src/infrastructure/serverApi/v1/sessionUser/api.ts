@@ -18,7 +18,7 @@ class SessionUserApi {
     this.http = http;
   }
 
-  private r(path?: string) {
+  private r(path: string = '') {
     return `/v1/me${path}`;
   }
 

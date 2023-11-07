@@ -1,5 +1,6 @@
+import { useProfile } from '~/application/features/profile/useProfile';
+import { notificationService } from '~/application/services/NotificationService';
 import { UserLayout } from '~/presentation/layouts/User/UserLayout';
-import { useProfile } from '~/presentation/pages/Profile/hooks/useProfile';
 import { Skeleton } from '~/presentation/pages/Profile/shared/Skeleton/Skeleton';
 import { useProfileStyles } from '~/presentation/pages/Profile/Profile.styles';
 import { Image } from '~/presentation/pages/Profile/shared/Image/Image';
@@ -7,10 +8,19 @@ import { Background } from '~/presentation/pages/Profile/shared/Background/Backg
 import { AdditionInfo } from '~/presentation/pages/Profile/shared/AdditionInfo/AdditionInfo';
 import { MainInfo } from '~/presentation/pages/Profile/shared/MainInfo/MainInfo';
 import { Bio } from '~/presentation/pages/Profile/shared/Bio/Bio';
+import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 export function Profile() {
-  const { data: profile, isLoading } = useProfile();
+  const { t } = useTranslation('common');
   const classes = useProfileStyles();
+
+  const { data: profile, isLoading } = useProfile({
+    onError: (message) => {
+      notificationService.error(
+        t([`serverMessage.${message}`, 'error.fetchUser']),
+      );
+    },
+  });
 
   return (
     <UserLayout>

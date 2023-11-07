@@ -1,8 +1,8 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { ResetPasswordForm } from '~/application/features/auth/password';
 import { AUTH_PASSWORD_MIN_LENGTH } from '~/application/features/auth/config';
+import { ResetPasswordForm } from '~/application/features/auth/password/types';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {

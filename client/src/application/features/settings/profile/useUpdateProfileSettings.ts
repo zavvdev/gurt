@@ -3,29 +3,20 @@ import {
   ExtractedValidationError,
   ServerValidationErrorsResponse,
 } from '~/infrastructure/serverApi/types';
-import { extractValidationErrors } from '~/infrastructure/serverApi/utilities';
 import { sessionUserApi } from '~/infrastructure/serverApi/v1/sessionUser/api';
-import { dateService } from '~/application/services/DateService';
+import { extractValidationErrors } from '~/infrastructure/serverApi/utilities';
+import { ProfileSettingsForm } from '~/application/features/settings/profile/types';
 import { squashSpaces } from '~/application/utilities/general';
+import { dateService } from '~/application/services/DateService';
 
-export interface UpdateForm {
-  name: string | null;
-  username: string | null;
-  bio: string | null;
-  country: string | null;
-  dateOfBirth: Date | null;
-}
-
-interface UseUpdateSessionUserDataArgs {
+interface UseUpdateProfileSessionArgs {
   onError?: (validationErrors?: ExtractedValidationError[]) => void;
   onSuccess?: () => void;
 }
 
-export const BIO_MAX_LENGTH = 500;
-
-export function useUpdateSessionUserData(args?: UseUpdateSessionUserDataArgs) {
+export function useUpdateProfileSettings(args?: UseUpdateProfileSessionArgs) {
   const { mutate, isLoading } = useMutation(
-    (form: UpdateForm) => {
+    (form: ProfileSettingsForm) => {
       return sessionUserApi.patch({
         name: form.name,
         username: form.username,

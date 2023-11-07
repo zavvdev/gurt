@@ -10,6 +10,7 @@ class UserController extends Controller
     public function getById(string $id)
     {
         $user = $this->user($id);
+
         return $this->successResponse(new UserResource($user));
     }
 
