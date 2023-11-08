@@ -21,6 +21,8 @@ export function useUpdateProfileSettings(args?: UseUpdateProfileSessionArgs) {
         name: form.name,
         username: form.username,
         profile: {
+          image_url: form.imageUrl,
+          background_image_url: form.backgroundImageUrl,
           bio: form.bio ? squashSpaces(form.bio) : null,
           country: form.country,
           date_of_birth: form.dateOfBirth

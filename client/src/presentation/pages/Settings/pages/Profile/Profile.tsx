@@ -14,6 +14,8 @@ import { Country } from '~/presentation/pages/Settings/pages/Profile/shared/Coun
 import { DateOfBirth } from '~/presentation/pages/Settings/pages/Profile/shared/DateOfBirth/DateOfBirth';
 import { Name } from '~/presentation/pages/Settings/pages/Profile/shared/Name/Name';
 import { Username } from '~/presentation/pages/Settings/pages/Profile/shared/Username/Username';
+import { Image } from '~/presentation/pages/Settings/pages/Profile/shared/Image/Image';
+import { Background } from '~/presentation/pages/Settings/pages/Profile/shared/Background/Background';
 
 export function Profile() {
   const { t: tCommon } = useTranslation('common');
@@ -51,6 +53,20 @@ export function Profile() {
 
   return (
     <SettingsPageLayout label={t('profile.label')} className={classes.content}>
+      <div className={cn(classes.row, classes.images)}>
+        <Image
+          isLoading={initialValues.isLoading}
+          fileUrl={form.values.imageUrl}
+          onSelect={(nextImage) => form.setFieldValue('image', nextImage)}
+        />
+        <Background
+          isLoading={initialValues.isLoading}
+          fileUrl={form.values.backgroundImageUrl}
+          onSelect={(nextBackground) =>
+            form.setFieldValue('backgroundImage', nextBackground)
+          }
+        />
+      </div>
       <div className={classes.row}>
         <Name
           value={form.values.name}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SessionUser\SessionUserController;
+use App\Http\Controllers\Storage\StorageController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,11 +21,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/', [SessionUserController::class, 'get']);
         Route::delete('/', [SessionUserController::class, 'delete']);
         Route::patch('/', [SessionUserController::class, 'patch']);
-        Route::post('/media', [SessionUserController::class, 'createMedia']);
-        Route::delete('/media', [SessionUserController::class, 'deleteMedia']);
     });
 
     Route::prefix('users')->group(function () {
         Route::get('/{id}', [UserController::class, 'getById']);
+    });
+
+    Route::prefix('storage')->group(function () {
+        Route::post('/file', [StorageController::class, 'uploadFile']);
     });
 });

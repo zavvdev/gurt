@@ -3,17 +3,12 @@
 namespace App\Http\Controllers\SessionUser;
 
 use App\Enums\ResponseMessage;
-use App\Enums\UserMediaType;
 use App\Enums\ValidationError;
-use App\Events\DeleteStorageFileEvent;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SessionUser\CreateMediaRequest;
-use App\Http\Requests\SessionUser\DeleteMediaRequest;
 use App\Http\Requests\SessionUser\PatchRequest;
 use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use App\Services\StorageService\StorageService;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -76,57 +71,14 @@ class SessionUserController extends Controller
         }
 
         DB::transaction(function () use ($user, $request): void {
-            $user->profile()->update($request->profile->toArray());
+            if (count($request->profile?->toArray()) > 0) {
+                $user->profile()->update(
+                    $request->profile->toArray(),
+                );
+            }
             $user->update(
                 Arr::except($request->toArray(), ['profile']),
             );
-        });
-
-        return $this->successResponse();
-    }
-
-    public function createMedia(CreateMediaRequest $request)
-    {
-        $user = $this->user();
-
-        $mediaTypeMap = [
-            UserMediaType::Image => 'image_url',
-            UserMediaType::Background => 'background_image_url',
-        ];
-
-        $url = StorageService::uploadFile($request->file, $user->id);
-
-        try {
-            $user->profile()->update([
-                $mediaTypeMap[$request->type] => $url,
-            ]);
-        } catch (\Exception $e) {
-            DeleteStorageFileEvent::dispatch(basename($url), $user->id);
-            throw $e;
-        }
-
-        return $this->successResponse();
-    }
-
-    public function deleteMedia(Request $request)
-    {
-        $request = DeleteMediaRequest::from([
-            'url' => $request->query('url'),
-            'type' => $request->query('type'),
-        ]);
-
-        $user = $this->user();
-
-        $mediaTypeMap = [
-            UserMediaType::Image => 'image_url',
-            UserMediaType::Background => 'background_image_url',
-        ];
-
-        DB::transaction(function () use ($request, $user, $mediaTypeMap): void {
-            $user->profile()->update([
-                $mediaTypeMap[$request->type] => null,
-            ]);
-            StorageService::deleteFile(basename($request->url), $user->id);
         });
 
         return $this->successResponse();

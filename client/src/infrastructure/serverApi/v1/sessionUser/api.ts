@@ -5,11 +5,7 @@ import {
   removeNullishFromRequestPayload,
   validateServerSuccessResponseData,
 } from '~/infrastructure/serverApi/utilities';
-import {
-  CreateMediaRequest,
-  DeleteMediaRequest,
-  PatchRequest,
-} from '~/infrastructure/serverApi/v1/sessionUser/requests';
+import { PatchRequest } from '~/infrastructure/serverApi/v1/sessionUser/requests';
 
 class SessionUserApi {
   private http: Http;
@@ -33,24 +29,6 @@ class SessionUserApi {
 
   public patch(request: PatchRequest) {
     return this.http.patch(this.r(), removeNullishFromRequestPayload(request));
-  }
-
-  public createMedia(request: CreateMediaRequest) {
-    const formData = new FormData();
-    formData.append('file', request.file as Blob);
-    formData.append('type', request.type);
-    return this.http.post(this.r('/media'), request, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-  }
-
-  public deleteMyMedia(request: DeleteMediaRequest) {
-    return this.http.delete(this.r('/media'), {
-      params: {
-        url: request.url,
-        type: request.type,
-      },
-    });
   }
 }
 
