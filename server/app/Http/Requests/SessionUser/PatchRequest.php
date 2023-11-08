@@ -7,6 +7,7 @@ use App\Http\ValidationRules\User\UserNameRule;
 use App\Http\ValidationRules\User\UserUsernameRule;
 use DateTime;
 use Spatie\LaravelData\Attributes\Validation\Max;
+use Spatie\LaravelData\Attributes\Validation\Rule;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
 use Spatie\LaravelData\Optional;
@@ -14,6 +15,12 @@ use Spatie\LaravelData\Optional;
 class Profile extends RequestData
 {
     public function __construct(
+        #[Rule('storage_url')]
+        public string|Optional $image_url,
+
+        #[Rule('storage_url')]
+        public string|Optional $background_image_url,
+
         #[Max(500)]
         public string|Optional $bio,
 

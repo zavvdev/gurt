@@ -52,8 +52,3 @@ export interface ExtractedValidationError {
   field: string;
   errorKeys: string[];
 }
-
-export enum UserMediaType {
-  Image = 'image',
-  Background = 'background',
-}
