@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Profile;
+use App\Services\StorageService\StorageService;
 use Illuminate\Console\Command;
 
 class DeleteUnusedProfileMedia extends Command
@@ -25,6 +27,12 @@ class DeleteUnusedProfileMedia extends Command
      */
     public function handle()
     {
-        echo 'works!';
+        $storageListing = StorageService::list();
+
+        $profiles = Profile::query()
+            ->select('user_id', 'image_url', 'background_image_url');
+
+        var_dump($storageListing);
+        var_dump($profiles);
     }
 }

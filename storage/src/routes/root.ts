@@ -62,4 +62,12 @@ rootRouter.delete(
   }),
 );
 
+rootRouter.get(
+  '/list',
+  _((_: Request, res: Response) => {
+    const listing = fileService.list();
+    return res.send(responseService.success(listing));
+  }),
+);
+
 export { rootRouter };
