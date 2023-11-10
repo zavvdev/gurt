@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule
             ->command('app:delete-unused-profile-media')
-            ->everySecond()
+            ->weekly()
+            ->environments(['production'])
             ->runInBackground();
     }
 
