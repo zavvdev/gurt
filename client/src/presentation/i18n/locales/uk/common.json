@@ -49,7 +49,8 @@
 
   "error": {
     "fetchUser": "Nemožlyvo otrymaty dani korystuvača. Sprobujte pizniše",
-    "logout": "Nemožlyvo zaveršyty vašu potočnu sesiju. Sprobujte očystyty kuki brauzera jakščo pomylka ne znykne"
+    "logout": "Nemožlyvo zaveršyty vašu potočnu sesiju. Sprobujte očystyty kuki brauzera jakščo pomylka ne znykne",
+    "uploadFile": "Nemožlyvo zavantažyty fajl. Sprobujte pizniše"
   },
 
   "serverMessage": {

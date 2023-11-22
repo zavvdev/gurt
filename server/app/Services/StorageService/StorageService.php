@@ -80,4 +80,12 @@ class StorageService
         ]);
         self::request('DELETE', '/folder/' . $req->userId);
     }
+
+    public static function list()
+    {
+        $response = self::request('GET', '/list');
+        $data = json_decode($response->getBody());
+
+        return json_decode(json_encode($data->data), true);
+    }
 }

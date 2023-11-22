@@ -103,6 +103,13 @@ class Handler extends ExceptionHandler
             );
         }
 
+        if ($exception instanceof ApiException) {
+            return $this->errorResponse(
+                $exception->getCode(),
+                $exception->getMessage(),
+            );
+        }
+
         if ($exception instanceof InvalidSignatureException) {
             return $this->errorResponse(
                 Response::HTTP_CONFLICT,

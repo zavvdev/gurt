@@ -1,7 +1,7 @@
 import { Button, Checkbox, Input, Typography } from 'antd';
 import { PUBLIC_ROUTES } from '~/routes';
 import { notificationService } from '~/application/services/NotificationService';
-import { useLogin } from '~/application/features/auth/login';
+import { useLogin } from '~/application/features/auth/login/useLogin';
 import { GuestLayout } from '~/presentation/layouts/Guest/GuestLayout';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { useForm } from '~/presentation/pages/Auth/Login/hooks/useForm';

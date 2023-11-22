@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { LoginForm } from '~/application/features/auth/login';
+import { LoginForm } from '~/application/features/auth/login/types';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {

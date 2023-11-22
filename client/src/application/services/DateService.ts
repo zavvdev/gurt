@@ -4,7 +4,7 @@ import uk from 'dayjs/locale/uk';
 import en from 'dayjs/locale/en';
 import { klatinoid } from '@juliakramr/latynka';
 import dayJsDuration from 'dayjs/plugin/duration';
-import { SERVER_DATE_FORMAT } from '~/infrastructure/serverGateway/config';
+import { SERVER_DATE_FORMAT } from '~/infrastructure/serverApi/config';
 
 extend(dayJsDuration);
 

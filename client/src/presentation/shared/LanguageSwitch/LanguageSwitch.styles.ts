@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useLanguageSwitchStyles = createUseStyles(() => ({
+export const useLanguageSwitchStyles = createUseStyles({
   button: {
     padding: '0.5rem',
     display: 'flex',
@@ -11,4 +11,4 @@ export const useLanguageSwitchStyles = createUseStyles(() => ({
       width: '1.5rem',
     },
   },
-}));
+});

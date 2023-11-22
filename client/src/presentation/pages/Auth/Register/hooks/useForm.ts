@@ -1,6 +1,5 @@
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { RegisterForm } from '~/application/features/auth/register';
 import {
   AUTH_NAME_MAX_LENGTH,
   AUTH_NAME_MIN_LENGTH,
@@ -13,6 +12,7 @@ import {
   isAuthNameLengthValid,
   isAuthUsernameLengthValid,
 } from '~/application/features/auth/utilities';
+import { RegisterForm } from '~/application/features/auth/register/types';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
 interface Args {
