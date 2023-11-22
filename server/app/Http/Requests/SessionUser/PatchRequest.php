@@ -16,19 +16,19 @@ class Profile extends RequestData
 {
     public function __construct(
         #[Rule('storage_url')]
-        public string|Optional $image_url,
+        public string|Optional|null $image_url,
 
         #[Rule('storage_url')]
-        public string|Optional $background_image_url,
+        public string|Optional|null $background_image_url,
 
         #[Max(500)]
-        public string|Optional $bio,
+        public string|Optional|null $bio,
 
         #[WithCast(DateTimeInterfaceCast::class)]
-        public DateTime|Optional $date_of_birth,
+        public DateTime|Optional|null $date_of_birth,
 
         #[Max(2)]
-        public string|Optional $country,
+        public string|Optional|null $country,
     ) {
     }
 }

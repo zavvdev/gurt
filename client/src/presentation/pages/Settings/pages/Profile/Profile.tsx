@@ -57,13 +57,13 @@ export function Profile() {
         <Image
           isLoading={initialValues.isLoading}
           fileUrl={form.values.imageUrl}
-          onSelect={(nextImage) => form.setFieldValue('image', nextImage)}
+          onSelect={(nextImage) => form.setFieldValue('imageUrl', nextImage)}
         />
         <Background
           isLoading={initialValues.isLoading}
           fileUrl={form.values.backgroundImageUrl}
           onSelect={(nextBackground) =>
-            form.setFieldValue('backgroundImage', nextBackground)
+            form.setFieldValue('backgroundImageUrl', nextBackground)
           }
         />
       </div>
@@ -93,13 +93,17 @@ export function Profile() {
       <div className={classes.row}>
         <Country
           value={form.values.country}
-          onChange={(nextCountry) => form.setFieldValue('country', nextCountry)}
+          onChange={(nextCountry) =>
+            form.setFieldValue('country', nextCountry || null)
+          }
           onBlur={() => form.setFieldTouched('country')}
           isLoading={initialValues.isLoading}
         />
         <DateOfBirth
           value={form.values.dateOfBirth}
-          onChange={(nextDate) => form.setFieldValue('dateOfBirth', nextDate)}
+          onChange={(nextDate) =>
+            form.setFieldValue('dateOfBirth', nextDate || null)
+          }
           onBlur={() => form.setFieldTouched('dateOfBirth')}
           error={form.getError('dateOfBirth')}
           isLoading={initialValues.isLoading}

@@ -48,6 +48,10 @@ export function useForm({ initialValues, onSubmit }: Args) {
         test: isAuthUsernameLengthValid,
       }),
 
+    imageUrl: yup.string().nullable(),
+
+    backgroundImageUrl: yup.string().nullable(),
+
     bio: yup
       .string()
       .max(
