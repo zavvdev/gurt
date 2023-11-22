@@ -49,7 +49,8 @@
 
   "error": {
     "fetchUser": "Unable to retrieve user data. Try again later",
-    "logout": "Unable to terminate your session. Try to clean browser cookies manually if issue persists"
+    "logout": "Unable to terminate your session. Try to clean browser cookies manually if issue persists",
+    "uploadFile": "Unable to upload file. Try again later"
   },
 
   "serverMessage": {

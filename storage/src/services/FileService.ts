@@ -39,6 +39,19 @@ class FileService {
       fs.rmdirSync(dir, { recursive: true });
     }
   }
+
+  public list() {
+    const data = fs
+      .readdirSync('public', { withFileTypes: true })
+      .reduce((r, dir) => {
+        return {
+          ...r,
+          [dir.name]: fs.readdirSync(`public/${dir.name}`),
+        };
+      }, {});
+
+    return data;
+  }
 }
 
 export const fileService = new FileService();

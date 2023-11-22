@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/ping', function () {
+        echo 'pong';
+    });
+
     Route::prefix('me')->group(function () {
         Route::get('/', [SessionUserController::class, 'get']);
         Route::delete('/', [SessionUserController::class, 'delete']);

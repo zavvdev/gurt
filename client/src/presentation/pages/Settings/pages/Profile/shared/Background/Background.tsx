@@ -1,13 +1,13 @@
-import { Skeleton, Upload, UploadFile, UploadProps } from 'antd';
+import { Skeleton } from 'antd';
 import ImgCrop from 'antd-img-crop';
 import { useState } from 'react';
-import { Icons } from '~/presentation/assets/Icons';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 import { useBackgroundStyles } from '~/presentation/pages/Settings/pages/Profile/shared/Background/Background.styles';
+import { FileUploader } from '~/presentation/widgets/FileUploader/FileUploader';
 
 interface Props {
   fileUrl: string | null;
-  onSelect: (file: UploadFile | null) => void;
+  onSelect: (fileUrl: string | null) => void;
   isLoading: boolean;
 }
 
@@ -16,10 +16,6 @@ export function Background({ fileUrl, onSelect, isLoading }: Props) {
   const { t } = useTranslation('settings');
   const classes = useBackgroundStyles();
   const [key, setKey] = useState(2);
-
-  const onChange: UploadProps['onChange'] = ({ fileList }) => {
-    onSelect(fileList?.[0] || null);
-  };
 
   const onRemove = () => {
     onSelect(null);
@@ -45,38 +41,12 @@ export function Background({ fileUrl, onSelect, isLoading }: Props) {
       modalCancel={tCommon('label.cancel')}
       resetText={tCommon('label.reset')}
     >
-      <Upload
-        listType="picture-card"
-        fileList={
-          fileUrl
-            ? [
-                {
-                  uid: '-1',
-                  name: fileUrl,
-                  status: 'done',
-                  url: fileUrl,
-                },
-              ]
-            : []
-        }
-        className={classes.upload}
-        onChange={onChange}
+      <FileUploader
+        fileUrl={fileUrl}
+        onChange={onSelect}
         onRemove={onRemove}
-        showUploadList={{
-          showPreviewIcon: false,
-        }}
-        customRequest={({ onSuccess }) =>
-          setTimeout(() => {
-            onSuccess?.('ok');
-          }, 0)
-        }
-        beforeUpload={(file) => {
-          onSelect(file);
-          return file;
-        }}
-      >
-        {!fileUrl && <Icons.ImagePlus />}
-      </Upload>
+        className={classes.upload}
+      />
     </ImgCrop>
   );
 }

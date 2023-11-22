@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useThemeSwitchStyles = createUseStyles(() => ({
+export const useThemeSwitchStyles = createUseStyles({
   button: {
     padding: '0.5rem',
     display: 'flex',
@@ -22,4 +22,4 @@ export const useThemeSwitchStyles = createUseStyles(() => ({
       marginRight: '0.5rem',
     },
   },
-}));
+});
