@@ -51,6 +51,15 @@
     }
   },
   "account": {
-    "label": "Account settings"
+    "label": "Account settings",
+    "logout": {
+      "label": "Logout",
+      "confirm": {
+        "label": "Logout confirmation",
+        "text": "Are you sure you want to logout from your account?",
+        "ok": "Yes. Logout",
+        "cancel": "No. Stay"
+      }
+    }
   }
 }

@@ -51,6 +51,15 @@
     }
   },
   "account": {
-    "label": "Nalaštuvannja akauntu"
+    "label": "Nalaštuvannja akauntu",
+    "logout": {
+      "label": "Vyhid",
+      "confirm": {
+        "label": "Pidtverdžennja vyhodu",
+        "text": "Vy dijsno hočete vyjty zi svogo akauntu?",
+        "ok": "Tak. Vyjty",
+        "cancel": "Ni. Zalyšytyś"
+      }
+    }
   }
 }

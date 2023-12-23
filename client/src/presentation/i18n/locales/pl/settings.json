@@ -51,6 +51,15 @@
     }
   },
   "account": {
-    "label": "Ustawienia konta"
+    "label": "Ustawienia konta",
+    "logout": {
+      "label": "Wyloguj",
+      "confirm": {
+        "label": "Potwierdzenie wylogowania",
+        "text": "Czy na pewno chcesz się wylogować ze swojego konta?",
+        "ok": "Tak. Wyloguj",
+        "cancel": "Nie. zostać"
+      }
+    }
   }
 }
