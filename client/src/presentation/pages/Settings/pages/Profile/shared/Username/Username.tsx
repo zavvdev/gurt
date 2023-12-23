@@ -18,7 +18,7 @@ export function Username({ value, onChange, onBlur, error, isLoading }: Props) {
   const { theme } = useJssTheme();
 
   return (
-    <SettingItem dir="col" label={t('label.username')}>
+    <SettingItem label={t('label.username')}>
       {isLoading ? (
         <Skeleton.Input active size="large" block />
       ) : (

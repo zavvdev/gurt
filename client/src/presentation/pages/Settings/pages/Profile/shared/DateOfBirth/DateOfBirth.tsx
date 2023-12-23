@@ -23,7 +23,7 @@ export function DateOfBirth({
   const { t } = useTranslation('common');
 
   return (
-    <SettingItem dir="col" label={t('label.dateOfBirth')}>
+    <SettingItem label={t('label.dateOfBirth')}>
       {isLoading ? (
         <Skeleton.Input active size="large" block />
       ) : (

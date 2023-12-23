@@ -64,6 +64,7 @@ export const ThemeSwitch = observer(({ variant }: Props) => {
       value={themeStore.theme}
       onChange={(value) => onChangeTheme(value)}
       options={items.map((i) => ({ value: i.key, label: i.text }))}
+      className={classes.select}
     />
   ) : (
     <Dropdown
