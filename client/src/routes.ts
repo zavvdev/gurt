@@ -30,6 +30,7 @@ export const PRIVATE_ROUTES = {
     root: () => '/settings',
     app: () => '/settings/application',
     profile: () => '/settings/profile',
+    account: () => '/settings/account',
   },
 };
 

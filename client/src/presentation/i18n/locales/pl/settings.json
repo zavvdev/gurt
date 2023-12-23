@@ -2,7 +2,8 @@
   "label": "Ustawienia",
   "menu": {
     "app": "Aplikacja",
-    "profile": "Profil"
+    "profile": "Profil",
+    "account": "Konto"
   },
   "app": {
     "label": "Ustawienia aplikacji",
@@ -48,5 +49,8 @@
         "cancel": "Nie. Zatrzymaj to"
       }
     }
+  },
+  "account": {
+    "label": "Ustawienia konta"
   }
 }

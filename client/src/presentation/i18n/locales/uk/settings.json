@@ -2,7 +2,8 @@
   "label": "Nalaštuvannja",
   "menu": {
     "app": "Zastosunok",
-    "profile": "Profajl"
+    "profile": "Profajl",
+    "account": "Akaunt"
   },
   "app": {
     "label": "Nalaštuvannja zastosunku",
@@ -48,5 +49,8 @@
         "cancel": "Ni. Zalyšyty"
       }
     }
+  },
+  "account": {
+    "label": "Nalaštuvannja akauntu"
   }
 }

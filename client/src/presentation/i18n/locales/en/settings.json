@@ -2,7 +2,8 @@
   "label": "Settings",
   "menu": {
     "app": "Application",
-    "profile": "Profile"
+    "profile": "Profile",
+    "account": "Account"
   },
   "app": {
     "label": "Application settings",
@@ -48,5 +49,8 @@
         "fallback": "Unable to update profile. Try again later"
       }
     }
+  },
+  "account": {
+    "label": "Account settings"
   }
 }

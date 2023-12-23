@@ -65,6 +65,14 @@ export const privateRoutes: RouteObject[] = [
     ),
   },
   {
+    path: PRIVATE_ROUTES.settings.account(),
+    element: (
+      <PrivateRouteGuard>
+        <Settings.Account />
+      </PrivateRouteGuard>
+    ),
+  },
+  {
     path: PRIVATE_ROUTES.settings.profile(),
     element: (
       <PrivateRouteGuard>
