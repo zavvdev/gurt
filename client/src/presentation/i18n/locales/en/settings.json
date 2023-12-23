@@ -60,6 +60,15 @@
         "ok": "Yes. Logout",
         "cancel": "No. Stay"
       }
+    },
+    "delete": {
+      "label": "Delete account",
+      "confirm": {
+        "label": "Delete account confirmation",
+        "text": "Are you sure you want to delete your account? All your data will be delete forever",
+        "ok": "Yes. Delete my account",
+        "cancel": "No. Keep it"
+      }
     }
   }
 }

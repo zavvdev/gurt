@@ -1,19 +1,15 @@
 import { createUseStyles } from 'react-jss';
-import { JssTheme } from '~/presentation/styles/types';
 
-export const useAccountStyles = createUseStyles(({ media }: JssTheme) => ({
+export const useAccountStyles = createUseStyles({
   content: {
     maxWidth: '52rem',
     display: 'flex',
     flexDirection: 'column',
     gap: '1.5rem',
-
-    '& *': {
-      width: 'fit-content',
-
-      [media.maxXs]: {
-        width: 'initial',
-      },
-    },
   },
-}));
+
+  row: {
+    display: 'flex',
+    gap: '1rem',
+  },
+});

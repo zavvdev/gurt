@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { ServerResponse } from '~/infrastructure/serverApi/types';
 import { sessionUserApi } from '~/infrastructure/serverApi/v1/sessionUser/api';
+import { commonApi } from '~/infrastructure/serverApi/v1/common';
 import { ResponseMessageEventHandlers } from '~/application/managers/queryClient/types';
 
 export function useDeleteAccount(args?: ResponseMessageEventHandlers) {
@@ -14,6 +15,7 @@ export function useDeleteAccount(args?: ResponseMessageEventHandlers) {
       },
       onSuccess: (response: ServerResponse) => {
         args?.onSuccess?.(response.message);
+        commonApi.ping();
       },
     },
   );

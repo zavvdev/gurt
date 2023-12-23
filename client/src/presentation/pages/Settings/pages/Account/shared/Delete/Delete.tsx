@@ -1,17 +1,17 @@
 import { Button, Modal } from 'antd';
 import { useState } from 'react';
-import { useLogout } from '~/application/features/auth/logout/useLogout';
+import { useDeleteAccount } from '~/application/features/account/useDeleteAccount';
 import { Icons } from '~/presentation/assets/Icons';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
 
-export function Logout() {
+export function Delete() {
   const { t: tCommon } = useTranslation('common');
   const { t } = useTranslation('settings');
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
-  const logout = useLogout({
+  const deleteAccount = useDeleteAccount({
     onError: () => {
-      tCommon('error.logout');
+      tCommon('error.deleteAccount');
     },
   });
 
@@ -19,24 +19,25 @@ export function Logout() {
     <>
       <Button
         danger
+        type="text"
         onClick={() => setIsConfirmModalOpen(true)}
-        loading={logout.isLoading}
-        icon={<Icons.LogOut size="1.2rem" />}
+        loading={deleteAccount.isLoading}
+        icon={<Icons.UserX2 size="1.2rem" />}
       >
-        {t('account.logout.label')}
+        {t('account.delete.label')}
       </Button>
       <Modal
-        title={t('account.logout.confirm.label')}
+        title={t('account.delete.confirm.label')}
         open={isConfirmModalOpen}
         onCancel={() => setIsConfirmModalOpen(false)}
         onOk={() => {
           setIsConfirmModalOpen(false);
-          logout.initiate();
+          deleteAccount.initiate();
         }}
-        cancelText={t('account.logout.confirm.cancel')}
-        okText={t('account.logout.confirm.ok')}
+        cancelText={t('account.delete.confirm.cancel')}
+        okText={t('account.delete.confirm.ok')}
       >
-        {t('account.logout.confirm.text')}
+        {t('account.delete.confirm.text')}
       </Modal>
     </>
   );

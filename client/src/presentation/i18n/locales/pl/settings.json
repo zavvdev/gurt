@@ -60,6 +60,15 @@
         "ok": "Tak. Wyloguj",
         "cancel": "Nie. zostać"
       }
+    },
+    "delete": {
+      "label": "Usuń konto",
+      "confirm": {
+        "label": "Usuń potwierdzenie konta",
+        "text": "Czy na pewno chcesz usunąć swoje konto? Wszystkie Twoje dane zostaną usunięte na zawsze",
+        "ok": "Tak. Usuń moje konto",
+        "cancel": "Nie. Zachowaj to"
+      }
     }
   }
 }

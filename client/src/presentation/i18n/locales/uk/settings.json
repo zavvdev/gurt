@@ -60,6 +60,15 @@
         "ok": "Tak. Vyjty",
         "cancel": "Ni. Zalyšytyś"
       }
+    },
+    "delete": {
+      "label": "Vydalyty akaunt",
+      "confirm": {
+        "label": "Pidtverdžennja vydalennja akauntu",
+        "text": "Vy dijsno hočete vydalyty svij akaunt? Usi vaši dani budut' vydaleni nazavždy",
+        "ok": "Tak. Vydalyty mij akaunt",
+        "cancel": "Ni. Zalyšyty"
+      }
     }
   }
 }
