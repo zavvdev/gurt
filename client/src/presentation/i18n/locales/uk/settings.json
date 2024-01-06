@@ -72,9 +72,13 @@
     },
     "changePassword": {
       "label": "Zminyty gaslo",
-      "submit": "Nadislaty poklykannja",
-      "description": "Bud' laska, vvedit' svoje potočne gaslo i my Vam vidpravymo poklykannja dlja jogo zminy",
-      "placeholder": "Vaše potočne gaslo"
+      "submit": "Pidtverdyty",
+      "currentPlaceholder": "Vaše potočne gaslo",
+      "newPlaceholder": "Nove gaslo",
+      "newConfirmPlaceholder": "Pidtverdit' nove gaslo",
+      "success": "Vaše gaslo bulo uspišno onovleno",
+      "error": "Nemožlyvo onovyty gaslo. Sprobujte pizniše",
+      "samePasswordError": "Identyčnyj do potočnogo gasla"
     }
   }
 }

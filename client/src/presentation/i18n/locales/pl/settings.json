@@ -72,9 +72,13 @@
     },
     "changePassword": {
       "label": "Zmienić hasło",
-      "submit": "Wyślij link",
-      "description": "Wprowadź bieżące hasło, a my wyślemy ci link do zresetowania hasła",
-      "placeholder": "Twoje aktualne hasło"
+      "submit": "Potwierdzić",
+      "currentPlaceholder": "Twoje aktualne hasło",
+      "newPlaceholder": "Nowe hasło",
+      "newConfirmPlaceholder": "Potwierdź nowe hasło",
+      "success": "Twoje hasło zostało pomyślnie zaktualizowane",
+      "error": "Nie można zaktualizować hasła. Spróbuj ponownie później",
+      "samePasswordError": "Identyczne z bieżącym hasłem"
     }
   }
 }

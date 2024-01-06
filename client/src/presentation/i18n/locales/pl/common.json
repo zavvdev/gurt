@@ -66,7 +66,8 @@
     "invalid_token": "Nieprawidłowy token",
     "invalid_signature": "Nieprawidłowy podpis",
     "user_not_found": "Użytkownik nie został znaleziony",
-    "same_password": "Nie zalecamy używania tego samego hasła, którego używałeś wcześniej"
+    "same_password": "Nie zalecamy używania tego samego hasła, którego używałeś wcześniej",
+    "invalid_current_password": "Bieżące hasło jest nieprawidłowe"
   },
 
   "formError": {
@@ -83,7 +84,8 @@
     "passwordsNotMatch": "Hasła nie pasują",
     "passwordMinimum": "Hasło powinno mieć długość co najmniej {{ length }} znaków",
     "textMax": "Maksymalna dozwolona długość: {{ max }}",
-    "dateOfBirthInvalid": "Podaj swoją prawdziwą datę urodzenia"
+    "dateOfBirthInvalid": "Podaj swoją prawdziwą datę urodzenia",
+    "currentPasswordRequired": "Podaj swoje aktualne hasło"
   },
 
   "notFoundPage": {

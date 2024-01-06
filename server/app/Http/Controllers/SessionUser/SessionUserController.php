@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SessionUser;
 use App\Enums\ResponseMessage;
 use App\Enums\ValidationError;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SessionUser\ChangePasswordRequest;
 use App\Http\Requests\SessionUser\PatchRequest;
 use App\Http\Resources\User\UserResource;
 use App\Models\User;
@@ -12,6 +13,7 @@ use App\Services\StorageService\StorageService;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class SessionUserController extends Controller
 {
@@ -80,6 +82,30 @@ class SessionUserController extends Controller
                 Arr::except($request->toArray(), ['profile']),
             );
         });
+
+        return $this->successResponse();
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $user = $this->user();
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            return $this->errorResponse(
+                Response::HTTP_BAD_REQUEST,
+                ResponseMessage::InvalidCurrentPassword,
+            );
+        }
+
+        if (Hash::check($request->new_password, $user->password)) {
+            return $this->errorResponse(
+                Response::HTTP_CONFLICT,
+                ResponseMessage::SamePassword,
+            );
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
 
         return $this->successResponse();
     }

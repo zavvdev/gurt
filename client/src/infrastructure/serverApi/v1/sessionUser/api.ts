@@ -5,7 +5,10 @@ import {
   removeNullishFromRequestPayload,
   validateServerSuccessResponseData,
 } from '~/infrastructure/serverApi/utilities';
-import { PatchRequest } from '~/infrastructure/serverApi/v1/sessionUser/requests';
+import {
+  ChangePasswordRequest,
+  PatchRequest,
+} from '~/infrastructure/serverApi/v1/sessionUser/requests';
 
 class SessionUserApi {
   private http: Http;
@@ -29,6 +32,10 @@ class SessionUserApi {
 
   public patch(request: PatchRequest) {
     return this.http.patch(this.r(), removeNullishFromRequestPayload(request));
+  }
+
+  public changePassword(request: ChangePasswordRequest) {
+    return this.http.put(this.r('/password'), request);
   }
 }
 

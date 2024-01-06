@@ -35,4 +35,6 @@ enum ResponseMessage: string
     case StorageError = 'storage_error';
 
     case InvalidRequest = 'invalid_request';
+
+    case InvalidCurrentPassword = 'invalid_current_password';
 }

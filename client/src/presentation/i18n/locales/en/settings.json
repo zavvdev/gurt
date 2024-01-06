@@ -72,9 +72,13 @@
     },
     "changePassword": {
       "label": "Change password",
-      "submit": "Send link",
-      "description": "Please enter your current password and we'll send you a link for password reset",
-      "placeholder": "Your current password"
+      "submit": "Confirm",
+      "currentPlaceholder": "Your current password",
+      "newPlaceholder": "New password",
+      "newConfirmPlaceholder": "Confirm new password",
+      "success": "Your password has been successfully updated",
+      "error": "Unable to update your password. Try again later",
+      "samePasswordError": "Identical to current password"
     }
   }
 }

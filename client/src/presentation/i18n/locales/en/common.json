@@ -66,7 +66,8 @@
     "invalid_token": "Invalid token",
     "invalid_signature": "Invalid signature",
     "user_not_found": "User not found",
-    "same_password": "We do not recommend you to use the same password that you used before"
+    "same_password": "We do not recommend you to use the same password that you used before",
+    "invalid_current_password": "Current password is not valid"
   },
 
   "formError": {
@@ -83,7 +84,8 @@
     "passwordsNotMatch": "Passwords do not match",
     "passwordMinimum": "Password should be minimum {{ length }} characters length",
     "textMax": "Maximum length allowed: {{ max }}",
-    "dateOfBirthInvalid": "Please provide your real date of birth"
+    "dateOfBirthInvalid": "Please provide your real date of birth",
+    "currentPasswordRequired": "Provide your current password"
   },
 
   "notFoundPage": {

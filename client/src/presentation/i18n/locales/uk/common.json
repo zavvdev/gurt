@@ -66,7 +66,8 @@
     "invalid_token": "Nevalidnyj token",
     "invalid_signature": "Nevalidna sygnatura",
     "user_not_found": "Korystuvača ne znajdeno",
-    "same_password": "My ne recomendujemo vam vykorystovuvaty take same haslo jake bulo raniše"
+    "same_password": "My ne recomendujemo vam vykorystovuvaty take same haslo jake bulo raniše",
+    "invalid_current_password": "Potočne gaslo nevirne"
   },
 
   "formError": {
@@ -83,7 +84,8 @@
     "passwordsNotMatch": "Gasla ne spivpadajut'",
     "passwordMinimum": "Gaslo povynno buty minimum {{ length }} symvoliv v dovžynu",
     "textMax": "Maksymalna dozvolena dovžyna: {{ max }}",
-    "dateOfBirthInvalid": "Bud' laska, vkažit svoju spravžnju datu narodžennja"
+    "dateOfBirthInvalid": "Bud' laska, vkažit svoju spravžnju datu narodžennja",
+    "currentPasswordRequired": "Vkažit' vaše potočne gaslo"
   },
 
   "notFoundPage": {
