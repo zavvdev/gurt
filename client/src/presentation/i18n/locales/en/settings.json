@@ -69,6 +69,12 @@
         "ok": "Yes. Delete my account",
         "cancel": "No. Keep it"
       }
+    },
+    "changePassword": {
+      "label": "Change password",
+      "submit": "Send link",
+      "description": "Please enter your current password and we'll send you a link for password reset",
+      "placeholder": "Your current password"
     }
   }
 }

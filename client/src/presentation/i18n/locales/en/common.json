@@ -39,7 +39,9 @@
     "now": "Now",
     "today": "Today",
     "startDate": "Start date",
-    "endDate": "End date"
+    "endDate": "End date",
+    "password": "Password",
+    "email": "Email"
   },
 
   "appError": {

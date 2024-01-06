@@ -69,6 +69,12 @@
         "ok": "Tak. Usuń moje konto",
         "cancel": "Nie. Zachowaj to"
       }
+    },
+    "changePassword": {
+      "label": "Zmienić hasło",
+      "submit": "Wyślij link",
+      "description": "Wprowadź bieżące hasło, a my wyślemy ci link do zresetowania hasła",
+      "placeholder": "Twoje aktualne hasło"
     }
   }
 }

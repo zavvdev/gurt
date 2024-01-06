@@ -39,7 +39,9 @@
     "now": "Zaraz",
     "today": "S'ogodni",
     "startDate": "Počatkova data",
-    "endDate": "Kinceva data"
+    "endDate": "Kinceva data",
+    "password": "Gaslo",
+    "email": "Elektronna adresa"
   },
 
   "appError": {

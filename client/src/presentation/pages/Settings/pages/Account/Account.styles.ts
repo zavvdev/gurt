@@ -8,8 +8,9 @@ export const useAccountStyles = createUseStyles({
     gap: '1.5rem',
   },
 
-  row: {
+  footer: {
     display: 'flex',
     gap: '1rem',
+    marginTop: '1rem',
   },
 });

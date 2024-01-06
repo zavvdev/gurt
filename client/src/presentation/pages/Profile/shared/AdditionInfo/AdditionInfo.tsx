@@ -18,13 +18,13 @@ export function AdditionInfo({ country, dateOfBirth, className }: Props) {
     <div className={cn(classes.root, className)}>
       {country && (
         <div className={classes.row}>
-          <Icons.MapPin height={18} />
+          <Icons.MapPin height={16} />
           {getCountryNameByCode(country)}
         </div>
       )}
       {dateOfBirth && (
         <div className={classes.row}>
-          <Icons.Cake height={18} />
+          <Icons.Cake height={16} />
           {dateService.previewServerDate(dateOfBirth, {
             lang: i18next.language,
           })}

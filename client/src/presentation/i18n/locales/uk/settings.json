@@ -69,6 +69,12 @@
         "ok": "Tak. Vydalyty mij akaunt",
         "cancel": "Ni. Zalyšyty"
       }
+    },
+    "changePassword": {
+      "label": "Zminyty gaslo",
+      "submit": "Nadislaty poklykannja",
+      "description": "Bud' laska, vvedit' svoje potočne gaslo i my Vam vidpravymo poklykannja dlja jogo zminy",
+      "placeholder": "Vaše potočne gaslo"
     }
   }
 }

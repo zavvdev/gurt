@@ -3,6 +3,7 @@ import { SettingsPageLayout } from '~/presentation/pages/Settings/layouts/Settin
 import { useAccountStyles } from '~/presentation/pages/Settings/pages/Account/Account.styles';
 import { Logout } from '~/presentation/pages/Settings/pages/Account/shared/Logout/Logout';
 import { Delete } from '~/presentation/pages/Settings/pages/Account/shared/Delete/Delete';
+import { ChangePassword } from '~/presentation/pages/Settings/pages/Account/shared/ChangePassword/ChangePassword';
 
 export function Account() {
   const { t } = useTranslation('settings');
@@ -10,8 +11,8 @@ export function Account() {
 
   return (
     <SettingsPageLayout label={t('account.label')} className={classes.content}>
-      <div>Account settings</div>
-      <div className={classes.row}>
+      <ChangePassword />
+      <div className={classes.footer}>
         <Logout />
         <Delete />
       </div>

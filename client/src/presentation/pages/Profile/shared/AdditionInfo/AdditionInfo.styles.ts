@@ -19,7 +19,7 @@ export const useAdditionInfoStyles = createUseStyles(
       display: 'flex',
       alignItems: 'center',
       gap: '0.2rem',
-      fontSize: '0.9rem',
+      fontSize: '0.8rem',
       color: theme.color.gray7,
     },
   }),
