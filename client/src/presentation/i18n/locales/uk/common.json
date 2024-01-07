@@ -53,7 +53,8 @@
     "fetchUser": "Nemožlyvo otrymaty dani korystuvača. Sprobujte pizniše",
     "logout": "Nemožlyvo zaveršyty vašu potočnu sesiju. Sprobujte očystyty kuki brauzera jakščo pomylka ne znykne",
     "uploadFile": "Nemožlyvo zavantažyty fajl. Sprobujte pizniše",
-    "deleteAccount": "Nemožlyvo vydalyty Vaš akaunt. Sprobujte pizniše"
+    "deleteAccount": "Nemožlyvo vydalyty Vaš akaunt. Sprobujte pizniše",
+    "emailAlreadyUsed": "Nemožlyvo vykorystaty cju elektronnu adresu. Sprobujte inšu"
   },
 
   "serverMessage": {

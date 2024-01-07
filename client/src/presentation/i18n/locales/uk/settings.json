@@ -79,6 +79,17 @@
       "success": "Vaše gaslo bulo uspišno onovleno",
       "error": "Nemožlyvo onovyty gaslo. Sprobujte pizniše",
       "samePasswordError": "Identyčnyj do potočnogo gasla"
+    },
+    "emailInfo": "Vaša elektronna adresa ne dostupna dlja peregljadu inšym korystuvačam",
+    "changeEmail": {
+      "label": "Zminyty elektronnu adresu",
+      "description": "Pislja pidtverdžennja my vyšlemo vam poklykannja dlja veryfikaciji novoji elektronnoji adresy. Vy ne zmožete korystuvatysja vašym oblikovym zapysom poky ne pidtverdyte novu elektronnu adresu.",
+      "submit": "Pidtverdyty ta nadislaty",
+      "error": "Nemožlyvo vykonaty zapyt na znimu elektronnoji adresy. Sprobujte pizniše",
+      "success": "My nadislaly vam poklykannja dlja veryfikaciji na novu elektronnu adresu",
+      "currentPasswordPlaceholder": "Vaše potočne gaslo",
+      "newEmailPlaceholder": "Nova elektronna adresa",
+      "sameEmailError": "Ce vaša potočna elektronna adresa"
     }
   }
 }

@@ -79,6 +79,17 @@
       "success": "Your password has been successfully updated",
       "error": "Unable to update your password. Try again later",
       "samePasswordError": "Identical to current password"
+    },
+    "emailInfo": "Your email address is not visible for other users",
+    "changeEmail": {
+      "label": "Change email",
+      "description": "After confirmation we'll send you a link for verification to new email address. You won't be able to use your account until you verify new email address",
+      "submit": "Confirm and send",
+      "error": "Unable to fulfill change email request. Try again later",
+      "success": "We've sent you a verification link to new email address",
+      "currentPasswordPlaceholder": "Your current password",
+      "newEmailPlaceholder": "New email address",
+      "sameEmailError": "This is your current email address"
     }
   }
 }

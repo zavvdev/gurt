@@ -6,6 +6,7 @@ import {
   validateServerSuccessResponseData,
 } from '~/infrastructure/serverApi/utilities';
 import {
+  ChangeEmailRequest,
   ChangePasswordRequest,
   PatchRequest,
 } from '~/infrastructure/serverApi/v1/sessionUser/requests';
@@ -36,6 +37,10 @@ class SessionUserApi {
 
   public changePassword(request: ChangePasswordRequest) {
     return this.http.put(this.r('/password'), request);
+  }
+
+  public changeEmail(request: ChangeEmailRequest) {
+    return this.http.put(this.r('/email'), request);
   }
 }
 

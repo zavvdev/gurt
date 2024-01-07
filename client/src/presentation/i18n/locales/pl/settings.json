@@ -79,6 +79,17 @@
       "success": "Twoje hasło zostało pomyślnie zaktualizowane",
       "error": "Nie można zaktualizować hasła. Spróbuj ponownie później",
       "samePasswordError": "Identyczne z bieżącym hasłem"
+    },
+    "emailInfo": "Twój adres e-mail nie jest widoczny dla innych użytkowników",
+    "changeEmail": {
+      "label": "Zmienić email",
+      "description": "Po potwierdzeniu wyślemy ci link do weryfikacji na nowy adres e-mail. Nie będziesz mógł korzystać z konta, dopóki nie zweryfikujesz nowego adresu e-mail",
+      "submit": "Potwierdź i wyślij",
+      "error": "Nie można spełnić żądania zmiany wiadomości e-mail. Spróbuj ponownie później",
+      "success": "Wysłaliśmy Ci link weryfikacyjny do nowego adresu e-mail",
+      "currentPasswordPlaceholder": "Twoje aktualne hasło",
+      "newEmailPlaceholder": "Nowy adres e-mail",
+      "sameEmailError": "To jest twój aktualny adres e-mail"
     }
   }
 }

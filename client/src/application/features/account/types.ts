@@ -3,3 +3,8 @@ export interface ChangePasswordForm {
   newPassword: string;
   newPasswordConfirm: string;
 }
+
+export interface ChangeEmailForm {
+  currentPassword: string;
+  newEmail: string;
+}

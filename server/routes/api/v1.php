@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::delete('/', [SessionUserController::class, 'delete']);
         Route::patch('/', [SessionUserController::class, 'patch']);
         Route::put('/password', [SessionUserController::class, 'changePassword']);
+        Route::put('/email', [SessionUserController::class, 'changeEmail']);
     });
 
     Route::prefix('users')->group(function () {

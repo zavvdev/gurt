@@ -37,4 +37,6 @@ enum ResponseMessage: string
     case InvalidRequest = 'invalid_request';
 
     case InvalidCurrentPassword = 'invalid_current_password';
+
+    case SameEmail = 'same_email';
 }
