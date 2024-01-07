@@ -29,6 +29,8 @@ export enum ServerResponseMessage {
   InvalidToken = 'invalid_token',
 
   InvalidSignature = 'invalid_signature',
+
+  InvalidCurrentPassword = 'invalid_current_password',
 }
 
 export type ServerResponse<T = unknown> = {

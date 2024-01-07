@@ -39,7 +39,9 @@
     "now": "Zaraz",
     "today": "S'ogodni",
     "startDate": "Počatkova data",
-    "endDate": "Kinceva data"
+    "endDate": "Kinceva data",
+    "password": "Gaslo",
+    "email": "Elektronna adresa"
   },
 
   "appError": {
@@ -50,7 +52,9 @@
   "error": {
     "fetchUser": "Nemožlyvo otrymaty dani korystuvača. Sprobujte pizniše",
     "logout": "Nemožlyvo zaveršyty vašu potočnu sesiju. Sprobujte očystyty kuki brauzera jakščo pomylka ne znykne",
-    "uploadFile": "Nemožlyvo zavantažyty fajl. Sprobujte pizniše"
+    "uploadFile": "Nemožlyvo zavantažyty fajl. Sprobujte pizniše",
+    "deleteAccount": "Nemožlyvo vydalyty Vaš akaunt. Sprobujte pizniše",
+    "emailAlreadyUsed": "Nemožlyvo vykorystaty cju elektronnu adresu. Sprobujte inšu"
   },
 
   "serverMessage": {
@@ -63,7 +67,8 @@
     "invalid_token": "Nevalidnyj token",
     "invalid_signature": "Nevalidna sygnatura",
     "user_not_found": "Korystuvača ne znajdeno",
-    "same_password": "My ne recomendujemo vam vykorystovuvaty take same haslo jake bulo raniše"
+    "same_password": "My ne recomendujemo vam vykorystovuvaty take same haslo jake bulo raniše",
+    "invalid_current_password": "Potočne gaslo nevirne"
   },
 
   "formError": {
@@ -80,7 +85,8 @@
     "passwordsNotMatch": "Gasla ne spivpadajut'",
     "passwordMinimum": "Gaslo povynno buty minimum {{ length }} symvoliv v dovžynu",
     "textMax": "Maksymalna dozvolena dovžyna: {{ max }}",
-    "dateOfBirthInvalid": "Bud' laska, vkažit svoju spravžnju datu narodžennja"
+    "dateOfBirthInvalid": "Bud' laska, vkažit svoju spravžnju datu narodžennja",
+    "currentPasswordRequired": "Vkažit' vaše potočne gaslo"
   },
 
   "notFoundPage": {

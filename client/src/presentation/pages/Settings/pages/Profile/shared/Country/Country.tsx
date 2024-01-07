@@ -16,7 +16,7 @@ export function Country({ value, onChange, onBlur, isLoading }: Props) {
   const { t: tCommon } = useTranslation('common');
 
   return (
-    <SettingItem dir="col" label={tCommon('label.country')}>
+    <SettingItem label={tCommon('label.country')}>
       {isLoading ? (
         <Skeleton.Input active size="large" block />
       ) : (

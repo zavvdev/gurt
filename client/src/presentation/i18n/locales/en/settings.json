@@ -2,7 +2,8 @@
   "label": "Settings",
   "menu": {
     "app": "Application",
-    "profile": "Profile"
+    "profile": "Profile",
+    "account": "Account"
   },
   "app": {
     "label": "Application settings",
@@ -47,6 +48,48 @@
         },
         "fallback": "Unable to update profile. Try again later"
       }
+    }
+  },
+  "account": {
+    "label": "Account settings",
+    "logout": {
+      "label": "Logout",
+      "confirm": {
+        "label": "Logout confirmation",
+        "text": "Are you sure you want to logout from your account?",
+        "ok": "Yes. Logout",
+        "cancel": "No. Stay"
+      }
+    },
+    "delete": {
+      "label": "Delete account",
+      "confirm": {
+        "label": "Delete account confirmation",
+        "text": "Are you sure you want to delete your account? All your data will be delete forever",
+        "ok": "Yes. Delete my account",
+        "cancel": "No. Keep it"
+      }
+    },
+    "changePassword": {
+      "label": "Change password",
+      "submit": "Confirm",
+      "currentPlaceholder": "Your current password",
+      "newPlaceholder": "New password",
+      "newConfirmPlaceholder": "Confirm new password",
+      "success": "Your password has been successfully updated",
+      "error": "Unable to update your password. Try again later",
+      "samePasswordError": "Identical to current password"
+    },
+    "emailInfo": "Your email address is not visible for other users",
+    "changeEmail": {
+      "label": "Change email",
+      "description": "After confirmation we'll send you a link for verification to new email address. You won't be able to use your account until you verify new email address",
+      "submit": "Confirm and send",
+      "error": "Unable to fulfill change email request. Try again later",
+      "success": "We've sent you a verification link to new email address",
+      "currentPasswordPlaceholder": "Your current password",
+      "newEmailPlaceholder": "New email address",
+      "sameEmailError": "This is your current email address"
     }
   }
 }

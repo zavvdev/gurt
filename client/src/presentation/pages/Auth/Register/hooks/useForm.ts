@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { useFormik } from 'formik';
 import {
   AUTH_NAME_MAX_LENGTH,
   AUTH_NAME_MIN_LENGTH,
@@ -14,6 +13,7 @@ import {
 } from '~/application/features/auth/utilities';
 import { RegisterForm } from '~/application/features/auth/register/types';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
+import { useExtendedFormik } from '~/presentation/utilities/hooks/useExtendedFormik';
 
 interface Args {
   onSubmit: (form: RegisterForm) => void;
@@ -70,7 +70,7 @@ export function useForm({ onSubmit }: Args) {
       .required(t('formError.passwordConfirmRequired')),
   });
 
-  const form = useFormik<RegisterForm>({
+  return useExtendedFormik<RegisterForm>({
     validationSchema: schema,
     enableReinitialize: true,
     initialValues: {
@@ -82,15 +82,4 @@ export function useForm({ onSubmit }: Args) {
     },
     onSubmit,
   });
-
-  const getError = (field: keyof typeof form.values) => {
-    if (form.touched[field] && form.errors[field]) {
-      return form.errors[field];
-    }
-  };
-
-  return {
-    ...form,
-    getError,
-  };
 }

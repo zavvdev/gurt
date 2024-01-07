@@ -11,4 +11,8 @@ export const useLanguageSwitchStyles = createUseStyles({
       width: '1.5rem',
     },
   },
+
+  select: {
+    width: 'fit-content',
+  },
 });

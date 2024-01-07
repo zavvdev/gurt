@@ -1,4 +1,3 @@
-import { useFormik } from 'formik';
 import * as yup from 'yup';
 import {
   AUTH_NAME_MAX_LENGTH,
@@ -15,6 +14,7 @@ import { BIO_MAX_LENGTH } from '~/application/features/settings/profile/config';
 import { ProfileSettingsForm } from '~/application/features/settings/profile/types';
 import { dateService } from '~/application/services/DateService';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
+import { useExtendedFormik } from '~/presentation/utilities/hooks/useExtendedFormik';
 
 interface Args {
   initialValues: ProfileSettingsForm;
@@ -73,21 +73,10 @@ export function useForm({ initialValues, onSubmit }: Args) {
       .nullable(),
   });
 
-  const form = useFormik({
+  return useExtendedFormik({
     initialValues,
     onSubmit,
     enableReinitialize: true,
     validationSchema: schema,
   });
-
-  const getError = (field: keyof typeof form.values) => {
-    if (form.touched[field] && form.errors[field]) {
-      return form.errors[field];
-    }
-  };
-
-  return {
-    ...form,
-    getError,
-  };
 }

@@ -39,7 +39,9 @@
     "now": "Teraz",
     "today": "Dzisiaj",
     "startDate": "Data rozpoczęcia",
-    "endDate": "Data zakończenia"
+    "endDate": "Data zakończenia",
+    "password": "Hasło",
+    "email": "Email"
   },
 
   "appError": {
@@ -50,7 +52,9 @@
   "error": {
     "fetchUser": "Nie można pobrać danych użytkownika. Spróbuj ponownie później",
     "logout": "Nie można zakończyć sesji. Spróbuj ręcznie wyczyścić pliki cookie przeglądarki, jeśli problem będzie się powtarzał",
-    "uploadFile": "Nie można przesłać pliku. Spróbuj ponownie później"
+    "uploadFile": "Nie można przesłać pliku. Spróbuj ponownie później",
+    "deleteAccount": "Nie można usunąć Twojego konta. Spróbuj ponownie później",
+    "emailAlreadyUsed": "Tego adresu e-mail nie można użyć. Spróbuj innego"
   },
 
   "serverMessage": {
@@ -63,7 +67,8 @@
     "invalid_token": "Nieprawidłowy token",
     "invalid_signature": "Nieprawidłowy podpis",
     "user_not_found": "Użytkownik nie został znaleziony",
-    "same_password": "Nie zalecamy używania tego samego hasła, którego używałeś wcześniej"
+    "same_password": "Nie zalecamy używania tego samego hasła, którego używałeś wcześniej",
+    "invalid_current_password": "Bieżące hasło jest nieprawidłowe"
   },
 
   "formError": {
@@ -80,7 +85,8 @@
     "passwordsNotMatch": "Hasła nie pasują",
     "passwordMinimum": "Hasło powinno mieć długość co najmniej {{ length }} znaków",
     "textMax": "Maksymalna dozwolona długość: {{ max }}",
-    "dateOfBirthInvalid": "Podaj swoją prawdziwą datę urodzenia"
+    "dateOfBirthInvalid": "Podaj swoją prawdziwą datę urodzenia",
+    "currentPasswordRequired": "Podaj swoje aktualne hasło"
   },
 
   "notFoundPage": {

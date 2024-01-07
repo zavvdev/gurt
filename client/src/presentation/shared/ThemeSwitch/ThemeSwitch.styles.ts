@@ -22,4 +22,8 @@ export const useThemeSwitchStyles = createUseStyles({
       marginRight: '0.5rem',
     },
   },
+
+  select: {
+    width: 'fit-content',
+  },
 });
