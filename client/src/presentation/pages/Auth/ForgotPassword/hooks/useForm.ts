@@ -1,7 +1,7 @@
 import * as yup from 'yup';
-import { useFormik } from 'formik';
 import { ForgotPasswordForm } from '~/application/features/auth/password/types';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
+import { useExtendedFormik } from '~/presentation/utilities/hooks/useExtendedFormik';
 
 interface Args {
   onSubmit: (form: ForgotPasswordForm) => void;
@@ -17,7 +17,7 @@ export function useForm({ onSubmit }: Args) {
       .required(t('formError.emailRequired')),
   });
 
-  const form = useFormik<ForgotPasswordForm>({
+  return useExtendedFormik<ForgotPasswordForm>({
     validationSchema: schema,
     enableReinitialize: true,
     initialValues: {
@@ -25,15 +25,4 @@ export function useForm({ onSubmit }: Args) {
     },
     onSubmit,
   });
-
-  const getError = (field: keyof typeof form.values) => {
-    if (form.touched[field] && form.errors[field]) {
-      return form.errors[field];
-    }
-  };
-
-  return {
-    ...form,
-    getError,
-  };
 }

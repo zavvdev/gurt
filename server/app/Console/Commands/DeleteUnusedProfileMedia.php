@@ -56,10 +56,21 @@ class DeleteUnusedProfileMedia extends Command
             }
         }
 
+        $userOrphanFolders = array_filter(
+            array_keys($storageListing),
+            fn ($userId) => !array_key_exists($userId, $userFilesById),
+        );
+
+        if (count($userOrphanFolders) > 0) {
+            foreach ($userOrphanFolders as $userId) {
+                StorageService::deleteUserFolder($userId);
+            }
+        }
+
         if (count($storageListing) > 0) {
             foreach ($storageListing as $userId => $files) {
                 foreach ($files as $file) {
-                    if (!in_array($file, $userFilesById[$userId])) {
+                    if (array_key_exists($userId, $userFilesById) && !in_array($file, $userFilesById[$userId])) {
                         StorageService::deleteFile($file, $userId);
                     }
                 }

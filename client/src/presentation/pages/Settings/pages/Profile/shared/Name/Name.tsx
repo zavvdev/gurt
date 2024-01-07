@@ -15,7 +15,7 @@ export function Name({ value, onChange, onBlur, error, isLoading }: Props) {
   const { t } = useTranslation('common');
 
   return (
-    <SettingItem dir="col" label={t('label.name')}>
+    <SettingItem label={t('label.name')}>
       {isLoading ? (
         <Skeleton.Input active size="large" block />
       ) : (

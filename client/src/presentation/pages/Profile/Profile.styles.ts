@@ -42,10 +42,10 @@ export const useProfileStyles = createUseStyles(({ media }: JssTheme) => ({
 
   bio: {
     position: 'relative',
-    top: '-2rem',
+    top: '-2.5rem',
 
     [media.maxXs]: {
-      top: '-1.5rem',
+      top: '-2rem',
     },
   },
 }));

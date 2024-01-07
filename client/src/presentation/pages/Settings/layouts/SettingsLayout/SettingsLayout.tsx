@@ -30,11 +30,20 @@ export function SettingsLayout({
   const menuItems = [
     {
       key: PRIVATE_ROUTES.settings.profile(),
-      icon: <Icons.User />,
+      icon: <Icons.UserCircle2 />,
       label: t('menu.profile'),
       className: classes.menuItem,
       onClick: () => {
         navigate(PRIVATE_ROUTES.settings.profile());
+      },
+    },
+    {
+      key: PRIVATE_ROUTES.settings.account(),
+      icon: <Icons.UserCog2 />,
+      label: t('menu.account'),
+      className: classes.menuItem,
+      onClick: () => {
+        navigate(PRIVATE_ROUTES.settings.account());
       },
     },
     {

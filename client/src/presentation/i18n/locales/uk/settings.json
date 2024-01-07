@@ -2,7 +2,8 @@
   "label": "Nalaštuvannja",
   "menu": {
     "app": "Zastosunok",
-    "profile": "Profajl"
+    "profile": "Profajl",
+    "account": "Akaunt"
   },
   "app": {
     "label": "Nalaštuvannja zastosunku",
@@ -47,6 +48,48 @@
         "submit": "Tak. Vydalyty mij profajl",
         "cancel": "Ni. Zalyšyty"
       }
+    }
+  },
+  "account": {
+    "label": "Nalaštuvannja akauntu",
+    "logout": {
+      "label": "Vyhid",
+      "confirm": {
+        "label": "Pidtverdžennja vyhodu",
+        "text": "Vy dijsno hočete vyjty zi svogo akauntu?",
+        "ok": "Tak. Vyjty",
+        "cancel": "Ni. Zalyšytyś"
+      }
+    },
+    "delete": {
+      "label": "Vydalyty akaunt",
+      "confirm": {
+        "label": "Pidtverdžennja vydalennja akauntu",
+        "text": "Vy dijsno hočete vydalyty svij akaunt? Usi vaši dani budut' vydaleni nazavždy",
+        "ok": "Tak. Vydalyty mij akaunt",
+        "cancel": "Ni. Zalyšyty"
+      }
+    },
+    "changePassword": {
+      "label": "Zminyty gaslo",
+      "submit": "Pidtverdyty",
+      "currentPlaceholder": "Vaše potočne gaslo",
+      "newPlaceholder": "Nove gaslo",
+      "newConfirmPlaceholder": "Pidtverdit' nove gaslo",
+      "success": "Vaše gaslo bulo uspišno onovleno",
+      "error": "Nemožlyvo onovyty gaslo. Sprobujte pizniše",
+      "samePasswordError": "Identyčnyj do potočnogo gasla"
+    },
+    "emailInfo": "Vaša elektronna adresa ne dostupna dlja peregljadu inšym korystuvačam",
+    "changeEmail": {
+      "label": "Zminyty elektronnu adresu",
+      "description": "Pislja pidtverdžennja my vyšlemo vam poklykannja dlja veryfikaciji novoji elektronnoji adresy. Vy ne zmožete korystuvatysja vašym oblikovym zapysom poky ne pidtverdyte novu elektronnu adresu.",
+      "submit": "Pidtverdyty ta nadislaty",
+      "error": "Nemožlyvo vykonaty zapyt na znimu elektronnoji adresy. Sprobujte pizniše",
+      "success": "My nadislaly vam poklykannja dlja veryfikaciji na novu elektronnu adresu",
+      "currentPasswordPlaceholder": "Vaše potočne gaslo",
+      "newEmailPlaceholder": "Nova elektronna adresa",
+      "sameEmailError": "Ce vaša potočna elektronna adresa"
     }
   }
 }

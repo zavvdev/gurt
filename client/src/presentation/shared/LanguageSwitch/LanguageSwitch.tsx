@@ -32,6 +32,7 @@ export function LanguageSwitch({ variant }: Props) {
       value={i18n.language ?? FALLBACK_LNG}
       onChange={(value) => i18n.changeLanguage(value)}
       options={items.map((i) => ({ value: i.key, label: i.label }))}
+      className={classes.select}
     />
   ) : (
     <Dropdown

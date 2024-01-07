@@ -1,9 +1,9 @@
 import * as yup from 'yup';
-import { useFormik } from 'formik';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { AUTH_PASSWORD_MIN_LENGTH } from '~/application/features/auth/config';
 import { ResetPasswordForm } from '~/application/features/auth/password/types';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
+import { useExtendedFormik } from '~/presentation/utilities/hooks/useExtendedFormik';
 
 interface Args {
   onSubmit: ({
@@ -48,7 +48,7 @@ export function useForm({ onSubmit }: Args) {
       .required(t('formError.passwordConfirmRequired')),
   });
 
-  const form = useFormik<ResetPasswordForm>({
+  return useExtendedFormik<ResetPasswordForm>({
     validationSchema: schema,
     enableReinitialize: true,
     initialValues: {
@@ -58,15 +58,4 @@ export function useForm({ onSubmit }: Args) {
     },
     onSubmit: (form) => onSubmit({ form, token }),
   });
-
-  const getError = (field: keyof typeof form.values) => {
-    if (form.touched[field] && form.errors[field]) {
-      return form.errors[field];
-    }
-  };
-
-  return {
-    ...form,
-    getError,
-  };
 }

@@ -9,3 +9,14 @@ export interface PatchRequest {
     country?: string | null;
   };
 }
+
+export interface ChangePasswordRequest {
+  old_password: string;
+  new_password: string;
+  new_password_confirmation: string;
+}
+
+export interface ChangeEmailRequest {
+  password: string;
+  new_email: string;
+}

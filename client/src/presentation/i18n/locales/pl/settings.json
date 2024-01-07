@@ -2,7 +2,8 @@
   "label": "Ustawienia",
   "menu": {
     "app": "Aplikacja",
-    "profile": "Profil"
+    "profile": "Profil",
+    "account": "Konto"
   },
   "app": {
     "label": "Ustawienia aplikacji",
@@ -47,6 +48,48 @@
         "submit": "Tak. Usuń mój profil",
         "cancel": "Nie. Zatrzymaj to"
       }
+    }
+  },
+  "account": {
+    "label": "Ustawienia konta",
+    "logout": {
+      "label": "Wyloguj",
+      "confirm": {
+        "label": "Potwierdzenie wylogowania",
+        "text": "Czy na pewno chcesz się wylogować ze swojego konta?",
+        "ok": "Tak. Wyloguj",
+        "cancel": "Nie. zostać"
+      }
+    },
+    "delete": {
+      "label": "Usuń konto",
+      "confirm": {
+        "label": "Usuń potwierdzenie konta",
+        "text": "Czy na pewno chcesz usunąć swoje konto? Wszystkie Twoje dane zostaną usunięte na zawsze",
+        "ok": "Tak. Usuń moje konto",
+        "cancel": "Nie. Zachowaj to"
+      }
+    },
+    "changePassword": {
+      "label": "Zmienić hasło",
+      "submit": "Potwierdzić",
+      "currentPlaceholder": "Twoje aktualne hasło",
+      "newPlaceholder": "Nowe hasło",
+      "newConfirmPlaceholder": "Potwierdź nowe hasło",
+      "success": "Twoje hasło zostało pomyślnie zaktualizowane",
+      "error": "Nie można zaktualizować hasła. Spróbuj ponownie później",
+      "samePasswordError": "Identyczne z bieżącym hasłem"
+    },
+    "emailInfo": "Twój adres e-mail nie jest widoczny dla innych użytkowników",
+    "changeEmail": {
+      "label": "Zmienić email",
+      "description": "Po potwierdzeniu wyślemy ci link do weryfikacji na nowy adres e-mail. Nie będziesz mógł korzystać z konta, dopóki nie zweryfikujesz nowego adresu e-mail",
+      "submit": "Potwierdź i wyślij",
+      "error": "Nie można spełnić żądania zmiany wiadomości e-mail. Spróbuj ponownie później",
+      "success": "Wysłaliśmy Ci link weryfikacyjny do nowego adresu e-mail",
+      "currentPasswordPlaceholder": "Twoje aktualne hasło",
+      "newEmailPlaceholder": "Nowy adres e-mail",
+      "sameEmailError": "To jest twój aktualny adres e-mail"
     }
   }
 }

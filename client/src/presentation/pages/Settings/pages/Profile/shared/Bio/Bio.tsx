@@ -16,7 +16,7 @@ export function Bio({ value, onChange, onBlur, error, isLoading }: Props) {
   const { t } = useTranslation('common');
 
   return (
-    <SettingItem dir="col" label={t('label.bio')}>
+    <SettingItem label={t('label.bio')}>
       {isLoading ? (
         <Skeleton.Input
           active

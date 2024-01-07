@@ -1,7 +1,7 @@
 import * as yup from 'yup';
-import { useFormik } from 'formik';
 import { LoginForm } from '~/application/features/auth/login/types';
 import { useTranslation } from '~/presentation/i18n/hooks/useTranslation';
+import { useExtendedFormik } from '~/presentation/utilities/hooks/useExtendedFormik';
 
 interface Args {
   onSubmit: (form: LoginForm) => void;
@@ -26,7 +26,7 @@ export function useForm({ onSubmit }: Args) {
     remember: yup.bool(),
   });
 
-  const form = useFormik<LoginForm>({
+  return useExtendedFormik<LoginForm>({
     validationSchema: schema,
     enableReinitialize: true,
     initialValues: {
@@ -36,15 +36,4 @@ export function useForm({ onSubmit }: Args) {
     },
     onSubmit,
   });
-
-  const getError = (field: keyof typeof form.values) => {
-    if (form.touched[field] && form.errors[field]) {
-      return form.errors[field];
-    }
-  };
-
-  return {
-    ...form,
-    getError,
-  };
 }
